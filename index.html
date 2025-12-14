@@ -1,61 +1,87 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Matthias Silberhain</title>
+  <meta name="description" content="Matthias Silberhain — Bücher über Macht, Verantwortung und verborgen wirkende Kräfte." />
+  <link rel="icon" href="./favicon.ico" />
+
+  <!--
+    Hinweis: Falls deine Dateien Sonderzeichen enthalten (z. B. 'ü'), benenne sie besser in ASCII um,
+    z. B. derlangewegrueckcover.png, damit URLs zuverlässig funktionieren.
+  -->
 
   <style>
-    * {
+    /* Reset */
+    *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
+    :root{
+      --bg-1: #2a2a2a;
+      --bg-2: #0b0b0b;
+      --bg-3: #000000;
+      --fg: #d8d8d8;
+      --muted: #bfbfbf;
+      --accent: #cfcfcf;
+      --max-width: 900px;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
     body {
       min-height: 100vh;
       font-family: "Garamond", "Cinzel", serif;
-      background: radial-gradient(circle at top right, #2a2a2a 0%, #0b0b0b 40%, #000 100%);
-      color: #d8d8d8;
+      line-height: 1.6;
+      background: radial-gradient(circle at top right, var(--bg-1) 0%, var(--bg-2) 40%, var(--bg-3) 100%);
+      color: var(--fg);
       display: flex;
       align-items: center;
       justify-content: center;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      padding: 2rem;
     }
 
     .container {
       text-align: center;
-      padding: 4rem 2rem;
-      max-width: 900px;
+      padding: 2.5rem 2rem;
+      max-width: var(--max-width);
+      width: 100%;
     }
 
-    /* ---------- Logo mit Silver Flow ---------- */
-
+    /* Logo */
     .logo-wrapper {
       position: relative;
       display: inline-block;
-      margin-bottom: 3rem;
-      filter: drop-shadow(0 0 25px rgba(200, 200, 200, 0.25));
+      margin-bottom: 2.5rem;
+      filter: drop-shadow(0 0 25px rgba(200,200,200,0.20));
+      vertical-align: middle;
     }
 
     .logo {
-      max-width: 420px;
-      width: 100%;
       display: block;
+      width: 100%;
+      max-width: 420px;
+      height: auto;
+      border: 0;
     }
 
     .logo-flow {
       position: absolute;
       inset: 0;
-      background: linear-gradient(
-        120deg,
-        transparent 30%,
-        rgba(255,255,255,0.65) 50%,
-        transparent 70%
-      );
+      background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.65) 50%, transparent 70%);
       background-size: 200% 100%;
       animation: logoFlow 5s linear infinite;
       mix-blend-mode: screen;
       pointer-events: none;
+      /* improve rendering hint */
+      will-change: background-position;
     }
 
     @keyframes logoFlow {
@@ -63,13 +89,12 @@
       100% { background-position: 200% 0; }
     }
 
-    /* ---------- Silberne Schrift ---------- */
-
+    /* Silver text */
     .silver-text {
-      font-size: 2.6rem;
+      font-size: clamp(2rem, 5vw, 2.6rem);
       font-weight: 400;
       letter-spacing: 0.15em;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.25rem;
       background: linear-gradient(
         110deg,
         #7f7f7f 0%,
@@ -82,8 +107,10 @@
       background-size: 300% 100%;
       -webkit-background-clip: text;
       background-clip: text;
+      -webkit-text-fill-color: transparent; /* Safari */
       color: transparent;
       animation: silverFlow 6s linear infinite;
+      display: inline-block;
     }
 
     @keyframes silverFlow {
@@ -92,112 +119,139 @@
     }
 
     h2 {
-      font-size: 1.4rem;
+      font-size: 1.25rem;
       font-weight: 400;
       letter-spacing: 0.12em;
-      margin-bottom: 2rem;
-      color: #cfcfcf;
+      margin-bottom: 1rem;
+      color: var(--accent);
     }
 
     p {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       line-height: 1.8;
       max-width: 640px;
-      margin: 0 auto 1.8rem auto;
+      margin: 0.75rem auto;
       color: #bfbfbf;
     }
 
     .divider {
       width: 120px;
       height: 1px;
-      margin: 2.5rem auto;
-      background: linear-gradient(90deg, transparent, #bfbfbf, transparent);
+      margin: 1.75rem auto;
+      background: linear-gradient(90deg, transparent, var(--muted), transparent);
     }
 
-    /* ---------- Cover Bereich ---------- */
-
+    /* Cover section */
     .cover-section {
-      margin-top: 4rem;
+      margin-top: 2.5rem;
       display: flex;
-      gap: 2.5rem;
+      gap: 2rem;
       justify-content: center;
       flex-wrap: wrap;
+      align-items: start;
     }
 
     .cover {
-      max-width: 260px;
       width: 100%;
+      max-width: 260px;
+      display: block;
+      object-fit: cover;
       filter: drop-shadow(0 10px 30px rgba(0,0,0,0.6));
+      border: 0;
+      /* reserve space to avoid layout shift when images load */
+      aspect-ratio: 3 / 4; /* adjust if your images have different ratio */
+      background-color: rgba(255,255,255,0.02);
     }
 
     footer {
-      margin-top: 4rem;
+      margin-top: 2.5rem;
       font-size: 0.85rem;
       color: #888;
       letter-spacing: 0.12em;
     }
 
-    @media (max-width: 600px) {
+    /* Accessibility: respect reduced motion preference */
+    @media (prefers-reduced-motion: reduce) {
+      .logo-flow,
       .silver-text {
-        font-size: 2rem;
+        animation: none !important;
+        transition: none !important;
       }
+    }
 
-      p {
-        font-size: 1rem;
-      }
+    /* Responsive tweaks */
+    @media (max-width: 600px) {
+      .silver-text { font-size: 2rem; }
+      p { font-size: 1rem; }
+      .logo-wrapper { margin-bottom: 2rem; }
+      .cover-section { gap: 1rem; }
     }
   </style>
 </head>
-
 <body>
-  <main class="container">
+  <main class="container" id="main" role="main" aria-label="Hauptinhalt">
+    <header>
+      <div class="logo-wrapper" aria-hidden="false">
+        <!-- Wenn du das Logo als SVG hast, ist das oft besser für Schärfe und Skalierung -->
+        <img src="./logo.png" alt="Logo von Matthias Silberhain" class="logo" />
+        <div class="logo-flow" aria-hidden="true"></div>
+      </div>
 
-    <div class="logo-wrapper">
-      <img src="./logo.png" alt="Silberhain Logo" class="logo" />
-      <div class="logo-flow"></div>
-    </div>
+      <h1 class="silver-text">MATTHIAS SILBERHAIN</h1>
+    </header>
 
-    <h1 class="silver-text">MATTHIAS SILBERHAIN</h1>
-
-    <div class="divider"></div>
+    <div class="divider" role="separator" aria-hidden="true"></div>
 
     <h2>Über den Autor:</h2>
 
     <p>
-      Matthias Silberhain steht für Literatur mit Haltung. In seinen Büchern geht es um Macht, Verantwortung und die Kräfte, die im Verborgenen wirken. Er schreibt über historische und gesellschaftliche Zusammenhänge nicht, um zu gefallen, sondern um Klarheit zu schaffen. Seine Texte sind präzise, fundiert und kompromisslos ehrlich.
+      Matthias Silberhain steht für Literatur mit Haltung. In seinen Büchern geht es um Macht, Verantwortung und die Kräfte, die im Verborgenen wirken. Er schreibt über historische und gesellschaftliche Zusammenhänge und beleuchtet diese mit Tiefe und Präzision.
     </p>
 
     <p>
-      Was Silberhain auszeichnet, ist die Verbindung aus gründlicher Recherche und erzählerischer Stärke. Er legt offen, wo andere vereinfachen, und benennt Zusammenhänge, die selten klar ausgesprochen werden. Leserinnen und Leser finden bei ihm keine leichten Antworten, sondern belastbare Perspektiven, die nachwirken und zum Weiterdenken zwingen.
+      Was Silberhain auszeichnet, ist die Verbindung aus gründlicher Recherche und erzählerischer Stärke. Er legt offen, wo andere vereinfachen, und benennt Zusammenhänge, die selten klar ausgesprochen werden.
     </p>
 
     <p>
-      Nach vielen Jahren praktischer Berufserfahrung begann er, seine Erkenntnisse konsequent in Buchform zu bündeln. Unter dem Namen Matthias Silberhain verfolgt er eine klare Linie: Bücher mit Substanz, Tiefe und Haltung. Werke, die Orientierung geben in einer Zeit, in der Oberflächen oft lauter sind als Inhalte.
+      Nach vielen Jahren praktischer Berufserfahrung begann er, seine Erkenntnisse konsequent in Buchform zu bündeln. Unter dem Namen Matthias Silberhain verfolgt er eine klare Linie: Bücher mit Anspruch und Substanz.
     </p>
 
     <p>
-      Seine Veröffentlichungen richten sich an Menschen, die mehr wollen als Unterhaltung. An Leser, die bereit sind, genauer hinzusehen, Verantwortung zu hinterfragen und sich mit den unbequemen Seiten von Geschichte und Gegenwart auseinanderzusetzen.
+      Seine Veröffentlichungen richten sich an Menschen, die mehr wollen als Unterhaltung. An Leser, die bereit sind, genauer hinzusehen, Verantwortung zu hinterfragen und sich mit den unbequemen Fragen auseinanderzusetzen.
     </p>
 
     <!-- Cover -->
-    <div class="cover-section">
+    <section class="cover-section" aria-label="Buchcover">
+      <!--
+        Hinweis:
+        - loading="lazy" reduziert die initiale Ladezeit.
+        - decoding="async" kann Rendering optimieren.
+        - Namen mit Sonderzeichen am besten auf ASCII umbenennen (siehe Kommentar oben),
+          ansonsten kann es zu Problemen beim Bereitstellen kommen.
+      -->
       <img
         src="./derlangewegfrontcover.png"
-        alt="derlangewegfrontcover"
+        alt="Der lange Weg — Vorderseite"
         class="cover"
+        loading="lazy"
+        decoding="async"
+        width="260"
+        height="347"
       />
       <img
-        src="./derlangewegrückcover.png"
-        alt="derlangewegrückcover"
+        src="./derlangewegrueckcover.png"
+        alt="Der lange Weg — Rückseite"
         class="cover"
+        loading="lazy"
+        decoding="async"
+        width="260"
+        height="347"
       />
-    </div>
+    </section>
 
-    <footer>
+    <footer role="contentinfo">
       © Matthias Silberhain
     </footer>
-
   </main>
 </body>
 </html>
-
