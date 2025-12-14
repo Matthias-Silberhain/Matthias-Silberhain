@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Matthias Silberhain</title>
+  <title>Silberhain</title>
 
   <style>
     * {
@@ -14,7 +14,7 @@
 
     body {
       min-height: 100vh;
-      font-family: "Garamond", "Cinzel", serif;
+      font-family: "Garamond", "Times New Roman", serif;
       background: radial-gradient(circle at top right, #2a2a2a 0%, #0b0b0b 40%, #000 100%);
       color: #d8d8d8;
       display: flex;
@@ -70,7 +70,6 @@
       font-weight: 400;
       letter-spacing: 0.15em;
       margin-bottom: 1.5rem;
-
       background: linear-gradient(
         110deg,
         #7f7f7f 0%,
@@ -84,7 +83,6 @@
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-
       animation: silverFlow 6s linear infinite;
     }
 
@@ -116,6 +114,22 @@
       background: linear-gradient(90deg, transparent, #bfbfbf, transparent);
     }
 
+    /* ---------- Cover Bereich ---------- */
+
+    .cover-section {
+      margin-top: 4rem;
+      display: flex;
+      gap: 2.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .cover {
+      max-width: 260px;
+      width: 100%;
+      filter: drop-shadow(0 10px 30px rgba(0,0,0,0.6));
+    }
+
     footer {
       margin-top: 4rem;
       font-size: 0.85rem;
@@ -143,7 +157,7 @@
       <div class="logo-flow"></div>
     </div>
 
-    <h1 class="silver-text">MATTHIAS SILBERHAIN</h1>
+    <h1 class="silver-text">SILBERHAIN</h1>
 
     <div class="divider"></div>
 
@@ -165,8 +179,22 @@
       Seine Veröffentlichungen richten sich an Menschen, die mehr wollen als Unterhaltung. An Leser, die bereit sind, genauer hinzusehen, Verantwortung zu hinterfragen und sich mit den unbequemen Seiten von Geschichte und Gegenwart auseinanderzusetzen.
     </p>
 
+    <!-- Cover -->
+    <div class="cover-section">
+      <img
+        src="./DerlangeWegindieFinsternisFrontcover.png"
+        alt="Der lange Weg in die Finsternis – Frontcover"
+        class="cover"
+      />
+      <img
+        src="./DerlangeWegindieFinsternisRückcover.png"
+        alt="Der lange Weg in die Finsternis – Rückcover"
+        class="cover"
+      />
+    </div>
+
     <footer>
-      © Matthias Silberhain
+      © Silberhain
     </footer>
 
   </main>
