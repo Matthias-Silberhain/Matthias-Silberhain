@@ -14,149 +14,161 @@
 
     body {
       min-height: 100vh;
-      font-family: Garamond, "Times New Roman", serif;
-      background: radial-gradient(circle at top right, #2b2b2b 0%, #0d0d0d 45%, #000000 100%);
-      color: #d6d6d6;
+      font-family: "Garamond", "Cinzel", serif;
+      background: radial-gradient(circle at top right, #2a2a2a 0%, #0b0b0b 40%, #000 100%);
+      color: #d8d8d8;
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
-    main {
+    .container {
       text-align: center;
       padding: 4rem 2rem;
       max-width: 900px;
-      animation: fadeIn 1.6s ease-out forwards;
     }
 
-    /* Logo Animation */
+    /* ---------- Logo mit Silver Flow ---------- */
+
+    .logo-wrapper {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 3rem;
+      filter: drop-shadow(0 0 25px rgba(200, 200, 200, 0.25));
+    }
+
     .logo {
       max-width: 420px;
       width: 100%;
-      margin: 0 auto 3rem auto;
-      opacity: 0;
-      transform: scale(0.96);
-      animation: logoReveal 2.4s ease-out forwards;
-      filter: drop-shadow(0 0 22px rgba(220,220,220,0.25));
+      display: block;
     }
 
-    @keyframes logoReveal {
-      0% {
-        opacity: 0;
-        transform: scale(0.96);
-        filter: drop-shadow(0 0 0 rgba(220,220,220,0));
-      }
-      60% {
-        opacity: 1;
-        transform: scale(1);
-        filter: drop-shadow(0 0 28px rgba(220,220,220,0.35));
-      }
-      100% {
-        opacity: 1;
-        transform: scale(1);
-        filter: drop-shadow(0 0 18px rgba(220,220,220,0.25));
-      }
+    .logo-flow {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        120deg,
+        transparent 30%,
+        rgba(255,255,255,0.65) 50%,
+        transparent 70%
+      );
+      background-size: 200% 100%;
+      animation: logoFlow 5s linear infinite;
+      mix-blend-mode: screen;
+      pointer-events: none;
     }
 
-    h1 {
+    @keyframes logoFlow {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+
+    /* ---------- Silberne Schrift ---------- */
+
+    .silver-text {
       font-size: 2.6rem;
       font-weight: 400;
-      letter-spacing: 0.18em;
-      margin-bottom: 2rem;
-      color: #ededed;
-      text-shadow: 0 0 10px rgba(220,220,220,0.25);
-      animation: textFade 2.2s ease-out forwards;
+      letter-spacing: 0.15em;
+      margin-bottom: 1.5rem;
+
+      background: linear-gradient(
+        110deg,
+        #7f7f7f 0%,
+        #cfcfcf 20%,
+        #ffffff 40%,
+        #bfbfbf 60%,
+        #8f8f8f 80%,
+        #e6e6e6 100%
+      );
+      background-size: 300% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+
+      animation: silverFlow 6s linear infinite;
     }
 
-    @keyframes textFade {
-      from {
-        opacity: 0;
-        transform: translateY(8px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .divider {
-      width: 140px;
-      height: 1px;
-      margin: 2.5rem auto;
-      background: linear-gradient(90deg, transparent, #cfcfcf, transparent);
-      opacity: 0.6;
-    }
-
-    section {
-      max-width: 720px;
-      margin: 0 auto;
-      text-align: left;
-      animation: fadeIn 2.4s ease-out forwards;
+    @keyframes silverFlow {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 300% 50%; }
     }
 
     h2 {
-      font-size: 1.6rem;
+      font-size: 1.4rem;
       font-weight: 400;
-      letter-spacing: 0.14em;
-      margin-bottom: 1.5rem;
-      color: #e2e2e2;
+      letter-spacing: 0.12em;
+      margin-bottom: 2rem;
+      color: #cfcfcf;
     }
 
     p {
-      font-size: 1.05rem;
-      line-height: 1.85;
-      margin-bottom: 1.4rem;
-      color: #c2c2c2;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      max-width: 640px;
+      margin: 0 auto 1.8rem auto;
+      color: #bfbfbf;
+    }
+
+    .divider {
+      width: 120px;
+      height: 1px;
+      margin: 2.5rem auto;
+      background: linear-gradient(90deg, transparent, #bfbfbf, transparent);
     }
 
     footer {
       margin-top: 4rem;
       font-size: 0.85rem;
-      letter-spacing: 0.14em;
-      text-align: center;
-      color: #8a8a8a;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+      color: #888;
+      letter-spacing: 0.12em;
     }
 
     @media (max-width: 600px) {
-      h1 { font-size: 2rem; }
-      p { font-size: 1rem; }
+      .silver-text {
+        font-size: 2rem;
+      }
+
+      p {
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
+
 <body>
+  <main class="container">
 
-  <main>
-    <img src="logo.png" alt="Matthias Silberhain Logo" class="logo" />
+    <div class="logo-wrapper">
+      <img src="./logo.png" alt="Silberhain Logo" class="logo" />
+      <div class="logo-flow"></div>
+    </div>
 
-    <h1>MATTHIAS SILBERHAIN</h1>
+    <h1 class="silver-text">MATTHIAS SILBERHAIN</h1>
 
     <div class="divider"></div>
 
-    <section>
-      <h2>Über den Autor</h2>
-      <p>
-        Matthias Silberhain steht für Literatur mit Haltung. In seinen Büchern geht es um Macht, Verantwortung und die Kräfte, die im Verborgenen wirken. Er schreibt über historische und gesellschaftliche Zusammenhänge nicht, um zu gefallen, sondern um Klarheit zu schaffen. Seine Texte sind präzise, fundiert und kompromisslos ehrlich.
-      </p>
-      <p>
-        Was Silberhain auszeichnet, ist die Verbindung aus gründlicher Recherche und erzählerischer Stärke. Er legt offen, wo andere vereinfachen, und benennt Zusammenhänge, die selten klar ausgesprochen werden. Leserinnen und Leser finden bei ihm keine leichten Antworten, sondern belastbare Perspektiven, die nachwirken und zum Weiterdenken zwingen.
-      </p>
-      <p>
-        Nach vielen Jahren praktischer Berufserfahrung begann er, seine Erkenntnisse konsequent in Buchform zu bündeln. Unter dem Namen Matthias Silberhain verfolgt er eine klare Linie: Bücher mit Substanz, Tiefe und Haltung. Werke, die Orientierung geben in einer Zeit, in der Oberflächen oft lauter sind als Inhalte.
-      </p>
-      <p>
-        Seine Veröffentlichungen richten sich an Menschen, die mehr wollen als Unterhaltung. An Leser, die bereit sind, genauer hinzusehen, Verantwortung zu hinterfragen und sich mit den unbequemen Seiten von Geschichte und Gegenwart auseinanderzusetzen.
-      </p>
-    </section>
+    <h2>Über den Autor</h2>
+
+    <p>
+      Matthias Silberhain steht für Literatur mit Haltung. In seinen Büchern geht es um Macht, Verantwortung und die Kräfte, die im Verborgenen wirken. Er schreibt über historische und gesellschaftliche Zusammenhänge nicht, um zu gefallen, sondern um Klarheit zu schaffen. Seine Texte sind präzise, fundiert und kompromisslos ehrlich.
+    </p>
+
+    <p>
+      Was Silberhain auszeichnet, ist die Verbindung aus gründlicher Recherche und erzählerischer Stärke. Er legt offen, wo andere vereinfachen, und benennt Zusammenhänge, die selten klar ausgesprochen werden. Leserinnen und Leser finden bei ihm keine leichten Antworten, sondern belastbare Perspektiven, die nachwirken und zum Weiterdenken zwingen.
+    </p>
+
+    <p>
+      Nach vielen Jahren praktischer Berufserfahrung begann er, seine Erkenntnisse konsequent in Buchform zu bündeln. Unter dem Namen Matthias Silberhain verfolgt er eine klare Linie: Bücher mit Substanz, Tiefe und Haltung. Werke, die Orientierung geben in einer Zeit, in der Oberflächen oft lauter sind als Inhalte.
+    </p>
+
+    <p>
+      Seine Veröffentlichungen richten sich an Menschen, die mehr wollen als Unterhaltung. An Leser, die bereit sind, genauer hinzusehen, Verantwortung zu hinterfragen und sich mit den unbequemen Seiten von Geschichte und Gegenwart auseinanderzusetzen.
+    </p>
 
     <footer>
       © Matthias Silberhain
     </footer>
-  </main>
 
+  </main>
 </body>
 </html>
