@@ -1,13 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  /* PRELOADER TYPEWRITER */
   const text = "MATTHIAS SILBERHAIN";
   const textEl = document.getElementById("type-text");
   const cursor = document.querySelector(".cursor");
   const preloader = document.getElementById("preloader");
 
   let i = 0;
-  const speed = 90;
 
   const typing = setInterval(() => {
     textEl.textContent += text.charAt(i);
@@ -26,9 +24,8 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.classList.remove("preloader-active");
       }, 1200);
     }
-  }, speed);
+  }, 90);
 
-  /* BURGER MENÜ */
   const burger = document.getElementById("burger");
   const navigation = document.getElementById("navigation");
 
@@ -36,7 +33,6 @@ document.addEventListener("DOMContentLoaded", () => {
     navigation.classList.toggle("aktiv");
   });
 
-  /* FOOTER JAHR */
   document.getElementById("jahr").textContent =
     new Date().getFullYear();
 });
