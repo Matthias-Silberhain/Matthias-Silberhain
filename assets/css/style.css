@@ -188,3 +188,79 @@ p {
     margin: 6px 0;
   }
 }
+/* =====================
+   RESPONSIVE SKALIERUNG
+===================== */
+
+/* Große Desktops (24–27 Zoll) */
+@media (min-width: 1600px) {
+
+  body {
+    font-size: 18px;
+  }
+
+  p {
+    max-width: 900px;
+    font-size: 1.15rem;
+  }
+
+  h1 {
+    font-size: 2.6rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  .inhalt {
+    padding: 100px 20px;
+  }
+}
+
+/* Extra große Monitore */
+@media (min-width: 2200px) {
+
+  body {
+    font-size: 19px;
+  }
+
+  p {
+    max-width: 1000px;
+    font-size: 1.2rem;
+  }
+
+  h1 {
+    font-size: 3rem;
+  }
+}
+
+/* Tablets */
+@media (max-width: 1024px) {
+
+  h1 {
+    font-size: 2.1rem;
+  }
+
+  p {
+    max-width: 680px;
+  }
+}
+
+/* Smartphones */
+@media (max-width: 480px) {
+
+  h1 {
+    font-size: 1.6rem;
+    letter-spacing: 0.05em;
+  }
+
+  p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    padding: 0 10px;
+  }
+
+  .inhalt {
+    padding: 48px 16px;
+  }
+}
