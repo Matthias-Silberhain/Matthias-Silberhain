@@ -1,28 +1,35 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   /* =========================
-     TYPEWRITER PRELOADER
+     PRELOADER / LOGO
   ========================= */
 
-  // Text: Desktop einzeilig, Mobile zweizeilig
+  const preloader = document.getElementById("preloader");
+  const logo = document.querySelector(".preloader-logo");
+  const textContainer = document.querySelector(".preloader-text");
+  const textEl = document.getElementById("type-text");
+  const cursor = document.querySelector(".cursor");
+
+  /* Logo „zeichnen“ starten */
+  if (logo) {
+    logo.classList.add("draw");
+  }
+
+  /* =========================
+     TYPEWRITER TEXT
+  ========================= */
+
+  // Desktop: einzeilig | Mobile: zweizeilig
   const text = window.innerWidth <= 600
     ? "MATTHIAS\nSILBERHAIN"
     : "MATTHIAS SILBERHAIN";
 
-  const textEl = document.getElementById("type-text");
-  const cursor = document.querySelector(".cursor");
-  const preloader = document.getElementById("preloader");
-  const textContainer = document.querySelector(".preloader-text");
-
   let index = 0;
-
-  /* Schreibgeschwindigkeit */
   const speed = 110;
 
   function typeWriter() {
     if (index < text.length) {
 
-      // Zeilenumbruch korrekt ausgeben
       if (text.charAt(index) === "\n") {
         textEl.innerHTML += "<br>";
       } else {
@@ -36,23 +43,24 @@ document.addEventListener("DOMContentLoaded", () => {
       /* Cursor stoppen */
       cursor.style.display = "none";
 
-      /* Silber-Licht-Hauch */
+      /* Silberner Licht-Hauch */
       textContainer.classList.add("silver-glow");
 
-      /* Nach Wirkung ausblenden */
+      /* Preloader ausblenden */
       setTimeout(() => {
         preloader.style.opacity = "0";
       }, 1400);
 
-      /* Preloader sicher entfernen */
+      /* Preloader entfernen */
       setTimeout(() => {
         preloader.remove();
       }, 2000);
     }
   }
 
-  /* Start */
-  typeWriter();
+  /* Typewriter leicht verzögert starten,
+     damit Logo zuerst „gemalt“ wird */
+  setTimeout(typeWriter, 600);
 
   /* =========================
      BURGER MENÜ
