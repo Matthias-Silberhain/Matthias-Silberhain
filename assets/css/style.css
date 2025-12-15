@@ -1,14 +1,17 @@
-/* =====================
-   RESET
-===================== */
+/* =========================================================
+   RESET & BASIS
+========================================================= */
 
-* {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   width: 100%;
   height: 100%;
 }
@@ -22,13 +25,76 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* =====================
-   TYPOGRAFIE
-===================== */
 
-h1, h2 {
+/* =========================================================
+   PRELOADER
+========================================================= */
+
+#preloader {
+  position: fixed;
+  inset: 0;
+  background-color: #050505;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+#logo-animation {
   font-family: "Cinzel", serif;
-  letter-spacing: 0.1em;
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  letter-spacing: 0.18em;
+  color: #e4e6ea;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+  border-right: 3px solid rgba(220, 220, 220, 0.8);
+  animation:
+    typing 2.4s steps(28) forwards,
+    caretBlink 0.8s step-end infinite,
+    silverGlow 1.8s ease-in-out infinite alternate;
+}
+
+@keyframes typing {
+  to {
+    width: 23ch;
+  }
+}
+
+@keyframes caretBlink {
+  50% {
+    border-color: transparent;
+  }
+}
+
+@keyframes silverGlow {
+  0% {
+    text-shadow:
+      0 0 4px rgba(190, 195, 205, 0.4),
+      0 0 10px rgba(190, 195, 205, 0.25);
+  }
+  100% {
+    text-shadow:
+      0 0 10px rgba(255, 255, 255, 0.85),
+      0 0 24px rgba(200, 205, 215, 0.65);
+  }
+}
+
+#preloader.fade-out {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   TYPOGRAFIE
+========================================================= */
+
+h1,
+h2 {
+  font-family: "Cinzel", serif;
+  letter-spacing: 0.12em;
   color: #e4e6ea;
   text-align: center;
   margin-bottom: 26px;
@@ -40,28 +106,11 @@ p {
   text-align: center;
   font-size: 1.05rem;
 }
-<!-- PRELOADER -->
-<div id="preloader">
-  <div id="logo-animation">
-    <span id="matthias">MATTHIAS</span>
-    <span id="silberhain"> SILBERHAIN</span>
-  </div>
-</div>
 
 
-#preloader.fade-out {
-  animation: preloadFade 0.4s ease forwards;
-}
-
-@keyframes preloadFade {
-  to {
-    opacity: 0;
-  }
-}
-
-/* =====================
+/* =========================================================
    HEADER
-===================== */
+========================================================= */
 
 .header {
   background-color: #050505;
@@ -77,17 +126,19 @@ p {
 }
 
 @keyframes logoGlow {
-  0%, 100% {
-    filter: drop-shadow(0 0 10px rgba(200,205,215,0.25));
+  0%,
+  100% {
+    filter: drop-shadow(0 0 10px rgba(200, 205, 215, 0.25));
   }
   50% {
-    filter: drop-shadow(0 0 26px rgba(200,205,215,0.55));
+    filter: drop-shadow(0 0 26px rgba(200, 205, 215, 0.55));
   }
 }
 
-/* =====================
+
+/* =========================================================
    NAVIGATION
-===================== */
+========================================================= */
 
 .hauptnavigation {
   display: flex;
@@ -104,9 +155,10 @@ p {
   font-size: 0.9rem;
 }
 
-/* =====================
+
+/* =========================================================
    LICHTKANTEN
-===================== */
+========================================================= */
 
 .lichtkante,
 .footer-lichtkante {
@@ -114,23 +166,25 @@ p {
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(200,205,215,0.85),
+    rgba(200, 205, 215, 0.85),
     transparent
   );
-  box-shadow: 0 0 12px rgba(200,205,215,0.45);
+  box-shadow: 0 0 12px rgba(200, 205, 215, 0.45);
 }
 
-/* =====================
+
+/* =========================================================
    INHALT
-===================== */
+========================================================= */
 
 .inhalt {
   padding: 72px 20px;
 }
 
-/* =====================
-   FOOTER (SCHMAL!)
-===================== */
+
+/* =========================================================
+   FOOTER
+========================================================= */
 
 .footer {
   background-color: #050505;
@@ -144,9 +198,10 @@ p {
   color: #9da2a8;
 }
 
-/* =====================
-   BURGER (MOBIL)
-===================== */
+
+/* =========================================================
+   BURGER MENU (MOBIL)
+========================================================= */
 
 .burger {
   display: none;
@@ -162,9 +217,10 @@ p {
   margin: 6px 0;
 }
 
-/* =====================
+
+/* =========================================================
    RESPONSIVE
-===================== */
+========================================================= */
 
 @media (max-width: 768px) {
 
@@ -183,11 +239,11 @@ p {
     display: flex;
   }
 
-  .burger {
-    display: block;
-  }
-
   p {
     font-size: 1rem;
+  }
+
+  .burger {
+    display: block;
   }
 }
