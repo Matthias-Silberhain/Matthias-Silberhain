@@ -23,7 +23,7 @@ const textEl = document.getElementById("type-text");
 const cursor = document.getElementById("cursor");
 
 let i = 0;
-const speed = 100; // Geschwindigkeit der Buchstaben
+const speed = 60; // Geschwindigkeit der Buchstaben
 
 const typing = setInterval(() => {
   textEl.textContent += text.charAt(i);
