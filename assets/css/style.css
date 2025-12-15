@@ -268,3 +268,54 @@ p {
     font-size: 1rem;
   }
 }
+/* =====================
+   SILBER-SWEEP LOGO
+===================== */
+
+.preloader-logo-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.preloader-logo {
+  position: relative;
+  z-index: 1;
+}
+
+/* Licht-Sweep */
+.preloader-logo-wrapper::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(220,225,235,0.15) 35%,
+    rgba(255,255,255,0.75) 50%,
+    rgba(220,225,235,0.15) 65%,
+    transparent 100%
+  );
+  transform: translateX(-120%);
+  pointer-events: none;
+  mix-blend-mode: screen;
+  filter: blur(4px);
+  opacity: 0;
+}
+
+.preloader-logo-wrapper.silver-sweep::after {
+  animation: silverSweep 1.6s ease forwards;
+}
+
+@keyframes silverSweep {
+  0% {
+    transform: translateX(-120%);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(120%);
+    opacity: 0;
+  }
+}
