@@ -1,137 +1,60 @@
-/* =========================
-   Grundlegende Gestaltung
-   ========================= */
+/* ================================
+   Grundgestaltung – Matthias Silberhain
+   ================================ */
 
 body {
   margin: 0;
-  padding: 0;
-  background: radial-gradient(circle at top, #1a1d22 0%, #0f1114 60%);
-  color: #cfd2d6;
+  background: radial-gradient(circle at top, #1a1a1a 0%, #0b0b0b 70%);
+  color: #cfd2d6; /* edles Silber */
   font-family: "EB Garamond", Garamond, serif;
   font-size: 18px;
   line-height: 1.7;
 }
 
-/* =========================
-   Seitenlayout
-   ========================= */
-
-main {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 60px 30px;
-}
-
-/* =========================
+/* ================================
    Navigation
-   ========================= */
+   ================================ */
 
 .hauptnavigation {
-  text-align: center;
-  padding: 30px 0;
-  border-bottom: 1px solid #2a2e34;
+  display: flex;
+  gap: 2rem;
+  padding: 1.5rem 3rem;
+  background: rgba(0, 0, 0, 0.6);
+  border-bottom: 1px solid rgba(207, 210, 214, 0.2);
 }
 
 .hauptnavigation a {
   font-family: "Cinzel", serif;
-  font-size: 16px;
-  letter-spacing: 0.08em;
-  text-decoration: none;
   color: #cfd2d6;
-  margin: 0 15px;
+  text-decoration: none;
+  letter-spacing: 0.08em;
+  font-size: 0.9rem;
 }
 
 .hauptnavigation a:hover {
-  color: #9fa4aa;
+  color: #ffffff;
 }
 
-/* =========================
-   Überschriften
-   ========================= */
+/* ================================
+   Typografie
+   ================================ */
 
 h1, h2, h3 {
   font-family: "Cinzel", serif;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  color: #cfd2d6;
+  color: #e5e7ea;
+  letter-spacing: 0.1em;
+  margin-top: 2.5rem;
 }
-
-h1 {
-  font-size: 36px;
-  margin-bottom: 30px;
-}
-
-h2 {
-  font-size: 26px;
-  margin-top: 50px;
-  margin-bottom: 20px;
-}
-
-h3 {
-  font-size: 20px;
-  margin-top: 40px;
-  margin-bottom: 15px;
-}
-
-/* =========================
-   Fließtext
-   ========================= */
 
 p {
-  margin-bottom: 20px;
+  max-width: 720px;
+  margin-bottom: 1.4rem;
 }
 
-/* =========================
-   Buch- & Abschnittsblöcke
-   ========================= */
+/* ================================
+   Inhalt
+   ================================ */
 
-.buch {
-  margin-bottom: 40px;
-  padding-bottom: 30px;
-  border-bottom: 1px solid #2a2e34;
+main {
+  padding: 4rem 3rem;
 }
-
-/* =========================
-   Listen (z. B. Quellen)
-   ========================= */
-
-ul {
-  padding-left: 20px;
-}
-
-li {
-  margin-bottom: 10px;
-}
-
-/* =========================
-   Abbildungen & QR-Codes
-   ========================= */
-
-figure {
-  margin: 30px 0;
-  text-align: center;
-}
-
-figure img {
-  max-width: 160px;
-  opacity: 0.9;
-}
-
-figcaption {
-  font-size: 14px;
-  margin-top: 10px;
-  color: #9fa4aa;
-}
-
-/* =========================
-   Links im Text
-   ========================= */
-
-a {
-  color: #cfd2d6;
-}
-
-a:hover {
-  color: #9fa4aa;
-}
-
