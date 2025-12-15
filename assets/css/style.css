@@ -1,7 +1,4 @@
-/* =====================
-   RESET
-===================== */
-
+/* RESET */
 * {
   margin: 0;
   padding: 0;
@@ -14,17 +11,13 @@ html, body {
 }
 
 body {
-  font-family: "EB Garamond", Garamond, serif;
+  font-family: "EB Garamond", serif;
   background-color: #050505;
   color: #c8ccd2;
   line-height: 1.7;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-/* =====================
-   PRELOADER
-===================== */
+/* ================= PRELOADER ================= */
 
 #preloader {
   position: fixed;
@@ -42,27 +35,21 @@ body {
   width: 100%;
 }
 
-/* LOGO – DESKTOP / STANDARD */
 .preloader-logo {
-  width: clamp(220px, 55vw, 560px);
+  width: clamp(220px, 60vw, 520px);
   max-width: 90%;
   margin: 0 auto 24px;
   display: block;
 }
 
-/* NAME */
 .preloader-text {
   font-family: "Cinzel", serif;
   letter-spacing: 0.15em;
   color: #e2e5ea;
   font-size: clamp(0.9rem, 3vw, 1.4rem);
-  line-height: 1.4;
-  max-width: 90%;
-  margin: 0 auto;
-  white-space: normal; /* WICHTIG für Mobile */
+  white-space: normal;
 }
 
-/* CURSOR */
 .cursor {
   display: inline-block;
   width: 2px;
@@ -70,7 +57,6 @@ body {
   background-color: #e2e5ea;
   margin-left: 4px;
   animation: blink 1s infinite;
-  vertical-align: bottom;
 }
 
 .cursor.stop {
@@ -83,46 +69,11 @@ body {
   25%, 75% { opacity: 0; }
 }
 
-/* AUSBLENDEN */
-#preloader.fade-out {
-  animation: preloadFade 0.5s ease forwards;
-}
-
-@keyframes preloadFade {
-  to {
-    opacity: 0;
-    visibility: hidden;
-  }
-}
-
-/* =====================
-   TYPOGRAFIE
-===================== */
-
-h1, h2, h3 {
-  font-family: "Cinzel", serif;
-  letter-spacing: 0.08em;
-  color: #e2e5ea;
-  text-align: center;
-  margin-bottom: 26px;
-}
-
-p {
-  max-width: 720px;
-  margin: 0 auto 22px;
-  text-align: center;
-  font-size: 1.05rem;
-  color: #c8ccd2;
-}
-
-/* =====================
-   HEADER
-===================== */
+/* ================= HEADER ================= */
 
 .header {
-  background-color: #050505;
-  padding: 36px 20px 26px;
   text-align: center;
+  padding: 36px 20px 26px;
 }
 
 .logo {
@@ -131,9 +82,7 @@ p {
   display: block;
 }
 
-/* =====================
-   NAVIGATION
-===================== */
+/* ================= NAVIGATION ================= */
 
 .hauptnavigation {
   display: flex;
@@ -156,13 +105,34 @@ p {
   text-shadow: 0 0 8px rgba(200,205,215,0.6);
 }
 
-/* =====================
-   INHALT / FOOTER
-===================== */
+/* ================= INHALT ================= */
+
+.lichtkante,
+.footer-lichtkante {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(200,205,215,0.85), transparent);
+  box-shadow: 0 0 12px rgba(200,205,215,0.45);
+}
 
 .inhalt {
   padding: 72px 20px;
 }
+
+h1 {
+  font-family: "Cinzel", serif;
+  color: #e2e5ea;
+  letter-spacing: 0.08em;
+  margin-bottom: 26px;
+  text-align: center;
+}
+
+p {
+  max-width: 720px;
+  margin: 0 auto 22px;
+  text-align: center;
+}
+
+/* ================= FOOTER ================= */
 
 .footer {
   text-align: center;
@@ -174,9 +144,7 @@ p {
   color: #9da2a8;
 }
 
-/* =====================
-   BURGER
-===================== */
+/* ================= BURGER ================= */
 
 .burger {
   display: none;
@@ -192,34 +160,9 @@ p {
   margin: 6px 0;
 }
 
-/* =====================
-   MOBILE FIXES
-===================== */
+/* ================= MOBILE ================= */
 
-@media (max-width: 480px) {
-
-  .preloader-logo {
-    width: 75vw;
-    margin-bottom: 18px;
-  }
-
-  .preloader-text {
-    font-size: 0.95rem;
-    letter-spacing: 0.12em;
-  }
-
-  .logo {
-    width: 85vw;
-  }
-
-  p {
-    font-size: 0.95rem;
-    padding: 0 10px;
-  }
-
-  .inhalt {
-    padding: 48px 16px;
-  }
+@media (max-width: 768px) {
 
   .hauptnavigation {
     display: none;
@@ -234,5 +177,9 @@ p {
 
   .burger {
     display: block;
+  }
+
+  .inhalt {
+    padding: 48px 16px;
   }
 }
