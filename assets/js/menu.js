@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+  /* PRELOADER – SCHRIFTANIMATION */
   const text = "MATTHIAS SILBERHAIN";
   const textEl = document.getElementById("type-text");
   const cursor = document.querySelector(".cursor");
@@ -26,6 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }, 90);
 
+  /* BURGER MENÜ */
   const burger = document.getElementById("burger");
   const navigation = document.getElementById("navigation");
 
@@ -33,6 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
     navigation.classList.toggle("aktiv");
   });
 
+  /* FOOTER JAHR */
   document.getElementById("jahr").textContent =
     new Date().getFullYear();
 });
