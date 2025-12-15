@@ -5,15 +5,24 @@ document.addEventListener("DOMContentLoaded", () => {
   ========================= */
 
   const preloader = document.getElementById("preloader");
-  const logo = document.querySelector(".preloader-logo");
+  const logoWrapper = document.querySelector(".preloader-logo-wrapper");
   const textContainer = document.querySelector(".preloader-text");
   const textEl = document.getElementById("type-text");
   const cursor = document.querySelector(".cursor");
 
-  /* Logo Animation starten */
-  if (logo) {
-    logo.classList.add("animate");
+  /* Sicherheitscheck */
+  if (!preloader || !logoWrapper || !textEl || !cursor) {
+    return;
   }
+
+  /* =========================
+     LOGO SILBER-SWEEP
+  ========================= */
+
+  // kleiner Moment Ruhe, dann Licht über Logo
+  setTimeout(() => {
+    logoWrapper.classList.add("silver-sweep");
+  }, 400);
 
   /* =========================
      TYPEWRITER TEXT
@@ -24,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
     : "MATTHIAS SILBERHAIN";
 
   let index = 0;
-  const speed = 110;
+  const speed = 120;
 
   function typeWriter() {
     if (index < text.length) {
@@ -39,27 +48,30 @@ document.addEventListener("DOMContentLoaded", () => {
       setTimeout(typeWriter, speed);
 
     } else {
+
+      /* Cursor stoppen */
       cursor.style.display = "none";
 
-      /* Silber-Hauch */
+      /* Silber-Hauch über Text */
       textContainer.classList.add("silver-glow");
 
-      /* Ausblenden */
+      /* Preloader ausblenden */
       setTimeout(() => {
         preloader.style.opacity = "0";
       }, 1400);
 
+      /* Preloader entfernen */
       setTimeout(() => {
         preloader.remove();
       }, 2000);
     }
   }
 
-  /* Text nach Logo-Start beginnen */
-  setTimeout(typeWriter, 700);
+  /* Schreiben startet leicht NACH Logo-Sweep */
+  setTimeout(typeWriter, 900);
 
   /* =========================
-     BURGER
+     BURGER MENÜ
   ========================= */
 
   const burger = document.getElementById("burger");
