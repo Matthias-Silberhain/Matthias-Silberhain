@@ -1,12 +1,5 @@
-/* =====================
-   RESET
-===================== */
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+/* RESET */
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 html, body {
   width: 100%;
@@ -14,22 +7,21 @@ html, body {
 }
 
 body {
-  font-family: "EB Garamond", Garamond, serif;
-  background-color: #050505;
+  font-family: "EB Garamond", serif;
+  background: #050505;
   color: #cfd2d6;
   line-height: 1.65;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-/* =====================
-   PRELOADER
-===================== */
+body.preloader-active {
+  overflow: hidden;
+}
 
+/* PRELOADER */
 #preloader {
   position: fixed;
   inset: 0;
-  background-color: #050505;
+  background: #050505;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -41,64 +33,59 @@ body {
   text-align: center;
 }
 
-/* =====================
-   LOGO (ANIMATION)
-===================== */
-
+/* LOGO */
 .preloader-logo {
   width: min(70vw, 420px);
   margin-bottom: 26px;
+}
+
+.preloader-logo-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+/* Silber Sweep */
+.preloader-logo-wrapper::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(220,225,235,0.2) 45%,
+    rgba(255,255,255,0.8) 50%,
+    rgba(220,225,235,0.2) 55%,
+    transparent 100%
+  );
+  transform: translateX(-120%);
   opacity: 0;
-  transform: scale(0.96);
-  filter: drop-shadow(0 0 0 rgba(220,225,235,0));
+  mix-blend-mode: screen;
 }
 
-.preloader-logo.animate {
-  animation: logoReveal 1.6s ease forwards;
+.preloader-logo-wrapper.silver-sweep::after {
+  animation: sweep 1.6s ease forwards;
 }
 
-@keyframes logoReveal {
-  0% {
-    opacity: 0;
-    transform: scale(0.96);
-    filter: drop-shadow(0 0 0 rgba(220,225,235,0));
-  }
-  40% {
-    opacity: 1;
-    filter: drop-shadow(0 0 12px rgba(220,225,235,0.4));
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-    filter: drop-shadow(0 0 26px rgba(220,225,235,0.65));
-  }
+@keyframes sweep {
+  0% { transform: translateX(-120%); opacity: 0; }
+  20% { opacity: 1; }
+  100% { transform: translateX(120%); opacity: 0; }
 }
 
-/* =====================
-   TYPEWRITER TEXT
-===================== */
-
+/* TEXT */
 .preloader-text {
   font-family: "Cinzel", serif;
-  font-size: 1.1rem;
   letter-spacing: 0.28em;
-  color: #e4e6ea;
-  min-height: 2.6em;
+  font-size: 1.1rem;
+  min-height: 2.8em;
 }
 
-.preloader-text span {
-  white-space: pre-wrap;
-}
-
-/* Cursor */
 .cursor {
   display: inline-block;
   width: 2px;
   height: 1.2em;
-  background-color: #e4e6ea;
-  margin-left: 4px;
+  background: #e4e6ea;
   animation: blink 1s infinite;
-  vertical-align: bottom;
 }
 
 @keyframes blink {
@@ -106,47 +93,28 @@ body {
   50.01%, 100% { opacity: 0; }
 }
 
-/* Silber-Hauch nach Schreiben */
 .preloader-text.silver-glow {
-  animation: silverGlow 1.6s ease-in-out forwards;
+  text-shadow:
+    0 0 6px rgba(220,225,235,0.6),
+    0 0 18px rgba(220,225,235,0.45);
 }
 
-@keyframes silverGlow {
-  0% {
-    text-shadow: none;
-  }
-  100% {
-    text-shadow:
-      0 0 6px rgba(220,225,235,0.6),
-      0 0 18px rgba(220,225,235,0.45);
-  }
-}
-
-/* =====================
-   HEADER
-===================== */
-
+/* HEADER */
 .header {
-  background-color: #050505;
-  padding: 36px 20px 26px;
   text-align: center;
+  padding: 36px 20px 26px;
 }
 
 .logo {
   width: min(80vw, 520px);
-  margin: 0 auto 24px;
-  display: block;
+  margin-bottom: 24px;
 }
 
-/* =====================
-   NAVIGATION
-===================== */
-
+/* NAV */
 .hauptnavigation {
   display: flex;
   justify-content: center;
   gap: 36px;
-  flex-wrap: wrap;
 }
 
 .hauptnavigation a {
@@ -154,37 +122,15 @@ body {
   color: #d6d9de;
   text-decoration: none;
   letter-spacing: 0.15em;
-  font-size: 0.9rem;
 }
 
-/* =====================
-   LICHTKANTEN
-===================== */
-
-.lichtkante,
-.footer-lichtkante {
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(200,205,215,0.85),
-    transparent
-  );
-  box-shadow: 0 0 12px rgba(200,205,215,0.45);
-}
-
-/* =====================
-   INHALT
-===================== */
-
+/* CONTENT */
 .inhalt {
   padding: 72px 20px;
 }
 
-h1, h2 {
+h1 {
   font-family: "Cinzel", serif;
-  letter-spacing: 0.1em;
-  color: #e4e6ea;
   text-align: center;
   margin-bottom: 26px;
 }
@@ -193,57 +139,17 @@ p {
   max-width: 700px;
   margin: 0 auto 22px;
   text-align: center;
-  font-size: 1.05rem;
 }
 
-/* =====================
-   FOOTER
-===================== */
-
+/* FOOTER */
 .footer {
-  background-color: #050505;
   text-align: center;
-  padding: 12px 0 14px;
+  padding: 14px 0;
   font-size: 0.8rem;
 }
 
-.footer p {
-  margin: 0;
-  color: #9da2a8;
-}
-
-/* =====================
-   BURGER (MOBIL)
-===================== */
-
-.burger {
-  display: none;
-  width: 30px;
-  margin: 18px auto 0;
-  cursor: pointer;
-}
-
-.burger span {
-  display: block;
-  height: 2px;
-  background-color: #cfd2d6;
-  margin: 6px 0;
-}
-
-/* =====================
-   RESPONSIVE
-===================== */
-
+/* MOBILE */
 @media (max-width: 768px) {
-
-  .logo {
-    width: min(90vw, 420px);
-  }
-
-  .preloader-logo {
-    width: min(85vw, 300px);
-  }
-
   .preloader-text {
     font-size: 0.9rem;
     letter-spacing: 0.22em;
@@ -253,7 +159,6 @@ p {
     display: none;
     flex-direction: column;
     gap: 18px;
-    margin-top: 20px;
   }
 
   .hauptnavigation.aktiv {
@@ -262,60 +167,7 @@ p {
 
   .burger {
     display: block;
-  }
-
-  p {
-    font-size: 1rem;
-  }
-}
-/* =====================
-   SILBER-SWEEP LOGO
-===================== */
-
-.preloader-logo-wrapper {
-  position: relative;
-  display: inline-block;
-}
-
-.preloader-logo {
-  position: relative;
-  z-index: 1;
-}
-
-/* Licht-Sweep */
-.preloader-logo-wrapper::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    120deg,
-    transparent 0%,
-    rgba(220,225,235,0.15) 35%,
-    rgba(255,255,255,0.75) 50%,
-    rgba(220,225,235,0.15) 65%,
-    transparent 100%
-  );
-  transform: translateX(-120%);
-  pointer-events: none;
-  mix-blend-mode: screen;
-  filter: blur(4px);
-  opacity: 0;
-}
-
-.preloader-logo-wrapper.silver-sweep::after {
-  animation: silverSweep 1.6s ease forwards;
-}
-
-@keyframes silverSweep {
-  0% {
-    transform: translateX(-120%);
-    opacity: 0;
-  }
-  15% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateX(120%);
-    opacity: 0;
+    width: 30px;
+    margin: 18px auto;
   }
 }
