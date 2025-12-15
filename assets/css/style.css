@@ -9,6 +9,7 @@ body {
   font-family: "EB Garamond", serif;
   background-color: #050505;
   color: #cfd2d6;
+  line-height: 1.65;
 }
 
 body.preloader-active {
@@ -19,7 +20,7 @@ body.preloader-active {
 #preloader {
   position: fixed;
   inset: 0;
-  background: #050505;
+  background-color: #050505;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -40,13 +41,14 @@ body.preloader-active {
   font-family: "Cinzel", serif;
   letter-spacing: 0.18em;
   color: #e4e6ea;
+  font-size: clamp(0.9rem, 4vw, 1.2rem);
 }
 
 .cursor {
   display: inline-block;
   width: 2px;
   height: 1em;
-  background: #e4e6ea;
+  background-color: #e4e6ea;
   margin-left: 6px;
   animation: blink 1s step-end infinite;
 }
@@ -107,7 +109,7 @@ body.preloader-active {
 
 .hauptnavigation a:hover {
   color: #f0f2f7;
-  text-shadow: 0 0 8px rgba(220,225,235,0.5);
+  text-shadow: 0 0 8px rgba(220,225,235,0.45);
 }
 
 .hauptnavigation a:hover::after {
@@ -138,7 +140,39 @@ body.preloader-active {
   text-align: center;
   padding: 30px 20px;
   font-size: 0.85rem;
+  color: #9da2a8;
 }
 
-/* MOBILE */
-.burger
+/* BURGER / MOBILE */
+.burger {
+  display: none;
+  cursor: pointer;
+}
+
+.burger span {
+  display: block;
+  width: 26px;
+  height: 2px;
+  background-color: #cfd2d6;
+  margin: 6px auto;
+}
+
+@media (max-width: 768px) {
+  .burger {
+    display: block;
+  }
+
+  .hauptnavigation {
+    display: none;
+    flex-direction: column;
+    margin-top: 18px;
+  }
+
+  .hauptnavigation.aktiv {
+    display: flex;
+  }
+
+  .hauptnavigation a {
+    margin: 10px 0;
+  }
+}
