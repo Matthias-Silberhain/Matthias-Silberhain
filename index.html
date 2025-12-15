@@ -5,7 +5,7 @@
   <title>Matthias Silberhain</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Schriften -->
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=EB+Garamond:wght@400;500&display=swap" rel="stylesheet">
 
   <!-- CSS -->
@@ -17,20 +17,18 @@
 <!-- ================= PRELOADER ================= -->
 <div id="preloader">
   <div class="preloader-inner">
-
-    <img
-      src="assets/images/logo.png"
-      alt="Matthias Silberhain Logo"
-      class="preloader-logo"
-    >
-
+    <img src="assets/images/logo.png" alt="Logo" class="preloader-logo">
     <div class="preloader-text">
-      <span id="type-text"></span><span class="cursor"></span>
+      <span id="type-text"></span><span class="cursor" id="cursor"></span>
     </div>
-
   </div>
 </div>
-<!-- ================= /PRELOADER ================= -->
+
+<noscript>
+  <style>
+    #preloader { display: none; }
+  </style>
+</noscript>
 
 <!-- ================= HEADER ================= -->
 <header class="header">
@@ -38,12 +36,14 @@
   <img src="assets/images/logo.png" alt="Matthias Silberhain Logo" class="logo">
 
   <div class="burger" id="burger">
-    <span></span><span></span><span></span>
+    <span></span>
+    <span></span>
+    <span></span>
   </div>
 
   <nav class="hauptnavigation" id="navigation">
     <a href="index.html">Startseite</a>
-    <a href="ueber-mich.html">Über mich</a>
+    <a href="about.html">Über mich</a>
     <a href="werke.html">Werke</a>
     <a href="termine.html">Termine</a>
     <a href="kontakt.html">Kontakt</a>
@@ -53,32 +53,31 @@
 
 <div class="lichtkante"></div>
 
+<!-- ================= INHALT ================= -->
 <main class="inhalt">
   <section class="intro">
-
-    <h1>Matthias Silberhain</h1>
-
-    <p><strong>„Ich schreibe, weil die Wahrheit eine Stimme braucht.“</strong></p>
+    <h1>Literatur mit Haltung</h1>
 
     <p>
-      Matthias Silberhain steht für Literatur mit Haltung. Seine Bücher befassen sich
-      mit Macht, Verantwortung und den verborgenen Mechanismen, die Geschichte,
-      Politik und Gesellschaft prägen.
+      Matthias Silberhain steht für präzise recherchierte Texte, die Macht, Verantwortung
+      und gesellschaftliche Zusammenhänge offenlegen.
     </p>
 
     <p>
-      Diese Website bietet einen Einblick in seine Arbeit, seine Veröffentlichungen
-      und aktuelle Termine.
+      Seine Bücher richten sich an Leserinnen und Leser, die mehr suchen als Unterhaltung –
+      an Menschen, die bereit sind, genauer hinzusehen.
     </p>
-
   </section>
 </main>
 
+<!-- ================= FOOTER ================= -->
 <footer class="footer">
   <div class="footer-lichtkante"></div>
   <p>© <span id="jahr"></span> Matthias Silberhain</p>
 </footer>
 
+<!-- ================= JAVASCRIPT ================= -->
 <script src="assets/js/menu.js"></script>
+
 </body>
 </html>
