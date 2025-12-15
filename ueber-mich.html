@@ -1,108 +1,215 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <title>Über mich – Matthias Silberhain</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- Schriften -->
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=EB+Garamond:wght@400;500&display=swap" rel="stylesheet">
-
-  <!-- CSS -->
-  <link rel="stylesheet" href="assets/css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Über mich | Matthias Silberhain</title>
+    <meta name="description" content="Informationen über den Autor Matthias Silberhain">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="preload" href="assets/images/logo.png" as="image">
 </head>
-
 <body>
+    <!-- PRELOADER -->
+    <div id="preloader">
+        <div class="preloader-container">
+            <div class="logo-container">
+                <img src="assets/images/logo.png" 
+                     alt="Matthias Silberhain Logo" 
+                     class="preloader-logo"
+                     width="300" 
+                     height="300">
+            </div>
+            <div class="preloader-text">
+                <span class="typewriter-text">MATTHIAS SILBERHAIN</span>
+                <span class="typewriter-cursor">|</span>
+            </div>
+        </div>
+    </div>
 
-<header class="header">
+    <!-- HEADER -->
+    <header class="header">
+        <div class="header-container">
+            <!-- Logo -->
+            <div class="logo-wrapper">
+                <a href="index.html" class="logo-link">
+                    <img src="assets/images/logo.png" 
+                         alt="Matthias Silberhain Logo" 
+                         class="header-logo">
+                </a>
+            </div>
 
-  <img
-    src="assets/images/logo.png"
-    alt="Matthias Silberhain Logo"
-    class="logo"
-  >
+            <!-- Burger Menu -->
+            <button class="burger-menu" id="burgerMenu" aria-label="Menü öffnen">
+                <span class="burger-line"></span>
+                <span class="burger-line"></span>
+                <span class="burger-line"></span>
+            </button>
 
-  <div class="burger" id="burger">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
+            <!-- Navigation -->
+            <nav class="main-navigation" id="mainNavigation" aria-label="Hauptnavigation">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Startseite</a></li>
+                    <li><a href="ueber-mich.html" class="nav-link active">Über mich</a></li>
+                    <li><a href="werke.html" class="nav-link">Werke</a></li>
+                    <li><a href="termine.html" class="nav-link">Termine</a></li>
+                    <li><a href="kontakt.html" class="nav-link">Kontakt</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-  <nav class="hauptnavigation" id="navigation">
-    <a href="index.html">Startseite</a>
-    <a href="ueber-mich.html">Über mich</a>
-    <a href="werke.html">Werke</a>
-    <a href="termine.html">Termine</a>
-    <a href="kontakt.html">Kontakt</a>
-  </nav>
+    <!-- MAIN CONTENT -->
+    <main class="main-content" id="mainContent">
+        <div class="content-container">
+            <!-- Über mich Section -->
+            <section class="about-section">
+                <div class="page-header">
+                    <h1 class="page-title">Über mich</h1>
+                    <div class="page-subtitle">
+                        Autor, Denker, Wahrheitssucher
+                    </div>
+                </div>
 
-</header>
+                <div class="about-content">
+                    <!-- Credo Box -->
+                    <div class="credo-box">
+                        <div class="credo-icon">
+                            <svg viewBox="0 0 24 24" width="32" height="32">
+                                <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                            </svg>
+                        </div>
+                        <p class="credo-text">
+                            <strong>„Ich schreibe, weil die Wahrheit eine Stimme braucht.“</strong>
+                        </p>
+                    </div>
 
-<div class="lichtkante"></div>
+                    <!-- About Text -->
+                    <div class="text-content">
+                        <p class="about-paragraph">
+                            Dieses Credo begleitet meine Arbeit als Autor von Anfang an. Es ist kein marketingtauglicher
+                            Leitsatz, sondern der Grund, warum ich schreibe und veröffentliche.
+                        </p>
 
-<main class="inhalt">
-  <section class="intro">
+                        <p class="about-paragraph">
+                            Mein Name ist <strong>Matthias Silberhain</strong>. In meinen Büchern setze ich mich mit Macht, Verantwortung
+                            und den oft unsichtbaren Mechanismen auseinander, die Geschichte, Politik und Gesellschaft
+                            prägen. Mich interessieren nicht die einfachen Erklärungen oder die bequem erzählten
+                            Oberflächen. Mich interessiert das, was darunterliegt: Zusammenhänge, Motive und die Folgen
+                            menschlichen Handelns.
+                        </p>
 
-    <h1>Über mich</h1>
+                        <div class="image-quote-container">
+                            <div class="quote-box">
+                                <blockquote class="silber-quote">
+                                    „Wahrheit entsteht nicht durch Lautstärke, sondern durch Genauigkeit, 
+                                    Konsequenz und den Mut, Dinge auszusprechen."
+                                </blockquote>
+                            </div>
+                        </div>
 
-    <p><strong>„Ich schreibe, weil die Wahrheit eine Stimme braucht.“</strong></p>
+                        <p class="about-paragraph">
+                            Ich schreibe über Themen, die unbequem sind. Über Strukturen, die selten offen benannt werden.
+                            Über historische und gesellschaftliche Entwicklungen, deren Auswirkungen bis in unsere
+                            Gegenwart reichen. Dabei geht es mir nicht darum, zu polarisieren oder zu provozieren, sondern
+                            darum, Klarheit zu schaffen.
+                        </p>
 
-    <p>
-      Dieses Credo begleitet meine Arbeit als Autor von Anfang an. Es ist kein marketingtauglicher
-      Leitsatz, sondern der Grund, warum ich schreibe und veröffentliche.
-    </p>
+                        <p class="about-paragraph">
+                            Meine Texte entstehen aus intensiver Recherche, kritischer Analyse und persönlicher
+                            Auseinandersetzung mit den behandelten Themen. Ich trenne Fakten von Meinungen und kennzeichne,
+                            wo Interpretation beginnt. Diese Haltung prägt meinen Stil: sachlich, direkt und frei von
+                            unnötiger Dramatisierung. Leserinnen und Leser sollen nicht gelenkt, sondern befähigt werden,
+                            selbst zu denken.
+                        </p>
 
-    <p>
-      Mein Name ist Matthias Silberhain. In meinen Büchern setze ich mich mit Macht, Verantwortung
-      und den oft unsichtbaren Mechanismen auseinander, die Geschichte, Politik und Gesellschaft
-      prägen. Mich interessieren nicht die einfachen Erklärungen oder die bequem erzählten
-      Oberflächen. Mich interessiert das, was darunterliegt: Zusammenhänge, Motive und die Folgen
-      menschlichen Handelns.
-    </p>
+                        <!-- Philosophy Highlights -->
+                        <div class="philosophy-highlights">
+                            <div class="philosophy-card">
+                                <h3 class="philosophy-title">Recherche & Analyse</h3>
+                                <p>Tiefgründige Untersuchung von Zusammenhängen und historischen Entwicklungen</p>
+                            </div>
+                            
+                            <div class="philosophy-card">
+                                <h3 class="philosophy-title">Klarheit & Präzision</h3>
+                                <p>Sachliche Darstellung komplexer Themen ohne unnötige Dramatisierung</p>
+                            </div>
+                            
+                            <div class="philosophy-card">
+                                <h3 class="philosophy-title">Eigenes Denken</h3>
+                                <p>Befähigung der Leser zu eigenständiger Auseinandersetzung mit den Inhalten</p>
+                            </div>
+                        </div>
 
-    <p>
-      Ich schreibe über Themen, die unbequem sind. Über Strukturen, die selten offen benannt werden.
-      Über historische und gesellschaftliche Entwicklungen, deren Auswirkungen bis in unsere
-      Gegenwart reichen. Dabei geht es mir nicht darum, zu polarisieren oder zu provozieren, sondern
-      darum, Klarheit zu schaffen. Wahrheit entsteht nicht durch Lautstärke, sondern durch
-      Genauigkeit, Konsequenz und den Mut, Dinge auszusprechen.
-    </p>
+                        <p class="about-paragraph">
+                            Ich schreibe nicht für den schnellen Konsum. Meine Bücher richten sich an Menschen, die bereit
+                            sind, genauer hinzusehen, Fragen zuzulassen und sich mit komplexen Inhalten auseinanderzusetzen.
+                            An Leser, die verstehen wollen, wie Macht wirkt, warum Geschichte wiederkehrt und welche
+                            Verantwortung daraus entsteht.
+                        </p>
 
-    <p>
-      Meine Texte entstehen aus intensiver Recherche, kritischer Analyse und persönlicher
-      Auseinandersetzung mit den behandelten Themen. Ich trenne Fakten von Meinungen und kennzeichne,
-      wo Interpretation beginnt. Diese Haltung prägt meinen Stil: sachlich, direkt und frei von
-      unnötiger Dramatisierung. Leserinnen und Leser sollen nicht gelenkt, sondern befähigt werden,
-      selbst zu denken.
-    </p>
+                        <div class="mission-box">
+                            <h3 class="mission-title">Meine Mission</h3>
+                            <p>
+                                Unter dem Namen Matthias Silberhain verfolge ich eine klare Linie: <strong>Literatur mit Substanz,
+                                Haltung und Tiefe</strong>. Bücher, die nicht beruhigen, sondern aufklären. Texte, die bleiben, weil sie
+                                etwas berühren und etwas fordern.
+                            </p>
+                        </div>
 
-    <p>
-      Ich schreibe nicht für den schnellen Konsum. Meine Bücher richten sich an Menschen, die bereit
-      sind, genauer hinzusehen, Fragen zuzulassen und sich mit komplexen Inhalten auseinanderzusetzen.
-      An Leser, die verstehen wollen, wie Macht wirkt, warum Geschichte wiederkehrt und welche
-      Verantwortung daraus entsteht.
-    </p>
+                        <div class="final-message">
+                            <p class="about-paragraph final-paragraph">
+                                Wenn du meine Bücher liest, erwarte keine einfachen Antworten. Erwarte Klarheit, Tiefe und die
+                                Einladung, selbst weiterzudenken.
+                            </p>
+                            
+                            <a href="werke.html" class="cta-button about-cta">
+                                Zu meinen Werken
+                                <svg class="cta-arrow" viewBox="0 0 24 24" width="20" height="20">
+                                    <path fill="currentColor" d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
 
-    <p>
-      Unter dem Namen Matthias Silberhain verfolge ich eine klare Linie: Literatur mit Substanz,
-      Haltung und Tiefe. Bücher, die nicht beruhigen, sondern aufklären. Texte, die bleiben, weil sie
-      etwas berühren und etwas fordern.
-    </p>
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-container">
+            <!-- Social Media -->
+            <div class="social-media">
+                <a href="#" class="social-link" aria-label="Instagram">
+                    <svg class="social-icon" viewBox="0 0 24 24">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073z"/>
+                    </svg>
+                </a>
+                <a href="#" class="social-link" aria-label="Twitter">
+                    <svg class="social-icon" viewBox="0 0 24 24">
+                        <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.213c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                    </svg>
+                </a>
+                <a href="#" class="social-link" aria-label="YouTube">
+                    <svg class="social-icon" viewBox="0 0 24 24">
+                        <path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.506 0-9.396.501A3.007 3.007 0 00.528 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/>
+                    </svg>
+                </a>
+            </div>
 
-    <p>
-      Wenn du meine Bücher liest, erwarte keine einfachen Antworten. Erwarte Klarheit, Tiefe und die
-      Einladung, selbst weiterzudenken.
-    </p>
+            <!-- Copyright -->
+            <div class="footer-bottom">
+                <p class="copyright">
+                    © <span id="currentYear"></span> Matthias Silberhain. Alle Rechte vorbehalten.
+                </p>
+                <div class="legal-links">
+                    <a href="impressum.html" class="legal-link">Impressum</a>
+                    <a href="datenschutz.html" class="legal-link">Datenschutz</a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
-  </section>
-</main>
-
-<footer class="footer">
-  <div class="footer-lichtkante"></div>
-  <p>© <span id="jahr"></span> Matthias Silberhain</p>
-</footer>
-
-<script src="assets/js/menu.js"></script>
-
+    <script src="assets/js/menu.js" defer></script>
 </body>
 </html>
