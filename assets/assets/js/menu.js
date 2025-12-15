@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("load", () => {
 
       // Dauer der Schreibanimation + kleiner Puffer
-      const PRELOADER_DURATION = 2500;
+     const PRELOADER_DURATION = 3200;
 
       setTimeout(() => {
         preloader.classList.add("fade-out");
