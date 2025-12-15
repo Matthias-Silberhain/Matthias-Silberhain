@@ -1,12 +1,28 @@
-// Preloader
-window.addEventListener('load', function() {
-  document.body.classList.add('loaded');
+window.addEventListener("load", () => {
+  const preloader = document.getElementById("preloader");
+
+  // exakt nach Ende der CSS-Animation
+  setTimeout(() => {
+    preloader.classList.add("fade-out");
+
+    preloader.addEventListener("animationend", () => {
+      preloader.remove();
+    });
+  }, 2000); // muss exakt zur bestehenden Animation passen
 });
 
-// Mobile Navigation Toggle
-const menuToggle = document.querySelector('.menu-toggle');
-const navMenu = document.querySelector('.hauptnavigation');
+// Burger-Menü
+const burger = document.getElementById("burger");
+const navigation = document.getElementById("navigation");
 
-menuToggle.addEventListener('click', () => {
-  navMenu.classList.toggle('active');
-});
+if (burger && navigation) {
+  burger.addEventListener("click", () => {
+    navigation.classList.toggle("aktiv");
+  });
+}
+
+// Jahr im Footer
+const jahr = document.getElementById("jahr");
+if (jahr) {
+  jahr.textContent = new Date().getFullYear();
+}
