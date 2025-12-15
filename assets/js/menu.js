@@ -1,28 +1,39 @@
-/* PRELOADER */
 document.addEventListener("DOMContentLoaded", () => {
+
+  /* PRELOADER – GARANTIERTES ENDE */
   const text = "MATTHIAS SILBERHAIN";
   const el = document.getElementById("type-text");
+  const preloader = document.getElementById("preloader");
+
   let i = 0;
+  const speed = 80;
 
   const typing = setInterval(() => {
-    el.textContent += text[i];
+    el.textContent += text.charAt(i);
     i++;
-    if (i === text.length) {
+
+    if (i >= text.length) {
       clearInterval(typing);
       setTimeout(() => {
-        document.getElementById("preloader").style.display = "none";
-      }, 500);
+        preloader.style.display = "none";
+      }, 400);
     }
-  }, 80);
+  }, speed);
 
-  document.getElementById("jahr").textContent =
-    new Date().getFullYear();
-});
+  /* BURGER */
+  const burger = document.getElementById("burger");
+  const nav = document.getElementById("navigation");
 
-/* BURGER */
-const burger = document.getElementById("burger");
-const nav = document.getElementById("navigation");
+  if (burger && nav) {
+    burger.addEventListener("click", () => {
+      nav.classList.toggle("aktiv");
+    });
+  }
 
-burger.addEventListener("click", () => {
-  nav.classList.toggle("aktiv");
+  /* FOOTER JAHR */
+  const jahr = document.getElementById("jahr");
+  if (jahr) {
+    jahr.textContent = new Date().getFullYear();
+  }
+
 });
