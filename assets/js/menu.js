@@ -8,11 +8,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const textEl = document.getElementById("type-text");
   const cursor = document.querySelector(".cursor");
   const preloader = document.getElementById("preloader");
+  const textContainer = document.querySelector(".preloader-text");
 
   let index = 0;
 
-  /* SCHREIBGESCHWINDIGKEIT */
-  const speed = 110; // vorher 70 → jetzt ruhiger
+  /* Schreibgeschwindigkeit */
+  const speed = 110;
 
   function typeWriter() {
     if (index < text.length) {
@@ -20,21 +21,25 @@ document.addEventListener("DOMContentLoaded", () => {
       index++;
       setTimeout(typeWriter, speed);
     } else {
-      /* CURSOR STOPPEN */
+      /* Cursor stoppen */
       cursor.style.display = "none";
 
-      /* KURZE WIRKUNGSPAUSE */
+      /* Silber-Licht-Hauch */
+      textContainer.classList.add("silver-glow");
+
+      /* Nach Wirkung ausblenden */
       setTimeout(() => {
         preloader.style.opacity = "0";
-      }, 900); // vorher 200
+      }, 1400);
 
-      /* PRELOADER ENTFERNEN */
+      /* Preloader sicher entfernen */
       setTimeout(() => {
         preloader.remove();
-      }, 1400); // vorher 600
+      }, 2000);
     }
   }
 
+  /* Sofort starten */
   typeWriter();
 
   /* =========================
