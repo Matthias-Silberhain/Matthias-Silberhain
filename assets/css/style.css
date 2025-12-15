@@ -233,12 +233,33 @@ p {
    PRELOADER – MOBILE
 ===================== */
 
-@media (max-width: 768px) {
+/* =====================
+   PRELOADER – MOBILE FIX
+===================== */
+
+@media (max-width: 600px) {
 
   .preloader-logo {
-    width: 220px;
-    margin-bottom: 20px;
+    width: 200px;
+    margin-bottom: 18px;
   }
 
   .preloader-text {
-    font-size: clamp
+    font-size: 22px;
+    letter-spacing: 0.16em;
+    line-height: 1.35;
+    white-space: normal;   /* Umbruch erlauben */
+    text-align: center;
+  }
+
+  .preloader-text span {
+    display: block;
+  }
+
+  /* Cursor immer unten rechts */
+  .cursor {
+    display: inline-block;
+    margin-left: 4px;
+  }
+}
+
