@@ -1,4 +1,3 @@
-/* RESET */
 * {
   margin: 0;
   padding: 0;
@@ -12,17 +11,16 @@ html, body {
 
 body {
   font-family: "EB Garamond", serif;
-  background-color: #050505;
-  color: #c8ccd2;
+  background: #050505;
+  color: #cfd2d6;
   line-height: 1.7;
 }
 
-/* ================= PRELOADER ================= */
-
+/* PRELOADER */
 #preloader {
   position: fixed;
   inset: 0;
-  background-color: #050505;
+  background: #050505;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -31,155 +29,123 @@ body {
 
 .preloader-inner {
   text-align: center;
-  padding: 20px;
-  width: 100%;
 }
 
 .preloader-logo {
-  width: clamp(220px, 60vw, 520px);
-  max-width: 90%;
-  margin: 0 auto 24px;
-  display: block;
+  width: clamp(220px, 40vw, 420px);
+  margin-bottom: 20px;
 }
 
 .preloader-text {
   font-family: "Cinzel", serif;
-  letter-spacing: 0.15em;
-  color: #e2e5ea;
-  font-size: clamp(0.9rem, 3vw, 1.4rem);
-  white-space: normal;
+  letter-spacing: 0.2em;
+  font-size: clamp(0.9rem, 3vw, 1.2rem);
 }
 
 .cursor {
   display: inline-block;
   width: 2px;
-  height: 1.1em;
-  background-color: #e2e5ea;
+  height: 1em;
+  background: #cfd2d6;
   margin-left: 4px;
-  animation: blink 1s infinite;
-}
-
-.cursor.stop {
-  animation: none;
-  opacity: 0;
+  animation: blink 1s steps(2) infinite;
 }
 
 @keyframes blink {
-  0%, 50%, 100% { opacity: 1; }
-  25%, 75% { opacity: 0; }
+  50% { opacity: 0; }
 }
 
-/* ================= HEADER ================= */
-
+/* HEADER */
 .header {
   text-align: center;
-  padding: 36px 20px 26px;
+  padding: 40px 20px 30px;
 }
 
 .logo {
-  width: min(80vw, 520px);
-  margin: 0 auto 24px;
-  display: block;
+  width: min(520px, 90vw);
+  margin-bottom: 20px;
 }
-
-/* ================= NAVIGATION ================= */
 
 .hauptnavigation {
   display: flex;
   justify-content: center;
-  gap: 36px;
+  gap: 30px;
   flex-wrap: wrap;
 }
 
 .hauptnavigation a {
   font-family: "Cinzel", serif;
-  color: #c8ccd2;
+  color: #cfd2d6;
   text-decoration: none;
   letter-spacing: 0.15em;
-  font-size: 0.9rem;
-  transition: color 0.3s ease, text-shadow 0.3s ease;
+  font-size: 0.85rem;
 }
 
 .hauptnavigation a:hover {
-  color: #f0f2f6;
-  text-shadow: 0 0 8px rgba(200,205,215,0.6);
+  color: #e6e8ec;
 }
 
-/* ================= INHALT ================= */
-
+/* LINES */
 .lichtkante,
 .footer-lichtkante {
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(200,205,215,0.85), transparent);
-  box-shadow: 0 0 12px rgba(200,205,215,0.45);
+  background: linear-gradient(90deg, transparent, rgba(200,205,215,0.8), transparent);
+  box-shadow: 0 0 12px rgba(200,205,215,0.35);
 }
 
+/* CONTENT */
 .inhalt {
-  padding: 72px 20px;
+  padding: 70px 20px;
 }
 
-h1 {
+.intro h1 {
   font-family: "Cinzel", serif;
-  color: #e2e5ea;
-  letter-spacing: 0.08em;
-  margin-bottom: 26px;
   text-align: center;
+  margin-bottom: 30px;
 }
 
-p {
-  max-width: 720px;
+.intro p {
+  max-width: 700px;
   margin: 0 auto 22px;
   text-align: center;
 }
 
-/* ================= FOOTER ================= */
-
+/* FOOTER */
 .footer {
+  padding: 30px 20px 20px;
   text-align: center;
-  padding: 14px 0 18px;
-  font-size: 0.8rem;
 }
 
-.footer p {
+.footer-social {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.footer-social a {
+  border: 1px solid rgba(200,205,215,0.4);
+  padding: 10px 20px;
+  font-family: "Cinzel", serif;
+  letter-spacing: 0.15em;
+  font-size: 0.75rem;
+  text-decoration: none;
+  color: #cfd2d6;
+}
+
+.footer-social a:hover {
+  border-color: rgba(200,205,215,0.9);
+}
+
+.footer-copy {
+  font-size: 0.75rem;
   color: #9da2a8;
 }
 
-/* ================= BURGER ================= */
-
-.burger {
-  display: none;
-  width: 30px;
-  margin: 18px auto 0;
-  cursor: pointer;
-}
-
-.burger span {
-  display: block;
-  height: 2px;
-  background-color: #c8ccd2;
-  margin: 6px 0;
-}
-
-/* ================= MOBILE ================= */
-
+/* MOBILE */
 @media (max-width: 768px) {
-
   .hauptnavigation {
     display: none;
-    flex-direction: column;
-    gap: 18px;
-    margin-top: 20px;
-  }
-
-  .hauptnavigation.aktiv {
-    display: flex;
-  }
-
-  .burger {
-    display: block;
-  }
-
-  .inhalt {
-    padding: 48px 16px;
   }
 }
