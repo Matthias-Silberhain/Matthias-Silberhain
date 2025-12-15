@@ -1,52 +1,87 @@
 <!DOCTYPE html>
 <html lang="de">
-
 <head>
   <meta charset="UTF-8">
+  <title>Matthias Silberhain</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Matthias Silberhain - Autor</title>
+
+  <!-- Schriften -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=EB+Garamond:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
 
-  <!-- Preloader -->
-  <div class="preloader">
-    <div class="logo-preload">
-      <img src="assets/images/logo.png" alt="Logo" id="logo-animation">
-    </div>
+<!-- ================= PRELOADER ================= -->
+<div id="preloader">
+  <img src="assets/images/logo.png" alt="Matthias Silberhain Logo" class="preloader-logo">
+</div>
+
+<!-- ================= HEADER ================= -->
+<header class="header">
+
+  <img src="assets/images/logo.png"
+       alt="Matthias Silberhain Logo"
+       class="logo">
+
+  <!-- Burger (Mobil) -->
+  <div class="burger" id="burger">
+    <span></span>
+    <span></span>
+    <span></span>
   </div>
 
-  <!-- Main Content -->
-  <div class="content">
-    <!-- Navigation -->
-    <nav class="hauptnavigation">
-      <a href="index.html">Startseite</a>
-      <a href="about.html">Über mich</a>
-      <a href="werke.html">Werke</a>
-      <a href="termine.html">Termine</a>
-      <a href="kontakt.html">Kontakt</a>
-    </nav>
+  <!-- Navigation -->
+  <nav class="hauptnavigation" id="navigation">
+    <a href="index.html">Startseite</a>
+    <a href="about.html">Über mich</a>
+    <a href="werke.html">Werke</a>
+    <a href="termine.html">Termine</a>
+    <a href="kontakt.html">Kontakt</a>
+  </nav>
 
-    <!-- Header -->
-    <header class="header">
-      <h1>Willkommen auf meiner Seite</h1>
-      <p>Hier finden Sie alle Informationen zu meinen Werken und Veranstaltungen.</p>
-    </header>
+</header>
 
-    <!-- Über den Autor -->
-    <section class="author-info">
-      <h2>Über den Autor</h2>
-      <p>Matthias Silberhain ist ein talentierter Schriftsteller, dessen Werke die menschliche Psyche und die sozialen Dynamiken in den Mittelpunkt stellen. Mit einer Leidenschaft für tiefgründige Charaktere und komplexe Handlungsstränge hat er sich in der literarischen Welt einen Namen gemacht.</p>
-    </section>
+<!-- Lichtkante unter Header -->
+<div class="lichtkante"></div>
 
-    <!-- Footer -->
-    <footer>
-      <p>&copy; 2025 Matthias Silberhain - Alle Rechte vorbehalten</p>
-    </footer>
-  </div>
+<!-- ================= INHALT ================= -->
+<main class="inhalt">
 
-  <script src="assets/js/script.js"></script>
+  <section class="intro">
+    <h1>Über den Autor</h1>
+
+    <p>
+      HIER STEHT DEIN ORIGINALTEXT.
+    </p>
+
+    <p>
+      BITTE GENAU DEN TEXT EINSETZEN,
+      DEN DU ZUVOR VERWENDET HAST.
+    </p>
+
+    <p>
+      KEINE ÄNDERUNG, KEINE NEUFORMULIERUNG.
+    </p>
+  </section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+
+  <div class="footer-lichtkante"></div>
+
+  <p>
+    © <span id="jahr"></span> Matthias Silberhain
+  </p>
+
+</footer>
+
+<!-- ================= JAVASCRIPT ================= -->
+<script src="assets/js/script.js"></script>
+
 </body>
-
 </html>
