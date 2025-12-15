@@ -2,43 +2,58 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <title>Matthias Silberhain</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Matthias Silberhain – Autor</title>
 
-  <!-- Schriften -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Offizielle Website von Matthias Silberhain – Autor, Werke, Termine und Kontakt.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=EB+Garamond:wght@400;500&display=swap" rel="stylesheet">
 
-  <!-- CSS -->
+  <!-- Styles -->
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
 
-<!-- ================= PRELOADER ================= -->
-<!-- PRELOADER -->
-<div id="preloader">
+<!-- =================================================
+     PRELOADER
+================================================== -->
+<div id="preloader" aria-hidden="true">
   <div id="logo-animation">
-    <span id="matthias">MATTHIAS</span>
-    <span id="silberhain"> SILBERHAIN</span>
+    MATTHIAS&nbsp;SILBERHAIN
   </div>
 </div>
-  
-<!-- ================= HEADER ================= -->
-<header class="header">
 
-  <img src="assets/images/logo.png"
-       alt="Matthias Silberhain Logo"
-       class="logo">
+<!-- =================================================
+     HEADER
+================================================== -->
+<header class="header" role="banner">
 
-  <!-- Burger (Mobil) -->
-  <div class="burger" id="burger">
+  <img
+    src="assets/images/logo.png"
+    alt="Matthias Silberhain Logo"
+    class="logo"
+    loading="eager"
+  >
+
+  <!-- Burger Menü (Mobile) -->
+  <button
+    class="burger"
+    id="burger"
+    aria-label="Navigation öffnen"
+    aria-controls="navigation"
+    aria-expanded="false"
+  >
     <span></span>
     <span></span>
     <span></span>
-  </div>
+  </button>
 
   <!-- Navigation -->
-  <nav class="hauptnavigation" id="navigation">
+  <nav class="hauptnavigation" id="navigation" role="navigation">
     <a href="index.html">Startseite</a>
     <a href="about.html">Über mich</a>
     <a href="werke.html">Werke</a>
@@ -48,11 +63,13 @@
 
 </header>
 
-<!-- Lichtkante unter Header -->
-<div class="lichtkante"></div>
+<!-- Lichtkante -->
+<div class="lichtkante" aria-hidden="true"></div>
 
-<!-- ================= INHALT ================= -->
-<main class="inhalt">
+<!-- =================================================
+     INHALT
+================================================== -->
+<main class="inhalt" role="main">
 
   <section class="intro">
     <h1>Über den Autor</h1>
@@ -73,10 +90,12 @@
 
 </main>
 
-<!-- ================= FOOTER ================= -->
-<footer class="footer">
+<!-- =================================================
+     FOOTER
+================================================== -->
+<footer class="footer" role="contentinfo">
 
-  <div class="footer-lichtkante"></div>
+  <div class="footer-lichtkante" aria-hidden="true"></div>
 
   <p>
     © <span id="jahr"></span> Matthias Silberhain
@@ -84,8 +103,10 @@
 
 </footer>
 
-<!-- ================= JAVASCRIPT ================= -->
-<script src="assets/js/script.js"></script>
+<!-- =================================================
+     JAVASCRIPT
+================================================== -->
+<script src="assets/js/script.js" defer></script>
 
 </body>
 </html>
