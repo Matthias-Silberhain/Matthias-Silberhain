@@ -41,20 +41,24 @@ body {
   padding: 20px;
 }
 
+/* LOGO – DEUTLICH GRÖSSER & RESPONSIVE */
 .preloader-logo {
-  width: min(70vw, 420px);
-  margin-bottom: 26px;
+  width: clamp(260px, 60vw, 620px);
+  max-width: 90vw;
+  margin: 0 auto 30px;
   display: block;
 }
 
+/* SCHRIFT */
 .preloader-text {
   font-family: "Cinzel", serif;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.18em;
   color: #e2e5ea;
-  font-size: clamp(0.9rem, 3.5vw, 1.4rem);
+  font-size: clamp(0.95rem, 3.5vw, 1.5rem);
   white-space: nowrap;
 }
 
+/* CURSOR */
 .cursor {
   display: inline-block;
   width: 2px;
@@ -75,6 +79,7 @@ body {
   25%, 75% { opacity: 0; }
 }
 
+/* PRELOADER AUSBLENDEN */
 #preloader.fade-out {
   animation: preloadFade 0.5s ease forwards;
 }
@@ -113,4 +118,136 @@ p {
 .header {
   background-color: #050505;
   padding: 36px 20px 26px;
-  text-align: center
+  text-align: center;
+}
+
+.logo {
+  width: min(80vw, 520px);
+  margin: 0 auto 24px;
+  display: block;
+}
+
+/* =====================
+   NAVIGATION
+===================== */
+
+.hauptnavigation {
+  display: flex;
+  justify-content: center;
+  gap: 36px;
+  flex-wrap: wrap;
+}
+
+.hauptnavigation a {
+  font-family: "Cinzel", serif;
+  color: #c8ccd2;
+  text-decoration: none;
+  letter-spacing: 0.15em;
+  font-size: 0.9rem;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.hauptnavigation a:hover {
+  color: #f0f2f6;
+  text-shadow: 0 0 8px rgba(200,205,215,0.6);
+}
+
+/* =====================
+   LICHTKANTEN
+===================== */
+
+.lichtkante,
+.footer-lichtkante {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(200,205,215,0.85),
+    transparent
+  );
+  box-shadow: 0 0 12px rgba(200,205,215,0.45);
+}
+
+/* =====================
+   INHALT
+===================== */
+
+.inhalt {
+  padding: 72px 20px;
+}
+
+/* =====================
+   FOOTER
+===================== */
+
+.footer {
+  background-color: #050505;
+  text-align: center;
+  padding: 14px 0 18px;
+  font-size: 0.8rem;
+}
+
+.footer p {
+  margin: 0;
+  color: #9da2a8;
+}
+
+/* =====================
+   BURGER (MOBIL)
+===================== */
+
+.burger {
+  display: none;
+  width: 30px;
+  margin: 18px auto 0;
+  cursor: pointer;
+}
+
+.burger span {
+  display: block;
+  height: 2px;
+  background-color: #c8ccd2;
+  margin: 6px 0;
+}
+
+/* =====================
+   RESPONSIVE
+===================== */
+
+@media (max-width: 768px) {
+
+  .logo {
+    width: min(90vw, 420px);
+  }
+
+  .hauptnavigation {
+    display: none;
+    flex-direction: column;
+    gap: 18px;
+    margin-top: 20px;
+  }
+
+  .hauptnavigation.aktiv {
+    display: flex;
+  }
+
+  .burger {
+    display: block;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 1600px) {
+
+  p {
+    max-width: 900px;
+    font-size: 1.15rem;
+  }
+
+  .inhalt {
+    padding: 100px 20px;
+  }
+}
