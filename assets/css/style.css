@@ -671,3 +671,361 @@ body {
     animation: none;
   }
 }
+/* ==========================================================================
+   ÜBER MICH SEITE - SPEZIFISCHE STYLES
+   ========================================================================== */
+
+/* Page Header */
+.page-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(192, 192, 192, 0.2);
+}
+
+.page-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    color: var(--silber-bright);
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 20px var(--silber-glow);
+}
+
+.page-subtitle {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: var(--silber-dark);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+/* Credo Box */
+.credo-box {
+    background: linear-gradient(135deg, rgba(10, 10, 10, 0.9), rgba(5, 5, 5, 0.95));
+    border: 1px solid rgba(192, 192, 192, 0.2);
+    border-left: 4px solid var(--silber-primary);
+    border-radius: 8px;
+    padding: 2rem;
+    margin: 2rem auto 3rem;
+    max-width: 800px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 0 30px rgba(192, 192, 192, 0.1);
+    transition: all var(--transition-medium);
+}
+
+.credo-box:hover {
+    border-color: var(--silber-primary);
+    box-shadow: 0 0 40px var(--silber-glow);
+    transform: translateY(-5px);
+}
+
+.credo-icon {
+    color: var(--silber-primary);
+    margin-bottom: 1rem;
+    animation: subtle-pulse 3s ease-in-out infinite;
+}
+
+.credo-text {
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
+    line-height: 1.5;
+    color: var(--silber-bright);
+    font-style: italic;
+    text-shadow: 0 0 10px var(--silber-glow);
+}
+
+/* Text Content */
+.text-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.about-paragraph {
+    font-size: clamp(1.1rem, 2vw, 1.2rem);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    color: var(--silber-dark);
+}
+
+.about-paragraph strong {
+    color: var(--silber-bright);
+    font-weight: 500;
+}
+
+/* Quote Box */
+.image-quote-container {
+    margin: 2.5rem 0;
+    position: relative;
+}
+
+.quote-box {
+    background: linear-gradient(135deg, rgba(10, 10, 10, 0.8), rgba(5, 5, 5, 0.9));
+    border: 1px solid rgba(192, 192, 192, 0.15);
+    border-radius: 8px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.quote-box::before {
+    content: '❝';
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    font-size: 4rem;
+    color: rgba(192, 192, 192, 0.1);
+    font-family: serif;
+}
+
+.quote-box::after {
+    content: '❞';
+    position: absolute;
+    bottom: -30px;
+    right: 20px;
+    font-size: 4rem;
+    color: rgba(192, 192, 192, 0.1);
+    font-family: serif;
+}
+
+.silber-quote {
+    font-size: clamp(1.2rem, 2.5vw, 1.4rem);
+    line-height: 1.6;
+    color: var(--silber-bright);
+    font-style: italic;
+    text-align: center;
+    margin: 0;
+    padding: 0 1rem;
+    position: relative;
+    z-index: 1;
+}
+
+/* Philosophy Highlights */
+.philosophy-highlights {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.philosophy-card {
+    background: linear-gradient(145deg, rgba(15, 15, 15, 0.7), rgba(8, 8, 8, 0.9));
+    border: 1px solid rgba(192, 192, 192, 0.1);
+    border-radius: 8px;
+    padding: 2rem;
+    transition: all var(--transition-medium);
+    text-align: center;
+}
+
+.philosophy-card:hover {
+    border-color: var(--silber-primary);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(192, 192, 192, 0.2);
+}
+
+.philosophy-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.3rem;
+    color: var(--silber-bright);
+    margin-bottom: 1rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.philosophy-card p {
+    font-size: 1rem;
+    color: var(--silber-dark);
+    line-height: 1.6;
+}
+
+/* Mission Box */
+.mission-box {
+    background: linear-gradient(135deg, rgba(10, 10, 10, 0.9), rgba(5, 5, 5, 0.95));
+    border: 1px solid rgba(192, 192, 192, 0.2);
+    border-radius: 8px;
+    padding: 2rem;
+    margin: 3rem 0;
+    position: relative;
+}
+
+.mission-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--silber-primary), var(--silber-dark));
+}
+
+.mission-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.5rem;
+    color: var(--silber-bright);
+    margin-bottom: 1rem;
+    letter-spacing: 0.05em;
+}
+
+.mission-box p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--silber-dark);
+}
+
+/* Final Message */
+.final-message {
+    text-align: center;
+    margin-top: 4rem;
+    padding-top: 3rem;
+    border-top: 1px solid rgba(192, 192, 192, 0.2);
+}
+
+.final-paragraph {
+    font-size: clamp(1.2rem, 2.5vw, 1.4rem);
+    font-style: italic;
+    color: var(--silber-primary);
+    margin-bottom: 2rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* CTA Button */
+.about-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: transparent;
+    color: var(--silber-primary);
+    font-family: 'Cinzel', serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1rem 2rem;
+    border: 2px solid var(--silber-primary);
+    border-radius: 4px;
+    transition: all var(--transition-medium);
+    position: relative;
+    overflow: hidden;
+}
+
+.about-cta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(192, 192, 192, 0.2), transparent);
+    transition: left var(--transition-medium);
+}
+
+.about-cta:hover::before {
+    left: 100%;
+}
+
+.about-cta:hover {
+    background-color: rgba(192, 192, 192, 0.1);
+    color: var(--silber-bright);
+    border-color: var(--silber-bright);
+    box-shadow: 0 0 25px var(--silber-glow);
+    transform: translateY(-3px);
+}
+
+.cta-arrow {
+    transition: transform var(--transition-medium);
+}
+
+.about-cta:hover .cta-arrow {
+    transform: translateX(5px);
+}
+
+/* Responsive Anpassungen für Über mich */
+@media screen and (max-width: 768px) {
+    .page-header {
+        margin-bottom: 2rem;
+        padding-bottom: 1.5rem;
+    }
+    
+    .credo-box {
+        padding: 1.5rem;
+        margin: 1.5rem auto 2rem;
+    }
+    
+    .philosophy-highlights {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .quote-box {
+        padding: 1.5rem;
+    }
+    
+    .mission-box {
+        padding: 1.5rem;
+        margin: 2rem 0;
+    }
+    
+    .final-message {
+        margin-top: 3rem;
+        padding-top: 2rem;
+    }
+    
+    .about-cta {
+        padding: 0.875rem 1.5rem;
+        font-size: 1rem;
+    }
+}
+
+@media screen and (min-width: 1920px) {
+    .page-title {
+        font-size: 4rem;
+    }
+    
+    .credo-text {
+        font-size: 1.8rem;
+    }
+    
+    .about-paragraph {
+        font-size: 1.3rem;
+    }
+    
+    .silber-quote {
+        font-size: 1.6rem;
+    }
+    
+    .philosophy-card {
+        padding: 2.5rem;
+    }
+    
+    .philosophy-title {
+        font-size: 1.5rem;
+    }
+}
+
+/* Animation für den Credo Icon */
+@keyframes subtle-pulse {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(1.05);
+    }
+}
+
+/* Fade In Animation für Content */
+.about-section {
+    animation: fadeInUp 1s ease forwards;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
