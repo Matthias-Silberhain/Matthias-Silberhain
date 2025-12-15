@@ -1,62 +1,68 @@
 /* =========================
-   PRELOADER
+   PRELOADER – ERZWUNGEN
 ========================= */
 
-const preloader = document.createElement("div");
-preloader.id = "preloader";
+console.log("menu.js geladen");
 
-preloader.innerHTML = `
-  <div class="preloader-inner">
-    <img src="assets/images/logo.png" class="preloader-logo" alt="Logo">
-    <div class="preloader-text">
-      <span id="type-text"></span><span class="cursor" id="cursor"></span>
+document.addEventListener("DOMContentLoaded", () => {
+
+  const preloader = document.createElement("div");
+  preloader.id = "preloader";
+
+  preloader.innerHTML = `
+    <div class="preloader-inner">
+      <img src="assets/images/logo.png" class="preloader-logo" alt="Logo">
+      <div class="preloader-text">
+        <span id="type-text"></span><span class="cursor">|</span>
+      </div>
     </div>
-  </div>
-`;
+  `;
 
-document.body.appendChild(preloader);
+  document.body.appendChild(preloader);
 
-/* Schreibeffekt */
-const text = "MATTHIAS SILBERHAIN";
-const textEl = document.getElementById("type-text");
-const cursor = document.getElementById("cursor");
+  /* TYPEWRITER */
+  const text = "MATTHIAS SILBERHAIN";
+  const textEl = document.getElementById("type-text");
+  const cursor = document.querySelector(".cursor");
 
-let index = 0;
-const speed = 60;
+  let i = 0;
 
-const typingInterval = setInterval(() => {
-  textEl.textContent += text[index];
-  index++;
-
-  if (index >= text.length) {
-    clearInterval(typingInterval);
-
-    cursor.classList.add("stop");
-
-    setTimeout(() => {
-      preloader.classList.add("fade-out");
-    }, 300);
-
-    setTimeout(() => {
-      preloader.remove();
-    }, 700);
+  function typeWriter() {
+    if (i < text.length) {
+      textEl.textContent += text.charAt(i);
+      console.log("schreibe:", text.charAt(i));
+      i++;
+      setTimeout(typeWriter, 80);
+    } else {
+      cursor.style.display = "none";
+      setTimeout(() => {
+        preloader.remove();
+      }, 600);
+    }
   }
-}, speed);
 
-/* =========================
-   BURGER MENÜ
-========================= */
+  typeWriter();
 
-const burger = document.getElementById("burger");
-const navigation = document.getElementById("navigation");
+  /* =========================
+     BURGER MENÜ
+  ========================= */
 
-burger.addEventListener("click", () => {
-  navigation.classList.toggle("aktiv");
+  const burger = document.getElementById("burger");
+  const navigation = document.getElementById("navigation");
+
+  if (burger && navigation) {
+    burger.addEventListener("click", () => {
+      navigation.classList.toggle("aktiv");
+    });
+  }
+
+  /* =========================
+     FOOTER JAHR
+  ========================= */
+
+  const year = document.getElementById("jahr");
+  if (year) {
+    year.textContent = new Date().getFullYear();
+  }
+
 });
-
-/* =========================
-   FOOTER JAHR
-========================= */
-
-document.getElementById("jahr").textContent =
-  new Date().getFullYear();
