@@ -1,75 +1,62 @@
-/* =========================================================
-   Matthias Silberhain – Menü & Preloader Script
-========================================================= */
+/* =========================
+   PRELOADER (IMMER)
+========================= */
 
-document.addEventListener("DOMContentLoaded", () => {
+const preloader = document.createElement("div");
+preloader.id = "preloader";
 
-  /* =====================================================
-     PRELOADER ERZEUGEN
-     (kein HTML notwendig)
-  ===================================================== */
-
-  const preloader = document.createElement("div");
-  preloader.id = "preloader";
-
-  preloader.innerHTML = `
-    <div class="preloader-inner">
-      <img
-        src="assets/images/logo.png"
-        alt="Matthias Silberhain Logo"
-        class="preloader-logo"
-      >
-      <div id="logo-animation">
-        MATTHIAS&nbsp;SILBERHAIN
-      </div>
+preloader.innerHTML = `
+  <div class="preloader-inner">
+    <img src="assets/images/logo.png" class="preloader-logo" alt="Logo">
+    <div class="preloader-text">
+      <span id="type-text"></span><span class="cursor" id="cursor"></span>
     </div>
-  `;
+  </div>
+`;
 
-  document.body.prepend(preloader);
+document.body.appendChild(preloader);
 
+/* Schreibeffekt */
+const text = "MATTHIAS SILBERHAIN";
+const textEl = document.getElementById("type-text");
+const cursor = document.getElementById("cursor");
 
-  /* =====================================================
-     FOOTER JAHR
-  ===================================================== */
+let i = 0;
+const speed = 60;
 
-  const yearElement = document.getElementById("jahr");
-  if (yearElement) {
-    yearElement.textContent = new Date().getFullYear();
-  }
+const typing = setInterval(() => {
+  textEl.textContent += text.charAt(i);
+  i++;
 
+  if (i === text.length) {
+    clearInterval(typing);
 
-  /* =====================================================
-     BURGER MENU (MOBILE)
-  ===================================================== */
-
-  const burger = document.getElementById("burger");
-  const navigation = document.getElementById("navigation");
-
-  if (burger && navigation) {
-    burger.addEventListener("click", () => {
-      const isOpen = navigation.classList.toggle("aktiv");
-      burger.setAttribute("aria-expanded", isOpen);
-    });
-  }
-
-
-  /* =====================================================
-     PRELOADER AUSBLENDEN
-  ===================================================== */
-
-  window.addEventListener("load", () => {
-
-    const PRELOADER_DURATION = 3200; // Timing zur CSS-Animation
+    cursor.classList.add("stop");
 
     setTimeout(() => {
       preloader.classList.add("fade-out");
+    }, 300);
 
-      setTimeout(() => {
-        preloader.remove();
-      }, 600);
+    setTimeout(() => {
+      preloader.remove();
+    }, 700);
+  }
+}, speed);
 
-    }, PRELOADER_DURATION);
+/* =========================
+   BURGER MENÜ
+========================= */
 
-  });
+const burger = document.getElementById("burger");
+const navigation = document.getElementById("navigation");
 
+burger.addEventListener("click", () => {
+  navigation.classList.toggle("aktiv");
 });
+
+/* =========================
+   FOOTER JAHR
+========================= */
+
+document.getElementById("jahr").textContent =
+  new Date().getFullYear();
