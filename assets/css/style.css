@@ -39,30 +39,34 @@ body {
 .preloader-inner {
   text-align: center;
   padding: 20px;
+  width: 100%;
 }
 
-/* LOGO – DEUTLICH GRÖSSER & RESPONSIVE */
+/* LOGO – DESKTOP / STANDARD */
 .preloader-logo {
-  width: clamp(260px, 60vw, 620px);
-  max-width: 90vw;
-  margin: 0 auto 30px;
+  width: clamp(220px, 55vw, 560px);
+  max-width: 90%;
+  margin: 0 auto 24px;
   display: block;
 }
 
-/* SCHRIFT */
+/* NAME */
 .preloader-text {
   font-family: "Cinzel", serif;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.15em;
   color: #e2e5ea;
-  font-size: clamp(0.95rem, 3.5vw, 1.5rem);
-  white-space: nowrap;
+  font-size: clamp(0.9rem, 3vw, 1.4rem);
+  line-height: 1.4;
+  max-width: 90%;
+  margin: 0 auto;
+  white-space: normal; /* WICHTIG für Mobile */
 }
 
 /* CURSOR */
 .cursor {
   display: inline-block;
   width: 2px;
-  height: 1.2em;
+  height: 1.1em;
   background-color: #e2e5ea;
   margin-left: 4px;
   animation: blink 1s infinite;
@@ -79,7 +83,7 @@ body {
   25%, 75% { opacity: 0; }
 }
 
-/* PRELOADER AUSBLENDEN */
+/* AUSBLENDEN */
 #preloader.fade-out {
   animation: preloadFade 0.5s ease forwards;
 }
@@ -153,47 +157,25 @@ p {
 }
 
 /* =====================
-   LICHTKANTEN
-===================== */
-
-.lichtkante,
-.footer-lichtkante {
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(200,205,215,0.85),
-    transparent
-  );
-  box-shadow: 0 0 12px rgba(200,205,215,0.45);
-}
-
-/* =====================
-   INHALT
+   INHALT / FOOTER
 ===================== */
 
 .inhalt {
   padding: 72px 20px;
 }
 
-/* =====================
-   FOOTER
-===================== */
-
 .footer {
-  background-color: #050505;
   text-align: center;
   padding: 14px 0 18px;
   font-size: 0.8rem;
 }
 
 .footer p {
-  margin: 0;
   color: #9da2a8;
 }
 
 /* =====================
-   BURGER (MOBIL)
+   BURGER
 ===================== */
 
 .burger {
@@ -211,13 +193,32 @@ p {
 }
 
 /* =====================
-   RESPONSIVE
+   MOBILE FIXES
 ===================== */
 
-@media (max-width: 768px) {
+@media (max-width: 480px) {
+
+  .preloader-logo {
+    width: 75vw;
+    margin-bottom: 18px;
+  }
+
+  .preloader-text {
+    font-size: 0.95rem;
+    letter-spacing: 0.12em;
+  }
 
   .logo {
-    width: min(90vw, 420px);
+    width: 85vw;
+  }
+
+  p {
+    font-size: 0.95rem;
+    padding: 0 10px;
+  }
+
+  .inhalt {
+    padding: 48px 16px;
   }
 
   .hauptnavigation {
@@ -233,21 +234,5 @@ p {
 
   .burger {
     display: block;
-  }
-
-  p {
-    font-size: 1rem;
-  }
-}
-
-@media (min-width: 1600px) {
-
-  p {
-    max-width: 900px;
-    font-size: 1.15rem;
-  }
-
-  .inhalt {
-    padding: 100px 20px;
   }
 }
