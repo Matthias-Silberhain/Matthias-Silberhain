@@ -260,3 +260,89 @@ main {
     width: clamp(200px, 70vw, 280px);
   }
 }
+/* =====================================
+   PRELOADER – PNG Schreib-Effekt
+===================================== */
+
+#preloader {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 1.4s ease, visibility 1.4s ease;
+}
+
+#preloader.fade-out {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* Logo sehr groß, präsent */
+.preloader-logo {
+  width: clamp(420px, 70vw, 820px);
+  height: auto;
+
+  /* Schreib-Effekt */
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 30%,
+    #000 50%,
+    transparent 70%
+  );
+  -webkit-mask-size: 300%;
+  -webkit-mask-position: 100%;
+
+  mask-image: linear-gradient(
+    90deg,
+    transparent 30%,
+    #000 50%,
+    transparent 70%
+  );
+  mask-size: 300%;
+  mask-position: 100%;
+
+  animation:
+    logoWrite 3.6s ease forwards,
+    logoGlow 4.2s ease-in-out infinite;
+
+  filter:
+    drop-shadow(0 0 18px rgba(230,230,230,0.45))
+    drop-shadow(0 0 40px rgba(230,230,230,0.25));
+}
+
+/* Licht fährt wie Schreiben */
+@keyframes logoWrite {
+  to {
+    -webkit-mask-position: 0%;
+    mask-position: 0%;
+  }
+}
+
+/* Ruhige, edle Atmung */
+@keyframes logoGlow {
+  0% {
+    filter:
+      drop-shadow(0 0 14px rgba(230,230,230,0.35))
+      drop-shadow(0 0 30px rgba(230,230,230,0.2));
+  }
+  50% {
+    filter:
+      drop-shadow(0 0 34px rgba(230,230,230,0.85))
+      drop-shadow(0 0 70px rgba(230,230,230,0.6));
+  }
+  100% {
+    filter:
+      drop-shadow(0 0 14px rgba(230,230,230,0.35))
+      drop-shadow(0 0 30px rgba(230,230,230,0.2));
+  }
+}
+
+/* Mobile Feinanpassung */
+@media (max-width: 768px) {
+  .preloader-logo {
+    width: clamp(260px, 80vw, 420px);
+  }
+}
