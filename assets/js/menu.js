@@ -1,48 +1,25 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  const preloader = document.getElementById("preloader");
-  const textEl = document.getElementById("type-text");
-  const cursor = document.getElementById("cursor");
   const text = "MATTHIAS SILBERHAIN";
-
+  const target = document.getElementById("type-text");
+  const preloader = document.getElementById("preloader");
   let i = 0;
-  const speed = 80;
 
-  document.body.style.overflow = "hidden";
-
-  function typeWriter() {
+  function type() {
     if (i < text.length) {
-      textEl.textContent += text.charAt(i);
+      target.textContent += text.charAt(i);
       i++;
-      setTimeout(typeWriter, speed);
+      setTimeout(type, 70);
     } else {
-      cursor.classList.add("stop");
-
       setTimeout(() => {
         preloader.style.opacity = "0";
-        setTimeout(() => {
-          preloader.remove();
-          document.body.style.overflow = "auto";
-        }, 400);
+        setTimeout(() => preloader.remove(), 400);
       }, 600);
     }
   }
 
-  typeWriter();
+  type();
+
+  const year = document.getElementById("jahr");
+  if (year) year.textContent = new Date().getFullYear();
 });
-
-/* BURGER */
-const burger = document.getElementById("burger");
-const navigation = document.getElementById("navigation");
-
-if (burger) {
-  burger.addEventListener("click", () => {
-    navigation.classList.toggle("aktiv");
-  });
-}
-
-/* FOOTER JAHR */
-const jahr = document.getElementById("jahr");
-if (jahr) {
-  jahr.textContent = new Date().getFullYear();
-}
