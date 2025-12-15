@@ -1,8 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  /* =========================
-     PRELOADER ELEMENTE
-  ========================= */
+  /* Body sperren */
+  document.body.classList.add("preloader-active");
 
   const preloader = document.getElementById("preloader");
   const logoWrapper = document.querySelector(".preloader-logo-wrapper");
@@ -10,86 +9,57 @@ document.addEventListener("DOMContentLoaded", () => {
   const textEl = document.getElementById("type-text");
   const cursor = document.querySelector(".cursor");
 
-  /* Sicherheitscheck */
-  if (!preloader || !logoWrapper || !textEl || !cursor) {
-    return;
-  }
-
-  /* =========================
-     LOGO SILBER-SWEEP
-  ========================= */
-
-  // kleiner Moment Ruhe, dann Licht über Logo
+  /* Logo Silber-Sweep */
   setTimeout(() => {
     logoWrapper.classList.add("silver-sweep");
   }, 400);
 
-  /* =========================
-     TYPEWRITER TEXT
-  ========================= */
-
+  /* Typewriter Text */
   const text = window.innerWidth <= 600
     ? "MATTHIAS\nSILBERHAIN"
     : "MATTHIAS SILBERHAIN";
 
-  let index = 0;
+  let i = 0;
   const speed = 120;
 
   function typeWriter() {
-    if (index < text.length) {
-
-      if (text.charAt(index) === "\n") {
+    if (i < text.length) {
+      if (text[i] === "\n") {
         textEl.innerHTML += "<br>";
       } else {
-        textEl.innerHTML += text.charAt(index);
+        textEl.innerHTML += text[i];
       }
-
-      index++;
+      i++;
       setTimeout(typeWriter, speed);
-
     } else {
-
-      /* Cursor stoppen */
       cursor.style.display = "none";
-
-      /* Silber-Hauch über Text */
       textContainer.classList.add("silver-glow");
 
-      /* Preloader ausblenden */
       setTimeout(() => {
         preloader.style.opacity = "0";
-      }, 1400);
+      }, 1200);
 
-      /* Preloader entfernen */
       setTimeout(() => {
-        preloader.remove();
-      }, 2000);
+        preloader.style.display = "none";
+        document.body.classList.remove("preloader-active");
+      }, 1800);
     }
   }
 
-  /* Schreiben startet leicht NACH Logo-Sweep */
   setTimeout(typeWriter, 900);
 
-  /* =========================
-     BURGER MENÜ
-  ========================= */
-
+  /* Burger Menü */
   const burger = document.getElementById("burger");
   const navigation = document.getElementById("navigation");
 
-  if (burger && navigation) {
+  if (burger) {
     burger.addEventListener("click", () => {
       navigation.classList.toggle("aktiv");
     });
   }
 
-  /* =========================
-     FOOTER JAHR
-  ========================= */
-
-  const year = document.getElementById("jahr");
-  if (year) {
-    year.textContent = new Date().getFullYear();
-  }
+  /* Footer Jahr */
+  document.getElementById("jahr").textContent =
+    new Date().getFullYear();
 
 });
