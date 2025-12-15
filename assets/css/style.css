@@ -1,6 +1,13 @@
-/* ================================
-   Grundgestaltung – Matthias Silberhain
-   ================================ */
+/* =========================================
+   Autorenwebsite – Matthias Silberhain
+   Typografie & Gestaltung
+   ========================================= */
+
+/* Grundlayout */
+
+* {
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
@@ -11,50 +18,135 @@ body {
   line-height: 1.7;
 }
 
-/* ================================
+/* =========================
    Navigation
-   ================================ */
+   ========================= */
 
 .hauptnavigation {
   display: flex;
-  gap: 2rem;
-  padding: 1.5rem 3rem;
-  background: rgba(0, 0, 0, 0.6);
-  border-bottom: 1px solid rgba(207, 210, 214, 0.2);
+  gap: 2.5rem;
+  padding: 1.6rem 3rem;
+  background: rgba(0, 0, 0, 0.75);
+  border-bottom: 1px solid rgba(207, 210, 214, 0.25);
 }
 
 .hauptnavigation a {
   font-family: "Cinzel", serif;
   color: #cfd2d6;
   text-decoration: none;
-  letter-spacing: 0.08em;
-  font-size: 0.9rem;
+  letter-spacing: 0.12em;
+  font-size: 0.85rem;
 }
 
 .hauptnavigation a:hover {
   color: #ffffff;
 }
 
-/* ================================
+/* =========================
+   Inhalt
+   ========================= */
+
+main {
+  padding: 4.5rem 3rem;
+}
+
+/* =========================
+   Intro
+   ========================= */
+
+.intro {
+  margin-bottom: 5rem;
+}
+
+.intro h1 {
+  margin-bottom: 0.6rem;
+}
+
+.untertitel {
+  font-family: "Cinzel", serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #b9bdc2;
+}
+
+/* =========================
    Typografie
-   ================================ */
+   ========================= */
 
 h1, h2, h3 {
   font-family: "Cinzel", serif;
-  color: #e5e7ea;
-  letter-spacing: 0.1em;
-  margin-top: 2.5rem;
+  color: #e6e8eb;
+  letter-spacing: 0.12em;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+}
+
+h1 {
+  font-size: 2.6rem;
+}
+
+h2 {
+  font-size: 1.6rem;
 }
 
 p {
   max-width: 720px;
-  margin-bottom: 1.4rem;
+  margin-bottom: 1.5rem;
+  font-size: 1.05rem;
 }
 
-/* ================================
-   Inhalt
-   ================================ */
+/* =========================
+   Sektionen
+   ========================= */
 
-main {
-  padding: 4rem 3rem;
+.biografie p {
+  font-size: 1.08rem;
+}
+
+.hinweis {
+  margin-top: 4rem;
+  padding-top: 1.8rem;
+  border-top: 1px solid rgba(207, 210, 214, 0.18);
+  font-size: 0.92rem;
+  color: #a8acb1;
+}
+
+/* =========================
+   Links im Text
+   ========================= */
+
+main a {
+  color: #d9dde2;
+  text-decoration: underline;
+}
+
+main a:hover {
+  color: #ffffff;
+}
+
+/* =========================
+   Responsive Anpassungen
+   ========================= */
+
+@media (max-width: 768px) {
+
+  .hauptnavigation {
+    flex-direction: column;
+    gap: 1.2rem;
+    padding: 1.5rem 2rem;
+  }
+
+  main {
+    padding: 3rem 2rem;
+  }
+
+  h1 {
+    font-size: 2.2rem;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+  }
+
 }
