@@ -1,12 +1,49 @@
-// Preloader
-window.addEventListener('load', function() {
-  document.body.classList.add('loaded');
+/* =====================================
+   PRELOADER – sicher & browserstabil
+===================================== */
+
+window.addEventListener("load", () => {
+  const preloader = document.getElementById("preloader");
+
+  if (!preloader) return;
+
+  // kleine dramaturgische Pause nach Animation
+  setTimeout(() => {
+    preloader.classList.add("fade-out");
+
+    // Preloader wirklich entfernen (wichtig!)
+    setTimeout(() => {
+      preloader.style.display = "none";
+    }, 1400);
+
+  }, 3600);
 });
 
-// Mobile Navigation Toggle
-const menuToggle = document.querySelector('.menu-toggle');
-const navMenu = document.querySelector('.hauptnavigation');
 
-menuToggle.addEventListener('click', () => {
-  navMenu.classList.toggle('active');
+/* =====================================
+   MOBILES MENÜ
+===================================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+  const burger = document.getElementById("burger");
+  const nav = document.getElementById("navigation");
+
+  if (!burger || !nav) return;
+
+  burger.addEventListener("click", () => {
+    burger.classList.toggle("aktiv");
+    nav.classList.toggle("offen");
+  });
+});
+
+
+/* =====================================
+   COPYRIGHT JAHR
+===================================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+  const jahr = document.getElementById("jahr");
+  if (jahr) {
+    jahr.textContent = new Date().getFullYear();
+  }
 });
