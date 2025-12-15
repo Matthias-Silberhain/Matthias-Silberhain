@@ -10,7 +10,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const preloader = document.getElementById("preloader");
 
   let index = 0;
-  const speed = 70;
+
+  /* SCHREIBGESCHWINDIGKEIT */
+  const speed = 110; // vorher 70 → jetzt ruhiger
 
   function typeWriter() {
     if (index < text.length) {
@@ -18,15 +20,18 @@ document.addEventListener("DOMContentLoaded", () => {
       index++;
       setTimeout(typeWriter, speed);
     } else {
+      /* CURSOR STOPPEN */
       cursor.style.display = "none";
 
+      /* KURZE WIRKUNGSPAUSE */
       setTimeout(() => {
         preloader.style.opacity = "0";
-      }, 200);
+      }, 900); // vorher 200
 
+      /* PRELOADER ENTFERNEN */
       setTimeout(() => {
         preloader.remove();
-      }, 600);
+      }, 1400); // vorher 600
     }
   }
 
