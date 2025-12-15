@@ -1,7 +1,7 @@
 /* =========================
    PRELOADER (IMMER)
 ========================= */
-
+alert("JS geladen");
 const preloader = document.createElement("div");
 preloader.id = "preloader";
 
