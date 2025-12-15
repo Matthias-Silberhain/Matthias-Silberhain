@@ -1,5 +1,5 @@
 /* =====================
-   GRUNDLAGEN
+   RESET & BASIS
 ===================== */
 
 * {
@@ -8,34 +8,29 @@
   padding: 0;
 }
 
-html, body {
-  height: 100%;
-}
-
 body {
   font-family: "EB Garamond", Garamond, serif;
   background-color: #050505;
   color: #cfd2d6;
-  line-height: 1.7;
+  line-height: 1.65;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 /* =====================
    TYPOGRAFIE
 ===================== */
 
-h1, h2, h3 {
+h1 {
   font-family: "Cinzel", serif;
-  letter-spacing: 0.08em;
-  color: #e3e5e8;
-  margin-bottom: 24px;
+  letter-spacing: 0.1em;
+  color: #e4e6ea;
   text-align: center;
+  margin-bottom: 28px;
 }
 
 p {
-  max-width: 680px;
-  margin: 0 auto 22px auto;
+  max-width: 700px;
+  margin: 0 auto 22px;
   text-align: center;
   font-size: 1.05rem;
 }
@@ -63,8 +58,8 @@ p {
 @keyframes logoReveal {
   0% {
     opacity: 0;
-    transform: scale(0.85);
-    filter: blur(8px);
+    transform: scale(0.88);
+    filter: blur(6px);
   }
   60% {
     opacity: 1;
@@ -76,13 +71,12 @@ p {
 }
 
 #preloader.fade-out {
-  animation: preloaderFade 0.6s ease forwards;
+  animation: preloaderFade 0.4s ease forwards;
 }
 
 @keyframes preloaderFade {
   to {
     opacity: 0;
-    visibility: hidden;
   }
 }
 
@@ -92,29 +86,23 @@ p {
 
 .header {
   background-color: #050505;
-  padding: 36px 20px 28px;
+  padding: 36px 20px 26px;
   text-align: center;
-  position: relative;
-}
-
-.logo-container {
-  margin-bottom: 24px;
 }
 
 .logo {
   width: min(80vw, 520px);
-  height: auto;
+  margin: 0 auto 22px;
   display: block;
-  margin: 0 auto;
   animation: logoGlow 4s ease-in-out infinite;
 }
 
 @keyframes logoGlow {
   0%, 100% {
-    filter: drop-shadow(0 0 6px rgba(200, 200, 210, 0.25));
+    filter: drop-shadow(0 0 8px rgba(200,205,215,0.25));
   }
   50% {
-    filter: drop-shadow(0 0 18px rgba(220, 220, 230, 0.6));
+    filter: drop-shadow(0 0 22px rgba(200,205,215,0.55));
   }
 }
 
@@ -126,37 +114,14 @@ p {
   display: flex;
   justify-content: center;
   gap: 36px;
-  flex-wrap: wrap;
 }
 
 .hauptnavigation a {
   font-family: "Cinzel", serif;
-  color: #d7d9dc;
+  color: #d6d9de;
   text-decoration: none;
-  font-size: 0.9rem;
   letter-spacing: 0.15em;
-  position: relative;
-}
-
-.hauptnavigation a::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: -6px;
-  width: 0;
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(220,220,230,0.9),
-    transparent
-  );
-  transition: all 0.3s ease;
-  transform: translateX(-50%);
-}
-
-.hauptnavigation a:hover::after {
-  width: 100%;
+  font-size: 0.9rem;
 }
 
 /* =====================
@@ -169,10 +134,10 @@ p {
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(220,220,230,0.8),
+    rgba(200,205,215,0.9),
     transparent
   );
-  box-shadow: 0 0 14px rgba(220,220,230,0.4);
+  box-shadow: 0 0 12px rgba(200,205,215,0.45);
 }
 
 /* =====================
@@ -180,58 +145,40 @@ p {
 ===================== */
 
 .inhalt {
-  padding: 80px 20px;
+  padding: 72px 20px;
 }
 
 /* =====================
-   FOOTER
+   FOOTER (KOMPAKT!)
 ===================== */
 
 .footer {
   background-color: #050505;
   text-align: center;
-  padding: 18px 20px 22px;
-  font-size: 0.85rem;
+  padding: 14px 0 16px;
+  font-size: 0.8rem;
 }
 
 .footer p {
-  margin: 12px 0 0;
-  color: #9fa3a8;
+  margin: 6px 0 0;
+  color: #9da2a8;
 }
 
 /* =====================
-   BURGER MENÜ (MOBIL)
+   MOBILE
 ===================== */
 
 .burger {
   display: none;
-  width: 32px;
-  margin: 20px auto 0;
-  cursor: pointer;
 }
-
-.burger span {
-  display: block;
-  height: 2px;
-  background-color: #cfd2d6;
-  margin: 7px 0;
-}
-
-/* =====================
-   RESPONSIVE
-===================== */
 
 @media (max-width: 768px) {
-
-  .logo {
-    width: min(90vw, 420px);
-  }
 
   .hauptnavigation {
     display: none;
     flex-direction: column;
-    margin-top: 24px;
-    gap: 20px;
+    gap: 18px;
+    margin-top: 20px;
   }
 
   .hauptnavigation.aktiv {
@@ -240,9 +187,15 @@ p {
 
   .burger {
     display: block;
+    width: 30px;
+    margin: 18px auto 0;
+    cursor: pointer;
   }
 
-  p {
-    font-size: 1rem;
+  .burger span {
+    display: block;
+    height: 2px;
+    background: #cfd2d6;
+    margin: 6px 0;
   }
 }
