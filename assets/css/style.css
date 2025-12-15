@@ -1,4 +1,6 @@
-/* ================= RESET ================= */
+/* =====================
+   RESET
+===================== */
 
 * {
   margin: 0;
@@ -12,255 +14,103 @@ html, body {
 }
 
 body {
-  font-family: "EB Garamond", serif;
+  font-family: "EB Garamond", Garamond, serif;
   background-color: #050505;
-  color: #cfd2d6;
+  color: #c8ccd2;
   line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* ================= PRELOADER ================= */
+/* =====================
+   PRELOADER
+===================== */
 
 #preloader {
   position: fixed;
   inset: 0;
-  background: #050505;
+  background-color: #050505;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   z-index: 9999;
 }
 
 .preloader-inner {
   text-align: center;
+  padding: 20px;
 }
 
 .preloader-logo {
-  width: 300px;
-  max-width: 80vw;
-  margin-bottom: 30px;
+  width: min(70vw, 420px);
+  margin-bottom: 26px;
+  display: block;
 }
 
 .preloader-text {
   font-family: "Cinzel", serif;
-  letter-spacing: 0.15em;
-  font-size: 1.1rem;
-  color: #e4e6ea;
+  letter-spacing: 0.2em;
+  color: #e2e5ea;
+  font-size: clamp(0.9rem, 3.5vw, 1.4rem);
+  white-space: nowrap;
 }
 
 .cursor {
   display: inline-block;
-  width: 1px;
-  height: 1em;
-  background: #cfd2d6;
+  width: 2px;
+  height: 1.2em;
+  background-color: #e2e5ea;
   margin-left: 4px;
   animation: blink 1s infinite;
+  vertical-align: bottom;
 }
 
 .cursor.stop {
   animation: none;
+  opacity: 0;
 }
 
 @keyframes blink {
-  0%, 50% { opacity: 1; }
-  51%, 100% { opacity: 0; }
+  0%, 50%, 100% { opacity: 1; }
+  25%, 75% { opacity: 0; }
 }
 
-/* ================= HEADER ================= */
-
-.header {
-  text-align: center;
-  padding: 36px 20px 26px;
+#preloader.fade-out {
+  animation: preloadFade 0.5s ease forwards;
 }
 
-.logo {
-  width: min(80vw, 520px);
-  margin: 0 auto 24px;
-  display: block;
+@keyframes preloadFade {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
 }
 
-/* ================= NAVIGATION ================= */
+/* =====================
+   TYPOGRAFIE
+===================== */
 
-.hauptnavigation {
-  display: flex;
-  justify-content: center;
-  gap: 36px;
-}
-
-.hauptnavigation a {
+h1, h2, h3 {
   font-family: "Cinzel", serif;
-  color: #d6d9de;
-  text-decoration: none;
-  letter-spacing: 0.15em;
-  font-size: 0.9rem;
-  position: relative;
-}
-
-.hauptnavigation a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -6px;
-  width: 100%;
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(200,205,215,0.9),
-    transparent
-  );
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.hauptnavigation a:hover::after {
-  opacity: 1;
-}
-
-/* ================= LAYOUT ================= */
-
-.lichtkante,
-.footer-lichtkante {
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(200,205,215,0.85),
-    transparent
-  );
-}
-
-.inhalt {
-  padding: 72px 20px;
-}
-
-h1 {
-  font-family: "Cinzel", serif;
+  letter-spacing: 0.08em;
+  color: #e2e5ea;
   text-align: center;
-  margin-bottom: 32px;
+  margin-bottom: 26px;
 }
 
 p {
   max-width: 720px;
-  margin: 0 auto 24px;
+  margin: 0 auto 22px;
   text-align: center;
   font-size: 1.05rem;
+  color: #c8ccd2;
 }
 
-/* ================= FOOTER ================= */
-
-.footer {
-  text-align: center;
-  padding: 16px 0;
-  font-size: 0.8rem;
-  color: #9da2a8;
-}
-
-/* ================= MOBILE ================= */
-
-.burger {
-  display: none;
-}
-
-@media (max-width: 768px) {
-
-  .hauptnavigation {
-    display: none;
-    flex-direction: column;
-    gap: 18px;
-    margin-top: 20px;
-  }
-
-  .hauptnavigation.aktiv {
-    display: flex;
-  }
-
-  .burger {
-    display: block;
-    width: 30px;
-    margin: 20px auto 0;
-    cursor: pointer;
-  }
-
-  .burger span {
-    display: block;
-    height: 2px;
-    background: #cfd2d6;
-    margin: 6px 0;
-  }
-}
 /* =====================
-   RESPONSIVE SKALIERUNG
+   HEADER
 ===================== */
 
-/* Große Desktops (24–27 Zoll) */
-@media (min-width: 1600px) {
-
-  body {
-    font-size: 18px;
-  }
-
-  p {
-    max-width: 900px;
-    font-size: 1.15rem;
-  }
-
-  h1 {
-    font-size: 2.6rem;
-  }
-
-  h2 {
-    font-size: 2rem;
-  }
-
-  .inhalt {
-    padding: 100px 20px;
-  }
-}
-
-/* Extra große Monitore */
-@media (min-width: 2200px) {
-
-  body {
-    font-size: 19px;
-  }
-
-  p {
-    max-width: 1000px;
-    font-size: 1.2rem;
-  }
-
-  h1 {
-    font-size: 3rem;
-  }
-}
-
-/* Tablets */
-@media (max-width: 1024px) {
-
-  h1 {
-    font-size: 2.1rem;
-  }
-
-  p {
-    max-width: 680px;
-  }
-}
-
-/* Smartphones */
-@media (max-width: 480px) {
-
-  h1 {
-    font-size: 1.6rem;
-    letter-spacing: 0.05em;
-  }
-
-  p {
-    font-size: 0.95rem;
-    line-height: 1.6;
-    padding: 0 10px;
-  }
-
-  .inhalt {
-    padding: 48px 16px;
-  }
-}
+.header {
+  background-color: #050505;
+  padding: 36px 20px 26px;
+  text-align: center
