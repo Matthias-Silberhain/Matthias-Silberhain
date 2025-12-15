@@ -1,28 +1,57 @@
-window.addEventListener("load", () => {
+/* =========================================================
+   Matthias Silberhain – Script
+========================================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  /* =====================================================
+     FOOTER JAHR
+  ===================================================== */
+
+  const yearElement = document.getElementById("jahr");
+  if (yearElement) {
+    yearElement.textContent = new Date().getFullYear();
+  }
+
+
+  /* =====================================================
+     BURGER MENU (MOBILE)
+  ===================================================== */
+
+  const burger = document.getElementById("burger");
+  const navigation = document.getElementById("navigation");
+
+  if (burger && navigation) {
+    burger.addEventListener("click", () => {
+      const isOpen = navigation.classList.toggle("aktiv");
+      burger.setAttribute("aria-expanded", isOpen);
+    });
+  }
+
+
+  /* =====================================================
+     PRELOADER
+  ===================================================== */
+
   const preloader = document.getElementById("preloader");
 
-  // exakt nach Ende der CSS-Animation
-  setTimeout(() => {
-    preloader.classList.add("fade-out");
+  if (preloader) {
+    window.addEventListener("load", () => {
 
-    preloader.addEventListener("animationend", () => {
-      preloader.remove();
+      // Dauer der Schreibanimation + kleiner Puffer
+      const PRELOADER_DURATION = 2500;
+
+      setTimeout(() => {
+        preloader.classList.add("fade-out");
+
+        // Nach Fade-Out komplett entfernen
+        setTimeout(() => {
+          preloader.remove();
+        }, 600);
+
+      }, PRELOADER_DURATION);
+
     });
-  }, 2000); // muss exakt zur bestehenden Animation passen
+  }
+
 });
-
-// Burger-Menü
-const burger = document.getElementById("burger");
-const navigation = document.getElementById("navigation");
-
-if (burger && navigation) {
-  burger.addEventListener("click", () => {
-    navigation.classList.toggle("aktiv");
-  });
-}
-
-// Jahr im Footer
-const jahr = document.getElementById("jahr");
-if (jahr) {
-  jahr.textContent = new Date().getFullYear();
-}
