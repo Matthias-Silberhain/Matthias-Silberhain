@@ -1,1 +1,137 @@
+/* =========================
+   Grundlegende Gestaltung
+   ========================= */
+
+body {
+  margin: 0;
+  padding: 0;
+  background: radial-gradient(circle at top, #1a1d22 0%, #0f1114 60%);
+  color: #cfd2d6;
+  font-family: "EB Garamond", Garamond, serif;
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+/* =========================
+   Seitenlayout
+   ========================= */
+
+main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 60px 30px;
+}
+
+/* =========================
+   Navigation
+   ========================= */
+
+.hauptnavigation {
+  text-align: center;
+  padding: 30px 0;
+  border-bottom: 1px solid #2a2e34;
+}
+
+.hauptnavigation a {
+  font-family: "Cinzel", serif;
+  font-size: 16px;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  color: #cfd2d6;
+  margin: 0 15px;
+}
+
+.hauptnavigation a:hover {
+  color: #9fa4aa;
+}
+
+/* =========================
+   Überschriften
+   ========================= */
+
+h1, h2, h3 {
+  font-family: "Cinzel", serif;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: #cfd2d6;
+}
+
+h1 {
+  font-size: 36px;
+  margin-bottom: 30px;
+}
+
+h2 {
+  font-size: 26px;
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+
+h3 {
+  font-size: 20px;
+  margin-top: 40px;
+  margin-bottom: 15px;
+}
+
+/* =========================
+   Fließtext
+   ========================= */
+
+p {
+  margin-bottom: 20px;
+}
+
+/* =========================
+   Buch- & Abschnittsblöcke
+   ========================= */
+
+.buch {
+  margin-bottom: 40px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #2a2e34;
+}
+
+/* =========================
+   Listen (z. B. Quellen)
+   ========================= */
+
+ul {
+  padding-left: 20px;
+}
+
+li {
+  margin-bottom: 10px;
+}
+
+/* =========================
+   Abbildungen & QR-Codes
+   ========================= */
+
+figure {
+  margin: 30px 0;
+  text-align: center;
+}
+
+figure img {
+  max-width: 160px;
+  opacity: 0.9;
+}
+
+figcaption {
+  font-size: 14px;
+  margin-top: 10px;
+  color: #9fa4aa;
+}
+
+/* =========================
+   Links im Text
+   ========================= */
+
+a {
+  color: #cfd2d6;
+}
+
+a:hover {
+  color: #9fa4aa;
+}
 
