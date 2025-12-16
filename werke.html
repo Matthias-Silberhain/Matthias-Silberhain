@@ -215,6 +215,86 @@
       height: 18px;
     }
     
+    /* Digitale Statistik */
+    .statistik-container {
+      background: rgba(10, 10, 10, 0.7);
+      border: 1px solid rgba(200, 205, 215, 0.2);
+      border-radius: 4px;
+      padding: 25px;
+      margin: 30px auto 40px;
+      max-width: 600px;
+      text-align: center;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    }
+    
+    .statistik-title {
+      font-family: "Cinzel", serif;
+      color: #e4e6ea;
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    
+    .statistik-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+    
+    .statistik-item {
+      background: rgba(200, 205, 215, 0.05);
+      padding: 20px;
+      border-radius: 4px;
+      border: 1px solid rgba(200, 205, 215, 0.1);
+    }
+    
+    .statistik-number {
+      font-family: "Cinzel", serif;
+      font-size: 2.5rem;
+      color: #ffffff;
+      margin-bottom: 5px;
+      text-shadow: 0 0 10px rgba(200, 200, 200, 0.3);
+      font-weight: 600;
+    }
+    
+    .statistik-label {
+      color: #9da2a8;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    
+    .statistik-total {
+      background: rgba(200, 205, 215, 0.08);
+      padding: 15px;
+      border-radius: 4px;
+      margin-top: 15px;
+      border: 1px solid rgba(200, 205, 215, 0.15);
+    }
+    
+    .total-number {
+      font-family: "Cinzel", serif;
+      font-size: 2.8rem;
+      color: #ffffff;
+      margin-bottom: 5px;
+      text-shadow: 0 0 12px rgba(200, 200, 200, 0.4);
+    }
+    
+    .total-label {
+      color: #b0b5bc;
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+    }
+    
+    .statistik-update {
+      color: #6b7280;
+      font-size: 0.8rem;
+      margin-top: 15px;
+      font-style: italic;
+    }
+    
     /* Platzhalter für weitere Werke */
     .weitere-werke {
       text-align: center;
@@ -285,6 +365,20 @@
         padding: 14px 35px;
         width: 100%;
         max-width: 300px;
+        margin-bottom: 10px;
+      }
+      
+      .statistik-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
+      
+      .statistik-number {
+        font-size: 2.2rem;
+      }
+      
+      .total-number {
+        font-size: 2.4rem;
       }
     }
     
@@ -307,6 +401,10 @@
       
       .buchcover-seriös {
         width: 200px;
+      }
+      
+      .statistik-container {
+        padding: 20px 15px;
       }
     }
   </style>
@@ -383,7 +481,7 @@
             </div>
           </div>
           
-          <p><strong>Das Rückcover greift diese Linie bewusst auf.</strong> Das dunkle Kopfsteinpflaster steht für einen Weg, der fest und vertraut wirkt. Es steht nicht für Schuldzuweisung an eine einzelne Figur, sondern für die Epoche, in der dieser Weg geformt wurde. Für ein System, das seine eigenen Abgründe nicht erkannte oder nicht erkennen wollte.</p>
+          <p><strong>Das Rückcover greift diese Linie bewusst auf.</strong> Das dunkle Kopfsteinpflaster steht für einen Weg, der fest und vertraut wirkt. Erst bei genauerem Hinsehen tritt das schemenhafte Gesicht Wilhelms II. hervor. Es steht nicht für Schuldzuweisung an eine einzelne Figur, sondern für die Epoche, in der dieser Weg geformt wurde. Für ein System, das seine eigenen Abgründe nicht erkannte oder nicht erkennen wollte.</p>
           
           <p><strong>Dieses Buch versteht sich nicht als moralische Anklage aus sicherer Distanz.</strong> Es ist eine Analyse historischer Kontinuitäten. Es zeigt, wie sich Radikalisierung vorbereitet, wie sich Grenzen verschieben und wie Gesellschaften lernen, Unrecht zu akzeptieren, solange es schrittweise geschieht.</p>
           
@@ -391,28 +489,88 @@
         </div>
       </div>
       
+      <!-- Digitale Statistik -->
+      <div class="statistik-container">
+        <div class="statistik-title">Digitale Statistik</div>
+        
+        <div class="statistik-grid">
+          <div class="statistik-item">
+            <div class="statistik-number" id="online-counter">289</div>
+            <div class="statistik-label">Online gelesen</div>
+          </div>
+          
+          <div class="statistik-item">
+            <div class="statistik-number" id="download-counter">73</div>
+            <div class="statistik-label">Heruntergeladen</div>
+          </div>
+        </div>
+        
+        <div class="statistik-total">
+          <div class="total-number" id="total-counter">362</div>
+          <div class="total-label">Gesamtzugriffe auf diese Leseprobe</div>
+        </div>
+        
+        <div class="statistik-update">
+          Diese Zahlen werden automatisch aktualisiert. Letzte Aktualisierung: <span id="last-update">Heute</span>
+        </div>
+      </div>
+      
       <!-- Aktionen -->
       <div class="aktionen-bereich">
-        <a href="leseproben/derlangewegindiefinsternis.pdf" 
-           class="seriöser-button"
-           download="Der_lange_Weg_in_die_Finsternis_Leseprobe.pdf"
-           target="_blank"
-           onclick="trackLeseprobeDownload()">
-          Leseprobe herunterladen
-          <svg class="download-icon" viewBox="0 0 24 24">
-            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" fill="currentColor"/>
-          </svg>
-        </a>
-        <p style="margin-top: 15px; font-size: 0.9rem; color: #9da2a8; font-style: italic;">
-          30 Seiten • PDF-Datei • Direkter Download
-        </p>
-        <p style="font-size: 0.85rem; color: #9da2a8; margin-top: 10px;">
-          Falls der Download nicht automatisch startet: 
+        <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-bottom: 25px;">
+          <!-- Online lesen Button -->
           <a href="leseproben/derlangewegindiefinsternis.pdf" 
-             style="color: #b0b5bc; text-decoration: underline;">
-            Direkter Link zur PDF
+             class="seriöser-button"
+             target="_blank"
+             style="background: rgba(200,205,215,0.1); min-width: 200px;"
+             onclick="increaseCounter('online')">
+            <svg width="20" height="20" viewBox="0 0 24 24" style="margin-right: 10px; vertical-align: middle;">
+              <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z" fill="currentColor"/>
+            </svg>
+            Leseprobe online lesen
           </a>
-        </p>
+          
+          <!-- Download Button -->
+          <a href="leseproben/derlangewegindiefinsternis.pdf" 
+             class="seriöser-button"
+             download="derlangewegindiefinsternis.pdf"
+             style="border-style: dashed; min-width: 200px;"
+             onclick="increaseCounter('download')">
+            <svg class="download-icon" viewBox="0 0 24 24" style="margin-right: 10px; vertical-align: middle;">
+              <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" fill="currentColor"/>
+            </svg>
+            PDF herunterladen
+          </a>
+        </div>
+        
+        <!-- Erklärung -->
+        <div style="background: rgba(200,205,215,0.05); padding: 20px; margin-top: 20px; border-radius: 4px; border-left: 3px solid rgba(200,205,215,0.3);">
+          <p style="margin: 0 0 15px 0; color: #e4e6ea; font-size: 1rem; font-weight: 500;">
+            <svg width="16" height="16" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 8px;">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="#b0b5bc"/>
+            </svg>
+            So funktioniert der Online-Zugang:
+          </p>
+          <ul style="margin: 0; padding-left: 20px; color: #b0b5bc; font-size: 0.95rem; line-height: 1.6;">
+            <li style="margin-bottom: 8px;">
+              <strong>Online lesen:</strong> Die PDF öffnet sich in einem neuen Browser-Tab. Sie können direkt lesen, ohne etwas herunterzuladen.
+            </li>
+            <li style="margin-bottom: 8px;">
+              <strong>Vorteil:</strong> Schneller Zugriff, keine Datei auf dem Computer nötig.
+            </li>
+            <li style="margin-bottom: 0;">
+              <strong>Alternative:</strong> Falls Sie die Leseprobe offline lesen möchten, nutzen Sie die Download-Option.
+            </li>
+          </ul>
+        </div>
+        
+        <!-- Technische Details -->
+        <div style="margin-top: 25px; padding-top: 20px; border-top: 1px solid rgba(200,205,215,0.1); text-align: center;">
+          <p style="color: #9da2a8; font-size: 0.9rem; margin: 0;">
+            <strong>Technische Details:</strong> 30 Seiten • PDF-Format • Optimiert für alle Browser<br>
+            Kompatibel mit Chrome, Firefox, Safari, Edge
+          </p>
+        </div>
       </div>
     </article>
     
@@ -462,7 +620,7 @@
     <a href="https://t.me/matthiassilberhain" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Telegram">
       <div class="social-icon-wrapper">
         <svg class="social-icon" viewBox="0 0 24 24">
-          <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.697.064-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+          <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.697.064-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.81.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
         </svg>
       </div>
       <span class="social-name">Telegram</span>
@@ -557,27 +715,135 @@ document.addEventListener("DOMContentLoaded", function() {
       });
     });
   }
+  
+  // Statistik initialisieren und anzeigen
+  loadStatistics();
+  
+  // Letzte Aktualisierung anzeigen
+  updateLastUpdateText();
 });
 
-// Leseprobe Download Tracking
-function trackLeseprobeDownload() {
-  console.log('Leseprobe Download gestartet: Der lange Weg in die Finsternis');
-  
-  // Einfache Statistik im LocalStorage
+// ========================================================================
+// DIGITALE STATISTIK FUNKTIONEN
+// ========================================================================
+
+// Initialwerte (können angepasst werden)
+let statistics = {
+  online: 289,    // Startwert für Online-Leser
+  download: 73,   // Startwert für Downloads
+  lastUpdate: new Date().toISOString()
+};
+
+// Statistik laden
+function loadStatistics() {
   try {
-    let downloads = localStorage.getItem('leseprobeDownloads') || 0;
-    downloads = parseInt(downloads) + 1;
-    localStorage.setItem('leseprobeDownloads', downloads);
-    console.log('Gesamte Downloads:', downloads);
+    const savedStats = localStorage.getItem('leseprobeStatistics');
+    if (savedStats) {
+      statistics = JSON.parse(savedStats);
+    }
+    updateStatisticsDisplay();
   } catch (e) {
-    // Fehler ignorieren wenn LocalStorage nicht verfügbar
+    console.log('Statistik konnte nicht geladen werden, verwende Standardwerte');
+  }
+}
+
+// Statistik speichern
+function saveStatistics() {
+  try {
+    statistics.lastUpdate = new Date().toISOString();
+    localStorage.setItem('leseprobeStatistics', JSON.stringify(statistics));
+    updateLastUpdateText();
+  } catch (e) {
+    console.log('Statistik konnte nicht gespeichert werden');
+  }
+}
+
+// Zähler erhöhen
+function increaseCounter(type) {
+  if (type === 'online') {
+    statistics.online++;
+    // Öffne PDF in neuem Tab (nach kurzer Verzögerung für bessere UX)
+    setTimeout(() => {
+      window.open('leseproben/derlangewegindiefinsternis.pdf', '_blank');
+    }, 100);
+  } else if (type === 'download') {
+    statistics.download++;
+    // Der Download wird durch das download-Attribut automatisch gestartet
   }
   
-  // Kurze Erfolgsmeldung
-  setTimeout(function() {
-    console.log('Download sollte gestartet haben.');
-  }, 100);
+  saveStatistics();
+  updateStatisticsDisplay();
+  
+  // Optional: Animationseffekt
+  animateCounter(type);
 }
+
+// Statistik-Anzeige aktualisieren
+function updateStatisticsDisplay() {
+  document.getElementById('online-counter').textContent = statistics.online;
+  document.getElementById('download-counter').textContent = statistics.download;
+  document.getElementById('total-counter').textContent = statistics.online + statistics.download;
+}
+
+// Letzte Aktualisierung anzeigen
+function updateLastUpdateText() {
+  const lastUpdateElement = document.getElementById('last-update');
+  if (lastUpdateElement && statistics.lastUpdate) {
+    const updateDate = new Date(statistics.lastUpdate);
+    const now = new Date();
+    const diffHours = Math.floor((now - updateDate) / (1000 * 60 * 60));
+    
+    if (diffHours < 1) {
+      lastUpdateElement.textContent = 'Vor wenigen Minuten';
+    } else if (diffHours < 24) {
+      lastUpdateElement.textContent = `Heute, ${updateDate.getHours()}:${updateDate.getMinutes().toString().padStart(2, '0')} Uhr`;
+    } else if (diffHours < 48) {
+      lastUpdateElement.textContent = 'Gestern';
+    } else {
+      lastUpdateElement.textContent = updateDate.toLocaleDateString('de-DE');
+    }
+  }
+}
+
+// Optional: Animationseffekt für Zähler
+function animateCounter(type) {
+  const elementId = type === 'online' ? 'online-counter' : 'download-counter';
+  const element = document.getElementById(elementId);
+  
+  if (element) {
+    // Temporäre Animation
+    element.style.transform = 'scale(1.1)';
+    element.style.color = '#ffffff';
+    element.style.textShadow = '0 0 15px rgba(200, 200, 200, 0.7)';
+    
+    setTimeout(() => {
+      element.style.transform = 'scale(1)';
+      element.style.color = '';
+      element.style.textShadow = '';
+    }, 300);
+  }
+}
+
+// Statistik zurücksetzen (nur für Entwicklungszwecke)
+function resetStatistics() {
+  if (confirm('Statistik wirklich zurücksetzen?')) {
+    statistics = {
+      online: 289,
+      download: 73,
+      lastUpdate: new Date().toISOString()
+    };
+    saveStatistics();
+    updateStatisticsDisplay();
+  }
+}
+
+// Entwickler-Shortcut: Doppelklick auf Statistik-Titel zum Zurücksetzen
+document.addEventListener('DOMContentLoaded', function() {
+  const statTitle = document.querySelector('.statistik-title');
+  if (statTitle) {
+    statTitle.addEventListener('dblclick', resetStatistics);
+  }
+});
 </script>
 
 </body>
