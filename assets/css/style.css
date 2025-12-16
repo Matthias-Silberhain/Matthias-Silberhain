@@ -924,3 +924,148 @@ strong {
 .header .logo {
   animation-delay: 1s;
 }
+/* ==========================================================================
+   ÜBER MICH SPEZIFISCHE STYLES
+   ========================================================================== */
+
+.ueber-mich-text {
+  margin-top: 40px;
+}
+
+.zitat-block {
+  margin: 40px 0 50px;
+  text-align: center;
+  border-left: 2px solid rgba(200, 205, 215, 0.3);
+  padding-left: 30px;
+}
+
+.credo-zitat {
+  font-family: "Cinzel", serif;
+  font-size: 1.8rem;
+  color: #e4e6ea;
+  line-height: 1.4;
+  margin-bottom: 20px;
+  letter-spacing: 0.05em;
+  text-shadow: 0 0 15px rgba(200, 200, 200, 0.2);
+  position: relative;
+}
+
+.zitat-anfuehrung {
+  font-size: 4rem;
+  color: rgba(200, 205, 215, 0.4);
+  line-height: 0;
+  position: relative;
+  top: 20px;
+}
+
+.zitat-text {
+  display: inline;
+  padding: 0 15px;
+}
+
+.zitat-erklaerung {
+  font-style: italic;
+  color: #9da2a8;
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.arbeitweise {
+  background: rgba(200, 205, 215, 0.05);
+  border-left: 3px solid rgba(200, 205, 215, 0.3);
+  padding: 25px 30px;
+  margin: 40px 0;
+  border-radius: 0 4px 4px 0;
+}
+
+.arbeitweise p {
+  margin-bottom: 0;
+  color: #b0b5bc;
+}
+
+.abschnitt-schluss {
+  margin-top: 50px;
+  padding-top: 30px;
+  border-top: 1px solid rgba(200, 205, 215, 0.2);
+}
+
+.schluss-zitat {
+  font-size: 1.2rem;
+  text-align: center;
+  color: #d6d9de;
+  font-style: italic;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+/* Aktive Navigation */
+.hauptnavigation a.active {
+  color: #ffffff;
+  text-shadow: 0 0 12px rgba(200, 200, 200, 0.8);
+}
+
+.hauptnavigation a.active::after {
+  width: 80%;
+  background: linear-gradient(90deg, transparent, #ffffff, transparent);
+}
+
+/* ==========================================================================
+   RESPONSIVE ANPASSUNGEN FÜR ÜBER MICH
+   ========================================================================== */
+
+@media screen and (max-width: 768px) {
+  .zitat-block {
+    padding-left: 20px;
+    margin: 30px 0 40px;
+  }
+  
+  .credo-zitat {
+    font-size: 1.5rem;
+  }
+  
+  .zitat-anfuehrung {
+    font-size: 3rem;
+    top: 15px;
+  }
+  
+  .arbeitweise {
+    padding: 20px;
+    margin: 30px 0;
+  }
+  
+  .schluss-zitat {
+    font-size: 1.1rem;
+    padding: 0 10px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .zitat-block {
+    padding-left: 15px;
+    border-left-width: 1px;
+  }
+  
+  .credo-zitat {
+    font-size: 1.3rem;
+  }
+  
+  .zitat-anfuehrung {
+    font-size: 2.5rem;
+    top: 12px;
+  }
+  
+  .zitat-erklaerung {
+    font-size: 1rem;
+  }
+  
+  .arbeitweise {
+    padding: 15px;
+  }
+  
+  .schluss-zitat {
+    font-size: 1rem;
+  }
+}
