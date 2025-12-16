@@ -1,78 +1,259 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <title>Quellen | Matthias Silberhain</title>
-    <!-- Fügen Sie hier Ihre bestehenden Meta-Tags und CSS-Links ein -->
-    <link rel="stylesheet" href="assets/css/style.css">
+  <meta charset="UTF-8">
+  <title>Quellen | Matthias Silberhain</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Quellen und Forschungsgrundlagen zu den Werken von Matthias Silberhain - Vollständige, verlinkte Archivdokumente und wissenschaftliche Literatur.">
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=EB+Garamond:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="assets/images/logo.png" type="image/png">
 </head>
+
 <body>
-    <!-- Fügen Sie hier Ihre HEADER- und NAVIGATION ein (wie aus index.html) -->
 
-    <main class="inhalt">
-        <h1>Quellen zum Buch: "Der lange Weg in die Finsternis"</h1>
-        <p>Alle wichtigen digitalen Quellen und Forschungsliteratur auf einen Klick.</p>
+<!-- ================= PRELOADER ================= -->
+<div id="preloader">
+  <div class="preloader-inner">
+    <img src="assets/images/logo.png" alt="Matthias Silberhain Logo" class="preloader-logo">
+    <div class="text-container">
+      <div class="preloader-text">
+        <span id="type-text"></span><span class="cursor">|</span>
+      </div>
+    </div>
+  </div>
+</div>
 
-        <h2>Reichstagsprotokolle & Parlamentsdokumente</h2>
-        <ul>
-            <li><a href="https://www.reichstagsprotokolle.de/en_rtbiauf.html" target="_blank" rel="noopener noreferrer">Reichstagsprotokolle – Gesamtsammlung (reichstagsprotokolle.de)</a></li>
-            <li><a href="http://mdz.bib-bvb.de/digbib/reichstag/" target="_blank" rel="noopener noreferrer">Reichstagsprotokolle via Clio-Online (MDZ)</a></li>
-            <li><a href="https://www.deutsche-digitale-bibliothek.de/search?q=Reichstagsprotokolle" target="_blank" rel="noopener noreferrer">Reichstagsprotokolle in der Deutschen Digitalen Bibliothek</a></li>
-            <li><a href="https://reichstagsakten.de/" target="_blank" rel="noopener noreferrer">Deutsche Reichstagsakten (wissenschaftliche Edition)</a></li>
-            <li><a href="https://www.bundestag.de/en/documents/archives" target="_blank" rel="noopener noreferrer">Deutscher Bundestag – Parlamentsarchiv</a></li>
-        </ul>
+<!-- ================= HEADER ================= -->
+<header class="header">
+  <img src="assets/images/logo.png" alt="Matthias Silberhain Logo" class="logo">
+  
+  <div class="burger" id="burger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
 
-        <h2>Archivquellen zur Kolonialgeschichte</h2>
-        <ul>
-            <li><a href="https://www.bundesarchiv.de/en/research-our-records/research-by-topic/sources-on-colonial-history" target="_blank" rel="noopener noreferrer">Bundesarchiv – Quellen zur deutschen Kolonialgeschichte</a></li>
-            <li><a href="https://www.bundesarchiv.de/im-archiv-recherchieren/archivgut-recherchieren/digitalisierte-bestaende/" target="_blank" rel="noopener noreferrer">Bundesarchiv – Digitalisierte Bestände (Allgemein)</a></li>
-            <li><a href="https://ersterweltkrieg.bundesarchiv.de/digitalisierte-sammlungen.html" target="_blank" rel="noopener noreferrer">Bundesarchiv – Digitalisierte Sammlungen zum Ersten Weltkrieg</a></li>
-            <li><a href="https://www.bundesarchiv.de/im-archiv-recherchieren/archivgut-recherchieren/nach-themen/kolonialgeschichte/" target="_blank" rel="noopener noreferrer">Bundesarchiv – Kolonialgeschichte (Archivbestände R 1001)</a></li>
-            <li><a href="https://www.fh-potsdam.de/index.php/en/news-media/news/web-portal-archive-guide-german-colonial-history-new-offers" target="_blank" rel="noopener noreferrer">Archive Guide to German Colonial History</a></li>
-        </ul>
+  <nav class="hauptnavigation" id="navigation">
+    <a href="index.html">Startseite</a>
+    <a href="ueber-mich.html">Über mich</a>
+    <a href="werke.html">Werke</a>
+    <a href="quellen.html" class="active">Quellen</a>
+    <a href="termine.html">Termine</a>
+    <a href="kontakt.html">Kontakt</a>
+  </nav>
+</header>
 
-        <h2>Weitere Digitale Archive & Rechtstexte</h2>
-        <ul>
-            <li><a href="https://ccc.deutsche-digitale-bibliothek.de/" target="_blank" rel="noopener noreferrer">Deutsche Digitale Bibliothek – Sammlungen</a></li>
-            <li><a href="https://www.das-deutsche-reich.de/ewiger-bund/reichskolonialamt/deutsches-kaiserreich/" target="_blank" rel="noopener noreferrer">DokumentArchiv.de – Deutsche Reichsverfassung 1871</a></li>
-        </ul>
+<div class="lichtkante"></div>
 
-        <h2>Wichtige Forschungsliteratur (Sekundärquellen)</h2>
-        <p><em>Hinweis: Die folgenden Werke sind in Bibliotheken verfügbar. Verlinkt sind, sofern vorhanden, offizielle Seiten der Autoren, Verlage oder digitalen Bibliotheken.</em></p>
-        <ul>
-            <li><strong>Kaiserreich, Militär und politische Kultur</strong>
-                <ul>
-                    <li>Hans-Ulrich Wehler – <a href="https://www.chbeck.de/wehler-deutsche-kaiserreich/product/1196" target="_blank" rel="noopener noreferrer">"Das Deutsche Kaiserreich 1871–1918" (Verlagsseite)</a></li>
-                    <li>Thomas Nipperdey – <a href="https://www.chbeck.de/nipperdey-deutsche-geschichte-1866-1918-bd-1/product/28320681" target="_blank" rel="noopener noreferrer">"Deutsche Geschichte 1866–1918" (Verlagsseite)</a></li>
-                    <li>Christopher Clark – <a href="https://www.randomhouse.de/Buch/Preussen/Christopher-Clark/btb/e504069.rhd" target="_blank" rel="noopener noreferrer">"Preußen. Aufstieg und Niedergang" (Verlagsseite)</a></li>
-                </ul>
-            </li>
-            <li><strong>Kolonialismus und Gewalt</strong>
-                <ul>
-                    <li>Jürgen Zimmerer – <a href="https://www.beck-shop.de/zimmerer-windhuk-auschwitz/product/21045210" target="_blank" rel="noopener noreferrer">"Von Windhuk nach Auschwitz?" (Verlagsseite)</a></li>
-                    <li>Isabel V. Hull – <a href="https://www.cambridge.org/de/academic/subjects/history/european-history-after-1450/absolute-destruction-military-culture-and-practices-war-imperial-germany?format=PB" target="_blank" rel="noopener noreferrer">"Absolute Destruction" (Verlagsseite)</a></li>
-                </ul>
-            </li>
-            <li><strong>Weimar, Demokratie, Nationalsozialismus</strong>
-                <ul>
-                    <li>Detlev Peukert – <a href="https://www.suhrkamp.de/buch/detlev-j-k-peukert-die-weimarer-republik-t-9783518115617" target="_blank" rel="noopener noreferrer">"Die Weimarer Republik" (Verlagsseite)</a></li>
-                    <li>George L. Mosse – <a href="https://www.fischerverlage.de/buch/george-l-mosse-die-voelkische-revolution-9783103473064" target="_blank" rel="noopener noreferrer">"Die völkische Revolution" (Verlagsseite)</a></li>
-                    <li>Götz Aly – <a href="https://www.fischerverlage.de/buch/goetz-aly-hitlers-volksstaat-9783596156144" target="_blank" rel="noopener noreferrer">"Hitlers Volksstaat" (Verlagsseite)</a></li>
-                </ul>
-            </li>
-            <li><strong>Sprache, Propaganda, Dehumanisierung</strong>
-                <ul>
-                    <li>Victor Klemperer – <a href="https://www.aufbau-verlage.de/id-1496/victor-klemperer-lti-notizbuch-eines-philologen.html" target="_blank" rel="noopener noreferrer">"LTI – Notizbuch eines Philologen" (Verlagsseite)</a></li>
-                    <li>Hannah Arendt – <a href="https://www.piper.de/buecher/elemente-und-urspruenge-totaler-herrschaft-isbn-978-3-492-21032-4" target="_blank" rel="noopener noreferrer">"Elemente und Ursprünge totaler Herrschaft" (Verlagsseite)</a></li>
-                </ul>
-            </li>
-        </ul>
+<!-- ================= HAUPTINHALT ================= -->
+<main class="inhalt">
+  <section class="intro">
+    <h1>Quellen und Forschungsgrundlagen</h1>
+    
+    <p>Diese Seite versammelt alle zentralen digitalen Quellen und Forschungsliteratur, die der historischen Analyse in den Werken von Matthias Silberhain zugrunde liegen.<br>
+    Jeder Link führt direkt zu den Originaldokumenten oder wissenschaftlichen Werken und dient der vollständigen Nachvollziehbarkeit und Vertiefung.</p>
+    
+    <p><strong>Hinweis zur Nutzung:</strong> Alle Links führen zu originalen oder digitalisierten Archivressourcen öffentlicher Institutionen, die zum Zeitpunkt der Veröffentlichung frei zugänglich sind.</p>
+  </section>
 
-        <hr>
-        <p><small><strong>Hinweis zu externen Links:</strong> Diese Seite enthält Verlinkungen zu externen Webseiten Dritter. Ich habe keinen Einfluss auf deren Inhalte und übernehme keine Haftung. Zum Zeitpunkt der Verlinkung waren die Inhalte frei von rechtswidrigen Bestandteilen.</small></p>
-    </main>
+  <!-- ================= QUELLEN FÜR "DER LANGE WEG IN DIE FINSTERNIS" ================= -->
+  <section class="quellen-abschnitt">
+    <h2>Quellen zum Buch: "Der lange Weg in die Finsternis"</h2>
+    <p class="untertitel">Wie das Kaiserreich den Nationalsozialismus vorbereitete</p>
+    
+    <div class="quelle-kategorie">
+      <h3>📜 Reichstagsprotokolle & Parlamentsdokumente</h3>
+      <ul class="quellen-liste">
+        <li><a href="https://www.reichstagsprotokolle.de/en_rtbiauf.html" target="_blank" rel="noopener noreferrer">Reichstagsprotokolle – Gesamtsammlung & Navigation (1867–1942)</a><br>
+        <span class="quelle-beschreibung">Vollständige digitale Protokolle mit Browsing, Suche und PDF-Downloads.</span></li>
+        
+        <li><a href="http://mdz.bib-bvb.de/digbib/reichstag/" target="_blank" rel="noopener noreferrer">Reichstagsprotokolle über Clio-Online (MDZ-Direktzugang 1867–1895)</a><br>
+        <span class="quelle-beschreibung">Digitalisierte Protokolle mit OCR-Volltext und komfortabler Navigation.</span></li>
+        
+        <li><a href="https://www.deutsche-digitale-bibliothek.de/search?q=Reichstagsprotokolle" target="_blank" rel="noopener noreferrer">Reichstagprotokolle in der Deutschen Digitalen Bibliothek</a><br>
+        <span class="quelle-beschreibung">Archivale Einträge zu einzelnen Protokollen und Objekten.</span></li>
+        
+        <li><a href="https://reichstagsakten.de/" target="_blank" rel="noopener noreferrer">Deutsche Reichstagsakten (wissenschaftliche Edition)</a><br>
+        <span class="quelle-beschreibung">Digital aufbereitete Reichstagsakten verschiedener historischer Perioden.</span></li>
+        
+        <li><a href="https://www.bundestag.de/en/documents/archives" target="_blank" rel="noopener noreferrer">Deutscher Bundestag Parlamentsarchiv – Dokumente und Archivmaterial</a><br>
+        <span class="quelle-beschreibung">Parliamentary documentation and research aids for comparative questions.</span></li>
+      </ul>
+    </div>
+    
+    <div class="quelle-kategorie">
+      <h3>🏛️ Archivquellen zur Kolonialgeschichte</h3>
+      <ul class="quellen-liste">
+        <li><a href="https://www.bundesarchiv.de/en/research-our-records/research-by-topic/sources-on-colonial-history" target="_blank" rel="noopener noreferrer">Bundesarchiv – Quellen zur deutschen Kolonialgeschichte</a><br>
+        <span class="quelle-beschreibung">Digitalisierte koloniale Akten, darunter Bestände des Reichskolonialamts (R 1001).</span></li>
+        
+        <li><a href="https://www.bundesarchiv.de/im-archiv-recherchieren/archivgut-recherchieren/digitalisierte-bestaende/" target="_blank" rel="noopener noreferrer">Bundesarchiv – Digitalisierte Bestände (Allgemein)</a><br>
+        <span class="quelle-beschreibung">Portal zur Recherche digitalisierter Akten, Bilder, Filme und Dokumente.</span></li>
+        
+        <li><a href="https://ersterweltkrieg.bundesarchiv.de/digitalisierte-sammlungen.html" target="_blank" rel="noopener noreferrer">Bundesarchiv – Digitalisierte Sammlungen zum Ersten Weltkrieg</a><br>
+        <span class="quelle-beschreibung">Akten des Reichskolonialamtes zu Kolonialkriegen in Afrika.</span></li>
+        
+        <li><a href="https://www.bundesarchiv.de/im-archiv-recherchieren/archivgut-recherchieren/nach-themen/kolonialgeschichte/" target="_blank" rel="noopener noreferrer">Bundesarchiv – Kolonialgeschichte (Archivbestände R 1001)</a><br>
+        <span class="quelle-beschreibung">Offizielle Verwaltungsakten des Reichskolonialamts mit Korrespondenz und Berichten.</span></li>
+        
+        <li><a href="https://www.fh-potsdam.de/index.php/en/news-media/news/web-portal-archive-guide-german-colonial-history-new-offers" target="_blank" rel="noopener noreferrer">Archive Guide to German Colonial History</a><br>
+        <span class="quelle-beschreibung">Metadatenportal mit internationalen Archiven zur Kolonialgeschichte.</span></li>
+        
+        <li><a href="https://ccc.deutsche-digitale-bibliothek.de/en" target="_blank" rel="noopener noreferrer">Deutsche Digitale Bibliothek – Koloniale Sammlungen</a><br>
+        <span class="quelle-beschreibung">Fotos, Akten, Artefakte zu deutschen Kolonien.</span></li>
+      </ul>
+    </div>
+    
+    <div class="quelle-kategorie">
+      <h3>📰 Zeitgenössische Presse & weitere Archive</h3>
+      <ul class="quellen-liste">
+        <li><a href="https://ccc.deutsche-digitale-bibliothek.de/" target="_blank" rel="noopener noreferrer">Deutsche Digitale Bibliothek – Sammlungen (inkl. Zeitungen)</a><br>
+        <span class="quelle-beschreibung">Historische Zeitungen wie Berliner Tageblatt, Kreuzzeitung, Vossische Zeitung.</span></li>
+        
+        <li><a href="https://www.das-deutsche-reich.de/ewiger-bund/reichskolonialamt/deutsches-kaiserreich/" target="_blank" rel="noopener noreferrer">DokumentArchiv.de – Deutsche Reichsverfassung 1871</a><br>
+        <span class="quelle-beschreibung">Digitale Fassungen historischer Rechtstexte des Kaiserreichs.</span></li>
+      </ul>
+    </div>
+    
+    <div class="quelle-kategorie">
+      <h3>📚 Wissenschaftliche Forschungsliteratur (Sekundärquellen)</h3>
+      <p class="hinweis">Die folgenden Standardwerke bilden die analytische Grundlage für die Deutung der historischen Prozesse im Buch.</p>
+      
+      <h4>Kaiserreich, Militär und politische Kultur</h4>
+      <ul class="quellen-liste">
+        <li><strong>Hans-Ulrich Wehler</strong> – "Das Deutsche Kaiserreich 1871–1918" (Standardwerk)</li>
+        <li><strong>Thomas Nipperdey</strong> – "Deutsche Geschichte 1866–1918" (soziale und politische Analyse)</li>
+        <li><strong>Christopher Clark</strong> – "Preußen. Aufstieg und Niedergang" (politische Kultur)</li>
+      </ul>
+      
+      <h4>Kolonialismus und Gewalt</h4>
+      <ul class="quellen-liste">
+        <li><strong>Jürgen Zimmerer</strong> – "Von Windhuk nach Auschwitz?" (Kontinuität kolonialer Gewalt)</li>
+        <li><strong>Isabel V. Hull</strong> – "Absolute Destruction: Military Culture and the Practices of War in Imperial Germany" (Militarismus)</li>
+        <li><strong>Dominik J. Schaller</strong> – Arbeiten zum deutschen Völkermord an Herero und Nama</li>
+      </ul>
+      
+      <h4>Weimar, Demokratie, Nationalsozialismus</h4>
+      <ul class="quellen-liste">
+        <li><strong>Detlev Peukert</strong> – "Die Weimarer Republik" (Standardanalyse)</li>
+        <li><strong>George L. Mosse</strong> – "Die völkische Revolution" (völkische Bewegung)</li>
+        <li><strong>Ulrich Herbert</strong> – "Geschichte Deutschlands im 20. Jahrhundert" (Kontinuitäten)</li>
+        <li><strong>Götz Aly</strong> – "Hitlers Volksstaat" (soziale Grundlagen der NS-Diktatur)</li>
+      </ul>
+      
+      <h4>Sprache, Propaganda, Dehumanisierung</h4>
+      <ul class="quellen-liste">
+        <li><strong>Victor Klemperer</strong> – "LTI – Notizbuch eines Philologen" (Sprache des Nationalsozialismus)</li>
+        <li><strong>Hannah Arendt</strong> – "Elemente und Ursprünge totaler Herrschaft" (totale Herrschaft)</li>
+      </ul>
+    </div>
+    
+    <div class="quellen-hinweis">
+      <p><strong>Zitierweise im Buch:</strong> Im Text werden die Quellen durch eckige Klammern mit Nummern gekennzeichnet (z.B. [P1], [S2]). Die vollständigen Angaben finden Sie in dieser Liste.</p>
+      <p><strong>Hinweis zu externen Links:</strong> Diese Website enthält Verlinkungen zu externen Webseiten Dritter. Ich habe keinen Einfluss auf deren Inhalte und übernehme keine Haftung. Sollten Ihnen problematische Inhalte auffallen, bitte ich um einen Hinweis.</p>
+    </div>
+  </section>
+</main>
 
-    <!-- Fügen Sie hier Ihren FOOTER ein (wie aus index.html) -->
-    <script src="assets/js/menu.js"></script>
+<!-- ================= SOCIAL MEDIA ================= -->
+<section class="social-section">
+  <h3 class="social-title">Folgen Sie den Gedanken</h3>
+  <div class="social-grid">
+    <!-- Snapchat -->
+    <a href="https://snapchat.com/t/8wVZ1Wpu" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Snapchat">
+      <div class="social-icon-wrapper">
+        <svg class="social-icon" viewBox="0 0 24 24">
+          <path d="M5.83 2H18.2c1.14 0 2.07.93 2.07 2.07v15.86c0 1.14-.93 2.07-2.07 2.07H5.83A2.07 2.07 0 0 1 3.76 19.9V4.07C3.76 2.93 4.69 2 5.83 2zm6.44 16.27c1.33 0 2.41-1.08 2.41-2.41 0-.44-.12-.85-.32-1.21.23-.05.47-.08.72-.08 1.33 0 2.41 1.08 2.41 2.41 0 1.33-1.08 2.41-2.41 2.41-1.33 0-2.41-1.08-2.41-2.41 0-.44.12-.85.32-1.21-.23.05-.47.08-.72.08-1.33 0-2.41-1.08-2.41-2.41 0-1.33 1.08-2.41 2.41-2.41.44 0 .85.12 1.21.32.05-.23.08-.47.08-.72 0-1.33-1.08-2.41-2.41-2.41-1.33 0-2.41 1.08-2.41 2.41 0 1.33 1.08 2.41 2.41 2.41.44 0 .85-.12 1.21-.32-.05.23-.08.47-.08.72 0 1.33 1.08 2.41 2.41 2.41z"/>
+        </svg>
+      </div>
+      <span class="social-name">Snapchat</span>
+    </a>
+    
+    <!-- Clapper -->
+    <a href="https://clapperapp.com/M.Silberhain" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Clapper">
+      <div class="social-icon-wrapper">
+        <svg class="social-icon" viewBox="0 0 24 24">
+          <path d="M19.5 3H4.5C3.67 3 3 3.67 3 4.5v15C3 20.33 3.67 21 4.5 21h15c.83 0 1.5-.67 1.5-1.5v-15C21 3.67 20.33 3 19.5 3zM10 17H6v-2h4v2zm0-4H6v-2h4v2zm0-4H6V7h4v2zm8 8h-6v-2h6v2zm0-4h-6v-2h6v2zm0-4h-6V7h6v2z"/>
+        </svg>
+      </div>
+      <span class="social-name">Clapper</span>
+    </a>
+    
+    <!-- TikTok -->
+    <a href="https://www.tiktok.com/@m.silberhain" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="TikTok">
+      <div class="social-icon-wrapper">
+        <svg class="social-icon" viewBox="0 0 24 24">
+          <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+        </svg>
+      </div>
+      <span class="social-name">TikTok</span>
+    </a>
+    
+    <!-- Telegram -->
+    <a href="https://t.me/matthiassilberhain" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Telegram">
+      <div class="social-icon-wrapper">
+        <svg class="social-icon" viewBox="0 0 24 24">
+          <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.697.064-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+        </svg>
+      </div>
+      <span class="social-name">Telegram</span>
+    </a>
+    
+    <!-- Instagram -->
+    <a href="https://www.instagram.com/matthiassilberhain" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
+      <div class="social-icon-wrapper">
+        <svg class="social-icon" viewBox="0 0 24 24">
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z"/>
+        </svg>
+      </div>
+      <span class="social-name">Instagram</span>
+    </a>
+    
+    <!-- Facebook -->
+    <a href="https://www.facebook.com/share/17ZahbpKWN/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook">
+      <div class="social-icon-wrapper">
+        <svg class="social-icon" viewBox="0 0 24 24">
+          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+        </svg>
+      </div>
+      <span class="social-name">Facebook</span>
+    </a>
+    
+    <!-- YouTube -->
+    <a href="https://youtube.com/@matthiassilberhain" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="YouTube">
+      <div class="social-icon-wrapper">
+        <svg class="social-icon" viewBox="0 0 24 24">
+          <path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.506 0-9.396.501A3.007 3.007 0 00.528 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/>
+        </svg>
+      </div>
+      <span class="social-name">YouTube</span>
+    </a>
+  </div>
+</section>
+
+<div class="lichtkante"></div>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+  <div class="footer-lichtkante"></div>
+  <p>© <span id="jahr"></span> Matthias Silberhain</p>
+</footer>
+
+<!-- ================= JAVASCRIPT ================= -->
+<script src="assets/js/menu.js"></script>
+<script>
+  // Einfaches Skript für das aktuelle Jahr im Footer
+  document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('jahr').textContent = new Date().getFullYear();
+  });
+</script>
+
 </body>
 </html>
