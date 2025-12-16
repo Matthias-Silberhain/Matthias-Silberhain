@@ -184,7 +184,9 @@
     }
     
     .seriöser-button {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       padding: 16px 45px;
       background: transparent;
       color: #d6d9de;
@@ -205,6 +207,12 @@
       border-color: rgba(200, 205, 215, 0.6);
       transform: translateY(-2px);
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+    
+    .download-icon {
+      margin-left: 10px;
+      width: 18px;
+      height: 18px;
     }
     
     /* Platzhalter für weitere Werke */
@@ -375,7 +383,7 @@
             </div>
           </div>
           
-          <p>Das Rückcover greift diese Linie bewusst auf. Das dunkle Kopfsteinpflaster steht für einen Weg, der fest und vertraut wirkt. Für ein System, das seine eigenen Abgründe nicht erkannte oder nicht erkennen wollte.</p>
+          <p><strong>Das Rückcover greift diese Linie bewusst auf.</strong> Das dunkle Kopfsteinpflaster steht für einen Weg, der fest und vertraut wirkt. Es steht nicht für Schuldzuweisung an eine einzelne Figur, sondern für die Epoche, in der dieser Weg geformt wurde. Für ein System, das seine eigenen Abgründe nicht erkannte oder nicht erkennen wollte.</p>
           
           <p><strong>Dieses Buch versteht sich nicht als moralische Anklage aus sicherer Distanz.</strong> Es ist eine Analyse historischer Kontinuitäten. Es zeigt, wie sich Radikalisierung vorbereitet, wie sich Grenzen verschieben und wie Gesellschaften lernen, Unrecht zu akzeptieren, solange es schrittweise geschieht.</p>
           
@@ -385,9 +393,26 @@
       
       <!-- Aktionen -->
       <div class="aktionen-bereich">
-        <button class="seriöser-button" id="leseprobe-button">
-          Leseprobe anfordern
-        </button>
+        <a href="leseproben/derlangewegindiefinsternis.pdf" 
+           class="seriöser-button"
+           download="Der_lange_Weg_in_die_Finsternis_Leseprobe.pdf"
+           target="_blank"
+           onclick="trackLeseprobeDownload()">
+          Leseprobe herunterladen
+          <svg class="download-icon" viewBox="0 0 24 24">
+            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" fill="currentColor"/>
+          </svg>
+        </a>
+        <p style="margin-top: 15px; font-size: 0.9rem; color: #9da2a8; font-style: italic;">
+          30 Seiten • PDF-Datei • Direkter Download
+        </p>
+        <p style="font-size: 0.85rem; color: #9da2a8; margin-top: 10px;">
+          Falls der Download nicht automatisch startet: 
+          <a href="leseproben/derlangewegindiefinsternis.pdf" 
+             style="color: #b0b5bc; text-decoration: underline;">
+            Direkter Link zur PDF
+          </a>
+        </p>
       </div>
     </article>
     
@@ -403,7 +428,7 @@
 <section class="social-section">
   <h3 class="social-title">Folgen Sie den Gedanken</h3>
   <div class="social-grid">
-    <!-- Social Media Icons bleiben gleich -->
+    <!-- Snapchat -->
     <a href="https://snapchat.com/t/8wVZ1Wpu" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Snapchat">
       <div class="social-icon-wrapper">
         <svg class="social-icon" viewBox="0 0 24 24">
@@ -413,6 +438,7 @@
       <span class="social-name">Snapchat</span>
     </a>
     
+    <!-- Clapper -->
     <a href="https://clapperapp.com/M.Silberhain" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Clapper">
       <div class="social-icon-wrapper">
         <svg class="social-icon" viewBox="0 0 24 24">
@@ -422,6 +448,7 @@
       <span class="social-name">Clapper</span>
     </a>
     
+    <!-- TikTok -->
     <a href="https://www.tiktok.com/@m.silberhain" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="TikTok">
       <div class="social-icon-wrapper">
         <svg class="social-icon" viewBox="0 0 24 24">
@@ -431,6 +458,7 @@
       <span class="social-name">TikTok</span>
     </a>
     
+    <!-- Telegram -->
     <a href="https://t.me/matthiassilberhain" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Telegram">
       <div class="social-icon-wrapper">
         <svg class="social-icon" viewBox="0 0 24 24">
@@ -440,6 +468,7 @@
       <span class="social-name">Telegram</span>
     </a>
     
+    <!-- Instagram -->
     <a href="https://www.instagram.com/matthiassilberhain" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
       <div class="social-icon-wrapper">
         <svg class="social-icon" viewBox="0 0 24 24">
@@ -449,6 +478,7 @@
       <span class="social-name">Instagram</span>
     </a>
     
+    <!-- Facebook -->
     <a href="https://www.facebook.com/share/17ZahbpKWN/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook">
       <div class="social-icon-wrapper">
         <svg class="social-icon" viewBox="0 0 24 24">
@@ -458,6 +488,7 @@
       <span class="social-name">Facebook</span>
     </a>
     
+    <!-- YouTube -->
     <a href="https://youtube.com/@matthiassilberhain" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="YouTube">
       <div class="social-icon-wrapper">
         <svg class="social-icon" viewBox="0 0 24 24">
@@ -526,28 +557,27 @@ document.addEventListener("DOMContentLoaded", function() {
       });
     });
   }
-  
-  // Seriöser Leseprobe-Button
-  const leseprobeButton = document.getElementById("leseprobe-button");
-  if (leseprobeButton) {
-    leseprobeButton.addEventListener("click", function() {
-      const originalText = leseprobeButton.textContent;
-      leseprobeButton.textContent = "Wird vorbereitet...";
-      leseprobeButton.disabled = true;
-      
-      setTimeout(function() {
-        // Öffnet das E-Mail-Programm des Benutzers
-        window.location.href = "mailto:m.silberhain@mail.de?subject=Leseprobe%20-%20Der%20lange%20Weg%20in%20die%20Finsternis&body=Sehr%20geehrter%20Herr%20Silberhain%2C%0A%0Aich%20m%C3%B6chte%20gerne%20eine%20Leseprobe%20Ihres%20Buches%20%22Der%20lange%20Weg%20in%20die%20Finsternis%22%20anfordern.%0A%0AMit%20freundlichen%20Gr%C3%BC%C3%9Fen%2C";
-        
-        // Nach 3 Sekunden zurücksetzen
-        setTimeout(function() {
-          leseprobeButton.textContent = originalText;
-          leseprobeButton.disabled = false;
-        }, 3000);
-      }, 500);
-    });
-  }
 });
+
+// Leseprobe Download Tracking
+function trackLeseprobeDownload() {
+  console.log('Leseprobe Download gestartet: Der lange Weg in die Finsternis');
+  
+  // Einfache Statistik im LocalStorage
+  try {
+    let downloads = localStorage.getItem('leseprobeDownloads') || 0;
+    downloads = parseInt(downloads) + 1;
+    localStorage.setItem('leseprobeDownloads', downloads);
+    console.log('Gesamte Downloads:', downloads);
+  } catch (e) {
+    // Fehler ignorieren wenn LocalStorage nicht verfügbar
+  }
+  
+  // Kurze Erfolgsmeldung
+  setTimeout(function() {
+    console.log('Download sollte gestartet haben.');
+  }, 100);
+}
 </script>
 
 </body>
