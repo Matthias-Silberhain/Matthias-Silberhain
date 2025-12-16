@@ -1,20 +1,24 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   /* =========================
-     TYPEWRITER PRELOADER - SIMPLE
+     TYPEWRITER PRELOADER - LOGO GETRENNT
   ========================= */
 
   const text = "MATTHIAS SILBERHAIN";
   const textEl = document.getElementById("type-text");
   const cursor = document.querySelector(".cursor");
   const preloader = document.getElementById("preloader");
+  const preloaderLogo = document.querySelector(".preloader-logo");
 
   // Prüfen ob Elemente existieren
-  if (!textEl || !cursor || !preloader) {
+  if (!textEl || !cursor || !preloader || !preloaderLogo) {
     console.error("Preloader Elemente fehlen!");
     return;
   }
 
+  // Logo SOFORT sichtbar machen (bleibt stehen)
+  preloaderLogo.style.opacity = "1";
+  
   let index = 0;
   const speed = 80;
 
@@ -39,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Start Typewriter mit kurzer Verzögerung
+  // Start Typewriter mit kurzer Verzögerung (Logo ist schon da)
   setTimeout(typeWriter, 300);
 
   /* =========================
