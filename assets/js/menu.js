@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const typeText = document.getElementById('type-text');
     
     if (preloader && typeText) {
-        // Initialisiere
+        // Preloader anzeigen
         preloader.style.display = 'flex';
         document.body.style.overflow = 'hidden';
         
@@ -94,14 +94,6 @@ document.addEventListener('DOMContentLoaded', function() {
         yearElement.textContent = new Date().getFullYear();
     }
     
-    // ================= RESPONSIVE MENÜ RESIZE =================
-    window.addEventListener('resize', function() {
-        if (window.innerWidth > 768 && navigation) {
-            navigation.classList.remove('aktiv');
-            document.body.style.overflow = 'visible';
-        }
-    });
-    
     console.log('Matthias Silberhain Website geladen');
 });
 
@@ -112,7 +104,6 @@ window.addEventListener('load', function() {
         if (preloader && preloader.style.display !== 'none') {
             preloader.style.display = 'none';
             document.body.style.overflow = 'visible';
-            console.log('Fallback: Preloader ausgeblendet');
         }
     }, 5000);
 });
