@@ -804,32 +804,37 @@ strong {
 }
 
 /* ==========================================================================
-   DARK MODE STYLES - DUNKELGRAUES DESIGN
+   DARK MODE STYLES - KORRIGIERT FÜR MOBILE
    ========================================================================== */
 
-/* Dark Mode aktiv - Hintergrund Dunkelgrau */
-body.dark-mode {
+/* Dark Mode aktiv - Hintergrund Dunkelgrau mit höherer Spezifität */
+body.dark-mode,
+body.dark-mode .header,
+body.dark-mode .inhalt,
+body.dark-mode main,
+body.dark-mode section,
+body.dark-mode footer {
   background-color: #1a1a1a !important;
 }
 
-/* Schriftfarben bleiben SILBER - nur Hintergrund ändert sich */
-body.dark-mode .header {
+/* Preloader im Dark Mode */
+body.dark-mode #preloader {
   background-color: #1a1a1a !important;
 }
 
-/* FONTS BLEIBEN UNVERÄNDERT - Nur Hintergrund ändert sich */
-body.dark-mode h1 {
-  /* Farbe bleibt gleich wie im Original */
+/* Schriftfarben bleiben SILBER - nur Hintergrund ändert sich mit !important */
+body.dark-mode h1,
+body.dark-mode .social-title {
   color: #e4e6ea !important;
 }
 
-body.dark-mode p {
-  /* Farbe bleibt gleich wie im Original */
+body.dark-mode p,
+body.dark-mode .footer,
+body.dark-mode .social-name {
   color: #b0b5bc !important;
 }
 
 body.dark-mode strong {
-  /* Farbe bleibt gleich wie im Original */
   color: #e4e6ea !important;
 }
 
@@ -855,10 +860,6 @@ body.dark-mode .footer-lichtkante {
 }
 
 /* Social Media - Farben bleiben silber */
-body.dark-mode .social-title {
-  color: #e4e6ea !important;
-}
-
 body.dark-mode .social-link {
   color: #9da2a8 !important;
 }
@@ -878,13 +879,23 @@ body.dark-mode .silber-button.secondary {
   background: rgba(30, 30, 30, 0.5) !important;
 }
 
-/* Footer bleibt silber */
-body.dark-mode .footer {
-  color: #9da2a8 !important;
-}
+/* ==========================================================================
+   MOBILE DARK MODE FIXES - SPEZIFISCH FÜR MOBILE
+   ========================================================================== */
 
-/* Mobile Navigation im Dark Mode */
+/* Sicherstellen, dass Dark Mode auf Mobile funktioniert */
 @media screen and (max-width: 768px) {
+  body.dark-mode .header {
+    background-color: #1a1a1a !important;
+    padding: 25px 15px 15px !important;
+  }
+  
+  /* Burger Menu im Dark Mode */
+  body.dark-mode .burger span {
+    background-color: #d6d9de !important;
+  }
+  
+  /* Mobile Navigation im Dark Mode */
   body.dark-mode .hauptnavigation {
     background-color: rgba(26, 26, 26, 0.98) !important;
   }
@@ -892,6 +903,65 @@ body.dark-mode .footer {
   body.dark-mode .hauptnavigation a {
     border-color: rgba(220, 225, 235, 0.2) !important;
   }
+}
+
+/* Kleine Mobile Geräte */
+@media screen and (max-width: 480px) {
+  body.dark-mode .header {
+    padding: 20px 10px 10px !important;
+    background-color: #1a1a1a !important;
+  }
+}
+
+/* ==========================================================================
+   DARK MODE TOGGLE STYLES - FÜR ALLE GERÄTE
+   ========================================================================== */
+
+.dark-mode-toggle {
+  position: absolute;
+  top: 35px;
+  right: 20px;
+  background: transparent;
+  border: 1px solid rgba(200, 205, 215, 0.3);
+  color: #d6d9de;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  z-index: 1001;
+  padding: 0;
+}
+
+.dark-mode-toggle:hover {
+  color: #ffffff;
+  background: rgba(200, 205, 215, 0.1);
+  border-color: rgba(200, 205, 215, 0.6);
+  transform: scale(1.1);
+  box-shadow: 0 0 10px rgba(200, 205, 215, 0.2);
+}
+
+.moon-icon, .sun-icon {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+  transition: all 0.3s ease;
+}
+
+.sun-icon {
+  display: none;
+}
+
+/* Dark Mode aktiv - Sonne zeigen */
+body.dark-mode .moon-icon {
+  display: none;
+}
+
+body.dark-mode .sun-icon {
+  display: block;
 }
 
 /* ==========================================================================
