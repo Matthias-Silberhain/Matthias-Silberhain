@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <title>Matthias Silberhain | Über mich</title>
+  <title>Matthias Silberhain | Autor</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Matthias Silberhain - Autor zu Macht, Verantwortung und gesellschaftlichen Mechanismen">
   
@@ -15,235 +15,64 @@
   <!-- Favicon -->
   <link rel="icon" href="assets/images/logo.png" type="image/png">
   
-  <!-- Dark/Light Mode CSS -->
+  <!-- Preloader CSS -->
   <style>
-    /* Dark/Light Mode Toggle Button */
-    .theme-toggle {
+    #preloader {
       position: fixed;
-      top: 20px;
-      right: 20px;
-      z-index: 1002;
-      background: rgba(255, 255, 255, 0.9);
-      border: 1px solid #ccc;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--dark-bg);
       display: flex;
-      align-items: center;
       justify-content: center;
-      cursor: pointer;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      transition: all 0.3s ease;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
     }
     
-    .theme-toggle:hover {
-      transform: scale(1.1);
-      box-shadow: 0 3px 15px rgba(0,0,0,0.2);
+    body.light-mode #preloader {
+      background: var(--light-bg);
     }
     
-    .theme-toggle svg {
-      width: 20px;
-      height: 20px;
-    }
-    
-    .theme-toggle .sun-icon {
-      display: none;
-    }
-    
-    .theme-toggle .moon-icon {
-      display: block;
-    }
-    
-    /* Light Mode (Standard) */
-    body.light-mode {
-      background-color: #f8f9fa;
-      color: #333;
-    }
-    
-    body.light-mode .header,
-    body.light-mode .hauptnavigation {
-      background: rgba(255, 255, 255, 0.95);
-    }
-    
-    body.light-mode .silber-button {
-      background: linear-gradient(135deg, #e8e8e8 0%, #f8f8f8 100%);
-      color: #333;
-      border: 1px solid #ddd;
-    }
-    
-    body.light-mode .silber-button:hover {
-      background: linear-gradient(135deg, #f0f0f0 0%, #ffffff 100%);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    }
-    
-    body.light-mode .credo-headline,
-    body.light-mode .ueber-mich-content strong {
-      color: #2c3e50;
-    }
-    
-    /* Dark Mode (ursprünglicher Look) */
-    body.dark-mode {
-      background-color: #0a0a0a;
-      color: #e8e8e8;
-    }
-    
-    body.dark-mode .header,
-    body.dark-mode .hauptnavigation {
-      background: rgba(10, 10, 10, 0.95);
-    }
-    
-    body.dark-mode .silber-button {
-      background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
-      color: #ecf0f1;
-      border: 1px solid #444;
-    }
-    
-    body.dark-mode .silber-button:hover {
-      background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
-      box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
-    }
-    
-    body.dark-mode .credo-headline,
-    body.dark-mode .ueber-mich-content strong {
-      color: #ecf0f1;
-    }
-    
-    body.dark-mode .theme-toggle {
-      background: rgba(30, 30, 30, 0.9);
-      border-color: #444;
-    }
-    
-    body.dark-mode .theme-toggle .sun-icon {
-      display: block;
-    }
-    
-    body.dark-mode .theme-toggle .moon-icon {
-      display: none;
-    }
-    
-    /* Footer Anpassungen */
-    .footer {
+    .preloader-content {
       text-align: center;
-      padding: 20px 0;
-      position: relative;
-      margin-top: 40px;
     }
     
-    .footer p {
-      font-size: 14px;
-      margin: 0;
-      padding: 10px 0;
-      color: #777;
+    .preloader-logo {
+      width: 100px;
+      height: 100px;
+      margin-bottom: 20px;
+      animation: pulse 2s infinite;
     }
     
-    /* Entferne die zwei Striche im Footer */
-    .footer-lichtkante {
-      display: none;
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
     }
     
-    /* Mobile Menu Fix */
-    @media (max-width: 768px) {
-      .header {
-        position: relative;
-        z-index: 1001;
-      }
-      
-      .hauptnavigation {
-        position: fixed;
-        top: 0;
-        left: -100%;
-        width: 80%;
-        height: 100vh;
-        background: rgba(255, 255, 255, 0.98);
-        flex-direction: column;
-        padding: 80px 20px 20px;
-        transition: left 0.3s ease;
-        z-index: 1000;
-        box-shadow: 5px 0 15px rgba(0,0,0,0.1);
-      }
-      
-      body.dark-mode .hauptnavigation {
-        background: rgba(20, 20, 20, 0.98);
-      }
-      
-      .hauptnavigation.aktiv {
-        left: 0;
-      }
-      
-      .hauptnavigation a {
-        padding: 15px;
-        margin: 5px 0;
-        border-bottom: 1px solid #eee;
-        width: 100%;
-        text-align: left;
-      }
-      
-      body.dark-mode .hauptnavigation a {
-        border-bottom-color: #333;
-      }
-      
-      .burger {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        width: 30px;
-        height: 20px;
-        position: absolute;
-        right: 20px;
-        top: 25px;
-        z-index: 1002;
-        cursor: pointer;
-      }
-      
-      .burger span {
-        display: block;
-        height: 2px;
-        width: 100%;
-        background: #333;
-        transition: all 0.3s ease;
-      }
-      
-      body.dark-mode .burger span {
-        background: #fff;
-      }
-      
-      .burger.aktiv span:nth-child(1) {
-        transform: rotate(45deg) translate(6px, 6px);
-      }
-      
-      .burger.aktiv span:nth-child(2) {
-        opacity: 0;
-      }
-      
-      .burger.aktiv span:nth-child(3) {
-        transform: rotate(-45deg) translate(6px, -6px);
-      }
-      
-      /* Overlay wenn Menu offen */
-      .menu-overlay {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0,0,0,0.5);
-        z-index: 999;
-      }
-      
-      .menu-overlay.aktiv {
-        display: block;
-      }
-      
-      .theme-toggle {
-        top: 70px;
-        right: 20px;
-      }
+    .preloader-text {
+      color: var(--dark-text);
+      font-family: 'Cinzel', serif;
+      font-size: 1.2rem;
+      letter-spacing: 2px;
+    }
+    
+    body.light-mode .preloader-text {
+      color: var(--light-text);
     }
   </style>
 </head>
 
 <body class="light-mode">
+
+<!-- Preloader -->
+<div id="preloader">
+  <div class="preloader-content">
+    <img src="assets/images/logo.png" alt="Logo" class="preloader-logo">
+    <div class="preloader-text">MATTHIAS SILBERHAIN</div>
+  </div>
+</div>
 
 <!-- Dark/Light Mode Toggle -->
 <div class="theme-toggle" id="themeToggle">
@@ -270,8 +99,8 @@
   </div>
 
   <nav class="hauptnavigation" id="navigation">
-    <a href="index.html">Startseite</a>
-    <a href="ueber-mich.html" class="active">Über mich</a>
+    <a href="index.html" class="active">Startseite</a>
+    <a href="ueber-mich.html">Über mich</a>
     <a href="werke.html">Werke</a>
     <a href="termine.html">Termine</a>
     <a href="kontakt.html">Kontakt</a>
@@ -280,68 +109,84 @@
 
 <div class="lichtkante"></div>
 
-<!-- ================= HAUPTINHALT ================= -->
+<!-- ================= HERO SECTION ================= -->
 <main class="inhalt">
-  <section class="ueber-mich">
-    <!-- FIXIERTE HAUPTÜBERSCHRIFT -->
-    <h1 class="credo-headline">Ich schreibe, weil die Wahrheit eine Stimme braucht.</h1>
+  <section class="hero">
+    <h1 class="hero-title">Matthias Silberhain</h1>
+    <p class="hero-subtitle">Autor zu Macht, Verantwortung und gesellschaftlichen Mechanismen</p>
     
-    <!-- ZITAT BLOCK MIT ANFÜHRUNGSZEICHEN -->
-    <div class="credo-container">
-      <div class="credo-quote">
-        <div class="quote-marks">
-          <span class="quote-mark-left">"</span>
-          <span class="quote-mark-right">"</span>
-        </div>
-        <p class="credo-text"></p>
-      </div>
-      <p class="credo-subtitle">
-        Dieses Credo begleitet meine Arbeit als Autor von Anfang an. Es ist kein marketingtauglicher Leitsatz, sondern der Grund, warum ich schreibe und veröffentliche.
-      </p>
+    <div class="hero-text">
+      <p class="einleitung">Wenn Wahrheit unbequem wird, braucht sie eine Stimme.</p>
+      
+      <p>Diese Seite ist kein Ort für einfache Antworten oder beruhigende Geschichten.<br>
+      Hier geht es um Macht, Verantwortung und die Fragen, die selten laut gestellt werden.<br>
+      Um historische Spuren, gesellschaftliche Strukturen und Entscheidungen, deren Folgen bis heute wirken.</p>
+      
+      <p>Die Bücher von Matthias Silberhain richten sich an Leserinnen und Leser, die bereit sind, genauer hinzusehen.</p>
+      
+      <p>An Menschen, die hinter Schlagzeilen blicken wollen, statt sie zu konsumieren. An alle, die verstehen möchten, wie Geschichte geschrieben wird und wer davon profitiert.</p>
+      
+      <p>Jedes Werk folgt einem klaren Anspruch: recherchiert, präzise und ohne Beschönigung.</p>
+      
+      <p>Nicht um zu provozieren, sondern um Klarheit zu schaffen.<br>
+      Nicht um zu belehren, sondern um Denkprozesse anzustoßen.</p>
+      
+      <p class="schluss">Wenn du Literatur suchst, die fordert statt unterhält, die Fragen stellt statt Antworten zu verkaufen, dann bist du hier richtig.</p>
     </div>
     
-    <!-- HAUPTTEXT -->
-    <div class="ueber-mich-content">
-      <p>
-        Mein Name ist <strong>Matthias Silberhain</strong>. In meinen Büchern setze ich mich mit Macht, Verantwortung und den oft unsichtbaren Mechanismen auseinander, die Geschichte, Politik und Gesellschaft prägen. Mich interessieren nicht die einfachen Erklärungen oder die bequem erzählten Oberflächen. Mich interessiert das, was darunterliegt: Zusammenhänge, Motive und die Folgen menschlichen Handelns.
-      </p>
-      
-      <p>
-        Ich schreibe über Themen, die unbequem sind. Über Strukturen, die selten offen benannt werden. Über historische und gesellschaftliche Entwicklungen, deren Auswirkungen bis in unsere Gegenwart reichen. Dabei geht es mir nicht darum, zu polarisieren oder zu provozieren, sondern darum, Klarheit zu schaffen. Wahrheit entsteht nicht durch Lautstärke, sondern durch Genauigkeit, Konsequenz und den Mut, Dinge auszusprechen.
-      </p>
-      
-      <div class="arbeit-methode">
-        <p>
-          Meine Texte entstehen aus <strong>intensiver Recherche, kritischer Analyse</strong> und persönlicher Auseinandersetzung mit den behandelten Themen. Ich trenne Fakten von Meinungen und kennzeichne, wo Interpretation beginnt. Diese Haltung prägt meinen Stil: sachlich, direkt und frei von unnötiger Dramatisierung. Leserinnen und Leser sollen nicht gelenkt, sondern befähigt werden, selbst zu denken.
-        </p>
-      </div>
-      
-      <p>
-        Ich schreibe nicht für den schnellen Konsum. Meine Bücher richten sich an Menschen, die bereit sind, genauer hinzusehen, Fragen zuzulassen und sich mit komplexen Inhalten auseinanderzusetzen. An Leser, die verstehen wollen, wie Macht wirkt, warum Geschichte wiederkehrt und welche Verantwortung daraus entsteht.
-      </p>
-      
-      <p>
-        Unter dem Namen <strong>Matthias Silberhain</strong> verfolge ich eine klare Linie: Literatur mit Substanz, Haltung und Tiefe. Bücher, die nicht beruhigen, sondern aufklären. Texte, die bleiben, weil sie etwas berühren und etwas fordern.
-      </p>
-      
-      <div class="abschnitt-schluss">
-        <p class="schluss-zitat">
-          Wenn du meine Bücher liest, erwarte keine einfachen Antworten. Erwarte Klarheit, Tiefe und die Einladung, selbst weiterzudenken.
-        </p>
-      </div>
-    </div>
-    
-    <!-- CTA Buttons -->
     <div class="cta-container">
       <a href="werke.html" class="silber-button">
-        <span>Meine Werke entdecken</span>
+        <span>Werke entdecken</span>
         <svg class="button-arrow" viewBox="0 0 24 24">
           <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
         </svg>
       </a>
-      <a href="kontakt.html" class="silber-button secondary">
-        <span>Kontakt aufnehmen</span>
+      <a href="ueber-mich.html" class="silber-button secondary">
+        <span>Über den Autor</span>
       </a>
+    </div>
+  </section>
+
+  <!-- ================= ZITAT SECTION ================= -->
+  <section class="zitat-section">
+    <div class="zitat-container">
+      <p class="zitat-text">"Die Wahrheit ist wie ein scharfes Schwert - sie trennt, um zu klären, nicht um zu verletzen."</p>
+      <p class="zitat-author">— Matthias Silberhain</p>
+    </div>
+  </section>
+
+  <!-- ================= NEUESTES WERK ================= -->
+  <section class="neuestes-werk">
+    <div class="werk-container">
+      <div class="werk-bild">
+        <div class="buch-cover">
+          <div class="buch-title">NEUESTES WERK</div>
+          <div class="buch-placeholder">
+            <span>Cover</span>
+            <span>erscheint</span>
+            <span>bald</span>
+          </div>
+        </div>
+      </div>
+      <div class="werk-info">
+        <h2 class="werk-ueberschrift">Das kommende Werk</h2>
+        <p class="werk-beschreibung">
+          Mein nächstes Buch widmet sich den unsichtbaren Machtstrukturen, die unsere Gesellschaft formen. Eine tiefgehende Analyse historischer und zeitgenössischer Mechanismen, die zeigt, wie Verantwortung gelebt und Macht hinterfragt werden muss.
+        </p>
+        <div class="werk-details">
+          <div class="detail-item">
+            <span class="detail-label">Genre:</span>
+            <span class="detail-value">Gesellschaftsanalyse / Politik</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Erscheinung:</span>
+            <span class="detail-value">In Vorbereitung</span>
+          </div>
+        </div>
+        <a href="werke.html" class="silber-button secondary">
+          <span>Alle Werke ansehen</span>
+        </a>
+      </div>
     </div>
   </section>
 </main>
@@ -429,99 +274,19 @@
 </footer>
 
 <!-- ================= JAVASCRIPT ================= -->
+<script src="assets/js/menu.js"></script>
+
 <script>
-// Dark/Light Mode Toggle
-document.addEventListener('DOMContentLoaded', function() {
-  const themeToggle = document.getElementById('themeToggle');
-  const body = document.body;
-  
-  // Prüfe gespeicherte Einstellung
-  const savedTheme = localStorage.getItem('theme');
-  if (savedTheme === 'dark') {
-    body.classList.remove('light-mode');
-    body.classList.add('dark-mode');
-  }
-  
-  // Toggle-Funktionalität
-  themeToggle.addEventListener('click', function() {
-    if (body.classList.contains('light-mode')) {
-      body.classList.remove('light-mode');
-      body.classList.add('dark-mode');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      body.classList.remove('dark-mode');
-      body.classList.add('light-mode');
-      localStorage.setItem('theme', 'light');
-    }
-  });
-  
-  // Mobile Menu Funktionalität
-  const burgerButton = document.getElementById('burger');
-  const navigation = document.getElementById('navigation');
-  const menuOverlay = document.getElementById('menuOverlay');
-  let isMenuOpen = false;
-  
-  if (burgerButton && navigation && menuOverlay) {
-    burgerButton.addEventListener('click', function(event) {
-      event.stopPropagation();
-      isMenuOpen = !isMenuOpen;
-      
-      // Navigation anzeigen/verstecken
-      navigation.classList.toggle('aktiv');
-      
-      // Burger-Animation
-      burgerButton.classList.toggle('aktiv');
-      
-      // Overlay anzeigen/verstecken
-      menuOverlay.classList.toggle('aktiv');
-      
-      // Body Scroll verhindern/erlauben
-      if (isMenuOpen) {
-        document.body.style.overflow = 'hidden';
-      } else {
-        document.body.style.overflow = '';
-      }
+// Preloader für index.html
+document.addEventListener("DOMContentLoaded", function() {
+  const preloader = document.getElementById("preloader");
+  if (preloader) {
+    window.addEventListener("load", function() {
+      setTimeout(function() {
+        preloader.style.opacity = "0";
+        preloader.style.visibility = "hidden";
+      }, 800);
     });
-    
-    // Menü schließen bei Klick auf Overlay
-    menuOverlay.addEventListener('click', function() {
-      navigation.classList.remove('aktiv');
-      burgerButton.classList.remove('aktiv');
-      menuOverlay.classList.remove('aktiv');
-      document.body.style.overflow = '';
-      isMenuOpen = false;
-    });
-    
-    // Menü schließen bei Klick auf Link
-    const navLinks = navigation.querySelectorAll('a');
-    navLinks.forEach(function(link) {
-      link.addEventListener('click', function() {
-        if (window.innerWidth <= 768) {
-          navigation.classList.remove('aktiv');
-          burgerButton.classList.remove('aktiv');
-          menuOverlay.classList.remove('aktiv');
-          document.body.style.overflow = '';
-          isMenuOpen = false;
-        }
-      });
-    });
-    
-    // Menü schließen bei Fenstergrößenänderung
-    window.addEventListener('resize', function() {
-      if (window.innerWidth > 768 && isMenuOpen) {
-        navigation.classList.remove('aktiv');
-        burgerButton.classList.remove('aktiv');
-        menuOverlay.classList.remove('aktiv');
-        document.body.style.overflow = '';
-        isMenuOpen = false;
-      }
-    });
-  }
-  
-  // Footer Jahr aktualisieren
-  const yearElement = document.getElementById('jahr');
-  if (yearElement) {
-    yearElement.textContent = new Date().getFullYear();
   }
 });
 </script>
