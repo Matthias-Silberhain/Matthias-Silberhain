@@ -386,3 +386,104 @@
 
 </body>
 </html>
+/* ==========================================================================
+   GLOBAL DARK MODE STYLES FÜR ALLE SEITEN
+   ========================================================================== */
+
+/* Dark Mode aktiv - Hintergrund Dunkelgrau */
+body.dark-mode {
+  background-color: #1a1a1a !important;
+}
+
+/* Alle Haupt-Container im Dark Mode */
+body.dark-mode .header,
+body.dark-mode .inhalt,
+body.dark-mode .social-section,
+body.dark-mode footer,
+body.dark-mode #preloader,
+body.dark-mode main,
+body.dark-mode section {
+  background-color: #1a1a1a !important;
+}
+
+/* Schriftfarben bleiben SILBER - nur Hintergrund ändert sich */
+body.dark-mode h1,
+body.dark-mode .social-title,
+body.dark-mode strong {
+  color: #e4e6ea !important;
+}
+
+body.dark-mode p,
+body.dark-mode .footer,
+body.dark-mode .social-name {
+  color: #b0b5bc !important;
+}
+
+/* Navigation bleibt silber */
+body.dark-mode .hauptnavigation a {
+  color: #d6d9de !important;
+}
+
+body.dark-mode .hauptnavigation a:hover {
+  color: #ffffff !important;
+}
+
+/* Lichtkanten im Dark Mode */
+body.dark-mode .lichtkante,
+body.dark-mode .footer-lichtkante {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(220, 225, 235, 0.7),
+    transparent
+  ) !important;
+  box-shadow: 0 0 15px rgba(220, 225, 235, 0.2) !important;
+}
+
+/* Dark Mode Toggle für alle Seiten */
+.dark-mode-toggle {
+  position: absolute;
+  top: 35px;
+  right: 20px;
+  background: transparent;
+  border: 1px solid rgba(200, 205, 215, 0.3);
+  color: #d6d9de;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  z-index: 1001;
+  padding: 0;
+  font-size: 0;
+}
+
+.dark-mode-toggle:hover {
+  color: #ffffff;
+  background: rgba(200, 205, 215, 0.1);
+  border-color: rgba(200, 205, 215, 0.6);
+  transform: scale(1.1);
+  box-shadow: 0 0 10px rgba(200, 205, 215, 0.2);
+}
+
+/* Responsive für alle Seiten */
+@media screen and (max-width: 768px) {
+  .dark-mode-toggle {
+    top: 25px;
+    right: 15px;
+    width: 36px;
+    height: 36px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .dark-mode-toggle {
+    top: 20px;
+    right: 10px;
+    width: 32px;
+    height: 32px;
+  }
+}
