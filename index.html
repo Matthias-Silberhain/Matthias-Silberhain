@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <title>Matthias Silberhain | Autor</title>
@@ -33,11 +33,20 @@
   </div>
 </div>
 
+<!-- ================= THEME SWITCH ================= -->
+<div class="theme-switch-wrapper">
+  <label class="theme-switch" for="theme-checkbox">
+    <input type="checkbox" id="theme-checkbox" aria-label="Dark/Light Mode umschalten">
+    <div class="slider round"></div>
+  </label>
+  <span class="theme-label">Dark Mode</span>
+</div>
+
 <!-- ================= HEADER ================= -->
 <header class="header">
   <img src="assets/images/logo.png" alt="Matthias Silberhain Logo" class="logo">
   
-  <div class="burger" id="burger">
+  <div class="burger" id="burger" aria-label="Menü öffnen">
     <span></span>
     <span></span>
     <span></span>
@@ -156,6 +165,13 @@
   </div>
 </section>  
 <div class="lichtkante"></div>
+
+<!-- ================= BACK TO TOP BUTTON ================= -->
+<button id="backToTop" aria-label="Nach oben scrollen" class="back-to-top">
+  <svg viewBox="0 0 24 24">
+    <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
+  </svg>
+</button>
 
 <!-- ================= FOOTER ================= -->
 <footer class="footer">
