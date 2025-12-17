@@ -6,7 +6,7 @@
 }
 
 :root {
-    --light-bg: #e8e8e8; /* Dunkleres Grau */
+    --light-bg: #e8e8e8;
     --light-text: #2c3e50;
     --light-accent: #34495e;
     --light-border: #d0d0d0;
@@ -31,7 +31,8 @@ body {
     color: var(--light-text);
     transition: var(--transition);
     min-height: 100vh;
-    position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
 body.dark-mode {
@@ -55,11 +56,20 @@ strong {
     color: inherit;
 }
 
+/* ================= LAYOUT CONTAINER ================= */
+.inhalt {
+    flex: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 0 2rem;
+}
+
 /* ================= DARK/LIGHT TOGGLE ================= */
 .theme-toggle {
     position: fixed;
-    top: 20px;
-    right: 20px;
+    top: 25px;
+    right: 25px;
     z-index: 1002;
     background: rgba(255, 255, 255, 0.9);
     border: 1px solid var(--light-border);
@@ -110,25 +120,33 @@ body.dark-mode .theme-toggle .moon-icon {
     display: none;
 }
 
-/* ================= HEADER & NAVIGATION ================= */
+/* ================= HEADER & NAVIGATION - VERBESSERT ================= */
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1.5rem 2rem;
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 0.97);
     position: relative;
     z-index: 1001;
     transition: var(--transition);
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
 }
 
 body.dark-mode .header {
-    background: rgba(20, 20, 20, 0.95);
+    background: rgba(20, 20, 20, 0.97);
 }
 
 .logo {
-    height: 60px;
+    height: 50px;
     width: auto;
+    transition: var(--transition);
+}
+
+.logo:hover {
+    transform: scale(1.05);
 }
 
 .burger {
@@ -139,6 +157,7 @@ body.dark-mode .header {
     height: 20px;
     cursor: pointer;
     z-index: 1002;
+    position: relative;
 }
 
 .burger span {
@@ -147,6 +166,7 @@ body.dark-mode .header {
     width: 100%;
     background: var(--light-text);
     transition: var(--transition);
+    transform-origin: center;
 }
 
 body.dark-mode .burger span {
@@ -167,7 +187,8 @@ body.dark-mode .burger span {
 
 .hauptnavigation {
     display: flex;
-    gap: 2rem;
+    gap: 2.5rem;
+    align-items: center;
 }
 
 .hauptnavigation a {
@@ -175,9 +196,11 @@ body.dark-mode .burger span {
     color: var(--light-text);
     font-family: 'Cinzel', serif;
     font-size: 1rem;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 0;
     position: relative;
     transition: var(--transition);
+    font-weight: 500;
+    letter-spacing: 0.5px;
 }
 
 body.dark-mode .hauptnavigation a {
@@ -193,17 +216,16 @@ body.dark-mode .hauptnavigation a {
     content: '';
     position: absolute;
     bottom: 0;
-    left: 50%;
+    left: 0;
     width: 0;
-    height: 1px;
+    height: 2px;
     background: var(--silver);
     transition: var(--transition);
-    transform: translateX(-50%);
 }
 
 .hauptnavigation a:hover::after,
 .hauptnavigation a.active::after {
-    width: 80%;
+    width: 100%;
 }
 
 /* ================= LICHTKANTE ================= */
@@ -214,7 +236,9 @@ body.dark-mode .hauptnavigation a {
         var(--silver) 20%, 
         var(--silver) 80%, 
         transparent 100%);
-    margin: 0 2rem;
+    margin: 0 auto;
+    max-width: 1200px;
+    width: calc(100% - 4rem);
 }
 
 body.dark-mode .lichtkante {
@@ -225,64 +249,101 @@ body.dark-mode .lichtkante {
         transparent 100%);
 }
 
-/* ================= HERO SECTION (INDEX) ================= */
+/* ================= HERO SECTION (INDEX) - NEUER TEXT ================= */
 .hero {
-    padding: 6rem 2rem;
+    padding: 5rem 0 4rem;
     text-align: center;
-    background: linear-gradient(135deg, 
-        rgba(232, 232, 232, 0.9) 0%,
-        rgba(240, 240, 240, 0.9) 100%);
-    margin: 2rem 2rem 0;
-    border-radius: 10px;
-    transition: var(--transition);
-}
-
-body.dark-mode .hero {
-    background: linear-gradient(135deg, 
-        rgba(20, 20, 20, 0.9) 0%,
-        rgba(30, 30, 30, 0.9) 100%);
+    margin: 0 auto;
+    max-width: 800px;
 }
 
 .hero-title {
-    font-size: 3.5rem;
-    margin-bottom: 0.5rem;
-    letter-spacing: 2px;
+    font-size: 2.8rem;
+    margin-bottom: 2rem;
+    letter-spacing: 1px;
+    line-height: 1.3;
+    color: var(--light-accent);
 }
 
-.hero-silber {
-    color: var(--silver);
-    display: block;
+body.dark-mode .hero-title {
+    color: var(--dark-accent);
 }
 
 .hero-subtitle {
     font-size: 1.3rem;
     margin-bottom: 2rem;
-    color: var(--light-accent);
+    color: var(--light-text);
     font-style: italic;
+    line-height: 1.6;
 }
 
 body.dark-mode .hero-subtitle {
+    color: var(--dark-text);
+}
+
+.hero-text {
+    text-align: left;
+    font-size: 1.15rem;
+    line-height: 1.8;
+    margin-bottom: 3rem;
+}
+
+.hero-text p {
+    margin-bottom: 1.8rem;
+}
+
+.hero-text .einleitung {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 2.5rem;
+    color: var(--light-accent);
+    text-align: center;
+    font-style: italic;
+}
+
+body.dark-mode .hero-text .einleitung {
     color: var(--dark-accent);
+}
+
+.hero-text .schluss {
+    font-style: italic;
+    margin-top: 2.5rem;
+    padding-left: 1.5rem;
+    border-left: 3px solid var(--silver);
+    color: var(--light-accent);
+}
+
+body.dark-mode .hero-text .schluss {
+    color: var(--dark-accent);
+    border-left-color: var(--dark-accent);
 }
 
 /* ================= ZITAT SECTION (INDEX) ================= */
 .zitat-section {
-    padding: 3rem 2rem;
-    margin: 0 2rem;
+    padding: 3rem 0;
+    margin: 2rem auto 0;
+    max-width: 800px;
 }
 
 .zitat-container {
     text-align: center;
-    padding: 2rem;
-    border-left: 2px solid var(--silver);
-    border-right: 2px solid var(--silver);
+    padding: 2.5rem;
+    border: 1px solid var(--light-border);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+body.dark-mode .zitat-container {
+    border-color: var(--dark-border);
+    background: rgba(0, 0, 0, 0.1);
 }
 
 .zitat-text {
     font-size: 1.4rem;
     font-style: italic;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
     color: var(--light-text);
+    line-height: 1.6;
 }
 
 body.dark-mode .zitat-text {
@@ -292,39 +353,53 @@ body.dark-mode .zitat-text {
 .zitat-author {
     font-family: 'Cinzel', serif;
     color: var(--silver);
+    font-size: 1.1rem;
 }
 
 /* ================= NEUESTES WERK (INDEX) ================= */
 .neuestes-werk {
-    padding: 3rem 2rem;
-    margin: 0 2rem;
+    padding: 4rem 0;
+    margin: 0 auto;
+    max-width: 1200px;
 }
 
 .werk-container {
     display: grid;
     grid-template-columns: 1fr 2fr;
-    gap: 3rem;
+    gap: 4rem;
     align-items: center;
 }
 
 .buch-cover {
     background: linear-gradient(135deg, var(--silver-light) 0%, var(--silver-dark) 100%);
-    padding: 2rem;
-    border-radius: 10px;
+    padding: 2.5rem 2rem;
+    border-radius: 12px;
     text-align: center;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
     transition: var(--transition);
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 body.dark-mode .buch-cover {
     background: linear-gradient(135deg, #333 0%, #444 100%);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+}
+
+.buch-cover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
 }
 
 .buch-title {
     font-family: 'Cinzel', serif;
     color: var(--light-text);
-    margin-bottom: 1rem;
-    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    font-size: 1.3rem;
+    letter-spacing: 1px;
 }
 
 body.dark-mode .buch-title {
@@ -332,11 +407,12 @@ body.dark-mode .buch-title {
 }
 
 .buch-placeholder {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     color: var(--light-text);
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.8rem;
+    font-family: 'Cinzel', serif;
 }
 
 body.dark-mode .buch-placeholder {
@@ -344,32 +420,41 @@ body.dark-mode .buch-placeholder {
 }
 
 .werk-ueberschrift {
-    font-size: 2rem;
-    margin-bottom: 1rem;
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+    color: var(--light-accent);
+}
+
+body.dark-mode .werk-ueberschrift {
+    color: var(--dark-accent);
 }
 
 .werk-beschreibung {
-    font-size: 1.1rem;
-    margin-bottom: 1.5rem;
+    font-size: 1.15rem;
+    margin-bottom: 2rem;
+    line-height: 1.7;
 }
 
 .werk-details {
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
 }
 
 .detail-item {
     display: flex;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.8rem;
+    align-items: baseline;
 }
 
 .detail-label {
     font-weight: 600;
-    min-width: 100px;
+    min-width: 120px;
     color: var(--silver);
+    font-family: 'Cinzel', serif;
 }
 
 .detail-value {
     color: var(--light-text);
+    flex: 1;
 }
 
 body.dark-mode .detail-value {
@@ -378,7 +463,7 @@ body.dark-mode .detail-value {
 
 /* ================= ÜBER MICH SECTION ================= */
 .ueber-mich {
-    padding: 4rem 2rem;
+    padding: 4rem 0;
     margin: 0 auto;
     max-width: 800px;
 }
@@ -388,24 +473,38 @@ body.dark-mode .detail-value {
     text-align: center;
     margin-bottom: 3rem;
     color: var(--light-text);
-    padding-bottom: 1rem;
-    border-bottom: 1px solid var(--silver);
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid var(--silver);
+    position: relative;
 }
 
 body.dark-mode .credo-headline {
     color: var(--dark-text);
 }
 
+.credo-headline::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 2px;
+    background: var(--silver);
+}
+
 .credo-container {
     margin-bottom: 3rem;
-    padding: 2rem;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
+    padding: 2.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    border: 1px solid var(--light-border);
     transition: var(--transition);
 }
 
 body.dark-mode .credo-container {
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.1);
+    border-color: var(--dark-border);
 }
 
 .credo-quote {
@@ -426,6 +525,7 @@ body.dark-mode .credo-container {
     position: absolute;
     left: -20px;
     top: -20px;
+    font-family: 'EB Garamond', serif;
 }
 
 .quote-mark-right {
@@ -435,93 +535,135 @@ body.dark-mode .credo-container {
     position: absolute;
     right: -20px;
     bottom: -40px;
+    font-family: 'EB Garamond', serif;
 }
 
 .credo-text {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     font-style: italic;
     text-align: center;
     padding: 0 2rem;
-    color: var(--light-text);
+    color: var(--light-accent);
+    line-height: 1.6;
 }
 
 body.dark-mode .credo-text {
-    color: var(--dark-text);
+    color: var(--dark-accent);
 }
 
 .credo-subtitle {
     text-align: center;
-    font-size: 1.1rem;
-    color: var(--light-accent);
-    font-style: italic;
+    font-size: 1.15rem;
+    color: var(--light-text);
+    line-height: 1.6;
 }
 
 body.dark-mode .credo-subtitle {
-    color: var(--dark-accent);
+    color: var(--dark-text);
 }
 
 .ueber-mich-content {
     line-height: 1.8;
-    font-size: 1.1rem;
+    font-size: 1.15rem;
 }
 
-.arbeit-methode {
-    padding: 1.5rem;
+.ueber-mich-content p.break-line {
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.ueber-mich-content p.small-margin {
+    margin-bottom: 0.8rem;
+}
+
+.ueber-mich-content .highlight-paragraph {
+    font-size: 1.25rem;
+    line-height: 1.8;
     margin: 2rem 0;
+    padding-left: 1.5rem;
     border-left: 3px solid var(--silver);
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 0 10px 10px 0;
-    transition: var(--transition);
+    color: var(--light-accent);
 }
 
-body.dark-mode .arbeit-methode {
-    background: rgba(0, 0, 0, 0.1);
+body.dark-mode .ueber-mich-content .highlight-paragraph {
+    color: var(--dark-accent);
+    border-left-color: var(--dark-accent);
+}
+
+.text-block {
+    margin-bottom: 2.5rem;
+}
+
+.text-block:last-child {
+    margin-bottom: 0;
+}
+
+.attention-line {
+    font-style: italic;
+    color: var(--light-accent);
+    margin: 1.5rem 0;
+    padding-left: 1.5rem;
+    border-left: 2px solid var(--silver);
+}
+
+body.dark-mode .attention-line {
+    color: var(--dark-accent);
+    border-left-color: var(--dark-accent);
+}
+
+.ueber-mich-intro {
+    font-size: 1.18rem;
+    line-height: 1.8;
 }
 
 .abschnitt-schluss {
-    margin-top: 3rem;
-    padding-top: 2rem;
-    border-top: 1px solid var(--silver);
+    margin-top: 4rem;
+    padding-top: 2.5rem;
+    border-top: 2px solid var(--silver);
 }
 
 .schluss-zitat {
-    font-size: 1.2rem;
+    font-size: 1.25rem;
     font-style: italic;
     text-align: center;
     color: var(--light-accent);
-    padding: 1rem;
+    padding: 2rem;
     background: rgba(255, 255, 255, 0.05);
-    border-radius: 10px;
+    border-radius: 12px;
+    border: 1px solid var(--light-border);
 }
 
 body.dark-mode .schluss-zitat {
     color: var(--dark-accent);
     background: rgba(0, 0, 0, 0.1);
+    border-color: var(--dark-border);
 }
 
 /* ================= CTA BUTTONS ================= */
 .cta-container {
     display: flex;
-    gap: 1rem;
+    gap: 1.5rem;
     justify-content: center;
-    margin-top: 3rem;
+    margin-top: 4rem;
     flex-wrap: wrap;
 }
 
 .silber-button {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    padding: 0.8rem 1.5rem;
+    gap: 0.8rem;
+    padding: 1rem 2rem;
     background: linear-gradient(135deg, var(--silver-light) 0%, var(--silver-dark) 100%);
     color: var(--light-text);
     text-decoration: none;
     border: 1px solid var(--light-border);
-    border-radius: 5px;
+    border-radius: 6px;
     font-family: 'Cinzel', serif;
-    font-size: 1rem;
+    font-size: 1.05rem;
     transition: var(--transition);
     cursor: pointer;
+    min-width: 200px;
+    justify-content: center;
 }
 
 body.dark-mode .silber-button {
@@ -531,47 +673,69 @@ body.dark-mode .silber-button {
 }
 
 .silber-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
 }
 
 .silber-button.secondary {
     background: transparent;
-    border: 1px solid var(--silver);
+    border: 2px solid var(--silver);
     color: var(--silver);
 }
 
 .silber-button.secondary:hover {
     background: rgba(192, 192, 192, 0.1);
+    border-color: var(--silver-light);
 }
 
 .button-arrow {
     width: 20px;
     height: 20px;
     fill: currentColor;
+    transition: transform 0.3s ease;
+}
+
+.silber-button:hover .button-arrow {
+    transform: translateX(3px);
 }
 
 /* ================= SOCIAL MEDIA ================= */
 .social-section {
-    padding: 3rem 2rem;
+    padding: 4rem 0;
     text-align: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
 }
 
 .social-title {
-    font-size: 1.5rem;
-    margin-bottom: 2rem;
+    font-size: 1.8rem;
+    margin-bottom: 3rem;
     color: var(--light-text);
+    position: relative;
+    display: inline-block;
 }
 
 body.dark-mode .social-title {
     color: var(--dark-text);
 }
 
+.social-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 2px;
+    background: var(--silver);
+}
+
 .social-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 1.5rem;
-    max-width: 800px;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 2rem;
+    max-width: 900px;
     margin: 0 auto;
 }
 
@@ -580,8 +744,8 @@ body.dark-mode .social-title {
     flex-direction: column;
     align-items: center;
     text-decoration: none;
-    padding: 1rem;
-    border-radius: 10px;
+    padding: 1.5rem 1rem;
+    border-radius: 12px;
     transition: var(--transition);
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid transparent;
@@ -592,53 +756,81 @@ body.dark-mode .social-link {
 }
 
 .social-link:hover {
-    transform: translateY(-5px);
+    transform: translateY(-8px);
     background: rgba(255, 255, 255, 0.1);
     border-color: var(--silver);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
 }
 
 body.dark-mode .social-link:hover {
     background: rgba(0, 0, 0, 0.2);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
 }
 
 .social-icon-wrapper {
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+    transition: var(--transition);
+}
+
+.social-link:hover .social-icon-wrapper {
+    background: rgba(255, 255, 255, 0.1);
+    transform: scale(1.1);
 }
 
 .social-icon {
-    width: 30px;
-    height: 30px;
+    width: 28px;
+    height: 28px;
     fill: var(--silver);
+    transition: var(--transition);
+}
+
+.social-link:hover .social-icon {
+    fill: var(--silver-light);
+    transform: scale(1.1);
 }
 
 .social-name {
     font-family: 'Cinzel', serif;
     color: var(--light-text);
-    font-size: 0.9rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
 }
 
 body.dark-mode .social-name {
     color: var(--dark-text);
 }
 
-/* ================= FOOTER ================= */
+/* ================= FOOTER - VERBESSERT ================= */
 .footer {
     text-align: center;
-    padding: 2rem 0;
+    padding: 2.5rem 0;
     position: relative;
     margin-top: 4rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-top: 1px solid var(--light-border);
+    width: 100%;
+}
+
+body.dark-mode .footer {
+    background: rgba(0, 0, 0, 0.1);
+    border-top-color: var(--dark-border);
 }
 
 .footer p {
     font-size: 14px;
     margin: 0;
-    padding: 10px 0;
+    padding: 0;
     color: #777;
+    font-family: 'Cinzel', serif;
+    letter-spacing: 0.5px;
 }
 
 body.dark-mode .footer p {
@@ -663,19 +855,30 @@ body.dark-mode .footer p {
 }
 
 /* ================= RESPONSIVE DESIGN ================= */
+@media (max-width: 1024px) {
+    .inhalt {
+        padding: 0 1.5rem;
+    }
+    
+    .header {
+        padding: 1.5rem 1.5rem;
+    }
+    
+    .werk-container {
+        gap: 3rem;
+    }
+}
+
 @media (max-width: 768px) {
     .burger {
         display: flex;
-        position: absolute;
-        right: 2rem;
-        top: 2rem;
     }
     
     .hauptnavigation {
         position: fixed;
         top: 0;
         left: -100%;
-        width: 80%;
+        width: 85%;
         height: 100vh;
         background: var(--light-bg);
         flex-direction: column;
@@ -683,6 +886,7 @@ body.dark-mode .footer p {
         transition: left 0.3s ease;
         z-index: 1000;
         box-shadow: 5px 0 15px rgba(0,0,0,0.1);
+        gap: 0;
     }
     
     body.dark-mode .hauptnavigation {
@@ -694,11 +898,12 @@ body.dark-mode .footer p {
     }
     
     .hauptnavigation a {
-        padding: 15px;
+        padding: 18px 15px;
         margin: 5px 0;
         border-bottom: 1px solid var(--light-border);
         width: 100%;
         text-align: left;
+        font-size: 1.1rem;
     }
     
     body.dark-mode .hauptnavigation a {
@@ -710,50 +915,49 @@ body.dark-mode .footer p {
     }
     
     .hero-title {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
     }
     
     .hero-subtitle {
         font-size: 1.1rem;
     }
     
+    .hero-text {
+        font-size: 1.1rem;
+    }
+    
+    .hero-text .einleitung {
+        font-size: 1.3rem;
+    }
+    
     .werk-container {
         grid-template-columns: 1fr;
-        gap: 2rem;
+        gap: 3rem;
     }
     
     .credo-headline {
-        font-size: 1.8rem;
+        font-size: 1.9rem;
     }
     
     .social-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
     }
     
     .theme-toggle {
-        top: 70px;
+        top: 80px;
         right: 20px;
     }
     
     .lichtkante {
-        margin: 0 1rem;
+        width: calc(100% - 2rem);
     }
     
     .hero,
     .zitat-section,
-    .neuestes-werk {
-        margin: 0 1rem;
-        padding: 2rem 1rem;
-    }
-    
+    .neuestes-werk,
     .ueber-mich {
-        padding: 2rem 1rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .social-grid {
-        grid-template-columns: 1fr;
+        padding: 3rem 0;
     }
     
     .cta-container {
@@ -763,10 +967,37 @@ body.dark-mode .footer p {
     
     .silber-button {
         width: 100%;
-        justify-content: center;
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .social-grid {
+        grid-template-columns: 1fr;
+        max-width: 300px;
     }
     
     .hero-title {
-        font-size: 2rem;
+        font-size: 1.9rem;
+    }
+    
+    .credo-headline {
+        font-size: 1.7rem;
+    }
+    
+    .header {
+        padding: 1.2rem 1rem;
+    }
+    
+    .logo {
+        height: 45px;
+    }
+    
+    .inhalt {
+        padding: 0 1rem;
+    }
+    
+    .lichtkante {
+        width: calc(100% - 1rem);
     }
 }
