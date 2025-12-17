@@ -94,15 +94,4 @@ document.addEventListener('DOMContentLoaded', function() {
     if (yearElement) {
         yearElement.textContent = new Date().getFullYear();
     }
-    
-    // Preloader für index.html
-    const preloader = document.getElementById('preloader');
-    if (preloader) {
-        window.addEventListener('load', function() {
-            setTimeout(function() {
-                preloader.style.opacity = '0';
-                preloader.style.visibility = 'hidden';
-            }, 800);
-        });
-    }
 });
