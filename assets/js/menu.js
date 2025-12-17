@@ -1,4 +1,4 @@
-/ ============================================================================
+// ============================================================================
 // MATTHIAS SILBERHAIN - HAUPT JAVASCRIPT
 // ============================================================================
 
@@ -10,15 +10,32 @@ document.addEventListener("DOMContentLoaded", function() {
   
   const preloader = document.getElementById("preloader");
   const typeText = document.getElementById("type-text");
-  const cursor = document.querySelector(".cursor");
+  
+  function hidePreloader() {
+    // Fade-out Effekt hinzufügen
+    preloader.classList.add('fade-out');
+    
+    // Nach Fade-out komplett ausblenden
+    setTimeout(() => {
+      preloader.style.display = 'none';
+      document.body.style.overflow = 'visible';
+    }, 500); // Gleiche Zeit wie CSS transition
+    
+    // Event für andere Scripts
+    window.dispatchEvent(new CustomEvent("preloaderComplete"));
+  }
   
   // Prüfen ob Preloader-Elemente existieren
-  if (preloader && typeText && cursor) {
+  if (preloader && typeText) {
+    
+    // Standard: Preloader anzeigen
+    preloader.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
     
     const text = "MATTHIAS SILBERHAIN";
     let charIndex = 0;
-    const typingSpeed = 90; // Geschwindigkeit in Millisekunden
-    const minDisplayTime = 2000; // Mindestzeit in ms
+    const typingSpeed = 100; // Geschwindigkeit in Millisekunden
+    const minDisplayTime = 1500; // Mindestzeit in ms
     
     // Startzeit speichern für Mindest-Anzeigezeit
     const startTime = Date.now();
@@ -33,41 +50,27 @@ document.addEventListener("DOMContentLoaded", function() {
         // Nächstes Zeichen mit Verzögerung
         setTimeout(typeWriter, typingSpeed);
       } else {
-        // Text vollständig - Cursor stoppen
-        cursor.style.animation = "none";
-        cursor.style.opacity = "0";
-        
-        // Mindest-Anzeigezeit berechnen
+        // Text vollständig - Mindest-Anzeigezeit berechnen
         const elapsedTime = Date.now() - startTime;
         const remainingTime = Math.max(0, minDisplayTime - elapsedTime);
         
         // Preloader nach Mindestzeit ausblenden
         setTimeout(function() {
-          // Sanftes Ausblenden
-          preloader.style.opacity = "0";
-          preloader.style.transition = "opacity 0.6s ease";
-          
-          // Nach Fade-Out komplett entfernen
-          setTimeout(function() {
-            preloader.style.display = "none";
-            
-            // Event für andere Scripts
-            window.dispatchEvent(new CustomEvent("preloaderComplete"));
-          }, 600);
-          
-        }, remainingTime + 500); // +500ms Pause nach Textende
+          hidePreloader();
+        }, remainingTime);
       }
     }
     
     // Typewriter mit kurzer Verzögerung starten
-    setTimeout(typeWriter, 400);
+    setTimeout(typeWriter, 300);
     
   } else {
     // Fallback: Preloader sofort ausblenden wenn Elemente fehlen
     console.warn("Preloader-Elemente nicht gefunden");
     if (preloader) {
-      preloader.style.display = "none";
+      preloader.style.display = 'none';
     }
+    document.body.style.overflow = 'visible';
   }
   
   // ========================================================================
@@ -89,24 +92,12 @@ document.addEventListener("DOMContentLoaded", function() {
       
       // Navigation ein-/ausblenden
       navigation.classList.toggle("aktiv");
+      burgerButton.classList.toggle("aktiv");
       
-      // Burger-Animation
-      const spans = burgerButton.querySelectorAll("span");
       if (isMenuOpen) {
-        // Menü geöffnet - X-Form
-        spans[0].style.transform = "rotate(45deg) translate(6px, 6px)";
-        spans[1].style.opacity = "0";
-        spans[2].style.transform = "rotate(-45deg) translate(6px, -6px)";
-        
         // Body-Scroll sperren
         document.body.style.overflow = "hidden";
-        
       } else {
-        // Menü geschlossen - Burger-Form
-        spans[0].style.transform = "none";
-        spans[1].style.opacity = "1";
-        spans[2].style.transform = "none";
-        
         // Body-Scroll freigeben
         document.body.style.overflow = "";
       }
@@ -121,12 +112,7 @@ document.addEventListener("DOMContentLoaded", function() {
       link.addEventListener("click", function() {
         if (window.innerWidth <= 768) {
           navigation.classList.remove("aktiv");
-          
-          // Burger zurücksetzen
-          const spans = burgerButton.querySelectorAll("span");
-          spans[0].style.transform = "none";
-          spans[1].style.opacity = "1";
-          spans[2].style.transform = "none";
+          burgerButton.classList.remove("aktiv");
           
           isMenuOpen = false;
           burgerButton.setAttribute("aria-expanded", "false");
@@ -142,12 +128,7 @@ document.addEventListener("DOMContentLoaded", function() {
           !burgerButton.contains(event.target)) {
         
         navigation.classList.remove("aktiv");
-        
-        // Burger zurücksetzen
-        const spans = burgerButton.querySelectorAll("span");
-        spans[0].style.transform = "none";
-        spans[1].style.opacity = "1";
-        spans[2].style.transform = "none";
+        burgerButton.classList.remove("aktiv");
         
         isMenuOpen = false;
         burgerButton.setAttribute("aria-expanded", "false");
@@ -159,12 +140,7 @@ document.addEventListener("DOMContentLoaded", function() {
     document.addEventListener("keydown", function(event) {
       if (isMenuOpen && event.key === "Escape") {
         navigation.classList.remove("aktiv");
-        
-        // Burger zurücksetzen
-        const spans = burgerButton.querySelectorAll("span");
-        spans[0].style.transform = "none";
-        spans[1].style.opacity = "1";
-        spans[2].style.transform = "none";
+        burgerButton.classList.remove("aktiv");
         
         isMenuOpen = false;
         burgerButton.setAttribute("aria-expanded", "false");
@@ -176,12 +152,7 @@ document.addEventListener("DOMContentLoaded", function() {
     window.addEventListener("resize", function() {
       if (window.innerWidth > 768 && isMenuOpen) {
         navigation.classList.remove("aktiv");
-        
-        // Burger zurücksetzen
-        const spans = burgerButton.querySelectorAll("span");
-        spans[0].style.transform = "none";
-        spans[1].style.opacity = "1";
-        spans[2].style.transform = "none";
+        burgerButton.classList.remove("aktiv");
         
         isMenuOpen = false;
         burgerButton.setAttribute("aria-expanded", "false");
@@ -224,11 +195,6 @@ document.addEventListener("DOMContentLoaded", function() {
             top: targetPosition - headerHeight - 20,
             behavior: "smooth"
           });
-          
-          // URL ohne Seitenwechsel aktualisieren
-          if (history.pushState) {
-            history.pushState(null, null, targetId);
-          }
         }
       }
     });
@@ -280,6 +246,19 @@ document.addEventListener("DOMContentLoaded", function() {
 window.addEventListener("load", function() {
   // Zusätzliche Initialisierung nach vollständigem Laden
   console.log("Alle Ressourcen geladen");
+  
+  // Fallback: Falls Preloader noch sichtbar ist, nach 4 Sekunden ausblenden
+  setTimeout(() => {
+    const preloader = document.getElementById('preloader');
+    if (preloader && preloader.style.display !== 'none') {
+      console.log('Fallback: Preloader manuell ausgeblendet');
+      preloader.classList.add('fade-out');
+      setTimeout(() => {
+        preloader.style.display = 'none';
+        document.body.style.overflow = 'visible';
+      }, 500);
+    }
+  }, 4000);
   
   // Service Worker Registrierung (optional für PWA)
   if ("serviceWorker" in navigator && window.location.protocol === "https:") {
