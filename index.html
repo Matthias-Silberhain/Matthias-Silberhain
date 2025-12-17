@@ -33,8 +33,10 @@
       justify-content: center;
       border-radius: 50%;
       transition: all 0.3s ease;
-      z-index: 1001; /* ÜBER dem Burger-Menü */
+      z-index: 1001;
       padding: 0;
+      font-size: 0;
+      -webkit-tap-highlight-color: transparent;
     }
     
     .dark-mode-toggle:hover {
@@ -45,11 +47,16 @@
       box-shadow: 0 0 10px rgba(200, 205, 215, 0.2);
     }
     
+    .dark-mode-toggle:focus {
+      outline: none;
+    }
+    
     .moon-icon, .sun-icon {
       width: 20px;
       height: 20px;
       fill: currentColor;
       transition: all 0.3s ease;
+      display: block;
     }
     
     .sun-icon {
@@ -64,6 +71,30 @@
     body.dark-mode .sun-icon {
       display: block;
     }
+    
+    /* RESPONSIVE ANPASSUNGEN FÜR DARK MODE TOGGLE */
+    @media screen and (max-width: 768px) {
+      .dark-mode-toggle {
+        top: 25px;
+        right: 15px;
+        width: 36px;
+        height: 36px;
+      }
+    }
+    
+    @media screen and (max-width: 480px) {
+      .dark-mode-toggle {
+        top: 20px;
+        right: 10px;
+        width: 32px;
+        height: 32px;
+      }
+      
+      .moon-icon, .sun-icon {
+        width: 18px;
+        height: 18px;
+      }
+    }
   </style>
 </head>
 
@@ -72,7 +103,10 @@
 <!-- ================= PRELOADER ================= -->
 <div id="preloader">
   <div class="preloader-inner">
+    <!-- LOGO - ABSOLUT POSITIONIERT -->
     <img src="assets/images/logo.png" alt="Matthias Silberhain Logo" class="preloader-logo">
+    
+    <!-- TEXT-CONTAINER - GETRENNT VOM LOGO -->
     <div class="text-container">
       <div class="preloader-text">
         <span id="type-text"></span><span class="cursor">|</span>
@@ -151,6 +185,7 @@
 </main>
 
 <!-- ================= SOCIAL MEDIA ================= -->
+<!-- ❌ KEINE FEINEN STRICHE/BORDERS MEHR -->
 <section class="social-section">
   <h3 class="social-title">Folgen Sie den Gedanken</h3>
   <div class="social-grid">
@@ -228,6 +263,7 @@
 
 <!-- ================= FOOTER ================= -->
 <footer class="footer">
+  <!-- ✅ DICKE LICHTKANTE IM FOOTER - BLEIBT -->
   <div class="footer-lichtkante"></div>
   <p>© <span id="jahr"></span> Matthias Silberhain</p>
 </footer>
@@ -235,44 +271,117 @@
 <!-- ================= JAVASCRIPT ================= -->
 <script src="assets/js/menu.js"></script>
 
-<!-- Dark Mode JavaScript -->
+<!-- Dark Mode JavaScript - UNIVERSAL KOMPATIBEL -->
 <script>
-  // Dark Mode Funktionen
-  document.addEventListener('DOMContentLoaded', function() {
-    const darkModeToggle = document.getElementById('darkModeToggle');
-    const body = document.body;
-    
-    // Prüfe gespeicherte Einstellung
-    const savedTheme = localStorage.getItem('ms-theme');
-    
-    // Initialisiere Theme
-    if (savedTheme === 'light') {
-      setLightMode();
-    } else {
-      setDarkMode(); // Default ist Dark Mode
+// UNIVERSAL DARK MODE SCRIPT - FUNKTIONIERT IN ALLEN BROWSERN
+(function() {
+  'use strict';
+  
+  // Prüfe ob localStorage verfügbar ist
+  function isLocalStorageAvailable() {
+    var test = 'test';
+    try {
+      localStorage.setItem(test, test);
+      localStorage.removeItem(test);
+      return true;
+    } catch(e) {
+      return false;
     }
+  }
+  
+  // Theme anwenden
+  function applyTheme(theme) {
+    var body = document.body;
+    var toggle = document.getElementById('darkModeToggle');
     
-    // Event Listener für Toggle
-    if (darkModeToggle) {
-      darkModeToggle.addEventListener('click', function() {
-        if (body.classList.contains('dark-mode')) {
-          setLightMode();
-        } else {
-          setDarkMode();
+    if (!toggle) return;
+    
+    var moonIcon = toggle.querySelector('.moon-icon');
+    var sunIcon = toggle.querySelector('.sun-icon');
+    
+    if (theme === 'dark') {
+      body.classList.add('dark-mode');
+      if (moonIcon) moonIcon.style.display = 'none';
+      if (sunIcon) sunIcon.style.display = 'block';
+    } else {
+      body.classList.remove('dark-mode');
+      if (moonIcon) moonIcon.style.display = 'block';
+      if (sunIcon) sunIcon.style.display = 'none';
+    }
+  }
+  
+  // Theme speichern
+  function saveTheme(theme) {
+    if (isLocalStorageAvailable()) {
+      try {
+        localStorage.setItem('ms-theme', theme);
+      } catch(e) {
+        console.warn('Konnte Theme nicht speichern:', e);
+      }
+    }
+  }
+  
+  // Theme laden
+  function loadTheme() {
+    if (isLocalStorageAvailable()) {
+      try {
+        return localStorage.getItem('ms-theme') || 'light';
+      } catch(e) {
+        return 'light';
+      }
+    }
+    return 'light';
+  }
+  
+  // Dark Mode umschalten
+  function toggleDarkMode() {
+    var currentTheme = loadTheme();
+    var newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    
+    saveTheme(newTheme);
+    applyTheme(newTheme);
+    
+    console.log('Theme geändert zu:', newTheme);
+  }
+  
+  // Initialisierung
+  function initDarkMode() {
+    // Theme laden und anwenden
+    var savedTheme = loadTheme();
+    applyTheme(savedTheme);
+    
+    // Event Listener für Toggle Button
+    var toggle = document.getElementById('darkModeToggle');
+    if (toggle) {
+      // Click Event (alle Browser)
+      toggle.addEventListener('click', toggleDarkMode);
+      
+      // Touch Event für Mobile
+      toggle.addEventListener('touchstart', function(e) {
+        e.preventDefault();
+        toggleDarkMode();
+      });
+      
+      // Keyboard Support
+      toggle.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggleDarkMode();
         }
       });
     }
     
-    function setDarkMode() {
-      body.classList.add('dark-mode');
-      localStorage.setItem('ms-theme', 'dark');
-    }
-    
-    function setLightMode() {
-      body.classList.remove('dark-mode');
-      localStorage.setItem('ms-theme', 'light');
-    }
-  });
+    console.log('Dark Mode initialisiert. Theme:', savedTheme);
+  }
+  
+  // Warte bis DOM bereit
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initDarkMode);
+  } else {
+    initDarkMode();
+  }
+  
+})();
 </script>
 
 </body>
