@@ -5,11 +5,56 @@
 (function() {
   'use strict';
   
+  // ========================================================================
+  // 1. BROWSER ERKENNUNG FÜR DEBUGGING
+  // ========================================================================
+  function detectBrowser() {
+    const userAgent = navigator.userAgent;
+    let browser = "Unknown";
+    
+    if (userAgent.indexOf("Chrome") > -1 && userAgent.indexOf("Edg") === -1) {
+      browser = "Chrome";
+    } else if (userAgent.indexOf("Safari") > -1 && userAgent.indexOf("Chrome") === -1) {
+      browser = "Safari";
+    } else if (userAgent.indexOf("Firefox") > -1) {
+      browser = "Firefox";
+    } else if (userAgent.indexOf("Edg") > -1) {
+      browser = "Edge";
+    } else if (userAgent.indexOf("Opera") > -1 || userAgent.indexOf("OPR") > -1) {
+      browser = "Opera";
+    } else if (userAgent.indexOf("DuckDuckGo") > -1) {
+      browser = "DuckDuckGo";
+    }
+    
+    console.log(`🌐 Browser: ${browser}`);
+    return browser;
+  }
+  
+  // ========================================================================
+  // 2. PRELOADER FÜR DARK MODE ANPASSEN
+  // ========================================================================
+  function updatePreloaderForDarkMode() {
+    const preloader = document.getElementById("preloader");
+    if (preloader) {
+      if (document.documentElement.classList.contains('dark-mode')) {
+        preloader.style.backgroundColor = '#1a1a1a';
+      } else {
+        preloader.style.backgroundColor = '#000000';
+      }
+    }
+  }
+  
+  // ========================================================================
+  // 3. HAUPTINITIALISIERUNG
+  // ========================================================================
   function initMenuAndPreloader() {
     console.log('🚀 Menu & Preloader initialisiert');
     
+    // Browser erkennen
+    detectBrowser();
+    
     // ========================================================================
-    // PRELOADER MIT TYPEWRITER-EFFEKT
+    // 3A. PRELOADER MIT TYPEWRITER-EFFEKT
     // ========================================================================
     const preloader = document.getElementById("preloader");
     const typeText = document.getElementById("type-text");
@@ -67,7 +112,7 @@
     }
     
     // ========================================================================
-    // BURGER-MENÜ FUNKTIONALITÄT
+    // 3B. BURGER-MENÜ FUNKTIONALITÄT
     // ========================================================================
     const burgerButton = document.getElementById("burger");
     const navigation = document.getElementById("navigation");
@@ -142,7 +187,7 @@
     }
     
     // ========================================================================
-    // FOOTER JAHR AKTUALISIEREN
+    // 3C. FOOTER JAHR AKTUALISIEREN
     // ========================================================================
     const yearElement = document.getElementById("jahr");
     if (yearElement) {
@@ -150,7 +195,7 @@
     }
     
     // ========================================================================
-    // SMOOTH SCROLL FÜR INTERNE LINKS
+    // 3D. SMOOTH SCROLL FÜR INTERNE LINKS
     // ========================================================================
     const internalLinks = document.querySelectorAll('a[href^="#"]');
     internalLinks.forEach(function(link) {
@@ -175,39 +220,34 @@
     });
     
     // ========================================================================
-    // DARK MODE PRELOADER FIX
+    // 3E. DARK MODE PRELOADER SYNC
     // ========================================================================
-    function updatePreloaderForDarkMode() {
-      const preloader = document.getElementById("preloader");
-      if (preloader && document.body.classList.contains('dark-mode')) {
-        preloader.style.backgroundColor = '#1a1a1a';
-      } else if (preloader) {
-        preloader.style.backgroundColor = '#000000';
-      }
-    }
     
     // Initial anwenden
     updatePreloaderForDarkMode();
     
-    // Überwache Dark Mode Änderungen
+    // Überwache Dark Mode Änderungen auf HTML und Body
     const observer = new MutationObserver(function(mutations) {
       mutations.forEach(function(mutation) {
-        if (mutation.attributeName === 'class' && mutation.target === document.body) {
+        if (mutation.attributeName === 'class' && 
+            (mutation.target === document.body || mutation.target === document.documentElement)) {
           updatePreloaderForDarkMode();
         }
       });
     });
     
+    // Beobachte Body und HTML für Dark Mode Änderungen
     observer.observe(document.body, { attributes: true });
+    observer.observe(document.documentElement, { attributes: true });
     
-    // Event Listener für Dark Mode Änderungen
+    // Event Listener für Dark Mode Änderungen von global.js
     window.addEventListener('themeChanged', updatePreloaderForDarkMode);
     
     console.log('✅ Menu & Preloader Script vollständig geladen');
   }
   
   // ========================================================================
-  // INITIALISIERUNG
+  // 4. INITIALISIERUNG STARTEN
   // ========================================================================
   
   if (document.readyState === 'loading') {
@@ -216,7 +256,10 @@
     initMenuAndPreloader();
   }
   
-  // Fehlerbehandlung
+  // ========================================================================
+  // 5. FEHLERBEHANDLUNG
+  // ========================================================================
+  
   window.addEventListener("error", function(event) {
     if (event.message && (event.message.includes('preloader') || event.message.includes('menu'))) {
       console.error("Menu/Preloader Fehler:", event.error);
