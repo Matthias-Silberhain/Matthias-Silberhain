@@ -230,19 +230,21 @@ body.dark-mode .dark-mode-toggle .sun-icon {
 }
 
 /* ==========================================================================
-   BURGER MENÜ (MOBIL)
+   BURGER MENÜ (MOBIL) - NEU KORRIGIERT
    ========================================================================== */
 .burger {
   display: none;
   width: 32px;
-  margin: 20px auto 0;
+  height: 32px;
+  margin: 0;
   cursor: pointer;
   background: none;
   border: none;
-  padding: 5px;
+  padding: 0;
   flex-direction: column;
-  justify-content: space-between;
-  height: 24px;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
   position: relative;
   z-index: 1001;
   pointer-events: auto;
@@ -250,6 +252,7 @@ body.dark-mode .dark-mode-toggle .sun-icon {
 
 .burger span {
   display: block;
+  width: 100%;
   height: 2px;
   background-color: #cfd2d6;
   transition: all 0.3s ease;
@@ -257,16 +260,20 @@ body.dark-mode .dark-mode-toggle .sun-icon {
   transform-origin: center;
 }
 
+/* Burger bei aktivem Menü (X) - KORRIGIERT */
 .burger.aktiv span:nth-child(1) {
-  transform: translateY(11px) rotate(45deg);
+  transform: rotate(45deg) translate(5px, 5px);
+  background-color: #e4e6ea;
 }
 
 .burger.aktiv span:nth-child(2) {
   opacity: 0;
+  transform: translateX(-10px);
 }
 
 .burger.aktiv span:nth-child(3) {
-  transform: translateY(-11px) rotate(-45deg);
+  transform: rotate(-45deg) translate(5px, -5px);
+  background-color: #e4e6ea;
 }
 
 /* ==========================================================================
@@ -388,10 +395,17 @@ strong {
   }
 }
 
-/* MOBILE (max-width: 768px) */
+/* ==========================================================================
+   MOBILE NAVIGATION - KOMPLETT KORRIGIERT
+   ========================================================================== */
 @media screen and (max-width: 768px) {
   .header {
     padding: 25px 15px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    min-height: 100px;
   }
   
   .preloader-logo {
@@ -404,9 +418,31 @@ strong {
   
   .logo {
     width: min(65vw, 280px);
-    margin-bottom: 20px;
+    margin: 0 auto 0;
+    order: 1;
   }
   
+  /* Burger Button Position - KORRIGIERT */
+  .burger {
+    display: flex;
+    position: absolute;
+    top: 30px;
+    right: 20px;
+    z-index: 1002;
+    order: 3;
+  }
+  
+  /* Dark Mode Toggle Position - KORRIGIERT */
+  .dark-mode-toggle {
+    position: absolute;
+    top: 30px;
+    left: 20px;
+    right: auto;
+    z-index: 1001;
+    order: 2;
+  }
+  
+  /* Hauptnavigation für Mobile - KORRIGIERT */
   .hauptnavigation {
     display: none;
     position: fixed;
@@ -416,14 +452,21 @@ strong {
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.98);
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    gap: 25px;
+    gap: 0;
     z-index: 999;
-    padding: 20px;
+    padding-top: 120px;
+    padding-bottom: 40px;
+    overflow-y: auto;
     opacity: 0;
     transform: translateX(-100%);
     transition: all 0.4s ease;
+  }
+  
+  /* Dark Mode für Mobile Menü - KORRIGIERT */
+  body.dark-mode .hauptnavigation {
+    background-color: rgba(26, 26, 26, 0.98);
   }
   
   .hauptnavigation.aktiv {
@@ -434,22 +477,32 @@ strong {
   
   .hauptnavigation a {
     font-size: 1.2rem;
-    padding: 15px 25px;
-    width: 80%;
+    padding: 18px 30px;
+    width: 90%;
+    max-width: 300px;
     text-align: center;
     border: 1px solid rgba(200, 205, 215, 0.2);
     border-radius: 4px;
     transition: all 0.3s ease;
     pointer-events: auto;
+    margin-bottom: 15px;
+    background: rgba(10, 10, 10, 0.7);
+  }
+  
+  body.dark-mode .hauptnavigation a {
+    background: rgba(30, 30, 30, 0.8);
+    border-color: rgba(220, 225, 235, 0.2);
   }
   
   .hauptnavigation a:hover {
     background-color: rgba(200, 205, 215, 0.1);
     border-color: rgba(200, 205, 215, 0.5);
+    transform: translateY(-2px);
   }
   
-  .burger {
-    display: flex;
+  body.dark-mode .hauptnavigation a:hover {
+    background-color: rgba(220, 225, 235, 0.15);
+    border-color: rgba(220, 225, 235, 0.5);
   }
   
   .inhalt {
@@ -471,13 +524,6 @@ strong {
     margin: 20px 0;
   }
   
-  .dark-mode-toggle {
-    top: 25px;
-    right: 15px;
-    width: 36px;
-    height: 36px;
-  }
-  
   /* Footer für Mobile zentriert halten */
   .footer {
     text-align: center;
@@ -489,7 +535,9 @@ strong {
   }
 }
 
-/* KLEINE MOBILS (max-width: 480px) */
+/* ==========================================================================
+   KLEINE MOBILS (max-width: 480px)
+   ========================================================================== */
 @media screen and (max-width: 480px) {
   .preloader-logo {
     width: 120px;
@@ -509,9 +557,29 @@ strong {
     width: min(60vw, 220px);
   }
   
+  /* Kleinere Anpassungen für sehr kleine Geräte */
+  .hauptnavigation {
+    padding-top: 100px;
+  }
+  
   .hauptnavigation a {
     font-size: 1.1rem;
-    padding: 12px 20px;
+    padding: 16px 25px;
+    margin-bottom: 12px;
+  }
+  
+  .burger {
+    top: 25px;
+    right: 15px;
+    width: 28px;
+    height: 28px;
+  }
+  
+  .dark-mode-toggle {
+    top: 25px;
+    left: 15px;
+    width: 32px;
+    height: 32px;
   }
   
   .inhalt {
@@ -535,18 +603,6 @@ strong {
   
   .footer p {
     text-align: center;
-  }
-  
-  .dark-mode-toggle {
-    top: 20px;
-    right: 10px;
-    width: 32px;
-    height: 32px;
-  }
-  
-  .moon-icon, .sun-icon {
-    width: 18px;
-    height: 18px;
   }
 }
 
