@@ -1354,3 +1354,199 @@ button, a, .burger, .hauptnavigation a, .silber-button, .social-link {
 .dark-mode-toggle {
   z-index: 1000;
 }
+/* ==========================================================================
+   KALLIGRAFIE ZITAT - OHNE HINTERGRUND
+   ========================================================================== */
+
+/* Google Font für Kalligrafie importieren */
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Playfair+Display:ital@0;1&family=Great+Vibes&display=swap');
+
+.credo-container {
+  margin: 4rem auto 5rem;
+  max-width: 900px;
+  position: relative;
+}
+
+/* Entferne alles aus dem Wrapper außer Inhalt */
+.credo-quote-wrapper {
+  position: relative;
+  padding: 2rem 1rem;
+  margin-bottom: 2.5rem;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Entferne Ornamente und zusätzliche Elemente */
+.credo-quote-wrapper::before,
+.credo-quote-wrapper::after {
+  display: none !important;
+}
+
+.credo-quote {
+  display: block;
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+/* Kalligrafie Schrift für das Zitat */
+.kalligrafie-text {
+  font-family: 'Great Vibes', 'Dancing Script', cursive;
+  font-size: 3.2rem;
+  font-weight: 400;
+  line-height: 1.2;
+  color: #2c2c2c;
+  text-align: center;
+  margin: 0 auto 1.5rem;
+  letter-spacing: 1.5px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  position: relative;
+  padding: 0 2rem;
+  max-width: 800px;
+  transition: all 0.3s ease;
+}
+
+/* Zarte Linie unter dem Zitat */
+.kalligrafie-text::after {
+  content: '';
+  position: absolute;
+  bottom: -1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(200, 200, 200, 0.6) 50%, 
+    transparent);
+}
+
+.credo-signature {
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  position: relative;
+}
+
+/* Entferne die Signatur-Linien */
+.credo-signature::before,
+.signature-line {
+  display: none !important;
+}
+
+/* Kalligrafie für die Signatur */
+.kalligrafie-signature {
+  font-family: 'Dancing Script', 'Great Vibes', cursive;
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: #c0c0c0;
+  letter-spacing: 1px;
+  text-transform: none;
+  opacity: 0.9;
+  transition: all 0.3s ease;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  position: relative;
+}
+
+/* Dekorativer Punkt unter der Signatur */
+.kalligrafie-signature::after {
+  content: '•';
+  position: absolute;
+  bottom: -1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.2rem;
+  color: rgba(200, 200, 200, 0.5);
+}
+
+.credo-subtitle {
+  font-family: 'EB Garamond', serif;
+  font-size: 1.4rem;
+  line-height: 1.7;
+  color: #555;
+  text-align: center;
+  max-width: 700px;
+  margin: 3rem auto 0;
+  padding: 1.5rem;
+  background: transparent;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+/* ================= DARK MODE KALLIGRAFIE ================= */
+body.dark-mode .kalligrafie-text {
+  color: #f0f0f0;
+  text-shadow: 
+    0 2px 4px rgba(0,0,0,0.3),
+    0 0 20px rgba(200, 200, 200, 0.1);
+}
+
+body.dark-mode .kalligrafie-text::after {
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(200, 200, 200, 0.4) 50%, 
+    transparent);
+}
+
+body.dark-mode .kalligrafie-signature {
+  color: #d0d0d0;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+body.dark-mode .kalligrafie-signature::after {
+  color: rgba(200, 200, 200, 0.7);
+}
+
+body.dark-mode .credo-subtitle {
+  color: #ccc;
+  background: transparent;
+  border: none;
+}
+
+/* ================= RESPONSIVE KALLIGRAFIE ================= */
+@media screen and (max-width: 768px) {
+  .kalligrafie-text {
+    font-size: 2.5rem;
+    padding: 0 1rem;
+  }
+  
+  .credo-quote-wrapper {
+    padding: 1.5rem 0.5rem;
+  }
+  
+  .credo-signature {
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+  }
+  
+  .kalligrafie-signature {
+    font-size: 1.5rem;
+  }
+  
+  .credo-subtitle {
+    font-size: 1.2rem;
+    padding: 1rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .kalligrafie-text {
+    font-size: 2.2rem;
+    letter-spacing: 1px;
+  }
+  
+  .kalligrafie-text::after {
+    width: 80px;
+  }
+  
+  .credo-container {
+    margin: 3rem auto 4rem;
+  }
+  
+  .credo-subtitle {
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+}
