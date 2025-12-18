@@ -2,9 +2,9 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <title>Matthias Silberhain | Autor</title>
+  <title>Matthias Silberhain | Startseite</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Autor Matthias Silberhain - Bücher zu Macht, Verantwortung und historischen Fragen">
+  <meta name="description" content="Matthias Silberhain - Autor zu Macht, Verantwortung und gesellschaftlichen Mechanismen">
   
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=EB+Garamond:wght@400;500&display=swap" rel="stylesheet">
@@ -15,120 +15,62 @@
   <!-- Favicon -->
   <link rel="icon" href="assets/images/logo.png" type="image/png">
   
-  <!-- Dark Mode Toggle Styles -->
-  <style>
-    /* DARK MODE TOGGLE - RECHTE SEITE OBEN IM HEADER */
-    .dark-mode-toggle {
-      position: absolute;
-      top: 35px;
-      right: 20px;
-      background: transparent;
-      border: 1px solid rgba(200, 205, 215, 0.3);
-      color: #d6d9de;
-      cursor: pointer;
-      width: 40px;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      transition: all 0.3s ease;
-      z-index: 1001;
-      padding: 0;
-      font-size: 0;
-      -webkit-tap-highlight-color: transparent;
-    }
-    
-    .dark-mode-toggle:hover {
-      color: #ffffff;
-      background: rgba(200, 205, 215, 0.1);
-      border-color: rgba(200, 205, 215, 0.6);
-      transform: scale(1.1);
-      box-shadow: 0 0 10px rgba(200, 205, 215, 0.2);
-    }
-    
-    .dark-mode-toggle:focus {
-      outline: none;
-    }
-    
-    .moon-icon, .sun-icon {
-      width: 20px;
-      height: 20px;
-      fill: currentColor;
-      transition: all 0.3s ease;
-      display: block;
-    }
-    
-    .sun-icon {
-      display: none;
-    }
-    
-    /* Dark Mode aktiv - Sonne zeigen */
-    body.dark-mode .moon-icon {
-      display: none;
-    }
-    
-    body.dark-mode .sun-icon {
-      display: block;
-    }
-    
-    /* RESPONSIVE ANPASSUNGEN FÜR DARK MODE TOGGLE */
-    @media screen and (max-width: 768px) {
-      .dark-mode-toggle {
-        top: 25px;
-        right: 15px;
-        width: 36px;
-        height: 36px;
+  <!-- Preload Dark Mode Script to prevent flicker -->
+  <script>
+    // Prevent dark mode flicker by immediately applying saved theme
+    (function() {
+      try {
+        const savedTheme = localStorage.getItem('ms-theme');
+        if (savedTheme === 'dark') {
+          document.body.classList.add('dark-mode');
+        }
+      } catch (e) {
+        console.log('No theme preference saved');
       }
-    }
-    
-    @media screen and (max-width: 480px) {
-      .dark-mode-toggle {
-        top: 20px;
-        right: 10px;
-        width: 32px;
-        height: 32px;
-      }
-      
-      .moon-icon, .sun-icon {
-        width: 18px;
-        height: 18px;
-      }
-    }
-  </style>
+    })();
+  </script>
 </head>
 
 <body>
 
-<!-- ================= PRELOADER ================= -->
+<!-- Preloader (wird von JavaScript benötigt) -->
 <div id="preloader">
   <div class="preloader-inner">
-    <!-- LOGO - ABSOLUT POSITIONIERT -->
-    <img src="assets/images/logo.png" alt="Matthias Silberhain Logo" class="preloader-logo">
-    
-    <!-- TEXT-CONTAINER - GETRENNT VOM LOGO -->
+    <img src="assets/images/logo.png" alt="Logo" class="preloader-logo">
     <div class="text-container">
-      <div class="preloader-text">
-        <span id="type-text"></span><span class="cursor">|</span>
-      </div>
+      <h1 class="preloader-text">
+        <span id="type-text"></span>
+        <span class="cursor"></span>
+      </h1>
     </div>
   </div>
 </div>
+
+<!-- Mobile Menu Overlay -->
+<div class="menu-overlay" id="menuOverlay"></div>
 
 <!-- ================= HEADER ================= -->
 <header class="header">
   <img src="assets/images/logo.png" alt="Matthias Silberhain Logo" class="logo">
   
-  <!-- DARK MODE TOGGLE - RECHTE SEITE OBEN -->
-  <button id="darkModeToggle" class="dark-mode-toggle" aria-label="Dark Mode umschalten" title="Farbschema wechseln">
-    <svg class="moon-icon" viewBox="0 0 24 24">
-      <path d="M21.64 13a1 1 0 0 0-1.05-.14 8.05 8.05 0 0 1-3.37.73 8.15 8.15 0 0 1-8.14-8.1 8.59 8.59 0 0 1 .25-2A1 1 0 0 0 8 2.36 10.14 10.14 0 0 0 3.27 13 10 10 0 0 0 13 20.73 10.14 10.14 0 0 0 21.64 13z"/>
+  <!-- Dark Mode Toggle Button -->
+  <button id="darkModeToggle" class="dark-mode-toggle" aria-label="Dark Mode umschalten">
+    <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
     </svg>
-    <svg class="sun-icon" viewBox="0 0 24 24">
-      <path d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12zM11 4h2v3h-2V4zm0 13h2v3h-2v-3zM3 11h3v2H3v-2zm15 0h3v2h-3v-2zM5.64 5.64l2.12 2.12 1.41-1.41L7.05 4.22 5.64 5.64zm12.02 12.02l2.12 2.12 1.41-1.41-2.12-2.12-1.41 1.41zM4.22 12l1.41 1.41 2.12-2.12-1.41-1.41L4.22 12zm15.56 0l-1.41 1.41-2.12-2.12 1.41-1.41 2.12 2.12z"/>
+    <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
     </svg>
   </button>
-  
+
   <div class="burger" id="burger">
     <span></span>
     <span></span>
@@ -136,7 +78,7 @@
   </div>
 
   <nav class="hauptnavigation" id="navigation">
-    <a href="index.html">Startseite</a>
+    <a href="index.html" class="active">Startseite</a>
     <a href="ueber-mich.html">Über mich</a>
     <a href="werke.html">Werke</a>
     <a href="termine.html">Termine</a>
@@ -144,35 +86,54 @@
   </nav>
 </header>
 
-<!-- ✅ DICKE LICHTKANTE ÜBER DEM HEADER - BLEIBT -->
 <div class="lichtkante"></div>
 
-<!-- ================= INHALT ================= -->
+<!-- ================= HAUPTINHALT ================= -->
 <main class="inhalt">
-  <section class="intro">
-    <h1>Wenn Wahrheit unbequem wird, braucht sie eine Stimme.</h1>
+  <section class="startseite">
+    <!-- HAUPTTITEL -->
+    <h1 class="credo-headline">WENN WAHRHEIT UNBEQUEM WIRD, BRAUCHT SIE EINE STIMME.</h1>
     
-    <p>Diese Seite ist kein Ort für einfache Antworten oder beruhigende Geschichten.</p>
+    <!-- EINLEITUNGSTEXT -->
+    <div class="einleitung">
+      <p class="lead-text">
+        Diese Seite ist kein Ort für einfache Antworten oder beruhigende Geschichten.
+      </p>
+      
+      <p class="sub-lead-text">
+        Hier geht es um Macht, Verantwortung und die Fragen, die selten laut gestellt werden.<br>
+        Um historische Spuren, gesellschaftliche Strukturen und Entscheidungen, deren Folgen bis heute nachwirken.
+      </p>
+    </div>
     
-    <p>Hier geht es um Macht, Verantwortung und die Fragen, die selten laut gestellt werden.<br>
-    Um historische Spuren, gesellschaftliche Strukturen und Entscheidungen, deren Folgen bis heute wirken.</p>
+    <!-- KERNINHALT -->
+    <div class="kerninhalt">
+      <p>
+        Ich schreibe über das, was unter der Oberfläche liegt. Über Mechanismen, die oft unsichtbar bleiben, aber unser Zusammenleben prägen. Meine Bücher sind das Ergebnis intensiver Recherche und kritischer Analyse – keine Unterhaltung, sondern Auseinandersetzung.
+      </p>
+      
+      <p class="highlight">
+        Literatur mit Haltung, Tiefe und Substanz. Für Leser, die bereit sind, genauer hinzusehen.
+      </p>
+      
+      <p>
+        In einer Zeit, in der Komplexität oft vereinfacht wird, halte ich es für notwendig, genau hinzuschauen. Meine Texte sollen nicht nur informieren, sondern zum Denken anregen. Sie stellen Fragen, wo andere Antworten vorgeben. Sie zeigen Zusammenhänge, wo andere isolieren.
+      </p>
+      
+      <p class="zitat">
+        "Ich schreibe, weil die Wahrheit eine Stimme braucht."<br>
+        <span class="zitat-autor">– Matthias Silberhain</span>
+      </p>
+      
+      <p>
+        Auf diesen Seiten finden Sie Einblicke in meine Arbeit, Informationen zu aktuellen Projekten und die Möglichkeit, mit mir in Kontakt zu treten. Willkommen bei Matthias Silberhain.
+      </p>
+    </div>
     
-    <p>Die Bücher von Matthias Silberhain richten sich an Leserinnen und Leser, die bereit sind, genauer hinzusehen.</p>
-    
-    <p>An Menschen, die hinter Schlagzeilen blicken wollen, statt sie zu konsumieren.<br>
-    An alle, die verstehen möchten, wie Geschichte geschrieben wird und wer davon profitiert.</p>
-    
-    <p>Jedes Werk folgt einem klaren Anspruch: <strong>recherchiert, präzise und ohne Beschönigung</strong>.</p>
-    
-    <p>Nicht um zu provozieren, sondern um Klarheit zu schaffen.<br>
-    Nicht um zu belehren, sondern um Denkprozesse anzustoßen.</p>
-    
-    <p>Wenn du Literatur suchst, die fordert statt unterhält, die Fragen stellt statt Antworten zu verkaufen, dann bist du hier richtig.</p>
-    
-    <!-- ================= CTA BUTTON ================= -->
+    <!-- CTA Buttons -->
     <div class="cta-container">
       <a href="werke.html" class="silber-button">
-        <span>Werke entdecken</span>
+        <span>Meine Werke entdecken</span>
         <svg class="button-arrow" viewBox="0 0 24 24">
           <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
         </svg>
@@ -212,7 +173,7 @@
     <a href="https://www.tiktok.com/@m.silberhain" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="TikTok">
       <div class="social-icon-wrapper">
         <svg class="social-icon" viewBox="0 0 24 24">
-          <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+          <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.10-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
         </svg>
       </div>
       <span class="social-name">TikTok</span>
@@ -258,19 +219,19 @@
       <span class="social-name">YouTube</span>
     </a>
   </div>
+  
+  <!-- SILBERNER LICHTBALKEN (wie im Header) -->
+  <div class="lichtkante social-lichtkante"></div>
 </section>
 
 <!-- ================= FOOTER ================= -->
 <footer class="footer">
-  <!-- ✅ DICKE LICHTKANTE IM FOOTER - BLEIBT -->
-  <div class="footer-lichtkante"></div>
   <p>© <span id="jahr"></span> Matthias Silberhain</p>
 </footer>
 
-<!-- ================= JAVASCRIPT EINBINDUNG ================= -->
-<!-- WICHTIG: menu.js ZUERST, dann global.js -->
-<script src="assets/js/menu.js"></script>
+<!-- ================= JAVASCRIPT ================= -->
 <script src="assets/js/global.js"></script>
+<script src="assets/js/menu.js"></script>
 
 </body>
 </html>
