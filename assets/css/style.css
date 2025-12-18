@@ -1,5 +1,5 @@
 /* ==========================================================================
-   CSS RESET & BASISSTYLES - KORRIGIERT
+   CSS RESET & BASISSTYLES
    ========================================================================== */
 * {
   margin: 0;
@@ -10,7 +10,7 @@
 html, body {
   width: 100%;
   height: 100%;
-  /* overflow-x: hidden ENTFERNT - blockiert das Scrollen! */
+  overflow-x: hidden;
 }
 
 body {
@@ -20,13 +20,11 @@ body {
   line-height: 1.65;
   min-height: 100vh;
   transition: background-color 0.3s ease, color 0.3s ease;
-  /* Scrollen ermöglichen */
   overflow-y: auto;
-  overflow-x: hidden;
 }
 
 /* ==========================================================================
-   PRELOADER - KORRIGIERT
+   PRELOADER - KORRIGIERT & FUNKTIONIERT
    ========================================================================== */
 #preloader {
   position: fixed;
@@ -35,34 +33,34 @@ body {
   width: 100%;
   height: 100%;
   background: #000000;
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  z-index: 9999; /* Nicht 99999, das blockiert das Menü! */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9990; /* KORRIGIERT: Nicht blockierend */
   opacity: 1;
   visibility: visible;
+  pointer-events: none; /* WICHTIG: Blockiert keine Klicks! */
   transition: opacity 0.6s ease, visibility 0.6s ease;
 }
 
-/* WICHTIG: Diese Klasse wird von JavaScript hinzugefügt */
 #preloader.hidden {
-  opacity: 0 !important;
-  visibility: hidden !important;
-  pointer-events: none !important;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .preloader-inner {
   position: relative;
   width: 100%;
   height: 100%;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: center !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
+  pointer-events: none;
 }
 
-/* LOGO - Flexbox Layout */
 .preloader-logo {
   width: 180px;
   height: auto;
@@ -72,7 +70,6 @@ body {
   animation: logoAppear 1s ease-out forwards;
 }
 
-/* TEXT-CONTAINER */
 .text-container {
   text-align: center;
   width: 100%;
@@ -97,7 +94,6 @@ body {
   animation: blink 1s infinite;
 }
 
-/* ANIMATIONEN */
 @keyframes blink {
   0%, 50% { opacity: 1; }
   51%, 100% { opacity: 0; }
@@ -135,7 +131,60 @@ body {
 }
 
 /* ==========================================================================
-   NAVIGATION - KORRIGIERT FÜR MOBILE
+   DARK MODE TOGGLE - KORRIGIERT & FUNKTIONIERT
+   ========================================================================== */
+.dark-mode-toggle {
+  position: absolute;
+  top: 35px;
+  right: 20px;
+  background: transparent;
+  border: 1px solid rgba(200, 205, 215, 0.3);
+  color: #d6d9de;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  z-index: 1000;
+  padding: 0;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+
+.dark-mode-toggle:hover {
+  color: #ffffff;
+  background: rgba(200, 205, 215, 0.1);
+  border-color: rgba(200, 205, 215, 0.6);
+  transform: scale(1.1);
+  box-shadow: 0 0 10px rgba(200, 205, 215, 0.2);
+}
+
+.moon-icon, .sun-icon {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+  transition: all 0.3s ease;
+}
+
+.sun-icon {
+  display: none;
+}
+
+/* Dark Mode aktiv - Sonne zeigen */
+body.dark-mode .dark-mode-toggle .moon-icon {
+  display: none;
+}
+
+body.dark-mode .dark-mode-toggle .sun-icon {
+  display: block;
+}
+
+/* ==========================================================================
+   NAVIGATION
    ========================================================================== */
 .hauptnavigation {
   display: flex;
@@ -143,7 +192,7 @@ body {
   gap: 32px;
   flex-wrap: wrap;
   padding: 10px 0;
-  z-index: 1000; /* Wichtig für Mobile */
+  z-index: 100;
 }
 
 .hauptnavigation a {
@@ -155,6 +204,8 @@ body {
   padding: 10px 18px;
   transition: all 0.3s ease;
   position: relative;
+  cursor: pointer;
+  pointer-events: auto;
 }
 
 .hauptnavigation a:hover {
@@ -176,6 +227,46 @@ body {
 
 .hauptnavigation a:hover::after {
   width: 80%;
+}
+
+/* ==========================================================================
+   BURGER MENÜ (MOBIL)
+   ========================================================================== */
+.burger {
+  display: none;
+  width: 32px;
+  margin: 20px auto 0;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 5px;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 24px;
+  position: relative;
+  z-index: 1001;
+  pointer-events: auto;
+}
+
+.burger span {
+  display: block;
+  height: 2px;
+  background-color: #cfd2d6;
+  transition: all 0.3s ease;
+  border-radius: 1px;
+  transform-origin: center;
+}
+
+.burger.aktiv span:nth-child(1) {
+  transform: translateY(11px) rotate(45deg);
+}
+
+.burger.aktiv span:nth-child(2) {
+  opacity: 0;
+}
+
+.burger.aktiv span:nth-child(3) {
+  transform: translateY(-11px) rotate(-45deg);
 }
 
 /* ==========================================================================
@@ -259,50 +350,8 @@ strong {
 }
 
 /* ==========================================================================
-   BURGER MENÜ (MOBIL) - KORRIGIERT
-   ========================================================================== */
-.burger {
-  display: none;
-  width: 32px;
-  margin: 20px auto 0;
-  cursor: pointer;
-  background: none;
-  border: none;
-  padding: 5px;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 24px;
-  position: relative;
-  z-index: 1001; /* Über Navigation */
-}
-
-.burger span {
-  display: block;
-  height: 2px;
-  background-color: #cfd2d6;
-  transition: all 0.3s ease;
-  border-radius: 1px;
-  transform-origin: center;
-}
-
-/* Burger Animation */
-.burger.aktiv span:nth-child(1) {
-  transform: translateY(11px) rotate(45deg);
-}
-
-.burger.aktiv span:nth-child(2) {
-  opacity: 0;
-}
-
-.burger.aktiv span:nth-child(3) {
-  transform: translateY(-11px) rotate(-45deg);
-}
-
-/* ==========================================================================
    RESPONSIVE DESIGN
    ========================================================================== */
-
-/* TABLET (768px - 1024px) */
 @media screen and (max-width: 1024px) {
   .preloader-logo {
     width: 160px;
@@ -329,7 +378,7 @@ strong {
   }
 }
 
-/* MOBILE (max-width: 768px) - KORRIGIERT */
+/* MOBILE (max-width: 768px) */
 @media screen and (max-width: 768px) {
   .header {
     padding: 25px 15px 15px;
@@ -348,7 +397,6 @@ strong {
     margin-bottom: 20px;
   }
   
-  /* BURGER MENÜ AKTIVIEREN - KORRIGIERT */
   .hauptnavigation {
     display: none;
     position: fixed;
@@ -361,7 +409,7 @@ strong {
     justify-content: center;
     align-items: center;
     gap: 25px;
-    z-index: 999; /* Unter Burger aber über Inhalt */
+    z-index: 999;
     padding: 20px;
     opacity: 0;
     transform: translateX(-100%);
@@ -382,6 +430,7 @@ strong {
     border: 1px solid rgba(200, 205, 215, 0.2);
     border-radius: 4px;
     transition: all 0.3s ease;
+    pointer-events: auto;
   }
   
   .hauptnavigation a:hover {
@@ -391,11 +440,6 @@ strong {
   
   .burger {
     display: flex;
-  }
-  
-  /* Verhindert Scrollen wenn Menü offen */
-  body.menu-open {
-    overflow: hidden !important;
   }
   
   .inhalt {
@@ -415,6 +459,13 @@ strong {
   
   .lichtkante {
     margin: 20px 0;
+  }
+  
+  .dark-mode-toggle {
+    top: 25px;
+    right: 15px;
+    width: 36px;
+    height: 36px;
   }
 }
 
@@ -461,127 +512,108 @@ strong {
     padding: 20px 0;
     font-size: 0.85rem;
   }
-}
-
-/* GROSSE BILDSCHIRME (min-width: 1920px) */
-@media screen and (min-width: 1920px) {
-  .preloader-logo {
-    width: 220px;
+  
+  .dark-mode-toggle {
+    top: 20px;
+    right: 10px;
+    width: 32px;
+    height: 32px;
   }
   
-  .preloader-text {
-    font-size: 42px;
-  }
-  
-  .inhalt {
-    max-width: 900px;
-    padding: 80px 20px;
-  }
-  
-  h1 {
-    font-size: 2.8rem;
-  }
-  
-  p {
-    font-size: 1.3rem;
-    line-height: 1.8;
-  }
-  
-  .logo {
-    max-width: 500px;
+  .moon-icon, .sun-icon {
+    width: 18px;
+    height: 18px;
   }
 }
 
 /* ==========================================================================
-   DUNKELHEITS-ANPASSUNG
+   MENU OVERLAY
    ========================================================================== */
-@media (prefers-color-scheme: dark) {
-  body:not(.dark-mode) {
-    background-color: #000000;
-    color: #cfd2d6;
-  }
-  
-  .header:not(.dark-mode) {
-    background-color: rgba(0, 0, 0, 0.95);
-  }
-}
-
-/* ==========================================================================
-   DRUCK-STYLES
-   ========================================================================== */
-@media print {
-  #preloader,
-  .burger,
-  .hauptnavigation,
-  .dark-mode-toggle,
-  .social-section {
-    display: none !important;
-  }
-  
-  body {
-    background-color: white !important;
-    color: black !important;
-    font-size: 12pt;
-  }
-  
-  .logo {
-    filter: invert(1);
-  }
-  
-  .inhalt {
-    padding: 20px 0;
-    max-width: 100%;
-  }
-  
-  h1 {
-    color: black !important;
-    font-size: 18pt;
-  }
-  
-  p {
-    color: #333 !important;
-    text-align: justify;
-  }
-}
-
-/* ==========================================================================
-   SILBERNE HOVER EFFECTS FÜR NAVIGATION
-   ========================================================================== */
-.hauptnavigation a {
-  position: relative;
-  overflow: hidden;
-}
-
-.hauptnavigation a::before {
-  content: '';
-  position: absolute;
+.menu-overlay {
+  position: fixed;
   top: 0;
-  left: -100%;
+  left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, 
-    transparent, 
-    rgba(192, 192, 192, 0.2), 
-    transparent);
-  transition: left 0.4s ease;
-  z-index: -1;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 998;
+  display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: auto;
 }
 
-.hauptnavigation a:hover::before {
-  left: 100%;
+.menu-overlay.active {
+  display: block;
+  opacity: 1;
+  pointer-events: auto;
 }
 
-.hauptnavigation a:hover {
-  color: #ffffff;
-  text-shadow: 
-    0 0 10px rgba(255, 255, 255, 0.5),
-    0 0 20px rgba(192, 192, 192, 0.3);
+/* ==========================================================================
+   DARK MODE STYLES - FUNKTIONIERT
+   ========================================================================== */
+body.dark-mode {
+  background-color: #1a1a1a !important;
+  color: #b0b5bc !important;
+}
+
+body.dark-mode .header {
+  background-color: #1a1a1a !important;
+}
+
+body.dark-mode .inhalt {
+  background-color: #1a1a1a !important;
+}
+
+body.dark-mode .social-section {
+  background-color: #1a1a1a !important;
+}
+
+body.dark-mode .footer {
+  background-color: #1a1a1a !important;
+}
+
+body.dark-mode #preloader {
+  background-color: #1a1a1a !important;
+}
+
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode .credo-headline,
+body.dark-mode .social-title,
+body.dark-mode .lead-text {
+  color: #e4e6ea !important;
+}
+
+body.dark-mode p,
+body.dark-mode span {
+  color: #b0b5bc !important;
+}
+
+body.dark-mode .hauptnavigation a {
+  color: #d6d9de !important;
+}
+
+body.dark-mode .hauptnavigation a:hover {
+  color: #ffffff !important;
+}
+
+body.dark-mode .lichtkante,
+body.dark-mode .footer-lichtkante,
+body.dark-mode .social-lichtkante {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(220, 225, 235, 0.7),
+    transparent
+  ) !important;
+  box-shadow: 0 0 15px rgba(220, 225, 235, 0.2) !important;
 }
 
 /* ==========================================================================
    SOCIAL MEDIA STYLES
    ========================================================================== */
-
 .social-section {
   margin: 50px 0;
   padding: 40px 20px;
@@ -616,6 +648,8 @@ strong {
   color: #9da2a8;
   transition: all 0.3s ease;
   width: 80px;
+  cursor: pointer;
+  pointer-events: auto;
 }
 
 .social-icon-wrapper {
@@ -643,7 +677,6 @@ strong {
   letter-spacing: 0.05em;
 }
 
-/* SILBER HOVER EFFECTS FÜR SOCIAL MEDIA */
 .social-link:hover {
   color: #ffffff;
   transform: translateY(-3px);
@@ -665,7 +698,6 @@ strong {
 /* ==========================================================================
    CTA BUTTON STYLES
    ========================================================================== */
-
 .cta-container {
   display: flex;
   justify-content: center;
@@ -690,6 +722,8 @@ strong {
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
+  cursor: pointer;
+  pointer-events: auto;
 }
 
 .silber-button::before {
@@ -732,7 +766,6 @@ strong {
   transform: translateX(5px);
 }
 
-/* Sekundärer Button */
 .silber-button.secondary {
   border-color: rgba(200, 205, 215, 0.3);
   background: rgba(10, 10, 10, 0.5);
@@ -743,92 +776,8 @@ strong {
 }
 
 /* ==========================================================================
-   COPYRIGHT ZENTRIERUNG
-   ========================================================================== */
-
-.footer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 25px 0;
-}
-
-.footer p {
-  margin: 0;
-  text-align: center;
-  width: 100%;
-}
-
-/* ==========================================================================
-   RESPONSIVE ANPASSUNGEN FÜR NEUE ELEMENTE
-   ========================================================================== */
-
-@media screen and (max-width: 768px) {
-  .social-grid {
-    gap: 20px;
-  }
-  
-  .social-link {
-    width: 70px;
-  }
-  
-  .social-icon-wrapper {
-    width: 50px;
-    height: 50px;
-  }
-  
-  .social-icon {
-    width: 22px;
-    height: 22px;
-  }
-  
-  .cta-container {
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-  }
-  
-  .silber-button {
-    width: 80%;
-    justify-content: center;
-  }
-  
-  .social-title {
-    font-size: 1.2rem;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .social-grid {
-    gap: 15px;
-  }
-  
-  .social-link {
-    width: 65px;
-  }
-  
-  .social-icon-wrapper {
-    width: 45px;
-    height: 45px;
-  }
-  
-  .silber-button {
-    width: 90%;
-    padding: 14px 25px;
-  }
-  
-  .social-section {
-    padding: 30px 15px;
-    margin: 40px 0;
-  }
-}
-
-/* ==========================================================================
    INDEX-SPEZIFISCHE STYLES
    ========================================================================== */
-
 .startseite .credo-headline {
   font-size: 2.5rem;
   line-height: 1.2;
@@ -901,362 +850,79 @@ strong {
   font-style: normal;
 }
 
-/* Silberner Lichtbalken für Social Media */
 .social-lichtkante {
   margin-top: 50px;
   margin-bottom: 0;
 }
 
 /* ==========================================================================
-   DARK MODE TOGGLE STYLES - KORRIGIERT
+   DRUCK-STYLES
    ========================================================================== */
+@media print {
+  #preloader,
+  .burger,
+  .hauptnavigation,
+  .dark-mode-toggle,
+  .social-section {
+    display: none !important;
+  }
+  
+  body {
+    background-color: white !important;
+    color: black !important;
+    font-size: 12pt;
+  }
+  
+  .logo {
+    filter: invert(1);
+  }
+  
+  .inhalt {
+    padding: 20px 0;
+    max-width: 100%;
+  }
+  
+  h1 {
+    color: black !important;
+    font-size: 18pt;
+  }
+  
+  p {
+    color: #333 !important;
+    text-align: justify;
+  }
+}
+
+/* ==========================================================================
+   KRITISCHE FIXES
+   ========================================================================== */
+/* Sicherstellen, dass alles klickbar ist */
+body {
+  pointer-events: auto !important;
+}
+
+button, a, .burger, .hauptnavigation a, .silber-button, .social-link {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+}
+
+/* Z-Index Hierarchie fixen */
+#preloader {
+  z-index: 9990;
+}
+
+.menu-overlay {
+  z-index: 998;
+}
+
+.hauptnavigation {
+  z-index: 999;
+}
+
+.burger {
+  z-index: 1001;
+}
 
 .dark-mode-toggle {
-  position: absolute;
-  top: 35px;
-  right: 20px;
-  background: transparent;
-  border: 1px solid rgba(200, 205, 215, 0.3);
-  color: #d6d9de;
-  cursor: pointer;
-  width: 40px;
-  height: 40px;
-  display: flex !important;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  transition: all 0.3s ease;
-  z-index: 1002; /* Über Burger Menü */
-  padding: 0;
-  opacity: 1 !important;
-  visibility: visible !important;
-}
-
-.dark-mode-toggle:hover {
-  color: #ffffff;
-  background: rgba(200, 205, 215, 0.1);
-  border-color: rgba(200, 205, 215, 0.6);
-  transform: scale(1.1);
-  box-shadow: 0 0 10px rgba(200, 205, 215, 0.2);
-}
-
-.moon-icon, .sun-icon {
-  width: 20px;
-  height: 20px;
-  fill: currentColor;
-  transition: all 0.3s ease;
-}
-
-.sun-icon {
-  display: none;
-}
-
-/* Dark Mode aktiv - Sonne zeigen */
-html.dark-mode .dark-mode-toggle .moon-icon {
-  display: none;
-}
-
-html.dark-mode .dark-mode-toggle .sun-icon {
-  display: block;
-}
-
-/* ==========================================================================
-   RESPONSIVE ANPASSUNGEN FÜR DARK MODE TOGGLE
-   ========================================================================== */
-
-@media screen and (max-width: 768px) {
-  .dark-mode-toggle {
-    top: 25px;
-    right: 15px;
-    width: 36px;
-    height: 36px;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .dark-mode-toggle {
-    top: 20px;
-    right: 10px;
-    width: 32px;
-    height: 32px;
-  }
-  
-  .moon-icon, .sun-icon {
-    width: 18px;
-    height: 18px;
-  }
-}
-
-/* ==========================================================================
-   MENU OVERLAY STYLES - KORRIGIERT
-   ========================================================================== */
-.menu-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.7);
-  z-index: 998; /* Unter Navigation, über Inhalt */
-  display: none;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.menu-overlay.active {
-  display: block;
-  opacity: 1;
-}
-
-/* ==========================================================================
-   UNIVERSAL DARK MODE FIXES - FUNKTIONIERT IN ALLEN BROWSERN
-   ========================================================================== */
-
-/* DARK MODE FÜR HTML UND BODY */
-html.dark-mode,
-html.dark-mode body {
-  background-color: #1a1a1a !important;
-  color: #b0b5bc !important;
-}
-
-/* ALLE CONTAINER IM DARK MODE */
-html.dark-mode .header,
-html.dark-mode .inhalt,
-html.dark-mode main,
-html.dark-mode section,
-html.dark-mode article,
-html.dark-mode .social-section,
-html.dark-mode .footer,
-html.dark-mode .startseite,
-html.dark-mode .ueber-mich,
-html.dark-mode .einleitung,
-html.dark-mode .kerninhalt {
-  background-color: #1a1a1a !important;
-}
-
-/* PRELOADER IM DARK MODE */
-html.dark-mode #preloader {
-  background-color: #1a1a1a !important;
-}
-
-/* TEXTFARBEN FÜR ALLE ELEMENTE */
-html.dark-mode p,
-html.dark-mode span,
-html.dark-mode div,
-html.dark-mode section {
-  color: #b0b5bc !important;
-}
-
-/* ÜBERSCHRIFTEN IM DARK MODE */
-html.dark-mode h1,
-html.dark-mode h2,
-html.dark-mode h3,
-html.dark-mode h4,
-html.dark-mode .credo-headline,
-html.dark-mode .social-title,
-html.dark-mode .lead-text {
-  color: #e4e6ea !important;
-}
-
-/* SPEZIELLE ELEMENTE FÜR INDEX.HTML IM DARK MODE */
-html.dark-mode .highlight {
-  color: #e4e6ea !important;
-  border-left-color: rgba(220, 225, 235, 0.3) !important;
-  border-right-color: rgba(220, 225, 235, 0.3) !important;
-}
-
-html.dark-mode .zitat {
-  color: #e4e6ea !important;
-}
-
-html.dark-mode .zitat-autor {
-  color: #b0b5bc !important;
-}
-
-html.dark-mode .zitat::before {
-  color: rgba(220, 225, 235, 0.3) !important;
-}
-
-/* NAVIGATION IM DARK MODE */
-html.dark-mode .hauptnavigation a {
-  color: #d6d9de !important;
-}
-
-html.dark-mode .hauptnavigation a:hover {
-  color: #ffffff !important;
-}
-
-/* LICHTKANTEN IM DARK MODE */
-html.dark-mode .lichtkante,
-html.dark-mode .footer-lichtkante,
-html.dark-mode .social-lichtkante {
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(220, 225, 235, 0.7),
-    transparent
-  ) !important;
-  box-shadow: 0 0 15px rgba(220, 225, 235, 0.2) !important;
-}
-
-/* SOCIAL MEDIA IM DARK MODE */
-html.dark-mode .social-link {
-  color: #9da2a8 !important;
-}
-
-html.dark-mode .social-icon {
-  fill: #9da2a8 !important;
-}
-
-/* BUTTONS IM DARK MODE */
-html.dark-mode .silber-button {
-  color: #d6d9de !important;
-  border-color: rgba(220, 225, 235, 0.4) !important;
-}
-
-html.dark-mode .silber-button.secondary {
-  border-color: rgba(220, 225, 235, 0.3) !important;
-  background: rgba(30, 30, 30, 0.5) !important;
-}
-
-/* ==========================================================================
-   BROWSER-SPEZIFISCHE FIXES
-   ========================================================================== */
-
-/* SAFARI & WEBKIT BROWSER FIX */
-@supports (-webkit-touch-callout: none) {
-  html.dark-mode body {
-    -webkit-text-fill-color: #b0b5bc;
-    -webkit-font-smoothing: antialiased;
-  }
-  
-  #preloader {
-    -webkit-backface-visibility: hidden;
-    -webkit-transform: translateZ(0);
-  }
-  
-  .preloader-logo {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-/* FIREFOX FIX */
-@-moz-document url-prefix() {
-  html.dark-mode body {
-    background-color: #1a1a1a;
-  }
-  
-  #preloader .preloader-inner {
-    display: flex !important;
-    flex-direction: column !important;
-  }
-}
-
-/* EDGE FIX */
-@supports (-ms-ime-align: auto) {
-  html.dark-mode body {
-    background-color: #1a1a1a;
-  }
-}
-
-/* DUCKDUCKGO & ANDERE WEBKIT BROWSER */
-@media not all and (min-resolution:.001dpcm) {
-  @supports (-webkit-appearance:none) {
-    html.dark-mode body {
-      background-color: #1a1a1a !important;
-      color: #b0b5bc !important;
-    }
-    
-    .preloader-logo {
-      margin-bottom: 40px !important;
-    }
-  }
-}
-
-/* ==========================================================================
-   RESPONSIVE FÜR INDEX
-   ========================================================================== */
-
-@media screen and (max-width: 768px) {
-  .startseite .credo-headline {
-    font-size: 1.8rem;
-    margin-bottom: 30px;
-  }
-  
-  .lead-text {
-    font-size: 1.2rem;
-  }
-  
-  .sub-lead-text {
-    font-size: 1rem;
-  }
-  
-  .kerninhalt .highlight {
-    font-size: 1.1rem;
-    padding: 15px;
-  }
-  
-  .kerninhalt .zitat {
-    font-size: 1.2rem;
-    margin: 30px 0;
-    padding: 20px 15px;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .startseite .credo-headline {
-    font-size: 1.6rem;
-  }
-  
-  .lead-text {
-    font-size: 1.1rem;
-  }
-  
-  .kerninhalt .zitat {
-    font-size: 1.1rem;
-  }
-}
-
-/* ==========================================================================
-   KRITISCHE FIXES FÜR ALLE PROBLEME
-   ========================================================================== */
-
-/* Preloader Layout Fix */
-#preloader .preloader-inner {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: center !important;
-  height: 100% !important;
-}
-
-/* Dark Mode Universal Fix */
-html.dark-mode .header,
-html.dark-mode .inhalt,
-html.dark-mode .social-section,
-html.dark-mode .footer {
-  background-color: #1a1a1a !important;
-}
-
-/* Mobile Menu Fix */
-@media (max-width: 768px) {
-  .hauptnavigation.aktiv {
-    display: flex !important;
-  }
-  
-  .menu-overlay.active + .inhalt {
-    filter: blur(2px);
-  }
-}
-
-/* Scroll Fix */
-body {
-  overflow-y: auto !important;
-  position: relative;
-}
-
-/* Inline Styles Überschreiben */
-body[style*="background-color"] {
-  background-color: inherit !important;
+  z-index: 1000;
 }
