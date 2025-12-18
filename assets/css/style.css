@@ -936,7 +936,7 @@ body.dark-mode .social-lichtkante {
 }
 
 /* ==========================================================================
-   SILBERHAIN ZITAT DESIGN - ÜBER MICH SEITE
+   SILBERHAIN ZITAT DESIGN - NUR SILBER!
    ========================================================================== */
 .credo-container {
   margin: 4rem auto 5rem;
@@ -949,9 +949,9 @@ body.dark-mode .social-lichtkante {
   padding: 3rem 2rem;
   margin-bottom: 2.5rem;
   background: linear-gradient(135deg, 
-    rgba(184, 162, 122, 0.05) 0%, 
-    rgba(184, 162, 122, 0.02) 100%);
-  border: 1px solid rgba(184, 162, 122, 0.15);
+    rgba(200, 205, 215, 0.05) 0%, 
+    rgba(200, 205, 215, 0.02) 100%);
+  border: 1px solid rgba(200, 205, 215, 0.15);
   border-radius: 1px;
   overflow: hidden;
   transition: all 0.3s ease;
@@ -966,9 +966,9 @@ body.dark-mode .social-lichtkante {
   height: 1px;
   background: linear-gradient(90deg, 
     transparent, 
-    rgba(184, 162, 122, 0.5) 20%, 
-    rgba(184, 162, 122, 0.8) 50%, 
-    rgba(184, 162, 122, 0.5) 80%, 
+    rgba(200, 205, 215, 0.5) 20%, 
+    rgba(200, 205, 215, 0.8) 50%, 
+    rgba(200, 205, 215, 0.5) 80%, 
     transparent);
   transition: all 0.3s ease;
 }
@@ -982,9 +982,9 @@ body.dark-mode .social-lichtkante {
   height: 1px;
   background: linear-gradient(90deg, 
     transparent, 
-    rgba(184, 162, 122, 0.5) 20%, 
-    rgba(184, 162, 122, 0.8) 50%, 
-    rgba(184, 162, 122, 0.5) 80%, 
+    rgba(200, 205, 215, 0.5) 20%, 
+    rgba(200, 205, 215, 0.8) 50%, 
+    rgba(200, 205, 215, 0.5) 80%, 
     transparent);
   transition: all 0.3s ease;
 }
@@ -1002,7 +1002,7 @@ body.dark-mode .social-lichtkante {
   flex-shrink: 0;
   width: 80px;
   height: 20px;
-  color: #b8a27a;
+  color: #c0c0c0; /* SILBER */
   opacity: 0.7;
   transition: all 0.3s ease;
 }
@@ -1049,7 +1049,7 @@ body.dark-mode .social-lichtkante {
   height: 1px;
   background: linear-gradient(90deg, 
     transparent, 
-    rgba(184, 162, 122, 0.3) 50%, 
+    rgba(200, 205, 215, 0.3) 50%, 
     transparent);
   transition: all 0.3s ease;
 }
@@ -1057,7 +1057,7 @@ body.dark-mode .social-lichtkante {
 .signature-line {
   width: 40px;
   height: 1px;
-  background: #b8a27a;
+  background: #c0c0c0; /* SILBER */
   opacity: 0.6;
   transition: all 0.3s ease;
 }
@@ -1066,7 +1066,7 @@ body.dark-mode .social-lichtkante {
   font-family: 'Cinzel', serif;
   font-size: 1.1rem;
   font-weight: 600;
-  color: #b8a27a;
+  color: #c0c0c0; /* SILBER */
   letter-spacing: 1.5px;
   text-transform: uppercase;
   opacity: 0.9;
@@ -1082,13 +1082,13 @@ body.dark-mode .social-lichtkante {
   max-width: 700px;
   margin: 2rem auto 0;
   padding: 1.5rem;
-  border-top: 1px solid rgba(184, 162, 122, 0.2);
-  border-bottom: 1px solid rgba(184, 162, 122, 0.2);
+  border-top: 1px solid rgba(200, 205, 215, 0.2);
+  border-bottom: 1px solid rgba(200, 205, 215, 0.2);
   background: rgba(250, 250, 250, 0.5);
   transition: all 0.3s ease;
 }
 
-/* ================= SILBER DARK MODE - VERBESSERTER HINTERGRUND ================= */
+/* ================= SILBER DARK MODE - NOCH MEHR SILBER! ================= */
 body.dark-mode .credo-quote-wrapper {
   background: linear-gradient(135deg, 
     rgba(192, 192, 192, 0.15) 0%, 
@@ -1204,7 +1204,7 @@ body.dark-mode .credo-subtitle {
 }
 
 /* ==========================================================================
-   ÜBER-MICH SPEZIFISCHE STYLES
+   ÜBER-MICH SPEZIFISCHE STYLES - NUR SILBER!
    ========================================================================== */
 .ueber-mich-content {
   margin-top: 3rem;
@@ -1245,8 +1245,8 @@ body.dark-mode .credo-subtitle {
   margin: 2.5rem 0;
   font-style: italic;
   padding: 1.5rem;
-  border-left: 2px solid rgba(184, 162, 122, 0.3);
-  border-right: 2px solid rgba(184, 162, 122, 0.3);
+  border-left: 2px solid rgba(200, 205, 215, 0.3); /* SILBER */
+  border-right: 2px solid rgba(200, 205, 215, 0.3); /* SILBER */
 }
 
 .abschnitt-schluss {
