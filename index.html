@@ -15,17 +15,51 @@
   <!-- Favicon -->
   <link rel="icon" href="assets/images/logo.png" type="image/png">
   
-  <!-- Preload Dark Mode Script to prevent flicker -->
+  <!-- Dark Mode Preload - VERHINDERT FLACKERN -->
   <script>
-    // Prevent dark mode flicker by immediately applying saved theme
+    // UNIVERSAL DARK MODE LOADER - FUNKTIONIERT IN ALLEN BROWSERN
     (function() {
+      'use strict';
+      
+      // SOFORTIGE ANWENDUNG VON DARK MODE UM FLACKERN ZU VERHINDERN
       try {
         const savedTheme = localStorage.getItem('ms-theme');
+        const html = document.documentElement;
+        const body = document.body;
+        
         if (savedTheme === 'dark') {
-          document.body.classList.add('dark-mode');
+          // SOFORT ANWENDEN - NOCH VOR DEM LADEN DES RESTLICHEN CSS
+          html.classList.add('dark-mode');
+          body.classList.add('dark-mode');
+          
+          // INLINE STYLES FÜR BROWSER DIE KLASSEN IGNORIEREN (SAFARI, DUCKDUCKGO)
+          html.style.backgroundColor = '#1a1a1a';
+          body.style.backgroundColor = '#1a1a1a';
+          body.style.color = '#b0b5bc';
+          
+          // FORCE RE-FLOW FÜR SAFARI UND WEBKIT BROWSER
+          void html.offsetHeight;
+          void body.offsetHeight;
         }
       } catch (e) {
-        console.log('No theme preference saved');
+        console.log('Dark Mode Preload:', e.message);
+      }
+      
+      // FALLBACK FÜR SYSTEM DARK MODE WENN KEINE EINSTELLUNG GESPEICHERT IST
+      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        try {
+          const savedTheme = localStorage.getItem('ms-theme');
+          if (!savedTheme) {
+            const html = document.documentElement;
+            const body = document.body;
+            html.classList.add('dark-mode');
+            body.classList.add('dark-mode');
+            html.style.backgroundColor = '#1a1a1a';
+            body.style.backgroundColor = '#1a1a1a';
+          }
+        } catch (e) {
+          // IGNORIERE FEHLER BEI LOCALSTORAGE
+        }
       }
     })();
   </script>
@@ -33,7 +67,7 @@
 
 <body>
 
-<!-- Preloader (wird von JavaScript benötigt) -->
+<!-- Preloader -->
 <div id="preloader">
   <div class="preloader-inner">
     <img src="assets/images/logo.png" alt="Logo" class="preloader-logo">
