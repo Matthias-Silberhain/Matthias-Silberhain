@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>Matthias Silberhain | Werke</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Werke von Matthias Silberhain - Der lange Weg in die Finsternis">
+  <meta name="description" content="Werke von Matthias Silberhain - Historische Analysen mit wissenschaftlichem Anspruch">
   
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=EB+Garamond:wght@400;500&display=swap" rel="stylesheet">
@@ -15,7 +15,7 @@
   <!-- Favicon -->
   <link rel="icon" href="assets/images/logo.png" type="image/png">
   
-  <!-- Dark Mode Preload - KORRIGIERT -->
+  <!-- Dark Mode Preload -->
   <script>
     (function() {
       // SOFORTIGE DARK MODE ANWENDUNG
@@ -33,8 +33,7 @@
       
       // SOFORTIGE KLICKBARKEIT SICHERSTELLEN
       document.addEventListener('DOMContentLoaded', function() {
-        // Alle interaktiven Elemente klickbar machen
-        const interactiveElements = ['button', 'a', '.burger', '.dark-mode-toggle', '.silber-button', '.social-link', '.seriöser-button'];
+        const interactiveElements = ['button', 'a', '.burger', '.dark-mode-toggle', '.silber-button', '.social-link', '.seriöser-button', '.carousel-button', '.carousel-slide'];
         
         setTimeout(function() {
           interactiveElements.forEach(selector => {
@@ -58,18 +57,18 @@
   
   <style>
     /* ==========================================================================
-       WERKE SEITE STYLES - SERIÖSE VERSION
+       WERKE SEITE STYLES - MIT BILDKARUSSELL
        ========================================================================== */
     
     .werke-container {
-      max-width: 850px;
+      max-width: 900px;
       margin: 0 auto;
       padding: 20px;
     }
     
     .werke-header {
       text-align: center;
-      margin-bottom: 60px;
+      margin-bottom: 40px;
       padding-bottom: 30px;
       border-bottom: 1px solid rgba(200, 205, 215, 0.2);
     }
@@ -89,15 +88,259 @@
       font-style: italic;
       max-width: 600px;
       margin: 0 auto;
-      text-align: center; /* KORREKTUR: Zentrierung hinzugefügt */
+      text-align: center;
     }
     
-    /* Buchkarte - Seriöse Version */
+    /* ================= BILDKARUSSELL STYLES ================= */
+    .karussell-section {
+      margin: 40px 0 80px 0;
+      text-align: center;
+    }
+    
+    .karussell-title {
+      font-family: "Cinzel", serif;
+      color: #e4e6ea;
+      font-size: 1.6rem;
+      margin-bottom: 40px;
+      letter-spacing: 0.05em;
+      text-shadow: 0 0 10px rgba(200, 200, 200, 0.2);
+      position: relative;
+      padding-bottom: 15px;
+    }
+    
+    .karussell-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 1px;
+      background: linear-gradient(90deg, 
+        transparent, 
+        rgba(200, 200, 200, 0.5) 50%, 
+        transparent);
+    }
+    
+    .karussell-container {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+      overflow: hidden;
+      border-radius: 8px;
+      padding: 10px;
+    }
+    
+    .karussell-track {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+      gap: 20px;
+    }
+    
+    .karussell-slide {
+      flex: 0 0 280px;
+      height: 380px;
+      position: relative;
+      transition: all 0.3s ease;
+      opacity: 0.9;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    
+    .karussell-slide:hover {
+      transform: translateY(-10px);
+      opacity: 1;
+      box-shadow: 
+        0 15px 35px rgba(0, 0, 0, 0.5),
+        0 0 25px rgba(200, 200, 200, 0.2);
+    }
+    
+    .karussell-link {
+      display: block;
+      width: 100%;
+      height: 100%;
+      text-decoration: none;
+      position: relative;
+    }
+    
+    .karussell-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 4px;
+      border: 1px solid rgba(200, 200, 200, 0.1);
+      transition: all 0.3s ease;
+    }
+    
+    .karussell-link:hover .karussell-image {
+      border-color: rgba(200, 200, 200, 0.4);
+      filter: brightness(1.05);
+    }
+    
+    .karussell-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, 
+        rgba(0, 0, 0, 0.9) 0%, 
+        rgba(0, 0, 0, 0.7) 50%, 
+        transparent 100%);
+      padding: 25px 20px 20px;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.3s ease;
+    }
+    
+    .karussell-slide:hover .karussell-overlay {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .karussell-buchtitel {
+      font-family: "Cinzel", serif;
+      color: #ffffff;
+      font-size: 1.1rem;
+      margin-bottom: 5px;
+      letter-spacing: 0.03em;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+    }
+    
+    .karussell-beschreibung {
+      color: #b0b5bc;
+      font-size: 0.9rem;
+      line-height: 1.4;
+      margin: 0;
+      font-style: italic;
+    }
+    
+    .karussell-button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.7);
+      border: 1px solid rgba(200, 200, 200, 0.3);
+      color: #ffffff;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      transition: all 0.3s ease;
+      z-index: 10;
+      backdrop-filter: blur(5px);
+    }
+    
+    .karussell-button:hover {
+      background: rgba(200, 200, 200, 0.2);
+      border-color: rgba(200, 200, 200, 0.6);
+      transform: translateY(-50%) scale(1.1);
+    }
+    
+    .karussell-button.prev {
+      left: 10px;
+    }
+    
+    .karussell-button.next {
+      right: 10px;
+    }
+    
+    .karussell-indicators {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 30px;
+    }
+    
+    .karussell-indicator {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(200, 200, 200, 0.2);
+      border: 1px solid rgba(200, 200, 200, 0.3);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .karussell-indicator.active {
+      background: rgba(200, 200, 200, 0.8);
+      border-color: rgba(200, 200, 200, 1);
+      transform: scale(1.2);
+    }
+    
+    .karussell-indicator:hover {
+      background: rgba(200, 200, 200, 0.5);
+    }
+    
+    /* ================= DARK MODE KARUSSELL ================= */
+    body.dark-mode .karussell-title {
+      color: #f0f0f0;
+    }
+    
+    body.dark-mode .karussell-title::after {
+      background: linear-gradient(90deg, 
+        transparent, 
+        rgba(220, 220, 220, 0.6) 50%, 
+        transparent);
+    }
+    
+    body.dark-mode .karussell-slide {
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+    }
+    
+    body.dark-mode .karussell-slide:hover {
+      box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.6),
+        0 0 30px rgba(220, 220, 220, 0.15);
+    }
+    
+    body.dark-mode .karussell-image {
+      border-color: rgba(220, 220, 220, 0.15);
+    }
+    
+    body.dark-mode .karussell-button {
+      background: rgba(30, 30, 30, 0.8);
+      border-color: rgba(220, 220, 220, 0.4);
+    }
+    
+    body.dark-mode .karussell-button:hover {
+      background: rgba(220, 220, 220, 0.2);
+      border-color: rgba(220, 220, 220, 0.8);
+    }
+    
+    /* ================= AKTUELLES WERK STYLES ================= */
+    .aktuelles-werk {
+      text-align: center;
+      margin: 80px 0 60px 0;
+      padding: 40px 0;
+      border-top: 1px solid rgba(200, 205, 215, 0.2);
+      border-bottom: 1px solid rgba(200, 205, 215, 0.2);
+    }
+    
+    .aktuelles-werk h2 {
+      font-family: "Cinzel", serif;
+      color: #e4e6ea;
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+      letter-spacing: 0.05em;
+    }
+    
+    .aktuelles-werk p {
+      color: #9da2a8;
+      max-width: 600px;
+      margin: 0 auto 25px auto;
+      font-size: 1.1rem;
+    }
+    
+    /* ================= BUCHPRÄSENTATION STYLES ================= */
     .buch-präsentation {
       margin-bottom: 80px;
     }
     
-    /* Buchcover Bereich */
     .buchcover-bereich {
       text-align: center;
       margin-bottom: 40px;
@@ -120,7 +363,6 @@
       border-radius: 1px;
     }
     
-    /* Titelbereich */
     .titel-bereich {
       text-align: center;
       margin-bottom: 40px;
@@ -146,10 +388,9 @@
       line-height: 1.5;
       max-width: 700px;
       margin: 0 auto;
-      text-align: center; /* KORREKTUR: Zentrierung hinzugefügt */
+      text-align: center;
     }
     
-    /* Inhaltstext */
     .inhalt-bereich {
       margin-bottom: 50px;
     }
@@ -171,7 +412,6 @@
       margin-bottom: 0;
     }
     
-    /* Seriöse Zitat-Box */
     .zitat-seriös {
       background: rgba(200, 205, 215, 0.03);
       border-left: 4px solid rgba(200, 205, 215, 0.3);
@@ -187,7 +427,6 @@
       margin: 0;
     }
     
-    /* Quellenbereich */
     .quellen-bereich {
       margin: 40px 0;
       padding: 25px;
@@ -218,7 +457,6 @@
       margin-bottom: 0;
     }
     
-    /* Seriöse Buttons */
     .aktionen-bereich {
       text-align: center;
       margin-top: 50px;
@@ -339,32 +577,48 @@
       font-style: italic;
     }
     
-    /* Platzhalter für weitere Werke */
-    .weitere-werke {
-      text-align: center;
-      margin-top: 80px;
-      padding-top: 40px;
-      border-top: 1px solid rgba(200, 205, 215, 0.2);
-    }
-    
-    .weitere-werke h3 {
-      font-family: "Cinzel", serif;
-      color: #e4e6ea;
-      margin-bottom: 15px;
-      font-size: 1.3rem;
-      letter-spacing: 0.05em;
-    }
-    
-    .weitere-werke p {
-      color: #9da2a8;
-      max-width: 500px;
-      margin: 0 auto;
-      font-size: 1rem;
-      text-align: center; /* KORREKTUR: Zentrierung hinzugefügt */
-    }
-    
-    /* DARK MODE STYLES FÜR WERKE-SEITE */
+    /* ================= DARK MODE STYLES FÜR WERKE-SEITE ================= */
     body.dark-mode .werke-header {
+      border-bottom-color: rgba(220, 225, 235, 0.15);
+    }
+    
+    body.dark-mode .karussell-title {
+      color: #f0f0f0;
+    }
+    
+    body.dark-mode .karussell-title::after {
+      background: linear-gradient(90deg, 
+        transparent, 
+        rgba(220, 220, 220, 0.6) 50%, 
+        transparent);
+    }
+    
+    body.dark-mode .karussell-slide {
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+    }
+    
+    body.dark-mode .karussell-slide:hover {
+      box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.6),
+        0 0 30px rgba(220, 220, 220, 0.15);
+    }
+    
+    body.dark-mode .karussell-image {
+      border-color: rgba(220, 220, 220, 0.15);
+    }
+    
+    body.dark-mode .karussell-button {
+      background: rgba(30, 30, 30, 0.8);
+      border-color: rgba(220, 220, 220, 0.4);
+    }
+    
+    body.dark-mode .karussell-button:hover {
+      background: rgba(220, 220, 220, 0.2);
+      border-color: rgba(220, 220, 220, 0.8);
+    }
+    
+    body.dark-mode .aktuelles-werk {
+      border-top-color: rgba(220, 225, 235, 0.15);
       border-bottom-color: rgba(220, 225, 235, 0.15);
     }
     
@@ -407,22 +661,54 @@
       border-top-color: rgba(220, 225, 235, 0.1);
     }
     
-    body.dark-mode .weitere-werke {
-      border-top-color: rgba(220, 225, 235, 0.15);
-    }
-    
-    /* Responsive Anpassungen */
+    /* ================= RESPONSIVE ANPASSUNGEN ================= */
     @media screen and (max-width: 768px) {
       .werke-container {
         padding: 15px;
       }
       
       .werke-header {
-        margin-bottom: 40px;
+        margin-bottom: 30px;
       }
       
       .werke-header h1 {
         font-size: 2rem;
+      }
+      
+      .karussell-container {
+        max-width: 100%;
+        padding: 0;
+      }
+      
+      .karussell-slide {
+        flex: 0 0 250px;
+        height: 340px;
+      }
+      
+      .karussell-button {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+      }
+      
+      .karussell-button.prev {
+        left: 5px;
+      }
+      
+      .karussell-button.next {
+        right: 5px;
+      }
+      
+      .karussell-overlay {
+        padding: 20px 15px 15px;
+      }
+      
+      .karussell-buchtitel {
+        font-size: 1rem;
+      }
+      
+      .karussell-beschreibung {
+        font-size: 0.85rem;
       }
       
       .buch-titel-seriös {
@@ -478,6 +764,25 @@
     @media screen and (max-width: 480px) {
       .werke-header h1 {
         font-size: 1.7rem;
+      }
+      
+      .karussell-slide {
+        flex: 0 0 220px;
+        height: 300px;
+      }
+      
+      .karussell-title {
+        font-size: 1.4rem;
+        margin-bottom: 30px;
+      }
+      
+      .karussell-overlay {
+        opacity: 1;
+        transform: translateY(0);
+        background: linear-gradient(to top, 
+          rgba(0, 0, 0, 0.85) 0%, 
+          rgba(0, 0, 0, 0.6) 50%, 
+          transparent 100%);
       }
       
       .buch-titel-seriös {
@@ -550,12 +855,80 @@
 <!-- ================= WERKE INHALT ================= -->
 <main class="inhalt">
   <section class="werke-container">
+    <!-- Überschrift -->
     <div class="werke-header">
       <h1>Werke</h1>
       <p class="werke-subtitle">Historische Analysen mit wissenschaftlichem Anspruch</p>
     </div>
     
-    <!-- Buchpräsentation -->
+    <!-- BILDKARUSSELL FÜR ALLE BÜCHER -->
+    <div class="karussell-section">
+      <h2 class="karussell-title">Alle Werke im Überblick</h2>
+      <div class="karussell-container" id="buchKarussell">
+        <button class="karussell-button prev" aria-label="Vorheriges Buch">‹</button>
+        
+        <div class="karussell-track" id="karussellTrack">
+          <!-- Slide 1: Der lange Weg in die Finsternis -->
+          <div class="karussell-slide">
+            <a href="#aktuelles-werk" class="karussell-link">
+              <img src="assets/images/derlangewegindiefinsternis.png" 
+                   alt="Der lange Weg in die Finsternis" 
+                   class="karussell-image">
+              <div class="karussell-overlay">
+                <h3 class="karussell-buchtitel">Der lange Weg in die Finsternis</h3>
+                <p class="karussell-beschreibung">Wie das Kaiserreich den Nationalsozialismus vorbereitete</p>
+              </div>
+            </a>
+          </div>
+          
+          <!-- Slide 2: Macht und Untergang -->
+          <div class="karussell-slide">
+            <a href="machtunduntergang.html" class="karussell-link">
+              <img src="assets/images/machtunduntergang.png" 
+                   alt="Macht und Untergang" 
+                   class="karussell-image">
+              <div class="karussell-overlay">
+                <h3 class="karussell-buchtitel">Macht und Untergang</h3>
+                <p class="karussell-beschreibung">Die endgültige Geschichte des Dritten Reiches</p>
+              </div>
+            </a>
+          </div>
+          
+          <!-- Slide 3: Blut und Krone -->
+          <div class="karussell-slide">
+            <a href="blutundkrone.html" class="karussell-link">
+              <img src="assets/images/blutundkrone.png" 
+                   alt="Blut und Krone" 
+                   class="karussell-image">
+              <div class="karussell-overlay">
+                <h3 class="karussell-buchtitel">Blut und Krone</h3>
+                <p class="karussell-beschreibung">Die verborgenen Kriege der europäischen Monarchien</p>
+              </div>
+            </a>
+          </div>
+        </div>
+        
+        <button class="karussell-button next" aria-label="Nächstes Buch">›</button>
+        
+        <!-- Indikatoren -->
+        <div class="karussell-indicators">
+          <span class="karussell-indicator active" data-slide="0"></span>
+          <span class="karussell-indicator" data-slide="1"></span>
+          <span class="karussell-indicator" data-slide="2"></span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Aktuelles Werk -->
+    <div class="aktuelles-werk" id="aktuelles-werk">
+      <h2>Der lange Weg in die Finsternis</h2>
+      <p>Aktuell vertieft auf dieser Seite</p>
+      <p style="color: #b0b5bc; font-size: 1rem; max-width: 500px; margin: 15px auto;">
+        Klicken Sie auf eines der Bücher im Karussell, um zur Detailseite zu gelangen
+      </p>
+    </div>
+    
+    <!-- Buchpräsentation für "Der lange Weg in die Finsternis" -->
     <article class="buch-präsentation">
       <!-- Buchcover -->
       <div class="buchcover-bereich">
@@ -579,8 +952,6 @@
           
           <p>Im Zentrum steht das deutsche Kaiserreich und die Frage, welche Strukturen, Denkweisen und politischen Mechanismen dort entstanden, die später vom Nationalsozialismus übernommen, radikalisiert und zur Vollendung gebracht wurden. Der Fokus liegt nicht auf einzelnen Personen, sondern auf Systemen. Auf Machtstrukturen, auf Gewöhnung an Gewalt, auf Sprache, die entmenschlicht, und auf eine politische Kultur, in der Gehorsam höher bewertet wurde als Verantwortung.</p>
           
-          <p>Das Buch zeigt, wie sich diese Entwicklung in vielen Bereichen zugleich vollzog. In Parlamenten, in denen Reichstagsdebatten bereits mit Feindbildern, Abwertung und Ausgrenzung arbeiteten. In Schulen und Kasernen, in denen Unterordnung zur Tugend und Härte zur Normalität wurde. In den Kolonien, in denen Gewalt nicht nur ausgeübt, sondern geplant, organisiert und gerechtfertigt wurde.</p>
-          
           <div class="zitat-seriös">
             <p>Diese kolonialen Verbrechen werden hier nicht als Randnotiz behandelt, sondern als frühes Übungsfeld für Denkweisen und Methoden, die später im Inneren des Reiches wiederkehrten.</p>
           </div>
@@ -594,8 +965,6 @@
               <p>Die Quellen sind am Ende des Buches vollständig aufgeführt und nachvollziehbar dokumentiert.</p>
             </div>
           </div>
-          
-          <p><strong>Das Rückcover greift diese Linie bewusst auf.</strong> Das dunkle Kopfsteinpflaster steht für einen Weg, der fest und vertraut wirkt. Es steht nicht für Schuldzuweisung an eine einzelne Figur, sondern für die Epoche, in der dieser Weg geformt wurde. Für ein System, das seine eigenen Abgründe nicht erkannte oder nicht erkennen wollte.</p>
           
           <p><strong>Dieses Buch versteht sich nicht als moralische Anklage aus sicherer Distanz.</strong> Es ist eine Analyse historischer Kontinuitäten. Es zeigt, wie sich Radikalisierung vorbereitet, wie sich Grenzen verschieben und wie Gesellschaften lernen, Unrecht zu akzeptieren, solange es schrittweise geschieht.</p>
           
@@ -633,7 +1002,7 @@
       <div class="aktionen-bereich">
         <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-bottom: 25px;">
           <!-- Online lesen Button -->
-          <a href="https://matthias-silberhain.github.io/matthias-silberhain/assets/leseproben/derlangewegindiefinsternis.pdf" 
+          <a href="assets/leseproben/derlangewegindiefinsternis.pdf" 
              class="seriöser-button"
              target="_blank"
              style="background: rgba(200,205,215,0.1); min-width: 200px;"
@@ -645,9 +1014,9 @@
           </a>
           
           <!-- Download Button -->
-          <a href="https://matthias-silberhain.github.io/matthias-silberhain/assets/leseproben/derlangewegindiefinsternis.pdf" 
+          <a href="assets/leseproben/derlangewegindiefinsternis.pdf" 
              class="seriöser-button"
-             download="https://matthias-silberhain.github.io/matthias-silberhain/assets/leseproben/derlangewegindiefinsternis.pdf"
+             download="Der_lange_Weg_in_die_Finsternis_Leseprobe.pdf"
              style="border-style: dashed; min-width: 200px;"
              onclick="increaseCounter('download')">
             <svg class="download-icon" viewBox="0 0 24 24" style="margin-right: 10px; vertical-align: middle;">
@@ -687,29 +1056,6 @@
         </div>
       </div>
     </article>
-    
-    <!-- GEÄNDERTER ABSCHNITT: Weitere Werke -->
-    <div class="weitere-werke">
-      <h3>Weitere Werke</h3>
-      <p>Weitere historische Analysen sind in Vorbereitung und werden hier veröffentlicht, sobald sie verfügbar sind.</p>
-      
-      <!-- Einfacher Button für Macht und Untergang -->
-      <div style="margin-top: 40px; text-align: center;">
-        <a href="machtunduntergang.html" class="seriöser-button" style="min-width: 280px;">
-          <svg width="18" height="18" viewBox="0 0 24 24" style="margin-right: 10px; vertical-align: middle;">
-            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zM7 10h2v7H7zm4-3h2v10h-2zm4-2h2v12h-2z" fill="currentColor"/>
-          </svg>
-          Zu "Macht und Untergang" mit Leseprobe
-        </a>
-        
-        <p style="color: #9da2a8; margin-top: 15px; font-size: 0.9rem;">
-          <svg width="14" height="14" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 5px;">
-            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="#9da2a8"/>
-          </svg>
-          Fertiges Werk mit Download verfügbar
-        </p>
-      </div>
-    </div>
   </section>
 </main>
 
@@ -806,17 +1152,136 @@
 <!-- ================= WERKE SPEZIFISCHE SCRIPTE ================= -->
 <script>
 // ========================================================================
+// BILDKARUSSELL FUNKTIONEN
+// ========================================================================
+
+function initKarussell() {
+  const track = document.getElementById('karussellTrack');
+  const slides = document.querySelectorAll('.karussell-slide');
+  const prevButton = document.querySelector('.karussell-button.prev');
+  const nextButton = document.querySelector('.karussell-button.next');
+  const indicators = document.querySelectorAll('.karussell-indicator');
+  
+  if (!track || slides.length === 0) return;
+  
+  const slideWidth = slides[0].offsetWidth + 20; // + gap
+  let currentIndex = 0;
+  let autoSlideInterval;
+  
+  // Funktion zum Aktualisieren der Position
+  function updateSlidePosition() {
+    track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+    
+    // Aktiviere/Deaktiviere Buttons basierend auf Position
+    prevButton.style.opacity = currentIndex === 0 ? '0.5' : '1';
+    prevButton.style.pointerEvents = currentIndex === 0 ? 'none' : 'auto';
+    
+    nextButton.style.opacity = currentIndex === slides.length - 1 ? '0.5' : '1';
+    nextButton.style.pointerEvents = currentIndex === slides.length - 1 ? 'none' : 'auto';
+    
+    // Aktualisiere Indikatoren
+    indicators.forEach((indicator, index) => {
+      if (index === currentIndex) {
+        indicator.classList.add('active');
+      } else {
+        indicator.classList.remove('active');
+      }
+    });
+  }
+  
+  // Nächste Slide
+  function nextSlide() {
+    if (currentIndex < slides.length - 1) {
+      currentIndex++;
+      updateSlidePosition();
+    }
+  }
+  
+  // Vorherige Slide
+  function prevSlide() {
+    if (currentIndex > 0) {
+      currentIndex--;
+      updateSlidePosition();
+    }
+  }
+  
+  // Zur bestimmten Slide gehen
+  function goToSlide(index) {
+    if (index >= 0 && index < slides.length) {
+      currentIndex = index;
+      updateSlidePosition();
+    }
+  }
+  
+  // Event Listener für Buttons
+  prevButton.addEventListener('click', prevSlide);
+  nextButton.addEventListener('click', nextSlide);
+  
+  // Event Listener für Indikatoren
+  indicators.forEach((indicator, index) => {
+    indicator.addEventListener('click', () => goToSlide(index));
+  });
+  
+  // Touch-Gesten für Mobile
+  let startX = 0;
+  let endX = 0;
+  
+  track.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].clientX;
+  });
+  
+  track.addEventListener('touchmove', (e) => {
+    endX = e.touches[0].clientX;
+  });
+  
+  track.addEventListener('touchend', () => {
+    const diff = startX - endX;
+    
+    if (Math.abs(diff) > 50) { // Mindest-Swipe-Distanz
+      if (diff > 0) {
+        nextSlide(); // Swipe nach links = nächste Slide
+      } else {
+        prevSlide(); // Swipe nach rechts = vorherige Slide
+      }
+    }
+  });
+  
+  // Auto-Slide deaktivieren (falls gewünscht, kann aktiviert werden)
+  // function startAutoSlide() {
+  //   autoSlideInterval = setInterval(() => {
+  //     if (currentIndex === slides.length - 1) {
+  //       currentIndex = 0;
+  //     } else {
+  //       currentIndex++;
+  //     }
+  //     updateSlidePosition();
+  //   }, 5000);
+  // }
+  
+  // function stopAutoSlide() {
+  //   clearInterval(autoSlideInterval);
+  // }
+  
+  // track.addEventListener('mouseenter', stopAutoSlide);
+  // track.addEventListener('mouseleave', startAutoSlide);
+  
+  // Initialisiere Position
+  updateSlidePosition();
+  
+  // Starte Auto-Slide (optional)
+  // startAutoSlide();
+}
+
+// ========================================================================
 // DIGITALE STATISTIK FUNKTIONEN
 // ========================================================================
 
-// Initialwerte (können angepasst werden)
 let statistics = {
-  online: 289,    // Startwert für Online-Leser
-  download: 73,   // Startwert für Downloads
+  online: 289,
+  download: 73,
   lastUpdate: new Date().toISOString()
 };
 
-// Statistik laden
 function loadStatistics() {
   try {
     const savedStats = localStorage.getItem('leseprobeStatistics');
@@ -829,7 +1294,6 @@ function loadStatistics() {
   }
 }
 
-// Statistik speichern
 function saveStatistics() {
   try {
     statistics.lastUpdate = new Date().toISOString();
@@ -840,34 +1304,28 @@ function saveStatistics() {
   }
 }
 
-// Zähler erhöhen
 function increaseCounter(type) {
   if (type === 'online') {
     statistics.online++;
-    // Öffne PDF in neuem Tab (nach kurzer Verzögerung für bessere UX)
-    setTimeout(() => {
-      window.open('https://matthias-silberhain.github.io/matthias-silberhain/assets/leseproben/derlangewegindiefinsternis.pdf', '_blank');
-    }, 100);
   } else if (type === 'download') {
     statistics.download++;
-    // Der Download wird durch das download-Attribut automatisch gestartet
   }
   
   saveStatistics();
   updateStatisticsDisplay();
-  
-  // Optional: Animationseffekt
   animateCounter(type);
 }
 
-// Statistik-Anzeige aktualisieren
 function updateStatisticsDisplay() {
-  document.getElementById('online-counter').textContent = statistics.online;
-  document.getElementById('download-counter').textContent = statistics.download;
-  document.getElementById('total-counter').textContent = statistics.online + statistics.download;
+  const onlineCounter = document.getElementById('online-counter');
+  const downloadCounter = document.getElementById('download-counter');
+  const totalCounter = document.getElementById('total-counter');
+  
+  if (onlineCounter) onlineCounter.textContent = statistics.online;
+  if (downloadCounter) downloadCounter.textContent = statistics.download;
+  if (totalCounter) totalCounter.textContent = statistics.online + statistics.download;
 }
 
-// Letzte Aktualisierung anzeigen
 function updateLastUpdateText() {
   const lastUpdateElement = document.getElementById('last-update');
   if (lastUpdateElement && statistics.lastUpdate) {
@@ -887,13 +1345,11 @@ function updateLastUpdateText() {
   }
 }
 
-// Optional: Animationseffekt für Zähler
 function animateCounter(type) {
   const elementId = type === 'online' ? 'online-counter' : 'download-counter';
   const element = document.getElementById(elementId);
   
   if (element) {
-    // Temporäre Animation
     element.style.transform = 'scale(1.1)';
     element.style.color = '#ffffff';
     element.style.textShadow = '0 0 15px rgba(200, 200, 200, 0.7)';
@@ -906,27 +1362,39 @@ function animateCounter(type) {
   }
 }
 
-// Statistik zurücksetzen (nur für Entwicklungszwecke)
-function resetStatistics() {
-  if (confirm('Statistik wirklich zurücksetzen?')) {
-    statistics = {
-      online: 289,
-      download: 73,
-      lastUpdate: new Date().toISOString()
-    };
-    saveStatistics();
-    updateStatisticsDisplay();
-  }
-}
+// ========================================================================
+// INITIALISIERUNG
+// ========================================================================
 
-// Entwickler-Shortcut: Doppelklick auf Statistik-Titel zum Zurücksetzen
 document.addEventListener('DOMContentLoaded', function() {
+  // Initialisiere Karussell
+  setTimeout(initKarussell, 100);
+  
+  // Lade Statistik
   loadStatistics();
   
+  // Entwickler-Shortcut: Doppelklick auf Statistik-Titel zum Zurücksetzen
   const statTitle = document.querySelector('.statistik-title');
   if (statTitle) {
-    statTitle.addEventListener('dblclick', resetStatistics);
+    statTitle.addEventListener('dblclick', function() {
+      if (confirm('Statistik wirklich zurücksetzen?')) {
+        statistics = {
+          online: 289,
+          download: 73,
+          lastUpdate: new Date().toISOString()
+        };
+        saveStatistics();
+        updateStatisticsDisplay();
+      }
+    });
   }
+});
+
+// Responsive: Karussell neu initialisieren bei Fenstergrößenänderung
+let resizeTimeout;
+window.addEventListener('resize', function() {
+  clearTimeout(resizeTimeout);
+  resizeTimeout = setTimeout(initKarussell, 250);
 });
 </script>
 
