@@ -15,7 +15,7 @@
   <!-- Favicon -->
   <link rel="icon" href="assets/images/logo.png" type="image/png">
   
-  <!-- Dark Mode Preload - KORRIGIERT -->
+  <!-- Dark Mode Preload -->
   <script>
     (function() {
       // SOFORTIGE DARK MODE ANWENDUNG
@@ -89,7 +89,7 @@
       font-style: italic;
       max-width: 600px;
       margin: 0 auto;
-      text-align: center; /* KORREKTUR: Zentrierung hinzugefügt */
+      text-align: center;
     }
     
     /* Buchkarte - Seriöse Version */
@@ -146,7 +146,7 @@
       line-height: 1.5;
       max-width: 700px;
       margin: 0 auto;
-      text-align: center; /* KORREKTUR: Zentrierung hinzugefügt */
+      text-align: center;
     }
     
     /* Inhaltstext */
@@ -558,7 +558,7 @@
             <p>Das Buch zeigt, wie Wilhelm II. nicht trotz, sondern wegen dieses Systems an die Macht kam, wie außenpolitische Hybris Europa destabilisierte, wie koloniale Vernichtungspolitik betrieben und legitimiert wurde und wie demokratische Bewegungen systematisch bekämpft wurden.</p>
           </div>
           
-          <p>Es macht deutlich, warum das Kaiserreich nicht „scheiterte“, sondern zwangsläufig in Krieg, Elend und moralischen Bankrott führte.</p>
+          <p>Es macht deutlich, warum das Kaiserreich nicht „scheiterte", sondern zwangsläufig in Krieg, Elend und moralischen Bankrott führte.</p>
           
           <div class="quellen-bereich">
             <div class="quellen-titel">Besonderes Gewicht: Gegenwartsrelevanz</div>
@@ -603,8 +603,8 @@
       <!-- Aktionen -->
       <div class="aktionen-bereich">
         <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-bottom: 25px;">
-          <!-- Online lesen Button -->
-          <a href="https://github.io/Matthias-Silberhain/matthias-silberhain/assets/leseproben/blut_und_krone_leseprobe.pdf" 
+          <!-- Online lesen Button - KORRIGIERT -->
+          <a href="assets/leseproben/blut_und_krone_leseprobe.pdf" 
              class="seriöser-button"
              target="_blank"
              style="background: rgba(200,205,215,0.1); min-width: 200px;"
@@ -615,10 +615,10 @@
             Leseprobe online lesen
           </a>
           
-          <!-- Download Button -->
-          <a href="https://github.io/Matthias-Silberhain/matthias-silberhain/assets/leseproben/blut_und_krone_leseprobe.pdf" 
+          <!-- Download Button - KORRIGIERT -->
+          <a href="assets/leseproben/blut_und_krone_leseprobe.pdf" 
              class="seriöser-button"
-             download="blut_und_krone_leseprobe.pdf"
+             download="Blut_und_Krone_Leseprobe.pdf"
              style="border-style: dashed; min-width: 200px;"
              onclick="increaseCounter('download', 'blut')">
             <svg class="download-icon" viewBox="0 0 24 24" style="margin-right: 10px; vertical-align: middle;">
@@ -798,14 +798,14 @@ function saveStatisticsBlut() {
   }
 }
 
-// Zähler erhöhen
+// Zähler erhöhen - KORRIGIERT
 function increaseCounter(type, buch = 'blut') {
   if (buch === 'blut') {
     if (type === 'online') {
       statisticsBlut.online++;
       // Öffne PDF in neuem Tab (nach kurzer Verzögerung für bessere UX)
       setTimeout(() => {
-        window.open('https://matthias-silberhain.github.io/matthias-silberhain/assets/leseproben/blut_und_krone_leseprobe.pdf', '_blank');
+        window.open('assets/leseproben/blut_und_krone_leseprobe.pdf', '_blank');
       }, 100);
     } else if (type === 'download') {
       statisticsBlut.download++;
