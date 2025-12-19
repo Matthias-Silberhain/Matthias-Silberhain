@@ -2260,3 +2260,348 @@ body.dark-mode .quellen-liste li:hover {
         background: rgba(200, 205, 215, 0.05);
     }
 }
+/* ==========================================================================
+   KOMBINIERTE QUELLEN-SEITE
+   ========================================================================== */
+
+.quellen-gesamt {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.seiten-titel {
+    font-family: "Cinzel", serif;
+    font-size: 2.8rem;
+    color: #e4e6ea;
+    text-align: center;
+    margin-bottom: 20px;
+    text-shadow: 0 0 15px rgba(200, 200, 200, 0.2);
+}
+
+.seiten-intro {
+    font-size: 1.2rem;
+    line-height: 1.7;
+    color: #b0b5bc;
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 0 20px;
+}
+
+/* Inhaltsverzeichnis */
+.inhaltsverzeichnis {
+    background: rgba(20, 20, 20, 0.3);
+    border: 1px solid rgba(200, 205, 215, 0.15);
+    border-radius: 8px;
+    padding: 25px 30px;
+    margin-bottom: 50px;
+}
+
+.inhaltsverzeichnis h2 {
+    font-family: "Cinzel", serif;
+    font-size: 1.5rem;
+    color: #e4e6ea;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.sprunglinks {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.sprunglink {
+    display: inline-block;
+    padding: 12px 25px;
+    background: rgba(30, 30, 30, 0.5);
+    border: 1px solid rgba(200, 205, 215, 0.2);
+    border-radius: 4px;
+    color: #d6d9de;
+    text-decoration: none;
+    font-family: "Cinzel", serif;
+    font-size: 0.95rem;
+    letter-spacing: 0.05em;
+    transition: all 0.3s ease;
+}
+
+.sprunglink:hover {
+    background: rgba(200, 205, 215, 0.1);
+    color: #ffffff;
+    border-color: rgba(200, 205, 215, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Buch-Quellen Container */
+.buch-quellen {
+    margin-bottom: 60px;
+    padding: 30px;
+    background: rgba(15, 15, 15, 0.3);
+    border: 1px solid rgba(200, 205, 215, 0.1);
+    border-radius: 10px;
+    position: relative;
+}
+
+.buch-trenner {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(200, 205, 215, 0.3), transparent);
+    margin: 40px 0;
+}
+
+/* Buch Kopfzeile mit Cover */
+.buch-kopfzeile {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-bottom: 40px;
+    align-items: flex-start;
+    padding-bottom: 25px;
+    border-bottom: 1px solid rgba(200, 205, 215, 0.15);
+}
+
+.buch-cover-container {
+    flex-shrink: 0;
+}
+
+.buch-cover {
+    width: 220px;
+    height: auto;
+    border: 1px solid rgba(200, 205, 215, 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    transition: all 0.4s ease;
+}
+
+.buch-cover:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5), 0 0 25px rgba(200, 200, 200, 0.15);
+}
+
+.buch-titel-container {
+    flex: 1;
+    min-width: 300px;
+}
+
+.buch-titel {
+    font-family: "Cinzel", serif;
+    font-size: 2.3rem;
+    color: #e4e6ea;
+    margin-bottom: 10px;
+    line-height: 1.2;
+}
+
+.untertitel {
+    font-size: 1.5rem;
+    color: #b0b5bc;
+    font-weight: 400;
+    display: block;
+    margin-top: 8px;
+    font-family: "EB Garamond", serif;
+    font-style: italic;
+}
+
+.buch-info {
+    display: flex;
+    gap: 20px;
+    margin-top: 15px;
+}
+
+.band-nummer, .erscheinungsjahr {
+    font-family: "Cinzel", serif;
+    font-size: 1rem;
+    color: #c0c0c0;
+    padding: 6px 12px;
+    background: rgba(30, 30, 30, 0.5);
+    border: 1px solid rgba(200, 205, 215, 0.15);
+    border-radius: 3px;
+    letter-spacing: 0.05em;
+}
+
+/* Quellen Inhalt */
+.quellen-kategorie {
+    margin-bottom: 35px;
+}
+
+.quellen-kategorie h3 {
+    font-family: "Cinzel", serif;
+    font-size: 1.4rem;
+    color: #e4e6ea;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(200, 205, 215, 0.2);
+    position: relative;
+}
+
+.quellen-kategorie h3::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(200, 200, 200, 0.6), transparent);
+}
+
+.sub-kategorie {
+    margin-left: 20px;
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+
+.sub-kategorie h4 {
+    font-family: "Cinzel", serif;
+    font-size: 1.1rem;
+    color: #d6d9de;
+    margin-bottom: 12px;
+    font-weight: 500;
+}
+
+.quellen-kategorie ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.quellen-kategorie li {
+    margin-bottom: 14px;
+    padding-left: 25px;
+    position: relative;
+    line-height: 1.6;
+    color: #b0b5bc;
+    font-family: "EB Garamond", serif;
+    font-size: 1.1rem;
+}
+
+.quellen-kategorie li:before {
+    content: "•";
+    color: #c0c0c0;
+    position: absolute;
+    left: 0;
+    font-size: 1.3rem;
+    top: -1px;
+}
+
+.quellen-kategorie strong {
+    color: #e4e6ea;
+    font-weight: 500;
+}
+
+.quellen-kategorie a {
+    color: #9da2a8;
+    text-decoration: none;
+    border-bottom: 1px dotted rgba(200, 200, 200, 0.3);
+    transition: all 0.3s ease;
+}
+
+.quellen-kategorie a:hover {
+    color: #ffffff;
+    border-bottom: 1px solid rgba(200, 200, 200, 0.6);
+}
+
+.platzhalter-hinweis {
+    text-align: center;
+    padding: 40px 20px;
+    font-size: 1.2rem;
+    color: #b0b5bc;
+    font-style: italic;
+    background: rgba(20, 20, 20, 0.2);
+    border-radius: 6px;
+    border: 1px dashed rgba(200, 205, 215, 0.2);
+}
+
+/* Dark Mode Anpassungen */
+body.dark-mode .inhaltsverzeichnis {
+    background: rgba(40, 40, 40, 0.3);
+    border-color: rgba(220, 220, 220, 0.2);
+}
+
+body.dark-mode .sprunglink {
+    background: rgba(50, 50, 50, 0.5);
+    border-color: rgba(220, 220, 220, 0.25);
+}
+
+body.dark-mode .sprunglink:hover {
+    background: rgba(220, 220, 220, 0.15);
+    border-color: rgba(220, 220, 220, 0.5);
+}
+
+body.dark-mode .buch-quellen {
+    background: rgba(30, 30, 30, 0.3);
+    border-color: rgba(220, 220, 220, 0.15);
+}
+
+body.dark-mode .buch-cover {
+    border-color: rgba(220, 220, 220, 0.25);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-mode .platzhalter-hinweis {
+    background: rgba(40, 40, 40, 0.3);
+    border-color: rgba(220, 220, 220, 0.3);
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .seiten-titel {
+        font-size: 2.2rem;
+    }
+    
+    .sprunglinks {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .sprunglink {
+        width: 100%;
+        max-width: 280px;
+        text-align: center;
+    }
+    
+    .buch-kopfzeile {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .buch-titel {
+        font-size: 1.9rem;
+        text-align: center;
+    }
+    
+    .untertitel {
+        font-size: 1.3rem;
+    }
+    
+    .buch-cover {
+        width: 200px;
+    }
+    
+    .buch-info {
+        justify-content: center;
+    }
+    
+    .quellen-kategorie li {
+        font-size: 1.05rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .seiten-titel {
+        font-size: 1.9rem;
+    }
+    
+    .seiten-intro {
+        font-size: 1.1rem;
+    }
+    
+    .buch-titel {
+        font-size: 1.7rem;
+    }
+    
+    .buch-quellen {
+        padding: 20px 15px;
+    }
+    
+    .quellen-kategorie h3 {
+        font-size: 1.3rem;
+    }
+}
