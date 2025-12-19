@@ -276,6 +276,65 @@
       background: rgba(200, 200, 200, 0.5);
     }
     
+    /* ================= AKTUELLES WERK - KORRIGIERT & ZENTRIERT ================= */
+    .aktuelles-werk {
+      text-align: center;
+      margin: 80px 0 60px 0;
+      padding: 40px 20px;
+      border-top: 1px solid rgba(200, 205, 215, 0.2);
+      border-bottom: 1px solid rgba(200, 205, 215, 0.2);
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .aktuelles-werk h2 {
+      font-family: "Cinzel", serif;
+      color: #e4e6ea;
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+      letter-spacing: 0.05em;
+      text-align: center;
+      width: 100%;
+    }
+
+    .aktuelles-subtitle {
+      color: #9da2a8;
+      font-size: 1.1rem;
+      margin-bottom: 30px;
+      text-align: center;
+      width: 100%;
+      font-style: italic;
+    }
+
+    .hinweis-box {
+      background: rgba(200, 205, 215, 0.05);
+      border: 1px solid rgba(200, 205, 215, 0.15);
+      border-radius: 6px;
+      padding: 18px 25px;
+      color: #b0b5bc;
+      font-size: 1rem;
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      line-height: 1.5;
+    }
+
+    .hinweis-box svg {
+      flex-shrink: 0;
+    }
+
+    .hinweis-box span {
+      text-align: center;
+      display: inline-block;
+    }
+    
     /* ================= DARK MODE KARUSSELL ================= */
     body.dark-mode .karussell-title {
       color: #f0f0f0;
@@ -312,28 +371,16 @@
       border-color: rgba(220, 220, 220, 0.8);
     }
     
-    /* ================= AKTUELLES WERK STYLES ================= */
-    .aktuelles-werk {
-      text-align: center;
-      margin: 80px 0 60px 0;
-      padding: 40px 0;
-      border-top: 1px solid rgba(200, 205, 215, 0.2);
-      border-bottom: 1px solid rgba(200, 205, 215, 0.2);
+    /* Dark Mode für aktuelles Werk */
+    body.dark-mode .aktuelles-werk {
+      border-top-color: rgba(220, 225, 235, 0.15);
+      border-bottom-color: rgba(220, 225, 235, 0.15);
     }
-    
-    .aktuelles-werk h2 {
-      font-family: "Cinzel", serif;
-      color: #e4e6ea;
-      font-size: 1.8rem;
-      margin-bottom: 10px;
-      letter-spacing: 0.05em;
-    }
-    
-    .aktuelles-werk p {
-      color: #9da2a8;
-      max-width: 600px;
-      margin: 0 auto 25px auto;
-      font-size: 1.1rem;
+
+    body.dark-mode .hinweis-box {
+      background: rgba(220, 225, 235, 0.06);
+      border-color: rgba(220, 225, 235, 0.2);
+      color: #d6d9de;
     }
     
     /* ================= BUCHPRÄSENTATION STYLES ================= */
@@ -582,46 +629,6 @@
       border-bottom-color: rgba(220, 225, 235, 0.15);
     }
     
-    body.dark-mode .karussell-title {
-      color: #f0f0f0;
-    }
-    
-    body.dark-mode .karussell-title::after {
-      background: linear-gradient(90deg, 
-        transparent, 
-        rgba(220, 220, 220, 0.6) 50%, 
-        transparent);
-    }
-    
-    body.dark-mode .karussell-slide {
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
-    }
-    
-    body.dark-mode .karussell-slide:hover {
-      box-shadow: 
-        0 20px 40px rgba(0, 0, 0, 0.6),
-        0 0 30px rgba(220, 220, 220, 0.15);
-    }
-    
-    body.dark-mode .karussell-image {
-      border-color: rgba(220, 220, 220, 0.15);
-    }
-    
-    body.dark-mode .karussell-button {
-      background: rgba(30, 30, 30, 0.8);
-      border-color: rgba(220, 220, 220, 0.4);
-    }
-    
-    body.dark-mode .karussell-button:hover {
-      background: rgba(220, 220, 220, 0.2);
-      border-color: rgba(220, 220, 220, 0.8);
-    }
-    
-    body.dark-mode .aktuelles-werk {
-      border-top-color: rgba(220, 225, 235, 0.15);
-      border-bottom-color: rgba(220, 225, 235, 0.15);
-    }
-    
     body.dark-mode .buchcover-rahmen {
       background: rgba(30, 30, 30, 0.9);
       border-color: rgba(220, 225, 235, 0.2);
@@ -711,6 +718,27 @@
         font-size: 0.85rem;
       }
       
+      /* Aktuelles Werk Responsive */
+      .aktuelles-werk {
+        padding: 30px 15px;
+        margin: 60px 0 40px 0;
+      }
+
+      .aktuelles-werk h2 {
+        font-size: 1.6rem;
+      }
+
+      .aktuelles-subtitle {
+        font-size: 1rem;
+      }
+
+      .hinweis-box {
+        padding: 15px 20px;
+        font-size: 0.95rem;
+        flex-direction: column;
+        gap: 8px;
+      }
+      
       .buch-titel-seriös {
         font-size: 1.8rem;
       }
@@ -783,6 +811,16 @@
           rgba(0, 0, 0, 0.85) 0%, 
           rgba(0, 0, 0, 0.6) 50%, 
           transparent 100%);
+      }
+      
+      /* Aktuelles Werk Mobile */
+      .aktuelles-werk h2 {
+        font-size: 1.4rem;
+      }
+
+      .hinweis-box {
+        padding: 12px 15px;
+        font-size: 0.9rem;
       }
       
       .buch-titel-seriös {
@@ -919,13 +957,17 @@
       </div>
     </div>
     
-    <!-- Aktuelles Werk -->
+    <!-- AKTUELLES WERK - KORRIGIERT & ZENTRIERT -->
     <div class="aktuelles-werk" id="aktuelles-werk">
       <h2>Der lange Weg in die Finsternis</h2>
-      <p>Aktuell vertieft auf dieser Seite</p>
-      <p style="color: #b0b5bc; font-size: 1rem; max-width: 500px; margin: 15px auto;">
-        Klicken Sie auf eines der Bücher im Karussell, um zur Detailseite zu gelangen
-      </p>
+      <p class="aktuelles-subtitle">Aktuell vertieft auf dieser Seite</p>
+      
+      <div class="hinweis-box">
+        <svg width="20" height="20" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 10px; color: #c0c0c0;">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" fill="currentColor"/>
+        </svg>
+        <span>Klicken Sie auf eines der Bücher im Karussell, um zur Detailseite zu gelangen</span>
+      </div>
     </div>
     
     <!-- Buchpräsentation für "Der lange Weg in die Finsternis" -->
