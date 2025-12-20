@@ -2,9 +2,9 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <title>Quellen | Matthias Silberhain</title>
+  <title>Quellenarchiv | Matthias Silberhain</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Quellen und Forschungsgrundlagen zu den Werken von Matthias Silberhain - Vollständige, verlinkte Archivdokumente und wissenschaftliche Literatur.">
+  <meta name="description" content="Quellenarchiv der Werke von Matthias Silberhain - Wählen Sie ein Buch aus, um die vollständigen Forschungsquellen und Archivdokumente einzusehen.">
   
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=EB+Garamond:wght@400;500&display=swap" rel="stylesheet">
@@ -57,41 +57,313 @@
   
   <style>
     /* ==========================================================================
-       QUELLEN SEITE STYLES - Im selben Stil wie Termine/Kontakt
+       QUELLEN-KARUSSELL STYLES
        ========================================================================== */
     
-    .quellen-container {
+    .karussell-container {
       max-width: 1200px;
       margin: 0 auto;
       padding: 20px;
     }
     
-    /* Header-Bereich mit Cover */
-    .quellen-header {
-      display: grid;
-      grid-template-columns: 280px 1fr;
+    /* Header-Bereich */
+    .karussell-header {
+      text-align: center;
+      margin-bottom: 60px;
+      padding: 40px 20px;
+    }
+    
+    .karussell-header h1 {
+      font-family: "Cinzel", serif;
+      color: #e4e6ea;
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      letter-spacing: 0.08em;
+      text-shadow: 0 0 15px rgba(200, 200, 200, 0.2);
+    }
+    
+    .karussell-subtitle {
+      color: #b0b5bc;
+      font-size: 1.3rem;
+      max-width: 800px;
+      margin: 0 auto 30px;
+      line-height: 1.6;
+      font-style: italic;
+    }
+    
+    .karussell-intro {
+      color: #9da2a8;
+      max-width: 900px;
+      margin: 0 auto;
+      line-height: 1.7;
+      font-size: 1.1rem;
+      border-top: 1px solid rgba(200, 205, 215, 0.2);
+      padding-top: 25px;
+    }
+    
+    /* Karussell Wrapper */
+    .buch-karussell-wrapper {
+      position: relative;
+      margin: 50px 0 80px;
+    }
+    
+    .buch-karussell {
+      display: flex;
       gap: 40px;
-      align-items: start;
-      margin-bottom: 50px;
-      padding: 30px;
+      overflow-x: auto;
+      padding: 30px 20px;
+      scroll-behavior: smooth;
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none; /* IE/Edge */
+    }
+    
+    .buch-karussell::-webkit-scrollbar {
+      display: none; /* Chrome/Safari/Opera */
+    }
+    
+    /* Navigation Buttons */
+    .karussell-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 50px;
+      height: 50px;
+      background: rgba(10, 10, 10, 0.7);
+      border: 1px solid rgba(200, 205, 215, 0.3);
+      color: #d6d9de;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10;
+      transition: all 0.3s ease;
+      opacity: 0;
+      visibility: hidden;
+    }
+    
+    .buch-karussell-wrapper:hover .karussell-nav {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .karussell-nav:hover {
+      background: rgba(200, 205, 215, 0.1);
+      border-color: rgba(200, 205, 215, 0.6);
+      color: #ffffff;
+      transform: translateY(-50%) scale(1.1);
+    }
+    
+    .karussell-nav.prev {
+      left: 10px;
+    }
+    
+    .karussell-nav.next {
+      right: 10px;
+    }
+    
+    .karussell-nav svg {
+      width: 24px;
+      height: 24px;
+      stroke: currentColor;
+    }
+    
+    /* Buch Cover Items */
+    .buch-cover-item {
+      flex: 0 0 320px;
+      text-align: center;
+      transition: all 0.4s ease;
+      position: relative;
+    }
+    
+    .buch-cover-item:hover {
+      transform: translateY(-15px);
+    }
+    
+    .buch-cover-link {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      position: relative;
+    }
+    
+    .cover-image-container {
+      position: relative;
+      margin-bottom: 25px;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(200, 205, 215, 0.2);
+      transition: all 0.4s ease;
+      height: 420px;
+      background: linear-gradient(135deg, 
+        rgba(30, 30, 30, 0.8) 0%, 
+        rgba(50, 50, 50, 0.9) 100%);
+    }
+    
+    .buch-cover-item:hover .cover-image-container {
+      box-shadow: 
+        0 25px 60px rgba(0, 0, 0, 0.7),
+        0 0 0 1px rgba(200, 205, 215, 0.4);
+      transform: scale(1.03);
+    }
+    
+    .buch-cover {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+    
+    .buch-cover-item:hover .buch-cover {
+      transform: scale(1.08);
+    }
+    
+    /* Fallback für fehlende Bilder */
+    .cover-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #9da2a8;
+      font-family: "Cinzel", serif;
+      font-size: 1.5rem;
+      letter-spacing: 0.1em;
+      text-align: center;
+      padding: 20px;
+      background: linear-gradient(135deg, 
+        rgba(40, 40, 40, 0.9) 0%, 
+        rgba(60, 60, 60, 0.9) 100%);
+    }
+    
+    .cover-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.95) 0%,
+        rgba(0, 0, 0, 0.7) 30%,
+        rgba(0, 0, 0, 0.4) 50%,
+        transparent 70%
+      );
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding: 40px 20px 30px;
+      opacity: 0;
+      transition: all 0.4s ease;
+    }
+    
+    .buch-cover-item:hover .cover-overlay {
+      opacity: 1;
+    }
+    
+    .cover-overlay .btn-quellen {
+      display: inline-block;
+      padding: 12px 30px;
+      background: rgba(200, 205, 215, 0.15);
+      border: 1px solid rgba(200, 205, 215, 0.4);
+      color: #e4e6ea;
+      text-decoration: none;
+      font-family: "Cinzel", serif;
+      font-size: 0.95rem;
+      letter-spacing: 0.12em;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+      transform: translateY(20px);
+      opacity: 0;
+      transition: all 0.4s ease 0.1s;
+    }
+    
+    .buch-cover-item:hover .cover-overlay .btn-quellen {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    
+    .cover-overlay .btn-quellen:hover {
+      background: rgba(200, 205, 215, 0.25);
+      border-color: rgba(200, 205, 215, 0.7);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+    
+    .buch-titel {
+      font-family: "Cinzel", serif;
+      color: #e4e6ea;
+      font-size: 1.4rem;
+      margin: 15px 0 8px;
+      letter-spacing: 0.06em;
+      transition: color 0.3s ease;
+    }
+    
+    .buch-cover-item:hover .buch-titel {
+      color: #ffffff;
+      text-shadow: 0 0 10px rgba(200, 200, 200, 0.3);
+    }
+    
+    .buch-untertitel {
+      color: #b0b5bc;
+      font-size: 1rem;
+      font-style: italic;
+      margin-bottom: 10px;
+      line-height: 1.5;
+    }
+    
+    .buch-jahr {
+      color: #9da2a8;
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+    }
+    
+    /* Indikatoren für Karussell */
+    .karussell-indikatoren {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 40px;
+    }
+    
+    .indikator {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(200, 205, 215, 0.2);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .indikator:hover {
+      background: rgba(200, 205, 215, 0.4);
+      transform: scale(1.2);
+    }
+    
+    .indikator.aktiv {
+      background: rgba(200, 205, 215, 0.7);
+      transform: scale(1.3);
+      box-shadow: 0 0 10px rgba(200, 205, 215, 0.3);
+    }
+    
+    /* QR Code Bereich */
+    .qr-section {
+      text-align: center;
+      margin: 100px auto 60px;
+      padding: 50px 40px;
+      max-width: 800px;
       background: linear-gradient(135deg, 
         rgba(10, 10, 10, 0.4) 0%, 
-        rgba(30, 30, 30, 0.6) 100%);
-      border-radius: 8px;
+        rgba(20, 20, 20, 0.6) 100%);
       border: 1px solid rgba(200, 205, 215, 0.15);
+      border-radius: 8px;
       position: relative;
       overflow: hidden;
     }
     
-    @media screen and (max-width: 768px) {
-      .quellen-header {
-        grid-template-columns: 1fr;
-        gap: 30px;
-        padding: 20px;
-      }
-    }
-    
-    .quellen-header::before {
+    .qr-section::before {
       content: '';
       position: absolute;
       top: 0;
@@ -100,305 +372,200 @@
       height: 1px;
       background: linear-gradient(90deg, 
         transparent 0%, 
-        rgba(200, 205, 215, 0.3) 50%, 
+        rgba(200, 205, 215, 0.4) 50%, 
         transparent 100%);
     }
     
-    .buch-cover-quelle {
-      width: 100%;
-      height: auto;
-      border-radius: 4px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-      border: 1px solid rgba(200, 205, 215, 0.2);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    
-    .buch-cover-quelle:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
-    }
-    
-    .quellen-header-text h1 {
+    .qr-section h2 {
       font-family: "Cinzel", serif;
       color: #e4e6ea;
-      font-size: 2.2rem;
-      margin-bottom: 15px;
-      letter-spacing: 0.05em;
-      text-shadow: 0 0 15px rgba(200, 200, 200, 0.2);
-    }
-    
-    .quellen-header-text .untertitel {
-      color: #b0b5bc;
-      font-size: 1.2rem;
+      font-size: 2rem;
       margin-bottom: 25px;
-      font-style: italic;
-      border-bottom: 1px solid rgba(200, 205, 215, 0.2);
-      padding-bottom: 15px;
+      letter-spacing: 0.08em;
     }
     
-    .quellen-header-text p {
+    .qr-section p {
       color: #b0b5bc;
+      max-width: 650px;
+      margin: 0 auto 35px;
       line-height: 1.7;
-      margin-bottom: 15px;
-      font-size: 1.05rem;
+      font-size: 1.15rem;
     }
     
-    /* Hinweis-Kasten im Stil der anderen Seiten */
-    .hinweis-kasten {
+    .qr-code-container {
+      display: inline-block;
+      padding: 25px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+      margin: 25px auto;
+      border: 1px solid rgba(200, 205, 215, 0.3);
+      transition: transform 0.3s ease;
+    }
+    
+    .qr-code-container:hover {
+      transform: scale(1.05);
+    }
+    
+    .qr-code-container img {
+      width: 200px;
+      height: 200px;
+      display: block;
+    }
+    
+    .qr-hinweis {
+      font-size: 0.95rem;
+      color: #9da2a8;
+      margin-top: 20px;
+      font-style: italic;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    /* Info-Box */
+    .info-box {
       background: rgba(200, 205, 215, 0.05);
       border-left: 3px solid rgba(200, 205, 215, 0.3);
-      padding: 20px;
-      margin: 25px 0;
-      border-radius: 0 4px 4px 0;
-      color: #9da2a8;
-      font-size: 0.95rem;
-    }
-    
-    .hinweis-kasten strong {
-      color: #d6d9de;
-    }
-    
-    /* Quellen Kategorien - Im Stil der Termine-Seite */
-    .quellen-abschnitt {
-      margin: 50px 0;
-    }
-    
-    .quelle-kategorie {
-      background: rgba(10, 10, 10, 0.3);
-      border: 1px solid rgba(200, 205, 215, 0.15);
-      border-radius: 6px;
-      padding: 30px;
-      margin-bottom: 30px;
-      transition: all 0.3s ease;
-    }
-    
-    .quelle-kategorie:hover {
-      background: rgba(10, 10, 10, 0.4);
-      border-color: rgba(200, 205, 215, 0.25);
-      transform: translateY(-3px);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    }
-    
-    .quelle-kategorie h3 {
-      font-family: "Cinzel", serif;
-      color: #e4e6ea;
-      font-size: 1.4rem;
-      margin-bottom: 25px;
-      letter-spacing: 0.05em;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    
-    .kategorie-icon {
-      font-size: 1.6rem;
-    }
-    
-    .kategorie-untertitel {
-      color: #9da2a8;
-      font-size: 0.95rem;
-      margin-bottom: 20px;
-      font-style: italic;
-      border-bottom: 1px solid rgba(200, 205, 215, 0.1);
-      padding-bottom: 10px;
-    }
-    
-    /* Quellen-Liste mit edlen Links */
-    .quellen-liste {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    
-    .quellen-liste li {
-      margin-bottom: 25px;
-      padding-bottom: 25px;
-      border-bottom: 1px solid rgba(200, 205, 215, 0.1);
-    }
-    
-    .quellen-liste li:last-child {
-      margin-bottom: 0;
-      padding-bottom: 0;
-      border-bottom: none;
-    }
-    
-    /* EDLE LINK-STYLES im Stil der Website */
-    .quellen-liste a {
-      color: #d6d9de;
-      text-decoration: none;
-      font-size: 1.1rem;
-      line-height: 1.5;
-      display: inline-block;
-      padding: 5px 0;
-      position: relative;
-      transition: all 0.3s ease;
-      border-bottom: 1px solid transparent;
-    }
-    
-    .quellen-liste a::before {
-      content: '↗';
-      position: absolute;
-      right: -25px;
-      opacity: 0;
-      transition: all 0.3s ease;
-      color: rgba(200, 205, 215, 0.5);
-    }
-    
-    .quellen-liste a:hover {
-      color: #ffffff;
-      text-shadow: 0 0 10px rgba(200, 200, 200, 0.3);
-      border-bottom: 1px solid rgba(200, 205, 215, 0.4);
-      transform: translateX(5px);
-    }
-    
-    .quellen-liste a:hover::before {
-      opacity: 1;
-      right: -30px;
-    }
-    
-    .quelle-beschreibung {
-      display: block;
-      color: #9da2a8;
-      font-size: 0.95rem;
-      margin-top: 8px;
-      line-height: 1.5;
-      padding-left: 20px;
-      position: relative;
-    }
-    
-    .quelle-beschreibung::before {
-      content: '—';
-      position: absolute;
-      left: 0;
-      color: rgba(200, 205, 215, 0.3);
-    }
-    
-    /* Wissenschaftliche Literatur Styling */
-    .wissenschaft-liste {
-      list-style: none;
-      padding: 0;
-      margin: 20px 0;
-    }
-    
-    .wissenschaft-liste li {
-      margin-bottom: 15px;
-      padding-left: 25px;
-      position: relative;
+      padding: 25px;
+      margin: 40px auto;
+      max-width: 900px;
+      border-radius: 0 6px 6px 0;
       color: #b0b5bc;
+      font-size: 1.05rem;
       line-height: 1.6;
     }
     
-    .wissenschaft-liste li::before {
-      content: '•';
-      position: absolute;
-      left: 0;
-      color: rgba(200, 205, 215, 0.5);
-      font-size: 1.2rem;
-    }
-    
-    .wissenschaft-liste h4 {
-      font-family: "Cinzel", serif;
-      color: #e4e6ea;
-      margin: 25px 0 15px;
-      font-size: 1.1rem;
-      letter-spacing: 0.05em;
-    }
-    
-    /* Hinweis-Bereich */
-    .quellen-hinweis {
-      background: rgba(200, 205, 215, 0.05);
-      border: 1px solid rgba(200, 205, 215, 0.2);
-      border-radius: 6px;
-      padding: 30px;
-      margin: 40px 0;
-    }
-    
-    .quellen-hinweis p {
-      color: #b0b5bc;
-      margin-bottom: 15px;
-      line-height: 1.6;
-    }
-    
-    .quellen-hinweis strong {
+    .info-box strong {
       color: #d6d9de;
+      font-weight: 500;
     }
     
-    /* DARK MODE STYLES - konsistent mit anderen Seiten */
-    body.dark-mode .quelle-kategorie {
-      background: rgba(30, 30, 30, 0.5);
-      border-color: rgba(220, 225, 235, 0.2);
+    /* Responsive Design */
+    @media screen and (max-width: 1024px) {
+      .buch-cover-item {
+        flex: 0 0 280px;
+      }
+      
+      .cover-image-container {
+        height: 380px;
+      }
     }
     
-    body.dark-mode .quelle-kategorie:hover {
-      background: rgba(30, 30, 30, 0.7);
-      border-color: rgba(220, 225, 235, 0.3);
-    }
-    
-    body.dark-mode .quellen-header {
-      background: linear-gradient(135deg, 
-        rgba(30, 30, 30, 0.5) 0%, 
-        rgba(50, 50, 50, 0.7) 100%);
-      border-color: rgba(220, 225, 235, 0.2);
-    }
-    
-    body.dark-mode .quellen-liste a {
-      color: #e4e6ea;
-    }
-    
-    body.dark-mode .quellen-liste a:hover {
-      color: #ffffff;
-      text-shadow: 0 0 15px rgba(220, 220, 220, 0.4);
-    }
-    
-    body.dark-mode .quelle-beschreibung {
-      color: #b0b5bc;
-    }
-    
-    body.dark-mode .hinweis-kasten {
-      background: rgba(220, 225, 235, 0.05);
-      border-left-color: rgba(220, 225, 235, 0.4);
-    }
-    
-    body.dark-mode .quellen-hinweis {
-      background: rgba(220, 225, 235, 0.05);
-      border-color: rgba(220, 225, 235, 0.25);
-    }
-    
-    /* Responsive Anpassungen */
     @media screen and (max-width: 768px) {
-      .quellen-container {
-        padding: 15px;
+      .karussell-nav {
+        display: none;
       }
       
-      .quellen-header-text h1 {
-        font-size: 1.8rem;
+      .buch-karussell {
+        gap: 25px;
+        padding: 20px 15px;
       }
       
-      .quelle-kategorie {
-        padding: 20px;
+      .buch-cover-item {
+        flex: 0 0 250px;
       }
       
-      .quelle-kategorie h3 {
+      .cover-image-container {
+        height: 350px;
+      }
+      
+      .karussell-header h1 {
+        font-size: 2rem;
+      }
+      
+      .karussell-subtitle {
         font-size: 1.2rem;
+        padding: 0 15px;
       }
       
-      .quellen-liste a {
-        font-size: 1rem;
+      .karussell-header {
+        padding: 30px 15px;
+        margin-bottom: 40px;
+      }
+      
+      .qr-section {
+        padding: 35px 25px;
+        margin: 60px auto 40px;
+      }
+      
+      .qr-section h2 {
+        font-size: 1.7rem;
+      }
+      
+      .qr-code-container img {
+        width: 180px;
+        height: 180px;
       }
     }
     
     @media screen and (max-width: 480px) {
-      .quellen-header-text h1 {
-        font-size: 1.6rem;
+      .buch-cover-item {
+        flex: 0 0 220px;
       }
       
-      .quellen-header {
-        padding: 15px;
+      .cover-image-container {
+        height: 320px;
       }
       
-      .quelle-kategorie {
-        padding: 15px;
+      .buch-titel {
+        font-size: 1.2rem;
       }
+      
+      .buch-untertitel {
+        font-size: 0.95rem;
+      }
+      
+      .qr-code-container img {
+        width: 160px;
+        height: 160px;
+      }
+      
+      .qr-section {
+        padding: 25px 20px;
+      }
+      
+      .karussell-header h1 {
+        font-size: 1.8rem;
+      }
+    }
+    
+    /* Dark Mode Anpassungen */
+    body.dark-mode .qr-section {
+      background: linear-gradient(135deg, 
+        rgba(30, 30, 30, 0.6) 0%, 
+        rgba(40, 40, 40, 0.8) 100%);
+      border-color: rgba(220, 225, 235, 0.2);
+    }
+    
+    body.dark-mode .cover-overlay .btn-quellen {
+      background: rgba(220, 225, 235, 0.2);
+      border-color: rgba(220, 225, 235, 0.5);
+      color: #ffffff;
+    }
+    
+    body.dark-mode .indikator {
+      background: rgba(220, 225, 235, 0.3);
+    }
+    
+    body.dark-mode .indikator:hover {
+      background: rgba(220, 225, 235, 0.5);
+    }
+    
+    body.dark-mode .indikator.aktiv {
+      background: rgba(220, 225, 235, 0.8);
+      box-shadow: 0 0 12px rgba(220, 225, 235, 0.3);
+    }
+    
+    body.dark-mode .info-box {
+      background: rgba(220, 225, 235, 0.08);
+      border-left-color: rgba(220, 225, 235, 0.4);
+    }
+    
+    body.dark-mode .cover-image-container {
+      background: linear-gradient(135deg, 
+        rgba(40, 40, 40, 0.9) 0%, 
+        rgba(60, 60, 60, 1) 100%);
     }
   </style>
 </head>
@@ -448,198 +615,121 @@
 
 <div class="lichtkante"></div>
 
-<!-- ================= HAUPTINHALT ================= -->
+<!-- ================= KARUSSELL BEREICH ================= -->
 <main class="inhalt">
-  <section class="quellen-container">
+  <section class="karussell-container">
     
-    <!-- Header-Bereich mit Buchcover -->
-    <div class="quellen-header">
-      <div class="buch-cover-container">
-        <img src="assets/images/derlangewegindiefinsternis.png" 
-             alt="Buchcover: Der lange Weg in die Finsternis" 
-             class="buch-cover-quelle">
-      </div>
-      
-      <div class="quellen-header-text">
-        <h1>Der lange Weg in die Finsternis</h1>
-        <p class="untertitel">Wie das Kaiserreich den Nationalsozialismus vorbereitete</p>
-        
-        <p>Diese Seite versammelt alle zentralen digitalen Quellen und Forschungsliteratur, die der historischen Analyse in diesem Werk zugrunde liegen.<br>
-        Jeder Link führt direkt zu den Originaldokumenten oder wissenschaftlichen Werken und dient der vollständigen Nachvollziehbarkeit und Vertiefung.</p>
-        
-        <div class="hinweis-kasten">
-          <strong>Hinweis zur Nutzung:</strong> Alle Links führen zu originalen oder digitalisierten Archivressourcen öffentlicher Institutionen, die zum Zeitpunkt der Veröffentlichung frei zugänglich sind.
-        </div>
-      </div>
+    <div class="karussell-header">
+      <h1>Quellenarchiv</h1>
+      <p class="karussell-subtitle">
+        Vollständige Forschungsgrundlagen und Archivdokumente zu allen Werken
+      </p>
+      <p class="karussell-intro">
+        Jedes meiner Bücher basiert auf intensiven historischen Recherchen, Archivstudien und der Auswertung wissenschaftlicher Literatur.<br>
+        Hier finden Sie den vollständigen Quellenapparat – wählen Sie ein Werk aus, um die zugrundeliegenden Dokumente, Primärquellen und Forschungsliteratur einzusehen.
+      </p>
     </div>
-
-    <!-- ================= QUELLENABSCHNITT ================= -->
-    <section class="quellen-abschnitt">
+    
+    <!-- Info-Box -->
+    <div class="info-box">
+      <strong>Hinweis zur Nutzung:</strong> Alle Links führen zu originalen oder digitalisierten Archivressourcen öffentlicher Institutionen und wissenschaftlichen Publikationen. Diese Seite dient der vollständigen Transparenz der Forschungsgrundlagen und ermöglicht die eigenständige Überprüfung der analysierten historischen Zusammenhänge.
+    </div>
+    
+    <!-- Buch Karussell mit Navigation -->
+    <div class="buch-karussell-wrapper">
+      <button class="karussell-nav prev" aria-label="Vorheriges Buch">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M15 18l-6-6 6-6"/>
+        </svg>
+      </button>
       
-      <!-- Reichstagsprotokolle -->
-      <div class="quelle-kategorie">
-        <h3><span class="kategorie-icon">📜</span> Reichstagsprotokolle & Parlamentsdokumente</h3>
-        <p class="kategorie-untertitel">Kaiserreich, Weimar, NS-Zeit (1867–1942)</p>
-        <ul class="quellen-liste">
-          <li>
-            <a href="https://www.reichstagsprotokolle.de/en_rtbiauf.html" target="_blank" rel="noopener noreferrer">
-              Reichstagsprotokolle – Gesamtsammlung & Navigation
-            </a>
-            <span class="quelle-beschreibung">Vollständige digitale Protokolle mit Browsing, Suche und PDF-Downloads (1867–1942).</span>
-          </li>
-          
-          <li>
-            <a href="http://mdz.bib-bvb.de/digbib/reichstag/" target="_blank" rel="noopener noreferrer">
-              Reichstagsprotokolle über Clio-Online (MDZ-Direktzugang 1867–1895)
-            </a>
-            <span class="quelle-beschreibung">Digitalisierte Protokolle mit OCR-Volltext und komfortabler Navigation.</span>
-          </li>
-          
-          <li>
-            <a href="https://www.deutsche-digitale-bibliothek.de/search?q=Reichstagsprotokolle" target="_blank" rel="noopener noreferrer">
-              Reichstagprotokolle in der Deutschen Digitalen Bibliothek
-            </a>
-            <span class="quelle-beschreibung">Archivale Einträge zu einzelnen Protokollen und Objekten.</span>
-          </li>
-          
-          <li>
-            <a href="https://reichstagsakten.de/" target="_blank" rel="noopener noreferrer">
-              Deutsche Reichstagsakten (wissenschaftliche Edition)
-            </a>
-            <span class="quelle-beschreibung">Digital aufbereitete Reichstagsakten verschiedener historischer Perioden.</span>
-          </li>
-          
-          <li>
-            <a href="https://www.bundestag.de/en/documents/archives" target="_blank" rel="noopener noreferrer">
-              Deutscher Bundestag Parlamentsarchiv – Dokumente und Archivmaterial
-            </a>
-            <span class="quelle-beschreibung">Parliamentary documentation and research aids for comparative questions.</span>
-          </li>
-        </ul>
-      </div>
-      
-      <!-- Archivquellen zur Kolonialgeschichte -->
-      <div class="quelle-kategorie">
-        <h3><span class="kategorie-icon">🏛️</span> Archivquellen zur Kolonialgeschichte</h3>
-        <ul class="quellen-liste">
-          <li>
-            <a href="https://www.bundesarchiv.de/en/research-our-records/research-by-topic/sources-on-colonial-history" target="_blank" rel="noopener noreferrer">
-              Bundesarchiv – Quellen zur deutschen Kolonialgeschichte
-            </a>
-            <span class="quelle-beschreibung">Digitalisierte koloniale Akten, darunter Bestände des Reichskolonialamts (R 1001).</span>
-          </li>
-          
-          <li>
-            <a href="https://www.bundesarchiv.de/im-archiv-recherchieren/archivgut-recherchieren/digitalisierte-bestaende/" target="_blank" rel="noopener noreferrer">
-              Bundesarchiv – Digitalisierte Bestände (Allgemein)
-            </a>
-            <span class="quelle-beschreibung">Portal zur Recherche digitalisierter Akten, Bilder, Filme und Dokumente.</span>
-          </li>
-          
-          <li>
-            <a href="https://ersterweltkrieg.bundesarchiv.de/digitalisierte-sammlungen.html" target="_blank" rel="noopener noreferrer">
-              Bundesarchiv – Digitalisierte Sammlungen zum Ersten Weltkrieg
-            </a>
-            <span class="quelle-beschreibung">Akten des Reichskolonialamtes zu Kolonialkriegen in Afrika.</span>
-          </li>
-          
-          <li>
-            <a href="https://www.bundesarchiv.de/im-archiv-recherchieren/archivgut-recherchieren/nach-themen/kolonialgeschichte/" target="_blank" rel="noopener noreferrer">
-              Bundesarchiv – Kolonialgeschichte (Archivbestände R 1001)
-            </a>
-            <span class="quelle-beschreibung">Offizielle Verwaltungsakten des Reichskolonialamts mit Korrespondenz und Berichten.</span>
-          </li>
-          
-          <li>
-            <a href="https://www.fh-potsdam.de/index.php/en/news-media/news/web-portal-archive-guide-german-colonial-history-new-offers" target="_blank" rel="noopener noreferrer">
-              Archive Guide to German Colonial History
-            </a>
-            <span class="quelle-beschreibung">Metadatenportal mit internationalen Archiven zur Kolonialgeschichte.</span>
-          </li>
-          
-          <li>
-            <a href="https://ccc.deutsche-digitale-bibliothek.de/en" target="_blank" rel="noopener noreferrer">
-              Deutsche Digitale Bibliothek – Koloniale Sammlungen
-            </a>
-            <span class="quelle-beschreibung">Fotos, Akten, Artefakte zu deutschen Kolonien.</span>
-          </li>
-        </ul>
-      </div>
-      
-      <!-- Zeitgenössische Presse & weitere Archive -->
-      <div class="quelle-kategorie">
-        <h3><span class="kategorie-icon">📰</span> Zeitgenössische Presse & weitere Archive</h3>
-        <ul class="quellen-liste">
-          <li>
-            <a href="https://ccc.deutsche-digitale-bibliothek.de/" target="_blank" rel="noopener noreferrer">
-              Deutsche Digitale Bibliothek – Sammlungen (inkl. Zeitungen)
-            </a>
-            <span class="quelle-beschreibung">Historische Zeitungen wie Berliner Tageblatt, Kreuzzeitung, Vossische Zeitung.</span>
-          </li>
-          
-          <li>
-            <a href="https://www.das-deutsche-reich.de/ewiger-bund/reichskolonialamt/deutsches-kaiserreich/" target="_blank" rel="noopener noreferrer">
-              DokumentArchiv.de – Deutsche Reichsverfassung 1871
-            </a>
-            <span class="quelle-beschreibung">Digitale Fassungen historischer Rechtstexte des Kaiserreichs.</span>
-          </li>
-        </ul>
-      </div>
-
-      <!-- Telegramme & Korrespondenz -->
-      <div class="quelle-kategorie">
-        <h3><span class="kategorie-icon">📨</span> Telegramme & Korrespondenz</h3>
-        <ul class="quellen-liste">
-          <li>
-            <a href="https://www.firstworldwar.com/source/willynicky.htm" target="_blank" rel="noopener noreferrer">
-              „Willy-Nicky"-Telegramme (1914) – Primärquelle zur Kaiser-Diplomatie
-            </a>
-            <span class="quelle-beschreibung">Sammlung der Telegraphien zwischen Wilhelm II. und Zar Nikolaus II. in der unmittelbaren Vorkriegszeit.</span>
-          </li>
-          
-          <li>
-            <a href="https://www.deutsche-digitale-bibliothek.de/item/RYCPRZ7XLL6YHXUI35MLMDGOGPVHEBC5" target="_blank" rel="noopener noreferrer">
-              Deutsche Digitale Bibliothek – Telegramme (Archivobjekte)
-            </a>
-            <span class="quelle-beschreibung">Digitalisierte Telegramm-Objekte, Korrespondenzen und Akteneinträge unterschiedlicher Provenienz.</span>
-          </li>
-        </ul>
-      </div>
-
-      <!-- Wissenschaftliche Forschungsliteratur -->
-      <div class="quelle-kategorie">
-        <h3><span class="kategorie-icon">📚</span> Wissenschaftliche Forschungsliteratur</h3>
-        <p class="kategorie-untertitel">Sekundärquellen als analytische Grundlage</p>
+      <div class="buch-karussell" id="buchKarussell">
         
-        <ul class="wissenschaft-liste">
-          <h4>Kaiserreich, Militär und politische Kultur</h4>
-          <li><strong>Hans-Ulrich Wehler</strong> – "Das Deutsche Kaiserreich 1871–1918" (Standardwerk)</li>
-          <li><strong>Thomas Nipperdey</strong> – "Deutsche Geschichte 1866–1918" (soziale und politische Analyse)</li>
-          <li><strong>Christopher Clark</strong> – "Preußen. Aufstieg und Niedergang" (politische Kultur)</li>
-          
-          <h4>Kolonialismus und Gewalt</h4>
-          <li><strong>Jürgen Zimmerer</strong> – "Von Windhuk nach Auschwitz?" (Kontinuität kolonialer Gewalt)</li>
-          <li><strong>Isabel V. Hull</strong> – "Absolute Destruction: Military Culture and the Practices of War in Imperial Germany" (Militarismus)</li>
-          <li><strong>Dominik J. Schaller</strong> – Arbeiten zum deutschen Völkermord an Herero und Nama</li>
-          
-          <h4>Weimar, Demokratie, Nationalsozialismus</h4>
-          <li><strong>Detlev Peukert</strong> – "Die Weimarer Republik" (Standardanalyse)</li>
-          <li><strong>George L. Mosse</strong> – "Die völkische Revolution" (völkische Bewegung)</li>
-          <li><strong>Ulrich Herbert</strong> – "Geschichte Deutschlands im 20. Jahrhundert" (Kontinuitäten)</li>
-          <li><strong>Götz Aly</strong> – "Hitlers Volksstaat" (soziale Grundlagen der NS-Diktatur)</li>
-          
-          <h4>Sprache, Propaganda, Dehumanisierung</h4>
-          <li><strong>Victor Klemperer</strong> – "LTI – Notizbuch eines Philologen" (Sprache des Nationalsozialismus)</li>
-          <li><strong>Hannah Arendt</strong> – "Elemente und Ursprünge totaler Herrschaft" (totale Herrschaft)</li>
-        </ul>
+        <!-- Buch 1: Der lange Weg in die Finsternis -->
+        <div class="buch-cover-item">
+          <a href="derlangewegindiefinsternis.html" class="buch-cover-link">
+            <div class="cover-image-container">
+              <img src="assets/images/derlangewegindiefinsternis.png" 
+                   alt="Buchcover: Der lange Weg in die Finsternis" 
+                   class="buch-cover">
+              <div class="cover-overlay">
+                <span class="btn-quellen">Quellen ansehen</span>
+              </div>
+            </div>
+            <h3 class="buch-titel">Der lange Weg in die Finsternis</h3>
+            <p class="buch-untertitel">Wie das Kaiserreich den Nationalsozialismus vorbereitete</p>
+            <p class="buch-jahr">2024</p>
+          </a>
+        </div>
+        
+        <!-- Buch 2: Macht und Untergang -->
+        <div class="buch-cover-item">
+          <a href="quellenmachtunduntergang.html" class="buch-cover-link">
+            <div class="cover-image-container">
+              <img src="assets/images/cover-macht-und-untergang.jpg" 
+                   alt="Buchcover: Macht und Untergang" 
+                   class="buch-cover">
+              <div class="cover-overlay">
+                <span class="btn-quellen">Quellen ansehen</span>
+              </div>
+            </div>
+            <h3 class="buch-titel">Macht und Untergang</h3>
+            <p class="buch-untertitel">Die Anatomie politischer Herrschaft</p>
+            <p class="buch-jahr">2024</p>
+          </a>
+        </div>
+        
+        <!-- Buch 3: Blut und Krone -->
+        <div class="buch-cover-item">
+          <a href="quellenblutundkrone.html" class="buch-cover-link">
+            <div class="cover-image-container">
+              <img src="assets/images/cover-blut-und-krone.jpg" 
+                   alt="Buchcover: Blut und Krone" 
+                   class="buch-cover">
+              <div class="cover-overlay">
+                <span class="btn-quellen">Quellen ansehen</span>
+              </div>
+            </div>
+            <h3 class="buch-titel">Blut und Krone</h3>
+            <p class="buch-untertitel">Die Dynastien Europas und ihr Vermächtnis</p>
+            <p class="buch-jahr">2025</p>
+          </a>
+        </div>
+        
       </div>
       
-      <!-- Hinweis-Bereich -->
-      <div class="quellen-hinweis">
-        <p><strong>Hinweis zu externen Links:</strong> Diese Website enthält Verlinkungen zu externen Webseiten Dritter. Ich habe keinen Einfluss auf deren Inhalte und übernehme keine Haftung. Sollten Ihnen problematische Inhalte auffallen, bitte ich um einen Hinweis.</p>
-        <p><strong>📍 Nutzungshinweise zu den erweiterten Quellen:</strong> Diese Links führen zu Originalquellen oder digitalisierten Amtspublikationen (z.B. stenographische Berichte), die für historische Belege verwendet werden können. Reichstagsprotokolle sind gesetzliche Amtspublikationen, die regelmäßig online verfügbar gemacht werden. Die „Willy-Nicky"-Telegramme sind ein Beispiel für echte historische Telegramm-Korrespondenz zwischen Staatsoberhäuptern als politische Primärquelle zur Zeitgeschichte.</p>
-      </div>
-    </section>
+      <button class="karussell-nav next" aria-label="Nächstes Buch">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 18l6-6-6-6"/>
+        </svg>
+      </button>
+    </div>
+    
+    <div class="karussell-indikatoren" id="karussellIndikatoren">
+      <div class="indikator aktiv" data-index="0"></div>
+      <div class="indikator" data-index="1"></div>
+      <div class="indikator" data-index="2"></div>
+    </div>
+    
+  </section>
+  
+  <!-- QR Code Bereich -->
+  <section class="qr-section">
+    <h2>Direkter Zugriff via QR-Code</h2>
+    <p>
+      Dieser QR-Code ist in allen gedruckten Ausgaben meiner Bücher enthalten.<br>
+      Scannen Sie ihn mit Ihrem Smartphone, um sofort auf dieses Quellenarchiv zuzugreifen und die vollständigen Forschungsgrundlagen des jeweiligen Werkes einzusehen.
+    </p>
+    
+    <div class="qr-code-container">
+      <!-- QR Code Bild - Ersetzen durch echte Datei -->
+      <img src="assets/images/qr-code-quellen.png" alt="QR Code zum Quellenarchiv" id="qrCodeImage">
+    </div>
+    
+    <p class="qr-hinweis">
+      Öffnen Sie die Kamera-App Ihres Smartphones und richten Sie sie auf den QR-Code.<br>
+      Alternativ verwenden Sie einen QR-Scanner Ihrer Wahl.
+    </p>
   </section>
 </main>
 
@@ -728,9 +818,141 @@
     </div>
     <p>© <span id="jahr"></span> Matthias Silberhain</p>
 </footer>
+
 <!-- ================= JAVASCRIPT ================= -->
 <script src="assets/js/global.js"></script>
 <script src="assets/js/menu.js"></script>
+
+<!-- Karussell JavaScript -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Karussell Elemente
+    const karussell = document.getElementById('buchKarussell');
+    const indikatoren = document.querySelectorAll('.indikator');
+    const navPrev = document.querySelector('.karussell-nav.prev');
+    const navNext = document.querySelector('.karussell-nav.next');
+    const buchItems = document.querySelectorAll('.buch-cover-item');
+    
+    if (!karussell || buchItems.length === 0) return;
+    
+    let currentIndex = 0;
+    const itemWidth = buchItems[0].offsetWidth + 40; // Width + gap
+    
+    // Navigation Buttons
+    navPrev.addEventListener('click', () => scrollToIndex(currentIndex - 1));
+    navNext.addEventListener('click', () => scrollToIndex(currentIndex + 1));
+    
+    // Indikatoren
+    indikatoren.forEach((indikator, index) => {
+      indikator.addEventListener('click', () => scrollToIndex(index));
+    });
+    
+    // Auto-Scroll
+    let autoScrollInterval = setInterval(() => {
+      scrollToIndex(currentIndex + 1);
+    }, 8000);
+    
+    // Pause Auto-Scroll bei Hover
+    karussell.addEventListener('mouseenter', () => {
+      clearInterval(autoScrollInterval);
+    });
+    
+    karussell.addEventListener('mouseleave', () => {
+      autoScrollInterval = setInterval(() => {
+        scrollToIndex(currentIndex + 1);
+      }, 8000);
+    });
+    
+    // Scroll-Funktion
+    function scrollToIndex(index) {
+      // Index begrenzen
+      if (index < 0) index = buchItems.length - 1;
+      if (index >= buchItems.length) index = 0;
+      
+      currentIndex = index;
+      
+      // Karussell scrollen
+      karussell.scrollTo({
+        left: index * itemWidth,
+        behavior: 'smooth'
+      });
+      
+      // Indikatoren aktualisieren
+      indikatoren.forEach((ind, i) => {
+        ind.classList.toggle('aktiv', i === index);
+      });
+    }
+    
+    // Touch-Swipe Unterstützung
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    karussell.addEventListener('touchstart', e => {
+      touchStartX = e.changedTouches[0].screenX;
+    });
+    
+    karussell.addEventListener('touchend', e => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    });
+    
+    function handleSwipe() {
+      const swipeThreshold = 50;
+      const diff = touchStartX - touchEndX;
+      
+      if (Math.abs(diff) > swipeThreshold) {
+        if (diff > 0) {
+          // Swipe nach links = nächster
+          scrollToIndex(currentIndex + 1);
+        } else {
+          // Swipe nach rechts = vorheriger
+          scrollToIndex(currentIndex - 1);
+        }
+      }
+    }
+    
+    // QR Code Platzhalter-Handler
+    const qrImage = document.getElementById('qrCodeImage');
+    if (qrImage) {
+      qrImage.addEventListener('error', function() {
+        // Fallback: QR Code Platzhalter mit Canvas erstellen
+        this.style.display = 'none';
+        const container = this.parentElement;
+        
+        // Einfaches Fallback-Bild erstellen
+        const canvas = document.createElement('canvas');
+        canvas.width = 200;
+        canvas.height = 200;
+        const ctx = canvas.getContext('2d');
+        
+        // Hintergrund
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, 200, 200);
+        
+        // QR Muster (simuliert)
+        ctx.fillStyle = '#000000';
+        for (let i = 0; i < 7; i++) {
+          for (let j = 0; j < 7; j++) {
+            if ((i < 2 && j < 2) || (i > 4 && j < 2) || (i < 2 && j > 4)) {
+              ctx.fillRect(20 + i * 25, 20 + j * 25, 15, 15);
+            }
+          }
+        }
+        
+        // Text
+        ctx.fillStyle = '#000000';
+        ctx.font = '12px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText('QR-Code', 100, 170);
+        ctx.fillText('quellen.html', 100, 185);
+        
+        container.appendChild(canvas);
+      });
+    }
+    
+    console.log('✅ Karussell initialisiert mit', buchItems.length, 'Büchern');
+  });
+</script>
 
 </body>
 </html>
