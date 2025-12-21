@@ -2,9 +2,9 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <title>Der Lange Weg In Die Finsternis | Matthias Silberhain</title>
+  <title>Matthias Silberhain | Werke</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Quellen und Forschungsgrundlagen zu den Werken von Matthias Silberhain - Vollständige, verlinkte Archivdokumente und wissenschaftliche Literatur.">
+  <meta name="description" content="Werke von Matthias Silberhain - Historische Analysen mit wissenschaftlichem Anspruch">
   
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=EB+Garamond:wght@400;500&display=swap" rel="stylesheet">
@@ -33,7 +33,7 @@
       
       // SOFORTIGE KLICKBARKEIT SICHERSTELLEN
       document.addEventListener('DOMContentLoaded', function() {
-        const interactiveElements = ['button', 'a', '.burger', '.dark-mode-toggle', '.silber-button', '.social-link'];
+        const interactiveElements = ['button', 'a', '.burger', '.dark-mode-toggle', '.silber-button', '.social-link', '.seriöser-button', '.carousel-button', '.carousel-slide'];
         
         setTimeout(function() {
           interactiveElements.forEach(selector => {
@@ -56,348 +56,574 @@
   </script>
   
   <style>
-    /* ==========================================================================
-       QUELLEN SEITE STYLES - Im selben Stil wie Termine/Kontakt
-       ========================================================================== */
-    
-    .quellen-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 20px;
+
     }
     
-    /* Header-Bereich mit Cover */
-    .quellen-header {
-      display: grid;
-      grid-template-columns: 280px 1fr;
-      gap: 40px;
-      align-items: start;
-      margin-bottom: 50px;
-      padding: 30px;
-      background: linear-gradient(135deg, 
-        rgba(10, 10, 10, 0.4) 0%, 
-        rgba(30, 30, 30, 0.6) 100%);
-      border-radius: 8px;
-      border: 1px solid rgba(200, 205, 215, 0.15);
-      position: relative;
-      overflow: hidden;
-    }
-    
-    @media screen and (max-width: 768px) {
-      .quellen-header {
-        grid-template-columns: 1fr;
-        gap: 30px;
-        padding: 20px;
-      }
-    }
-    
-    .quellen-header::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, 
-        transparent 0%, 
-        rgba(200, 205, 215, 0.3) 50%, 
-        transparent 100%);
-    }
-    
-    .buch-cover-quelle {
+    /* ================= AKTUELLES WERK - KORRIGIERT & ZENTRIERT ================= */
+    .aktuelles-werk {
+      text-align: center;
+      margin: 80px 0 60px 0;
+      padding: 40px 20px;
+      border-top: 1px solid rgba(200, 205, 215, 0.2);
+      border-bottom: 1px solid rgba(200, 205, 215, 0.2);
       width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .aktuelles-werk h2 {
+      font-family: "Cinzel", serif;
+      color: #e4e6ea;
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+      letter-spacing: 0.05em;
+      text-align: center;
+      width: 100%;
+    }
+
+    .aktuelles-subtitle {
+      color: #9da2a8;
+      font-size: 1.1rem;
+      margin-bottom: 30px;
+      text-align: center;
+      width: 100%;
+      font-style: italic;
+    }
+
+    .hinweis-box {
+      background: rgba(200, 205, 215, 0.05);
+      border: 1px solid rgba(200, 205, 215, 0.15);
+      border-radius: 6px;
+      padding: 18px 25px;
+      color: #b0b5bc;
+      font-size: 1rem;
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      line-height: 1.5;
+    }
+
+    .hinweis-box svg {
+      flex-shrink: 0;
+    }
+
+    .hinweis-box span {
+      text-align: center;
+      display: inline-block;
+    }
+    
+    /* ================= DARK MODE KARUSSELL ================= */
+    body.dark-mode .karussell-title {
+      color: #f0f0f0;
+    }
+    
+    body.dark-mode .karussell-title::after {
+      background: linear-gradient(90deg, 
+        transparent, 
+        rgba(220, 220, 220, 0.6) 50%, 
+        transparent);
+    }
+    
+    body.dark-mode .karussell-slide {
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+    }
+    
+    body.dark-mode .karussell-slide:hover {
+      box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.6),
+        0 0 30px rgba(220, 220, 220, 0.15);
+    }
+    
+    body.dark-mode .karussell-image {
+      border-color: rgba(220, 220, 220, 0.15);
+    }
+    
+    body.dark-mode .karussell-button {
+      background: rgba(30, 30, 30, 0.8);
+      border-color: rgba(220, 220, 220, 0.4);
+    }
+    
+    body.dark-mode .karussell-button:hover {
+      background: rgba(220, 220, 220, 0.2);
+      border-color: rgba(220, 220, 220, 0.8);
+    }
+    
+    /* Dark Mode für aktuelles Werk */
+    body.dark-mode .aktuelles-werk {
+      border-top-color: rgba(220, 225, 235, 0.15);
+      border-bottom-color: rgba(220, 225, 235, 0.15);
+    }
+
+    body.dark-mode .hinweis-box {
+      background: rgba(220, 225, 235, 0.06);
+      border-color: rgba(220, 225, 235, 0.2);
+      color: #d6d9de;
+    }
+    
+    /* ================= BUCHPRÄSENTATION STYLES ================= */
+    .buch-präsentation {
+      margin-bottom: 80px;
+    }
+    
+    .buchcover-bereich {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    
+    .buchcover-rahmen {
+      display: inline-block;
+      padding: 15px;
+      background: rgba(10, 10, 10, 0.9);
+      border: 1px solid rgba(200, 205, 215, 0.25);
+      border-radius: 2px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+      margin-bottom: 30px;
+    }
+    
+    .buchcover-seriös {
+      width: 280px;
       height: auto;
-      border-radius: 4px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-      border: 1px solid rgba(200, 205, 215, 0.2);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: block;
+      border-radius: 1px;
     }
     
-    .buch-cover-quelle:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+    .titel-bereich {
+      text-align: center;
+      margin-bottom: 40px;
+      padding-bottom: 25px;
+      border-bottom: 1px solid rgba(200, 205, 215, 0.15);
     }
     
-    .quellen-header-text h1 {
+    .buch-titel-seriös {
       font-family: "Cinzel", serif;
       color: #e4e6ea;
       font-size: 2.2rem;
-      margin-bottom: 15px;
-      letter-spacing: 0.05em;
-      text-shadow: 0 0 15px rgba(200, 200, 200, 0.2);
+      margin-bottom: 10px;
+      letter-spacing: 0.06em;
+      line-height: 1.3;
+      text-shadow: 0 0 12px rgba(200, 200, 200, 0.15);
     }
     
-    .quellen-header-text .untertitel {
+    .buch-untertitel-seriös {
+      font-family: "EB Garamond", serif;
       color: #b0b5bc;
-      font-size: 1.2rem;
-      margin-bottom: 25px;
-      font-style: italic;
-      border-bottom: 1px solid rgba(200, 205, 215, 0.2);
-      padding-bottom: 15px;
-    }
-    
-    .quellen-header-text p {
-      color: #b0b5bc;
-      line-height: 1.7;
-      margin-bottom: 15px;
-      font-size: 1.05rem;
-    }
-    
-    /* Hinweis-Kasten im Stil der anderen Seiten */
-    .hinweis-kasten {
-      background: rgba(200, 205, 215, 0.05);
-      border-left: 3px solid rgba(200, 205, 215, 0.3);
-      padding: 20px;
-      margin: 25px 0;
-      border-radius: 0 4px 4px 0;
-      color: #9da2a8;
-      font-size: 0.95rem;
-    }
-    
-    .hinweis-kasten strong {
-      color: #d6d9de;
-    }
-    
-    /* Quellen Kategorien - Im Stil der Termine-Seite */
-    .quellen-abschnitt {
-      margin: 50px 0;
-    }
-    
-    .quelle-kategorie {
-      background: rgba(10, 10, 10, 0.3);
-      border: 1px solid rgba(200, 205, 215, 0.15);
-      border-radius: 6px;
-      padding: 30px;
-      margin-bottom: 30px;
-      transition: all 0.3s ease;
-    }
-    
-    .quelle-kategorie:hover {
-      background: rgba(10, 10, 10, 0.4);
-      border-color: rgba(200, 205, 215, 0.25);
-      transform: translateY(-3px);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    }
-    
-    .quelle-kategorie h3 {
-      font-family: "Cinzel", serif;
-      color: #e4e6ea;
       font-size: 1.4rem;
-      margin-bottom: 25px;
-      letter-spacing: 0.05em;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    
-    .kategorie-icon {
-      font-size: 1.6rem;
-    }
-    
-    .kategorie-untertitel {
-      color: #9da2a8;
-      font-size: 0.95rem;
-      margin-bottom: 20px;
       font-style: italic;
-      border-bottom: 1px solid rgba(200, 205, 215, 0.1);
-      padding-bottom: 10px;
+      line-height: 1.5;
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
     }
     
-    /* Quellen-Liste mit edlen Links */
-    .quellen-liste {
-      list-style: none;
-      padding: 0;
+    .inhalt-bereich {
+      margin-bottom: 50px;
+    }
+    
+    .inhalt-text {
+      font-size: 1.15rem;
+      line-height: 1.8;
+      color: #b0b5bc;
+      text-align: justify;
+      margin-bottom: 35px;
+    }
+    
+    .inhalt-text p {
+      margin-bottom: 25px;
+      text-indent: 0;
+    }
+    
+    .inhalt-text p:last-child {
+      margin-bottom: 0;
+    }
+    
+    .zitat-seriös {
+      background: rgba(200, 205, 215, 0.03);
+      border-left: 4px solid rgba(200, 205, 215, 0.3);
+      padding: 25px 30px;
+      margin: 35px 0;
+      font-style: italic;
+      color: #d6d9de;
+      line-height: 1.7;
+      font-size: 1.1rem;
+    }
+    
+    .zitat-seriös p {
       margin: 0;
     }
     
-    .quellen-liste li {
-      margin-bottom: 25px;
-      padding-bottom: 25px;
-      border-bottom: 1px solid rgba(200, 205, 215, 0.1);
+    .quellen-bereich {
+      margin: 40px 0;
+      padding: 25px;
+      background: rgba(10, 10, 10, 0.6);
+      border: 1px solid rgba(200, 205, 215, 0.1);
+      border-radius: 2px;
     }
     
-    .quellen-liste li:last-child {
-      margin-bottom: 0;
-      padding-bottom: 0;
-      border-bottom: none;
-    }
-    
-    /* EDLE LINK-STYLES im Stil der Website */
-    .quellen-liste a {
-      color: #d6d9de;
-      text-decoration: none;
-      font-size: 1.1rem;
-      line-height: 1.5;
-      display: inline-block;
-      padding: 5px 0;
-      position: relative;
-      transition: all 0.3s ease;
-      border-bottom: 1px solid transparent;
-    }
-    
-    .quellen-liste a::before {
-      content: '↗';
-      position: absolute;
-      right: -25px;
-      opacity: 0;
-      transition: all 0.3s ease;
-      color: rgba(200, 205, 215, 0.5);
-    }
-    
-    .quellen-liste a:hover {
-      color: #ffffff;
-      text-shadow: 0 0 10px rgba(200, 200, 200, 0.3);
-      border-bottom: 1px solid rgba(200, 205, 215, 0.4);
-      transform: translateX(5px);
-    }
-    
-    .quellen-liste a:hover::before {
-      opacity: 1;
-      right: -30px;
-    }
-    
-    .quelle-beschreibung {
-      display: block;
-      color: #9da2a8;
-      font-size: 0.95rem;
-      margin-top: 8px;
-      line-height: 1.5;
-      padding-left: 20px;
-      position: relative;
-    }
-    
-    .quelle-beschreibung::before {
-      content: '—';
-      position: absolute;
-      left: 0;
-      color: rgba(200, 205, 215, 0.3);
-    }
-    
-    /* Wissenschaftliche Literatur Styling */
-    .wissenschaft-liste {
-      list-style: none;
-      padding: 0;
-      margin: 20px 0;
-    }
-    
-    .wissenschaft-liste li {
-      margin-bottom: 15px;
-      padding-left: 25px;
-      position: relative;
-      color: #b0b5bc;
-      line-height: 1.6;
-    }
-    
-    .wissenschaft-liste li::before {
-      content: '•';
-      position: absolute;
-      left: 0;
-      color: rgba(200, 205, 215, 0.5);
-      font-size: 1.2rem;
-    }
-    
-    .wissenschaft-liste h4 {
+    .quellen-titel {
       font-family: "Cinzel", serif;
       color: #e4e6ea;
-      margin: 25px 0 15px;
       font-size: 1.1rem;
+      margin-bottom: 15px;
       letter-spacing: 0.05em;
     }
     
-    /* Hinweis-Bereich */
-    .quellen-hinweis {
-      background: rgba(200, 205, 215, 0.05);
+    .quellen-text {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: #9da2a8;
+    }
+    
+    .quellen-text p {
+      margin-bottom: 10px;
+    }
+    
+    .quellen-text p:last-child {
+      margin-bottom: 0;
+    }
+    
+    .aktionen-bereich {
+      text-align: center;
+      margin-top: 50px;
+      padding-top: 30px;
+      border-top: 1px solid rgba(200, 205, 215, 0.15);
+    }
+    
+    .seriöser-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px 45px;
+      background: transparent;
+      color: #d6d9de;
+      border: 1px solid rgba(200, 205, 215, 0.35);
+      border-radius: 2px;
+      font-family: "Cinzel", serif;
+      letter-spacing: 0.08em;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      text-transform: uppercase;
+      pointer-events: auto;
+    }
+    
+    .seriöser-button:hover {
+      background: rgba(200, 205, 215, 0.08);
+      color: #ffffff;
+      border-color: rgba(200, 205, 215, 0.6);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+    
+    .download-icon {
+      margin-left: 10px;
+      width: 18px;
+      height: 18px;
+    }
+    
+    /* Digitale Statistik */
+    .statistik-container {
+      background: rgba(10, 10, 10, 0.7);
       border: 1px solid rgba(200, 205, 215, 0.2);
-      border-radius: 6px;
-      padding: 30px;
-      margin: 40px 0;
+      border-radius: 4px;
+      padding: 25px;
+      margin: 30px auto 40px;
+      max-width: 600px;
+      text-align: center;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
     }
     
-    .quellen-hinweis p {
+    .statistik-title {
+      font-family: "Cinzel", serif;
+      color: #e4e6ea;
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    
+    .statistik-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+    
+    .statistik-item {
+      background: rgba(200, 205, 215, 0.05);
+      padding: 20px;
+      border-radius: 4px;
+      border: 1px solid rgba(200, 205, 215, 0.1);
+    }
+    
+    .statistik-number {
+      font-family: "Cinzel", serif;
+      font-size: 2.5rem;
+      color: #ffffff;
+      margin-bottom: 5px;
+      text-shadow: 0 0 10px rgba(200, 200, 200, 0.3);
+      font-weight: 600;
+    }
+    
+    .statistik-label {
+      color: #9da2a8;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    
+    .statistik-total {
+      background: rgba(200, 205, 215, 0.08);
+      padding: 15px;
+      border-radius: 4px;
+      margin-top: 15px;
+      border: 1px solid rgba(200, 205, 215, 0.15);
+    }
+    
+    .total-number {
+      font-family: "Cinzel", serif;
+      font-size: 2.8rem;
+      color: #ffffff;
+      margin-bottom: 5px;
+      text-shadow: 0 0 12px rgba(200, 200, 200, 0.4);
+    }
+    
+    .total-label {
       color: #b0b5bc;
-      margin-bottom: 15px;
-      line-height: 1.6;
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
     }
     
-    .quellen-hinweis strong {
+    .statistik-update {
+      color: #6b7280;
+      font-size: 0.8rem;
+      margin-top: 15px;
+      font-style: italic;
+    }
+    
+    /* ================= DARK MODE STYLES FÜR WERKE-SEITE ================= */
+    body.dark-mode .werke-header {
+      border-bottom-color: rgba(220, 225, 235, 0.15);
+    }
+    
+    body.dark-mode .buchcover-rahmen {
+      background: rgba(30, 30, 30, 0.9);
+      border-color: rgba(220, 225, 235, 0.2);
+    }
+    
+    body.dark-mode .titel-bereich {
+      border-bottom-color: rgba(220, 225, 235, 0.1);
+    }
+    
+    body.dark-mode .zitat-seriös {
+      background: rgba(220, 225, 235, 0.05);
+      border-left-color: rgba(220, 225, 235, 0.4);
       color: #d6d9de;
     }
     
-    /* DARK MODE STYLES - konsistent mit anderen Seiten */
-    body.dark-mode .quelle-kategorie {
-      background: rgba(30, 30, 30, 0.5);
+    body.dark-mode .quellen-bereich {
+      background: rgba(30, 30, 30, 0.8);
+      border-color: rgba(220, 225, 235, 0.15);
+    }
+    
+    body.dark-mode .statistik-container {
+      background: rgba(30, 30, 30, 0.8);
+      border-color: rgba(220, 225, 235, 0.15);
+    }
+    
+    body.dark-mode .statistik-item {
+      background: rgba(220, 225, 235, 0.08);
       border-color: rgba(220, 225, 235, 0.2);
     }
     
-    body.dark-mode .quelle-kategorie:hover {
-      background: rgba(30, 30, 30, 0.7);
-      border-color: rgba(220, 225, 235, 0.3);
-    }
-    
-    body.dark-mode .quellen-header {
-      background: linear-gradient(135deg, 
-        rgba(30, 30, 30, 0.5) 0%, 
-        rgba(50, 50, 50, 0.7) 100%);
-      border-color: rgba(220, 225, 235, 0.2);
-    }
-    
-    body.dark-mode .quellen-liste a {
-      color: #e4e6ea;
-    }
-    
-    body.dark-mode .quellen-liste a:hover {
-      color: #ffffff;
-      text-shadow: 0 0 15px rgba(220, 220, 220, 0.4);
-    }
-    
-    body.dark-mode .quelle-beschreibung {
-      color: #b0b5bc;
-    }
-    
-    body.dark-mode .hinweis-kasten {
-      background: rgba(220, 225, 235, 0.05);
-      border-left-color: rgba(220, 225, 235, 0.4);
-    }
-    
-    body.dark-mode .quellen-hinweis {
-      background: rgba(220, 225, 235, 0.05);
+    body.dark-mode .statistik-total {
+      background: rgba(220, 225, 235, 0.1);
       border-color: rgba(220, 225, 235, 0.25);
     }
     
-    /* Responsive Anpassungen */
+    body.dark-mode .aktionen-bereich {
+      border-top-color: rgba(220, 225, 235, 0.1);
+    }
+    
+    /* ================= RESPONSIVE ANPASSUNGEN ================= */
     @media screen and (max-width: 768px) {
-      .quellen-container {
+      .werke-container {
         padding: 15px;
       }
       
-      .quellen-header-text h1 {
+      .werke-header {
+        margin-bottom: 30px;
+      }
+      
+      .werke-header h1 {
+        font-size: 2rem;
+      }
+      
+      .karussell-container {
+        max-width: 100%;
+        padding: 0;
+      }
+      
+      .karussell-slide {
+        flex: 0 0 250px;
+        height: 340px;
+      }
+      
+      .karussell-button {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+      }
+      
+      .karussell-button.prev {
+        left: 5px;
+      }
+      
+      .karussell-button.next {
+        right: 5px;
+      }
+      
+      .karussell-overlay {
+        padding: 20px 15px 15px;
+      }
+      
+      .karussell-buchtitel {
+        font-size: 1rem;
+      }
+      
+      .karussell-beschreibung {
+        font-size: 0.85rem;
+      }
+      
+      /* Aktuelles Werk Responsive */
+      .aktuelles-werk {
+        padding: 30px 15px;
+        margin: 60px 0 40px 0;
+      }
+
+      .aktuelles-werk h2 {
+        font-size: 1.6rem;
+      }
+
+      .aktuelles-subtitle {
+        font-size: 1rem;
+      }
+
+      .hinweis-box {
+        padding: 15px 20px;
+        font-size: 0.95rem;
+        flex-direction: column;
+        gap: 8px;
+      }
+      
+      .buch-titel-seriös {
         font-size: 1.8rem;
       }
       
-      .quelle-kategorie {
-        padding: 20px;
-      }
-      
-      .quelle-kategorie h3 {
+      .buch-untertitel-seriös {
         font-size: 1.2rem;
       }
       
-      .quellen-liste a {
-        font-size: 1rem;
+      .inhalt-text {
+        font-size: 1.1rem;
+        text-align: left;
+      }
+      
+      .buchcover-rahmen {
+        padding: 10px;
+      }
+      
+      .buchcover-seriös {
+        width: 240px;
+      }
+      
+      .zitat-seriös {
+        padding: 20px;
+      }
+      
+      .quellen-bereich {
+        padding: 20px;
+      }
+      
+      .seriöser-button {
+        padding: 14px 35px;
+        width: 100%;
+        max-width: 300px;
+        margin-bottom: 10px;
+      }
+      
+      .statistik-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
+      
+      .statistik-number {
+        font-size: 2.2rem;
+      }
+      
+      .total-number {
+        font-size: 2.4rem;
       }
     }
     
     @media screen and (max-width: 480px) {
-      .quellen-header-text h1 {
-        font-size: 1.6rem;
+      .werke-header h1 {
+        font-size: 1.7rem;
       }
       
-      .quellen-header {
-        padding: 15px;
+      .karussell-slide {
+        flex: 0 0 220px;
+        height: 300px;
       }
       
-      .quelle-kategorie {
-        padding: 15px;
+      .karussell-title {
+        font-size: 1.4rem;
+        margin-bottom: 30px;
+      }
+      
+      .karussell-overlay {
+        opacity: 1;
+        transform: translateY(0);
+        background: linear-gradient(to top, 
+          rgba(0, 0, 0, 0.85) 0%, 
+          rgba(0, 0, 0, 0.6) 50%, 
+          transparent 100%);
+      }
+      
+      /* Aktuelles Werk Mobile */
+      .aktuelles-werk h2 {
+        font-size: 1.4rem;
+      }
+
+      .hinweis-box {
+        padding: 12px 15px;
+        font-size: 0.9rem;
+      }
+      
+      .buch-titel-seriös {
+        font-size: 1.5rem;
+      }
+      
+      .buch-untertitel-seriös {
+        font-size: 1.1rem;
+      }
+      
+      .inhalt-text {
+        font-size: 1.05rem;
+      }
+      
+      .buchcover-seriös {
+        width: 200px;
+      }
+      
+      .statistik-container {
+        padding: 20px 15px;
       }
     }
   </style>
@@ -439,8 +665,7 @@
   <nav class="hauptnavigation" id="navigation">
     <a href="index.html">Startseite</a>
     <a href="ueber-mich.html">Über mich</a>
-    <a href="werke.html">Werke</a>
-    <a href="quellen.html" class="active">Quellen</a>
+    <a href="werke.html" class="active">Werke</a>
     <a href="termine.html">Termine</a>
     <a href="kontakt.html">Kontakt</a>
   </nav>
@@ -448,198 +673,214 @@
 
 <div class="lichtkante"></div>
 
-<!-- ================= HAUPTINHALT ================= -->
+<!-- ================= WERKE INHALT ================= -->
 <main class="inhalt">
-  <section class="quellen-container">
+  <section class="werke-container">
+    <!-- Überschrift -->
+    <div class="werke-header">
+      <h1>Werke</h1>
+      <p class="werke-subtitle">Historische Analysen mit wissenschaftlichem Anspruch</p>
+    </div>
     
-    <!-- Header-Bereich mit Buchcover -->
-    <div class="quellen-header">
-      <div class="buch-cover-container">
-        <img src="assets/images/derlangewegindiefinsternis.png" 
-             alt="Buchcover: Der lange Weg in die Finsternis" 
-             class="buch-cover-quelle">
-      </div>
-      
-      <div class="quellen-header-text">
-        <h1>Der lange Weg in die Finsternis</h1>
-        <p class="untertitel">Wie das Kaiserreich den Nationalsozialismus vorbereitete</p>
+    <!-- BILDKARUSSELL FÜR ALLE BÜCHER -->
+    <div class="karussell-section">
+      <h2 class="karussell-title">Alle Werke im Überblick</h2>
+      <div class="karussell-container" id="buchKarussell">
+        <button class="karussell-button prev" aria-label="Vorheriges Buch">‹</button>
         
-        <p>Diese Seite versammelt alle zentralen digitalen Quellen und Forschungsliteratur, die der historischen Analyse in diesem Werk zugrunde liegen.<br>
-        Jeder Link führt direkt zu den Originaldokumenten oder wissenschaftlichen Werken und dient der vollständigen Nachvollziehbarkeit und Vertiefung.</p>
+        <div class="karussell-track" id="karussellTrack">
+          <!-- Slide 1: Der lange Weg in die Finsternis -->
+          <div class="karussell-slide">
+            <a href="#aktuelles-werk" class="karussell-link">
+              <img src="assets/images/derlangewegindiefinsternis.png" 
+                   alt="Der lange Weg in die Finsternis" 
+                   class="karussell-image">
+              <div class="karussell-overlay">
+                <h3 class="karussell-buchtitel">Der lange Weg in die Finsternis</h3>
+                <p class="karussell-beschreibung">Wie das Kaiserreich den Nationalsozialismus vorbereitete</p>
+              </div>
+            </a>
+          </div>
+          
+          <!-- Slide 2: Macht und Untergang -->
+          <div class="karussell-slide">
+            <a href="machtunduntergang.html" class="karussell-link">
+              <img src="assets/images/machtunduntergang.png" 
+                   alt="Macht und Untergang" 
+                   class="karussell-image">
+              <div class="karussell-overlay">
+                <h3 class="karussell-buchtitel">Macht und Untergang</h3>
+                <p class="karussell-beschreibung">Die endgültige Geschichte des Dritten Reiches</p>
+              </div>
+            </a>
+          </div>
+          
+          <!-- Slide 3: Blut und Krone -->
+          <div class="karussell-slide">
+            <a href="blutundkrone.html" class="karussell-link">
+              <img src="assets/images/blutundkrone.png" 
+                   alt="Blut und Krone" 
+                   class="karussell-image">
+              <div class="karussell-overlay">
+                <h3 class="karussell-buchtitel">Blut und Krone</h3>
+                <p class="karussell-beschreibung">Die verborgenen Kriege der europäischen Monarchien</p>
+              </div>
+            </a>
+          </div>
+        </div>
         
-        <div class="hinweis-kasten">
-          <strong>Hinweis zur Nutzung:</strong> Alle Links führen zu originalen oder digitalisierten Archivressourcen öffentlicher Institutionen, die zum Zeitpunkt der Veröffentlichung frei zugänglich sind.
+        <button class="karussell-button next" aria-label="Nächstes Buch">›</button>
+        
+        <!-- Indikatoren -->
+        <div class="karussell-indicators">
+          <span class="karussell-indicator active" data-slide="0"></span>
+          <span class="karussell-indicator" data-slide="1"></span>
+          <span class="karussell-indicator" data-slide="2"></span>
         </div>
       </div>
     </div>
-
-    <!-- ================= QUELLENABSCHNITT ================= -->
-    <section class="quellen-abschnitt">
+    
+    <!-- AKTUELLES WERK - KORRIGIERT & ZENTRIERT -->
+    <div class="aktuelles-werk" id="aktuelles-werk">
+      <h2>Der lange Weg in die Finsternis</h2>
+      <p class="aktuelles-subtitle">Aktuell vertieft auf dieser Seite</p>
       
-      <!-- Reichstagsprotokolle -->
-      <div class="quelle-kategorie">
-        <h3><span class="kategorie-icon">📜</span> Reichstagsprotokolle & Parlamentsdokumente</h3>
-        <p class="kategorie-untertitel">Kaiserreich, Weimar, NS-Zeit (1867–1942)</p>
-        <ul class="quellen-liste">
-          <li>
-            <a href="https://www.reichstagsprotokolle.de/en_rtbiauf.html" target="_blank" rel="noopener noreferrer">
-              Reichstagsprotokolle – Gesamtsammlung & Navigation
-            </a>
-            <span class="quelle-beschreibung">Vollständige digitale Protokolle mit Browsing, Suche und PDF-Downloads (1867–1942).</span>
-          </li>
-          
-          <li>
-            <a href="http://mdz.bib-bvb.de/digbib/reichstag/" target="_blank" rel="noopener noreferrer">
-              Reichstagsprotokolle über Clio-Online (MDZ-Direktzugang 1867–1895)
-            </a>
-            <span class="quelle-beschreibung">Digitalisierte Protokolle mit OCR-Volltext und komfortabler Navigation.</span>
-          </li>
-          
-          <li>
-            <a href="https://www.deutsche-digitale-bibliothek.de/search?q=Reichstagsprotokolle" target="_blank" rel="noopener noreferrer">
-              Reichstagprotokolle in der Deutschen Digitalen Bibliothek
-            </a>
-            <span class="quelle-beschreibung">Archivale Einträge zu einzelnen Protokollen und Objekten.</span>
-          </li>
-          
-          <li>
-            <a href="https://reichstagsakten.de/" target="_blank" rel="noopener noreferrer">
-              Deutsche Reichstagsakten (wissenschaftliche Edition)
-            </a>
-            <span class="quelle-beschreibung">Digital aufbereitete Reichstagsakten verschiedener historischer Perioden.</span>
-          </li>
-          
-          <li>
-            <a href="https://www.bundestag.de/en/documents/archives" target="_blank" rel="noopener noreferrer">
-              Deutscher Bundestag Parlamentsarchiv – Dokumente und Archivmaterial
-            </a>
-            <span class="quelle-beschreibung">Parliamentary documentation and research aids for comparative questions.</span>
-          </li>
-        </ul>
+      <div class="hinweis-box">
+        <svg width="20" height="20" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 10px; color: #c0c0c0;">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" fill="currentColor"/>
+        </svg>
+        <span>Klicken Sie auf eines der Bücher im Karussell, um zur Detailseite zu gelangen</span>
+      </div>
+    </div>
+    
+    <!-- Buchpräsentation für "Der lange Weg in die Finsternis" -->
+    <article class="buch-präsentation">
+      <!-- Buchcover -->
+      <div class="buchcover-bereich">
+        <div class="buchcover-rahmen">
+          <img src="assets/images/derlangewegindiefinsternis.png" 
+               alt="Buchcover: Der lange Weg in die Finsternis" 
+               class="buchcover-seriös">
+        </div>
       </div>
       
-      <!-- Archivquellen zur Kolonialgeschichte -->
-      <div class="quelle-kategorie">
-        <h3><span class="kategorie-icon">🏛️</span> Archivquellen zur Kolonialgeschichte</h3>
-        <ul class="quellen-liste">
-          <li>
-            <a href="https://www.bundesarchiv.de/en/research-our-records/research-by-topic/sources-on-colonial-history" target="_blank" rel="noopener noreferrer">
-              Bundesarchiv – Quellen zur deutschen Kolonialgeschichte
-            </a>
-            <span class="quelle-beschreibung">Digitalisierte koloniale Akten, darunter Bestände des Reichskolonialamts (R 1001).</span>
-          </li>
-          
-          <li>
-            <a href="https://www.bundesarchiv.de/im-archiv-recherchieren/archivgut-recherchieren/digitalisierte-bestaende/" target="_blank" rel="noopener noreferrer">
-              Bundesarchiv – Digitalisierte Bestände (Allgemein)
-            </a>
-            <span class="quelle-beschreibung">Portal zur Recherche digitalisierter Akten, Bilder, Filme und Dokumente.</span>
-          </li>
-          
-          <li>
-            <a href="https://ersterweltkrieg.bundesarchiv.de/digitalisierte-sammlungen.html" target="_blank" rel="noopener noreferrer">
-              Bundesarchiv – Digitalisierte Sammlungen zum Ersten Weltkrieg
-            </a>
-            <span class="quelle-beschreibung">Akten des Reichskolonialamtes zu Kolonialkriegen in Afrika.</span>
-          </li>
-          
-          <li>
-            <a href="https://www.bundesarchiv.de/im-archiv-recherchieren/archivgut-recherchieren/nach-themen/kolonialgeschichte/" target="_blank" rel="noopener noreferrer">
-              Bundesarchiv – Kolonialgeschichte (Archivbestände R 1001)
-            </a>
-            <span class="quelle-beschreibung">Offizielle Verwaltungsakten des Reichskolonialamts mit Korrespondenz und Berichten.</span>
-          </li>
-          
-          <li>
-            <a href="https://www.fh-potsdam.de/index.php/en/news-media/news/web-portal-archive-guide-german-colonial-history-new-offers" target="_blank" rel="noopener noreferrer">
-              Archive Guide to German Colonial History
-            </a>
-            <span class="quelle-beschreibung">Metadatenportal mit internationalen Archiven zur Kolonialgeschichte.</span>
-          </li>
-          
-          <li>
-            <a href="https://ccc.deutsche-digitale-bibliothek.de/en" target="_blank" rel="noopener noreferrer">
-              Deutsche Digitale Bibliothek – Koloniale Sammlungen
-            </a>
-            <span class="quelle-beschreibung">Fotos, Akten, Artefakte zu deutschen Kolonien.</span>
-          </li>
-        </ul>
+      <!-- Titel -->
+      <div class="titel-bereich">
+        <h2 class="buch-titel-seriös">Der lange Weg in die Finsternis</h2>
+        <p class="buch-untertitel-seriös">Wie das Kaiserreich den Nationalsozialismus vorbereitete</p>
       </div>
       
-      <!-- Zeitgenössische Presse & weitere Archive -->
-      <div class="quelle-kategorie">
-        <h3><span class="kategorie-icon">📰</span> Zeitgenössische Presse & weitere Archive</h3>
-        <ul class="quellen-liste">
-          <li>
-            <a href="https://ccc.deutsche-digitale-bibliothek.de/" target="_blank" rel="noopener noreferrer">
-              Deutsche Digitale Bibliothek – Sammlungen (inkl. Zeitungen)
-            </a>
-            <span class="quelle-beschreibung">Historische Zeitungen wie Berliner Tageblatt, Kreuzzeitung, Vossische Zeitung.</span>
-          </li>
+      <!-- Inhalt -->
+      <div class="inhalt-bereich">
+        <div class="inhalt-text">
+          <p><strong>Dieses Buch ist kein Roman.</strong> Es ist auch keine rückblickende Vereinfachung der Geschichte. Es ist der Versuch, einen historischen Weg sichtbar zu machen, der lange vor 1933 begann und dennoch direkt in die Katastrophe führte.</p>
           
-          <li>
-            <a href="https://www.das-deutsche-reich.de/ewiger-bund/reichskolonialamt/deutsches-kaiserreich/" target="_blank" rel="noopener noreferrer">
-              DokumentArchiv.de – Deutsche Reichsverfassung 1871
-            </a>
-            <span class="quelle-beschreibung">Digitale Fassungen historischer Rechtstexte des Kaiserreichs.</span>
-          </li>
-        </ul>
-      </div>
-
-      <!-- Telegramme & Korrespondenz -->
-      <div class="quelle-kategorie">
-        <h3><span class="kategorie-icon">📨</span> Telegramme & Korrespondenz</h3>
-        <ul class="quellen-liste">
-          <li>
-            <a href="https://www.firstworldwar.com/source/willynicky.htm" target="_blank" rel="noopener noreferrer">
-              „Willy-Nicky"-Telegramme (1914) – Primärquelle zur Kaiser-Diplomatie
-            </a>
-            <span class="quelle-beschreibung">Sammlung der Telegraphien zwischen Wilhelm II. und Zar Nikolaus II. in der unmittelbaren Vorkriegszeit.</span>
-          </li>
+          <p>Im Zentrum steht das deutsche Kaiserreich und die Frage, welche Strukturen, Denkweisen und politischen Mechanismen dort entstanden, die später vom Nationalsozialismus übernommen, radikalisiert und zur Vollendung gebracht wurden. Der Fokus liegt nicht auf einzelnen Personen, sondern auf Systemen. Auf Machtstrukturen, auf Gewöhnung an Gewalt, auf Sprache, die entmenschlicht, und auf eine politische Kultur, in der Gehorsam höher bewertet wurde als Verantwortung.</p>
           
-          <li>
-            <a href="https://www.deutsche-digitale-bibliothek.de/item/RYCPRZ7XLL6YHXUI35MLMDGOGPVHEBC5" target="_blank" rel="noopener noreferrer">
-              Deutsche Digitale Bibliothek – Telegramme (Archivobjekte)
-            </a>
-            <span class="quelle-beschreibung">Digitalisierte Telegramm-Objekte, Korrespondenzen und Akteneinträge unterschiedlicher Provenienz.</span>
-          </li>
-        </ul>
+          <div class="zitat-seriös">
+            <p>Diese kolonialen Verbrechen werden hier nicht als Randnotiz behandelt, sondern als frühes Übungsfeld für Denkweisen und Methoden, die später im Inneren des Reiches wiederkehrten.</p>
+          </div>
+          
+          <p>Erzählt wird diese Geschichte in einer dichten, spannungsreichen Form, die sich wie ein Thriller liest, ohne die Grenze zur Fiktion zu überschreiten. Jeder Abschnitt folgt realen Abläufen, belegbaren Entscheidungen und dokumentierten Entwicklungen. Dieses Buch erfindet nichts. Es ordnet ein, verbindet und legt offen.</p>
+          
+          <div class="quellen-bereich">
+            <div class="quellen-titel">Quellen und Belege</div>
+            <div class="quellen-text">
+              <p>Alle zentralen Aussagen sind durch historische Quellen belegbar. Die im Buch verwendeten Nachweise verweisen unter anderem auf Reichstagsprotokolle, zeitgenössische Presseberichte, Verwaltungsakten, Reden politischer Entscheidungsträger sowie auf die etablierte historische Forschung.</p>
+              <p>Die Quellen sind am Ende des Buches vollständig aufgeführt und nachvollziehbar dokumentiert.</p>
+            </div>
+          </div>
+          
+          <p><strong>Dieses Buch versteht sich nicht als moralische Anklage aus sicherer Distanz.</strong> Es ist eine Analyse historischer Kontinuitäten. Es zeigt, wie sich Radikalisierung vorbereitet, wie sich Grenzen verschieben und wie Gesellschaften lernen, Unrecht zu akzeptieren, solange es schrittweise geschieht.</p>
+          
+          <p><strong>Wer dieses Buch liest, wird keine einfache Erklärung finden. Aber ein klares Verständnis dafür, dass Geschichte nicht plötzlich kippt. Sie wird gebaut. Stein für Stein.</strong></p>
+        </div>
       </div>
-
-      <!-- Wissenschaftliche Forschungsliteratur -->
-      <div class="quelle-kategorie">
-        <h3><span class="kategorie-icon">📚</span> Wissenschaftliche Forschungsliteratur</h3>
-        <p class="kategorie-untertitel">Sekundärquellen als analytische Grundlage</p>
+      
+      <!-- Digitale Statistik -->
+      <div class="statistik-container">
+        <div class="statistik-title">Digitale Statistik</div>
         
-        <ul class="wissenschaft-liste">
-          <h4>Kaiserreich, Militär und politische Kultur</h4>
-          <li><strong>Hans-Ulrich Wehler</strong> – "Das Deutsche Kaiserreich 1871–1918" (Standardwerk)</li>
-          <li><strong>Thomas Nipperdey</strong> – "Deutsche Geschichte 1866–1918" (soziale und politische Analyse)</li>
-          <li><strong>Christopher Clark</strong> – "Preußen. Aufstieg und Niedergang" (politische Kultur)</li>
+        <div class="statistik-grid">
+          <div class="statistik-item">
+            <div class="statistik-number" id="online-counter">289</div>
+            <div class="statistik-label">Online gelesen</div>
+          </div>
           
-          <h4>Kolonialismus und Gewalt</h4>
-          <li><strong>Jürgen Zimmerer</strong> – "Von Windhuk nach Auschwitz?" (Kontinuität kolonialer Gewalt)</li>
-          <li><strong>Isabel V. Hull</strong> – "Absolute Destruction: Military Culture and the Practices of War in Imperial Germany" (Militarismus)</li>
-          <li><strong>Dominik J. Schaller</strong> – Arbeiten zum deutschen Völkermord an Herero und Nama</li>
-          
-          <h4>Weimar, Demokratie, Nationalsozialismus</h4>
-          <li><strong>Detlev Peukert</strong> – "Die Weimarer Republik" (Standardanalyse)</li>
-          <li><strong>George L. Mosse</strong> – "Die völkische Revolution" (völkische Bewegung)</li>
-          <li><strong>Ulrich Herbert</strong> – "Geschichte Deutschlands im 20. Jahrhundert" (Kontinuitäten)</li>
-          <li><strong>Götz Aly</strong> – "Hitlers Volksstaat" (soziale Grundlagen der NS-Diktatur)</li>
-          
-          <h4>Sprache, Propaganda, Dehumanisierung</h4>
-          <li><strong>Victor Klemperer</strong> – "LTI – Notizbuch eines Philologen" (Sprache des Nationalsozialismus)</li>
-          <li><strong>Hannah Arendt</strong> – "Elemente und Ursprünge totaler Herrschaft" (totale Herrschaft)</li>
-        </ul>
+          <div class="statistik-item">
+            <div class="statistik-number" id="download-counter">73</div>
+            <div class="statistik-label">Heruntergeladen</div>
+          </div>
+        </div>
+        
+        <div class="statistik-total">
+          <div class="total-number" id="total-counter">362</div>
+          <div class="total-label">Gesamtzugriffe auf diese Leseprobe</div>
+        </div>
+        
+        <div class="statistik-update">
+          Diese Zahlen werden automatisch aktualisiert. Letzte Aktualisierung: <span id="last-update">Heute</span>
+        </div>
       </div>
       
-      <!-- Hinweis-Bereich -->
-      <div class="quellen-hinweis">
-        <p><strong>Hinweis zu externen Links:</strong> Diese Website enthält Verlinkungen zu externen Webseiten Dritter. Ich habe keinen Einfluss auf deren Inhalte und übernehme keine Haftung. Sollten Ihnen problematische Inhalte auffallen, bitte ich um einen Hinweis.</p>
-        <p><strong>📍 Nutzungshinweise zu den erweiterten Quellen:</strong> Diese Links führen zu Originalquellen oder digitalisierten Amtspublikationen (z.B. stenographische Berichte), die für historische Belege verwendet werden können. Reichstagsprotokolle sind gesetzliche Amtspublikationen, die regelmäßig online verfügbar gemacht werden. Die „Willy-Nicky"-Telegramme sind ein Beispiel für echte historische Telegramm-Korrespondenz zwischen Staatsoberhäuptern als politische Primärquelle zur Zeitgeschichte.</p>
+      <!-- Aktionen -->
+      <div class="aktionen-bereich">
+        <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-bottom: 25px;">
+          <!-- Online lesen Button -->
+          <a href="assets/leseproben/derlangewegindiefinsternis.pdf" 
+             class="seriöser-button"
+             target="_blank"
+             style="background: rgba(200,205,215,0.1); min-width: 200px;"
+             onclick="increaseCounter('online')">
+            <svg width="20" height="20" viewBox="0 0 24 24" style="margin-right: 10px; vertical-align: middle;">
+              <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z" fill="currentColor"/>
+            </svg>
+            Leseprobe online lesen
+          </a>
+          
+          <!-- Download Button -->
+          <a href="assets/leseproben/derlangewegindiefinsternis.pdf" 
+             class="seriöser-button"
+             download="Der_lange_Weg_in_die_Finsternis_Leseprobe.pdf"
+             style="border-style: dashed; min-width: 200px;"
+             onclick="increaseCounter('download')">
+            <svg class="download-icon" viewBox="0 0 24 24" style="margin-right: 10px; vertical-align: middle;">
+              <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" fill="currentColor"/>
+            </svg>
+            PDF herunterladen
+          </a>
+        </div>
+        
+        <!-- Erklärung -->
+        <div style="background: rgba(200,205,215,0.05); padding: 20px; margin-top: 20px; border-radius: 4px; border-left: 3px solid rgba(200,205,215,0.3);">
+          <p style="margin: 0 0 15px 0; color: #e4e6ea; font-size: 1rem; font-weight: 500;">
+            <svg width="16" height="16" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 8px;">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="#b0b5bc"/>
+            </svg>
+            So funktioniert der Online-Zugang:
+          </p>
+          <ul style="margin: 0; padding-left: 20px; color: #b0b5bc; font-size: 0.95rem; line-height: 1.6;">
+            <li style="margin-bottom: 8px;">
+              <strong>Online lesen:</strong> Die PDF öffnet sich in einem neuen Browser-Tab. Sie können direkt lesen, ohne etwas herunterzuladen.
+            </li>
+            <li style="margin-bottom: 8px;">
+              <strong>Vorteil:</strong> Schneller Zugriff, keine Datei auf dem Computer nötig.
+            </li>
+            <li style="margin-bottom: 0;">
+              <strong>Alternative:</strong> Falls Sie die Leseprobe offline lesen möchten, nutzen Sie die Download-Option.
+            </li>
+          </ul>
+        </div>
+        
+        <!-- Technische Details -->
+        <div style="margin-top: 25px; padding-top: 20px; border-top: 1px solid rgba(200,205,215,0.1); text-align: center;">
+          <p style="color: #9da2a8; font-size: 0.9rem; margin: 0;">
+            <strong>Technische Details:</strong> 45 Seiten • PDF-Format • Optimiert für alle Browser<br>
+            Kompatibel mit Chrome, Firefox, Safari, Edge
+          </p>
+        </div>
       </div>
-    </section>
+    </article>
   </section>
 </main>
 
@@ -671,7 +912,7 @@
     <a href="https://www.tiktok.com/@m.silberhain" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="TikTok">
       <div class="social-icon-wrapper">
         <svg class="social-icon" viewBox="0 0 24 24">
-          <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+          <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.10-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
         </svg>
       </div>
       <span class="social-name">TikTok</span>
@@ -681,7 +922,7 @@
     <a href="https://t.me/matthiassilberhain" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Telegram">
       <div class="social-icon-wrapper">
         <svg class="social-icon" viewBox="0 0 24 24">
-          <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.697.064-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+          <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.697.064-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.81.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
         </svg>
       </div>
       <span class="social-name">Telegram</span>
@@ -728,9 +969,259 @@
     </div>
     <p>© <span id="jahr"></span> Matthias Silberhain</p>
 </footer>
+
 <!-- ================= JAVASCRIPT ================= -->
 <script src="assets/js/global.js"></script>
 <script src="assets/js/menu.js"></script>
+
+<!-- ================= WERKE SPEZIFISCHE SCRIPTE ================= -->
+<script>
+// ========================================================================
+// BILDKARUSSELL FUNKTIONEN
+// ========================================================================
+
+function initKarussell() {
+  const track = document.getElementById('karussellTrack');
+  const slides = document.querySelectorAll('.karussell-slide');
+  const prevButton = document.querySelector('.karussell-button.prev');
+  const nextButton = document.querySelector('.karussell-button.next');
+  const indicators = document.querySelectorAll('.karussell-indicator');
+  
+  if (!track || slides.length === 0) return;
+  
+  const slideWidth = slides[0].offsetWidth + 20; // + gap
+  let currentIndex = 0;
+  let autoSlideInterval;
+  
+  // Funktion zum Aktualisieren der Position
+  function updateSlidePosition() {
+    track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+    
+    // Aktiviere/Deaktiviere Buttons basierend auf Position
+    prevButton.style.opacity = currentIndex === 0 ? '0.5' : '1';
+    prevButton.style.pointerEvents = currentIndex === 0 ? 'none' : 'auto';
+    
+    nextButton.style.opacity = currentIndex === slides.length - 1 ? '0.5' : '1';
+    nextButton.style.pointerEvents = currentIndex === slides.length - 1 ? 'none' : 'auto';
+    
+    // Aktualisiere Indikatoren
+    indicators.forEach((indicator, index) => {
+      if (index === currentIndex) {
+        indicator.classList.add('active');
+      } else {
+        indicator.classList.remove('active');
+      }
+    });
+  }
+  
+  // Nächste Slide
+  function nextSlide() {
+    if (currentIndex < slides.length - 1) {
+      currentIndex++;
+      updateSlidePosition();
+    }
+  }
+  
+  // Vorherige Slide
+  function prevSlide() {
+    if (currentIndex > 0) {
+      currentIndex--;
+      updateSlidePosition();
+    }
+  }
+  
+  // Zur bestimmten Slide gehen
+  function goToSlide(index) {
+    if (index >= 0 && index < slides.length) {
+      currentIndex = index;
+      updateSlidePosition();
+    }
+  }
+  
+  // Event Listener für Buttons
+  prevButton.addEventListener('click', prevSlide);
+  nextButton.addEventListener('click', nextSlide);
+  
+  // Event Listener für Indikatoren
+  indicators.forEach((indicator, index) => {
+    indicator.addEventListener('click', () => goToSlide(index));
+  });
+  
+  // Touch-Gesten für Mobile
+  let startX = 0;
+  let endX = 0;
+  
+  track.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].clientX;
+  });
+  
+  track.addEventListener('touchmove', (e) => {
+    endX = e.touches[0].clientX;
+  });
+  
+  track.addEventListener('touchend', () => {
+    const diff = startX - endX;
+    
+    if (Math.abs(diff) > 50) { // Mindest-Swipe-Distanz
+      if (diff > 0) {
+        nextSlide(); // Swipe nach links = nächste Slide
+      } else {
+        prevSlide(); // Swipe nach rechts = vorherige Slide
+      }
+    }
+  });
+  
+  // Auto-Slide deaktivieren (falls gewünscht, kann aktiviert werden)
+  // function startAutoSlide() {
+  //   autoSlideInterval = setInterval(() => {
+  //     if (currentIndex === slides.length - 1) {
+  //       currentIndex = 0;
+  //     } else {
+  //       currentIndex++;
+  //     }
+  //     updateSlidePosition();
+  //   }, 5000);
+  // }
+  
+  // function stopAutoSlide() {
+  //   clearInterval(autoSlideInterval);
+  // }
+  
+  // track.addEventListener('mouseenter', stopAutoSlide);
+  // track.addEventListener('mouseleave', startAutoSlide);
+  
+  // Initialisiere Position
+  updateSlidePosition();
+  
+  // Starte Auto-Slide (optional)
+  // startAutoSlide();
+}
+
+// ========================================================================
+// DIGITALE STATISTIK FUNKTIONEN
+// ========================================================================
+
+let statistics = {
+  online: 289,
+  download: 73,
+  lastUpdate: new Date().toISOString()
+};
+
+function loadStatistics() {
+  try {
+    const savedStats = localStorage.getItem('leseprobeStatistics');
+    if (savedStats) {
+      statistics = JSON.parse(savedStats);
+    }
+    updateStatisticsDisplay();
+  } catch (e) {
+    console.log('Statistik konnte nicht geladen werden, verwende Standardwerte');
+  }
+}
+
+function saveStatistics() {
+  try {
+    statistics.lastUpdate = new Date().toISOString();
+    localStorage.setItem('leseprobeStatistics', JSON.stringify(statistics));
+    updateLastUpdateText();
+  } catch (e) {
+    console.log('Statistik konnte nicht gespeichert werden');
+  }
+}
+
+function increaseCounter(type) {
+  if (type === 'online') {
+    statistics.online++;
+  } else if (type === 'download') {
+    statistics.download++;
+  }
+  
+  saveStatistics();
+  updateStatisticsDisplay();
+  animateCounter(type);
+}
+
+function updateStatisticsDisplay() {
+  const onlineCounter = document.getElementById('online-counter');
+  const downloadCounter = document.getElementById('download-counter');
+  const totalCounter = document.getElementById('total-counter');
+  
+  if (onlineCounter) onlineCounter.textContent = statistics.online;
+  if (downloadCounter) downloadCounter.textContent = statistics.download;
+  if (totalCounter) totalCounter.textContent = statistics.online + statistics.download;
+}
+
+function updateLastUpdateText() {
+  const lastUpdateElement = document.getElementById('last-update');
+  if (lastUpdateElement && statistics.lastUpdate) {
+    const updateDate = new Date(statistics.lastUpdate);
+    const now = new Date();
+    const diffHours = Math.floor((now - updateDate) / (1000 * 60 * 60));
+    
+    if (diffHours < 1) {
+      lastUpdateElement.textContent = 'Vor wenigen Minuten';
+    } else if (diffHours < 24) {
+      lastUpdateElement.textContent = `Heute, ${updateDate.getHours()}:${updateDate.getMinutes().toString().padStart(2, '0')} Uhr`;
+    } else if (diffHours < 48) {
+      lastUpdateElement.textContent = 'Gestern';
+    } else {
+      lastUpdateElement.textContent = updateDate.toLocaleDateString('de-DE');
+    }
+  }
+}
+
+function animateCounter(type) {
+  const elementId = type === 'online' ? 'online-counter' : 'download-counter';
+  const element = document.getElementById(elementId);
+  
+  if (element) {
+    element.style.transform = 'scale(1.1)';
+    element.style.color = '#ffffff';
+    element.style.textShadow = '0 0 15px rgba(200, 200, 200, 0.7)';
+    
+    setTimeout(() => {
+      element.style.transform = 'scale(1)';
+      element.style.color = '';
+      element.style.textShadow = '';
+    }, 300);
+  }
+}
+
+// ========================================================================
+// INITIALISIERUNG
+// ========================================================================
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Initialisiere Karussell
+  setTimeout(initKarussell, 100);
+  
+  // Lade Statistik
+  loadStatistics();
+  
+  // Entwickler-Shortcut: Doppelklick auf Statistik-Titel zum Zurücksetzen
+  const statTitle = document.querySelector('.statistik-title');
+  if (statTitle) {
+    statTitle.addEventListener('dblclick', function() {
+      if (confirm('Statistik wirklich zurücksetzen?')) {
+        statistics = {
+          online: 289,
+          download: 73,
+          lastUpdate: new Date().toISOString()
+        };
+        saveStatistics();
+        updateStatisticsDisplay();
+      }
+    });
+  }
+});
+
+// Responsive: Karussell neu initialisieren bei Fenstergrößenänderung
+let resizeTimeout;
+window.addEventListener('resize', function() {
+  clearTimeout(resizeTimeout);
+  resizeTimeout = setTimeout(initKarussell, 250);
+});
+</script>
 
 </body>
 </html>
