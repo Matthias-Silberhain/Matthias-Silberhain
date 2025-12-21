@@ -1,5 +1,5 @@
 // ============================================================================
-// WERKE.JS - Karussell und Buch-spezifisches Bewertungssystem
+// WERKE.JS - Karussell und Bewertungssystem
 // ============================================================================
 
 (function() {
@@ -22,26 +22,6 @@
         
         let currentIndex = 0;
         
-        // Funktion zum Aktualisieren des aktiven Buches im Bewertungssystem
-        function updateAktivesBuch() {
-            const aktivesItem = items[currentIndex];
-            const buchId = aktivesItem.dataset.buchId;
-            const buchTitel = aktivesItem.querySelector('.buch-info h3').textContent;
-            const buchUntertitel = aktivesItem.querySelector('.untertitel').textContent;
-            
-            // Buch-Info im Bewertungssystem aktualisieren
-            const titelElement = document.getElementById('aktuellesBuchTitel');
-            const untertitelElement = document.getElementById('aktuellesBuchUntertitel');
-            
-            if (titelElement) titelElement.textContent = buchTitel;
-            if (untertitelElement) untertitelElement.textContent = buchUntertitel;
-            
-            // Bewertungen für dieses Buch laden
-            ladeBewertungen(buchId);
-            
-            console.log(`🔄 Aktives Buch geändert: ${buchTitel} (${buchId})`);
-        }
-        
         // Karussell aktualisieren
         function updateKarussell() {
             // Track position verschieben
@@ -56,9 +36,6 @@
             dots.forEach((dot, index) => {
                 dot.classList.toggle('active', index === currentIndex);
             });
-            
-            // Aktives Buch im Bewertungssystem aktualisieren
-            updateAktivesBuch();
             
             console.log('🔄 Karussell aktualisiert auf Index:', currentIndex);
         }
@@ -103,45 +80,28 @@
         console.log('✅ Karussell initialisiert');
     }
     
-    // 2. BUCHSPEZIFISCHES BEWERTUNGSSYSTEM (Client-seitig mit localStorage)
+    // 2. BEWERTUNGSSYSTEM (Client-seitig mit localStorage)
     function initBewertungssystem() {
-        const sterneContainer = document.querySelector('.sterne');
+        const sterneContainer = document.getElementById('bewertungsSterne');
         const bewertungswert = document.querySelector('.bewertungs-wert');
-        const anzahlBewertungen = document.querySelector('.anzahl-bewertungen');
-        const durchschnittElement = document.querySelector('.durchschnitt');
-        const kommentarTextarea = document.getElementById('leseprobeKommentar');
+        const kommentarTextarea = document.getElementById('werkeKommentar');
         const zeichenCount = document.querySelector('.zeichen-count');
-        const sendenBtn = document.getElementById('kommentarSenden');
+        const sendenBtn = document.getElementById('bewertungAbsenden');
         
         if (!sterneContainer) {
             console.log('⚠️ Bewertungssystem nicht gefunden');
             return;
         }
         
-        // Aktuelle Bewertung für das aktive Buch
-        let aktuelleBewertung = 0;
-        let aktuelleBuchId = '';
+        // Bewertung aus localStorage laden
+        let bewertungen = JSON.parse(localStorage.getItem('ms-werke-bewertungen')) || {
+            durchschnitt: 4.2,
+            anzahl: 127,
+            kommentare: []
+        };
         
-        // Bewertungen für das aktive Buch laden
-        function ladeBewertungen(buchId) {
-            aktuelleBuchId = buchId;
-            const bewertungen = JSON.parse(localStorage.getItem(`ms-bewertungen-${buchId}`)) || {
-                durchschnitt: 0,
-                anzahl: 0,
-                kommentare: []
-            };
-            
-            // Anzeige aktualisieren
-            if (bewertungswert) bewertungswert.textContent = '0';
-            if (anzahlBewertungen) anzahlBewertungen.textContent = bewertungen.anzahl;
-            if (durchschnittElement) durchschnittElement.textContent = bewertungen.durchschnitt;
-            
-            // Sterne zurücksetzen
-            aktuelleBewertung = 0;
-            updateSterneAnzeige();
-            
-            console.log(`📊 Bewertungen für Buch ${buchId} geladen:`, bewertungen);
-        }
+        // Aktuelle Bewertung
+        let aktuelleBewertung = 0;
         
         // Sterne aktualisieren
         function updateSterneAnzeige() {
@@ -149,11 +109,10 @@
             
             sterne.forEach((stern, index) => {
                 if (index < aktuelleBewertung) {
-                    stern.style.color = '#ffd700'; // Gold für aktive Sterne
-                    stern.style.textShadow = '0 0 10px rgba(255, 215, 0, 0.5)';
+                    stern.classList.add('active');
+                    stern.classList.remove('hovered');
                 } else {
-                    stern.style.color = '#666'; // Grau für inaktive Sterne
-                    stern.style.textShadow = 'none';
+                    stern.classList.remove('active', 'hovered');
                 }
             });
             
@@ -168,7 +127,7 @@
             star.addEventListener('click', (e) => {
                 aktuelleBewertung = parseInt(e.target.dataset.value);
                 updateSterneAnzeige();
-                console.log('⭐ Bewertung:', aktuelleBewertung, 'Sterne für', aktuelleBuchId);
+                console.log('⭐ Bewertung:', aktuelleBewertung, 'Sterne');
             });
             
             star.addEventListener('mouseover', (e) => {
@@ -177,17 +136,16 @@
                 
                 tempSterne.forEach((s, index) => {
                     if (index < hoverValue) {
-                        s.style.color = '#ffd700';
-                        s.style.textShadow = '0 0 10px rgba(255, 215, 0, 0.5)';
+                        s.classList.add('hovered');
                     } else {
-                        s.style.color = '#666';
-                        s.style.textShadow = 'none';
+                        s.classList.remove('hovered');
                     }
                 });
             });
             
             star.addEventListener('mouseout', () => {
-                updateSterneAnzeige();
+                const tempSterne = sterneContainer.querySelectorAll('.stern');
+                tempSterne.forEach(s => s.classList.remove('hovered'));
             });
         });
         
@@ -209,7 +167,7 @@
             });
         }
         
-        // Kommentar senden
+        // Bewertung absenden
         if (sendenBtn) {
             sendenBtn.addEventListener('click', () => {
                 if (aktuelleBewertung === 0) {
@@ -217,19 +175,11 @@
                     return;
                 }
                 
-                if (!aktuelleBuchId) {
-                    alert('Kein Buch ausgewählt. Bitte wählen Sie ein Buch im Karussell aus.');
-                    return;
-                }
+                // Buchauswahl ermitteln
+                const selectedBuch = document.querySelector('input[name="bewertetesBuch"]:checked');
+                const buchName = selectedBuch ? selectedBuch.nextElementSibling.textContent : 'Unbekannt';
                 
                 const kommentar = kommentarTextarea ? kommentarTextarea.value.trim() : '';
-                
-                // Bewertungen für das aktuelle Buch laden
-                let bewertungen = JSON.parse(localStorage.getItem(`ms-bewertungen-${aktuelleBuchId}`)) || {
-                    durchschnitt: 0,
-                    anzahl: 0,
-                    kommentare: []
-                };
                 
                 // Neue Bewertung berechnen
                 bewertungen.anzahl++;
@@ -240,20 +190,24 @@
                 
                 if (kommentar) {
                     bewertungen.kommentare.push({
+                        buch: buchName,
                         text: kommentar,
                         sterne: aktuelleBewertung,
-                        datum: new Date().toISOString()
+                        datum: new Date().toLocaleDateString('de-DE')
                     });
                 }
                 
                 // In localStorage speichern
-                localStorage.setItem(`ms-bewertungen-${aktuelleBuchId}`, JSON.stringify(bewertungen));
+                localStorage.setItem('ms-werke-bewertungen', JSON.stringify(bewertungen));
                 
                 // Erfolgsmeldung
-                alert(`Vielen Dank für Ihre Bewertung!\n\nIhre Bewertung: ${aktuelleBewertung} Sterne\nGesamtdurchschnitt: ${bewertungen.durchschnitt} Sterne\nAnzahl Bewertungen: ${bewertungen.anzahl}`);
+                alert(`Vielen Dank für Ihre Bewertung!\n\nIhre Bewertung: ${aktuelleBewertung} Sterne\nBewertetes Buch: ${buchName}\n\nIhr Feedback ist wertvoll für die weitere Entwicklung der Werke.`);
                 
-                // Anzeige aktualisieren
-                if (anzahlBewertungen) anzahlBewertungen.textContent = bewertungen.anzahl;
+                // Statistik aktualisieren
+                const statistikZahl = document.querySelector('.statistik-zahl');
+                const durchschnittElement = document.querySelector('.durchschnitt');
+                
+                if (statistikZahl) statistikZahl.textContent = bewertungen.anzahl;
                 if (durchschnittElement) durchschnittElement.textContent = bewertungen.durchschnitt;
                 
                 // Zurücksetzen
@@ -266,7 +220,7 @@
                 aktuelleBewertung = 0;
                 updateSterneAnzeige();
                 
-                console.log(`✅ Bewertung für Buch ${aktuelleBuchId} gespeichert:`, bewertungen);
+                console.log('✅ Bewertung gespeichert:', bewertungen);
             });
         }
         
