@@ -224,6 +224,9 @@
             });
         }
         
+        // Initiale Anzeige aktualisieren
+        updateSterneAnzeige();
+        
         console.log('✅ Bewertungssystem initialisiert');
     }
     
