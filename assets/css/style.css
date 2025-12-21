@@ -936,6 +936,657 @@ body.dark-mode .social-lichtkante {
 }
 
 /* ==========================================================================
+   SILBERHAIN ZITAT DESIGN - NUR SILBER!
+   ========================================================================== */
+.credo-container {
+  margin: 4rem auto 5rem;
+  max-width: 900px;
+  position: relative;
+}
+
+.credo-quote-wrapper {
+  position: relative;
+  padding: 3rem 2rem;
+  margin-bottom: 2.5rem;
+  background: linear-gradient(135deg, 
+    rgba(200, 205, 215, 0.05) 0%, 
+    rgba(200, 205, 215, 0.02) 100%);
+  border: 1px solid rgba(200, 205, 215, 0.15);
+  border-radius: 1px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.credo-quote-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(200, 205, 215, 0.5) 20%, 
+    rgba(200, 205, 215, 0.8) 50%, 
+    rgba(200, 205, 215, 0.5) 80%, 
+    transparent);
+  transition: all 0.3s ease;
+}
+
+.credo-quote-wrapper::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(200, 205, 215, 0.5) 20%, 
+    rgba(200, 205, 215, 0.8) 50%, 
+    rgba(200, 205, 215, 0.5) 80%, 
+    transparent);
+  transition: all 0.3s ease;
+}
+
+.credo-quote {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  position: relative;
+  z-index: 2;
+}
+
+.quote-ornament {
+  flex-shrink: 0;
+  width: 80px;
+  height: 20px;
+  color: #c0c0c0; /* SILBER */
+  opacity: 0.7;
+  transition: all 0.3s ease;
+}
+
+.quote-ornament-left {
+  transform: rotate(180deg);
+}
+
+.quote-ornament-right {
+  transform: rotate(0);
+}
+
+.quote-text {
+  font-family: 'EB Garamond', serif;
+  font-size: 2.4rem;
+  font-weight: 500;
+  line-height: 1.3;
+  color: #2c2c2c;
+  text-align: center;
+  margin: 0;
+  flex-grow: 1;
+  letter-spacing: 0.2px;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.credo-signature {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  position: relative;
+}
+
+.credo-signature::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 25%;
+  right: 25%;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(200, 205, 215, 0.3) 50%, 
+    transparent);
+  transition: all 0.3s ease;
+}
+
+.signature-line {
+  width: 40px;
+  height: 1px;
+  background: #c0c0c0; /* SILBER */
+  opacity: 0.6;
+  transition: all 0.3s ease;
+}
+
+.signature-text {
+  font-family: 'Cinzel', serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #c0c0c0; /* SILBER */
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  opacity: 0.9;
+  transition: all 0.3s ease;
+}
+
+.credo-subtitle {
+  font-family: 'EB Garamond', serif;
+  font-size: 1.4rem;
+  line-height: 1.7;
+  color: #555;
+  text-align: center;
+  max-width: 700px;
+  margin: 2rem auto 0;
+  padding: 1.5rem;
+  border-top: 1px solid rgba(200, 205, 215, 0.2);
+  border-bottom: 1px solid rgba(200, 205, 215, 0.2);
+  background: rgba(250, 250, 250, 0.5);
+  transition: all 0.3s ease;
+}
+
+/* ================= SILBER DARK MODE - NOCH MEHR SILBER! ================= */
+body.dark-mode .credo-quote-wrapper {
+  background: linear-gradient(135deg, 
+    rgba(192, 192, 192, 0.15) 0%, 
+    rgba(150, 150, 150, 0.08) 100%);
+  border-color: rgba(200, 200, 200, 0.4);
+  box-shadow: 
+    0 0 25px rgba(200, 200, 200, 0.2),
+    inset 0 0 40px rgba(200, 200, 200, 0.1);
+}
+
+body.dark-mode .credo-quote-wrapper::before,
+body.dark-mode .credo-quote-wrapper::after {
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(220, 220, 220, 0.6) 20%, 
+    rgba(255, 255, 255, 0.8) 50%, 
+    rgba(220, 220, 220, 0.6) 80%, 
+    transparent);
+}
+
+body.dark-mode .quote-text {
+  color: #f0f0f0;
+  text-shadow: 
+    0 1px 3px rgba(0,0,0,0.3),
+    0 0 15px rgba(200, 200, 200, 0.15);
+}
+
+body.dark-mode .quote-ornament {
+  color: #d0d0d0;
+  opacity: 0.9;
+  filter: drop-shadow(0 0 5px rgba(200, 200, 200, 0.4));
+}
+
+body.dark-mode .credo-signature::before {
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(200, 200, 200, 0.6) 50%, 
+    transparent);
+}
+
+body.dark-mode .signature-line {
+  background: #c0c0c0;
+  opacity: 0.8;
+  box-shadow: 0 0 8px rgba(200, 200, 200, 0.4);
+}
+
+body.dark-mode .signature-text {
+  color: #c0c0c0;
+  text-shadow: 0 0 8px rgba(200, 200, 200, 0.4);
+  opacity: 1;
+}
+
+body.dark-mode .credo-subtitle {
+  color: #ddd;
+  border-top-color: rgba(200, 200, 200, 0.4);
+  border-bottom-color: rgba(200, 200, 200, 0.4);
+  background: rgba(30, 30, 30, 0.7);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+/* ================= RESPONSIVE ZITAT ================= */
+@media screen and (max-width: 768px) {
+  .credo-quote {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .quote-ornament {
+    width: 100px;
+    height: 15px;
+  }
+  
+  .quote-text {
+    font-size: 2rem;
+    padding: 0 1rem;
+  }
+  
+  .credo-quote-wrapper {
+    padding: 2.5rem 1.5rem;
+  }
+  
+  .credo-signature {
+    gap: 1rem;
+  }
+  
+  .signature-line {
+    width: 30px;
+  }
+  
+  .credo-subtitle {
+    font-size: 1.2rem;
+    padding: 1rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .quote-text {
+    font-size: 1.8rem;
+  }
+  
+  .credo-quote-wrapper {
+    padding: 2rem 1rem;
+  }
+  
+  .credo-container {
+    margin: 3rem auto 4rem;
+  }
+  
+  .credo-subtitle {
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+}
+
+/* ==========================================================================
+   ÜBER-MICH SPEZIFISCHE STYLES - NUR SILBER!
+   ========================================================================== */
+.ueber-mich-content {
+  margin-top: 3rem;
+}
+
+.ueber-mich-intro {
+  font-size: 1.3rem;
+  text-align: center;
+  margin-bottom: 2.5rem;
+  color: #e4e6ea;
+}
+
+.break-line {
+  text-align: center;
+  margin: 2rem 0;
+  font-size: 1.2rem;
+  color: #e4e6ea;
+}
+
+.small-margin {
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.highlight-paragraph {
+  font-size: 1.4rem;
+  text-align: center;
+  color: #e4e6ea;
+  margin: 1.5rem 0 3rem;
+  font-weight: 500;
+  text-shadow: 0 0 10px rgba(200, 200, 200, 0.3);
+}
+
+.attention-line {
+  font-size: 1.3rem;
+  text-align: center;
+  color: #e4e6ea;
+  margin: 2.5rem 0;
+  font-style: italic;
+  padding: 1.5rem;
+  border-left: 2px solid rgba(200, 205, 215, 0.3); /* SILBER */
+  border-right: 2px solid rgba(200, 205, 215, 0.3); /* SILBER */
+}
+
+.abschnitt-schluss {
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(200, 205, 215, 0.2);
+}
+
+.schluss-zitat {
+  font-size: 1.3rem;
+  text-align: center;
+  color: #e4e6ea;
+  font-style: italic;
+  padding: 2rem;
+  background: rgba(20, 20, 20, 0.3);
+  border-radius: 2px;
+}
+
+/* Dark Mode für Über-mich spezifische Styles */
+body.dark-mode .ueber-mich-intro,
+body.dark-mode .break-line,
+body.dark-mode .highlight-paragraph,
+body.dark-mode .attention-line,
+body.dark-mode .schluss-zitat {
+  color: #f0f0f0;
+}
+
+body.dark-mode .attention-line {
+  border-left-color: rgba(200, 200, 200, 0.4);
+  border-right-color: rgba(200, 200, 200, 0.4);
+}
+
+body.dark-mode .schluss-zitat {
+  background: rgba(40, 40, 40, 0.5);
+}
+
+/* ==========================================================================
+   DRUCK-STYLES
+   ========================================================================== */
+@media print {
+  #preloader,
+  .burger,
+  .hauptnavigation,
+  .dark-mode-toggle,
+  .social-section {
+    display: none !important;
+  }
+  
+  body {
+    background-color: white !important;
+    color: black !important;
+    font-size: 12pt;
+  }
+  
+  .logo {
+    filter: invert(1);
+  }
+  
+  .inhalt {
+    padding: 20px 0;
+    max-width: 100%;
+  }
+  
+  h1 {
+    color: black !important;
+    font-size: 18pt;
+  }
+  
+  p {
+    color: #333 !important;
+    text-align: justify;
+  }
+}
+
+/* ==========================================================================
+   KRITISCHE FIXES
+   ========================================================================== */
+/* Sicherstellen, dass alles klickbar ist */
+body {
+  pointer-events: auto !important;
+}
+
+button, a, .burger, .hauptnavigation a, .silber-button, .social-link {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+}
+
+/* Z-Index Hierarchie fixen */
+#preloader {
+  z-index: 9990;
+}
+
+.menu-overlay {
+  z-index: 998;
+}
+
+.hauptnavigation {
+  z-index: 999;
+}
+
+.burger {
+  z-index: 1001;
+}
+
+.dark-mode-toggle {
+  z-index: 1000;
+}
+/* ==========================================================================
+   KALLIGRAFIE ZITAT - OHNE HINTERGRUND
+   ========================================================================== */
+
+/* Google Font für Kalligrafie importieren */
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Playfair+Display:ital@0;1&family=Great+Vibes&display=swap');
+
+.credo-container {
+  margin: 4rem auto 5rem;
+  max-width: 900px;
+  position: relative;
+}
+
+/* Entferne alles aus dem Wrapper außer Inhalt */
+.credo-quote-wrapper {
+  position: relative;
+  padding: 2rem 1rem;
+  margin-bottom: 2.5rem;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Entferne Ornamente und zusätzliche Elemente */
+.credo-quote-wrapper::before,
+.credo-quote-wrapper::after {
+  display: none !important;
+}
+
+.credo-quote {
+  display: block;
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+/* Kalligrafie Schrift für das Zitat */
+.kalligrafie-text {
+  font-family: 'Great Vibes', 'Dancing Script', cursive;
+  font-size: 3.2rem;
+  font-weight: 400;
+  line-height: 1.2;
+  color: #2c2c2c;
+  text-align: center;
+  margin: 0 auto 1.5rem;
+  letter-spacing: 1.5px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  position: relative;
+  padding: 0 2rem;
+  max-width: 800px;
+  transition: all 0.3s ease;
+}
+
+/* Zarte Linie unter dem Zitat */
+.kalligrafie-text::after {
+  content: '';
+  position: absolute;
+  bottom: -1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(200, 200, 200, 0.6) 50%, 
+    transparent);
+}
+
+.credo-signature {
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  position: relative;
+}
+
+/* Entferne die Signatur-Linien */
+.credo-signature::before,
+.signature-line {
+  display: none !important;
+}
+
+/* Kalligrafie für die Signatur */
+.kalligrafie-signature {
+  font-family: 'Dancing Script', 'Great Vibes', cursive;
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: #c0c0c0;
+  letter-spacing: 1px;
+  text-transform: none;
+  opacity: 0.9;
+  transition: all 0.3s ease;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  position: relative;
+}
+
+/* Dekorativer Punkt unter der Signatur */
+.kalligrafie-signature::after {
+  content: '•';
+  position: absolute;
+  bottom: -1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.2rem;
+  color: rgba(200, 200, 200, 0.5);
+}
+
+.credo-subtitle {
+  font-family: 'EB Garamond', serif;
+  font-size: 1.4rem;
+  line-height: 1.7;
+  color: #555;
+  text-align: center;
+  max-width: 700px;
+  margin: 3rem auto 0;
+  padding: 1.5rem;
+  background: transparent;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+/* ================= DARK MODE KALLIGRAFIE ================= */
+body.dark-mode .kalligrafie-text {
+  color: #f0f0f0;
+  text-shadow: 
+    0 2px 4px rgba(0,0,0,0.3),
+    0 0 20px rgba(200, 200, 200, 0.1);
+}
+
+body.dark-mode .kalligrafie-text::after {
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(200, 200, 200, 0.4) 50%, 
+    transparent);
+}
+
+body.dark-mode .kalligrafie-signature {
+  color: #d0d0d0;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+body.dark-mode .kalligrafie-signature::after {
+  color: rgba(200, 200, 200, 0.7);
+}
+
+body.dark-mode .credo-subtitle {
+  color: #ccc;
+  background: transparent;
+  border: none;
+}
+
+/* ================= RESPONSIVE KALLIGRAFIE ================= */
+@media screen and (max-width: 768px) {
+  .kalligrafie-text {
+    font-size: 2.5rem;
+    padding: 0 1rem;
+  }
+  
+  .credo-quote-wrapper {
+    padding: 1.5rem 0.5rem;
+  }
+  
+  .credo-signature {
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+  }
+  
+  .kalligrafie-signature {
+    font-size: 1.5rem;
+  }
+  
+  .credo-subtitle {
+    font-size: 1.2rem;
+    padding: 1rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .kalligrafie-text {
+    font-size: 2.2rem;
+    letter-spacing: 1px;
+  }
+  
+  .kalligrafie-text::after {
+    width: 80px;
+  }
+  
+  .credo-container {
+    margin: 3rem auto 4rem;
+  }
+  
+  .credo-subtitle {
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+}
+/* ==========================================================================
+   LOGO ANIMATIONEN - SILBERNER SCHIMMER
+   ========================================================================== */
+
+/* Logo im Preloader mit Schimmer-Effekt */
+.preloader-logo {
+  width: 180px;
+  height: auto;
+  margin-bottom: 30px;
+  display: block;
+  filter: brightness(1.1);
+  animation: logoAppear 1s ease-out forwards, 
+             logoShimmer 4s ease-in-out 1s infinite;
+  position: relative;
+  overflow: hidden;
+}
+
+.preloader-logo::before {
+  content: '';
+  position: absolute;
+  top: -100%;
+  left: -100%;
+  width: 50%;
+  height: 200%;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transform: rotate(25deg);
+  animation: shimmerMove 3s ease-in-out 2s infinite;
+}
+
+/* ==========================================================================
    LOGO ANIMATIONEN - SCHWEBENDE BEWEGUNG
    ========================================================================== */
 
@@ -1022,82 +1673,447 @@ body.dark-mode .logo:hover {
     filter: brightness(1.12) drop-shadow(0 0 22px rgba(220, 220, 220, 0.35));
   }
 }
-
 /* ==========================================================================
-   DRUCK-STYLES
+   BUCH TEXT STYLES - MACHT UND UNTERGANG
    ========================================================================== */
-@media print {
-  #preloader,
-  .burger,
-  .hauptnavigation,
-  .dark-mode-toggle,
-  .social-section {
-    display: none !important;
+
+/* Einleitung */
+.text-einleitung {
+  margin-bottom: 30px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid rgba(200, 200, 200, 0.2);
+}
+
+.text-einleitung p {
+  font-family: "EB Garamond", serif;
+  font-size: 1.25rem;
+  line-height: 1.8;
+  color: #e4e6ea;
+  margin-bottom: 20px;
+}
+
+.text-einleitung p:first-child {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #f0f0f0;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  position: relative;
+  padding-left: 20px;
+}
+
+.text-einleitung p:first-child::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 10px;
+  bottom: 10px;
+  width: 3px;
+  background: linear-gradient(to bottom, #c0c0c0, transparent);
+}
+
+/* Hauptteil */
+.text-hauptteil {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin: 30px 0;
+}
+
+.text-abschnitt {
+  padding: 20px;
+  background: rgba(20, 20, 20, 0.3);
+  border-radius: 6px;
+  border: 1px solid rgba(200, 200, 200, 0.1);
+  transition: all 0.3s ease;
+}
+
+.text-abschnitt:hover {
+  border-color: rgba(200, 200, 200, 0.3);
+  background: rgba(25, 25, 25, 0.4);
+  transform: translateX(5px);
+}
+
+.text-abschnitt p {
+  font-family: "EB Garamond", serif;
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: #b0b5bc;
+  margin: 0;
+}
+
+.text-abschnitt.highlight {
+  border-left: 4px solid rgba(200, 200, 200, 0.5);
+  background: rgba(30, 30, 30, 0.4);
+}
+
+.text-abschnitt.highlight h4 {
+  font-family: "Cinzel", serif;
+  font-size: 1.3rem;
+  color: #e4e6ea;
+  margin-bottom: 15px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.text-abschnitt.highlight h4::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    rgba(200, 200, 200, 0.6) 0%, 
+    transparent 100%);
+}
+
+/* Kernaussage */
+.text-kernaussage {
+  margin: 35px 0;
+}
+
+.kernaussage-box {
+  padding: 25px;
+  background: linear-gradient(135deg, 
+    rgba(25, 25, 25, 0.6) 0%, 
+    rgba(35, 35, 35, 0.7) 100%);
+  border: 1px solid rgba(200, 200, 200, 0.2);
+  border-radius: 8px;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.kernaussage-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(200, 200, 200, 0.4) 50%, 
+    transparent);
+}
+
+.kernaussage-icon {
+  width: 40px;
+  height: 40px;
+  color: #c0c0c0;
+  flex-shrink: 0;
+  margin-top: 5px;
+  stroke-width: 1.5;
+}
+
+.kernaussage-text {
+  font-family: "EB Garamond", serif;
+  font-size: 1.3rem;
+  line-height: 1.7;
+  color: #f0f0f0;
+  margin: 0;
+  flex: 1;
+}
+
+.kernaussage-text strong {
+  color: #ffffff;
+  font-weight: 600;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+/* Zielgruppe */
+.text-zielgruppe {
+  margin: 30px 0;
+  padding: 25px;
+  background: rgba(20, 20, 20, 0.3);
+  border-radius: 6px;
+  border: 1px solid rgba(200, 200, 200, 0.15);
+}
+
+.text-zielgruppe h4 {
+  font-family: "Cinzel", serif;
+  font-size: 1.4rem;
+  color: #e4e6ea;
+  margin-bottom: 20px;
+  letter-spacing: 0.05em;
+  text-align: center;
+}
+
+.text-zielgruppe > p {
+  font-family: "EB Garamond", serif;
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: #b0b5bc;
+  text-align: center;
+  margin-bottom: 25px;
+  padding: 0 20px;
+}
+
+.zielgruppe-warnung {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  background: rgba(40, 20, 20, 0.3);
+  border: 1px solid rgba(200, 100, 100, 0.3);
+  border-radius: 6px;
+  margin-top: 20px;
+}
+
+.warnung-icon {
+  width: 40px;
+  height: 40px;
+  color: rgba(220, 120, 120, 0.8);
+  flex-shrink: 0;
+  stroke-width: 2;
+}
+
+.warnung-text {
+  font-family: "EB Garamond", serif;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #f0c0c0;
+  margin: 0;
+  flex: 1;
+}
+
+.warnung-text strong {
+  color: #ffa0a0;
+  font-weight: 600;
+}
+
+.warnung-text em {
+  font-style: italic;
+  color: #e0d0d0;
+}
+
+/* Quellen */
+.text-quellen {
+  margin: 30px 0;
+}
+
+.text-quellen h4 {
+  font-family: "Cinzel", serif;
+  font-size: 1.3rem;
+  color: #e4e6ea;
+  margin-bottom: 20px;
+  letter-spacing: 0.05em;
+  text-align: center;
+}
+
+.quellen-liste {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  counter-reset: quellen-counter;
+}
+
+.quellen-liste li {
+  counter-increment: quellen-counter;
+  font-family: "EB Garamond", serif;
+  font-size: 1.05rem;
+  color: #b0b5bc;
+  padding: 12px 15px 12px 40px;
+  background: rgba(20, 20, 20, 0.4);
+  border: 1px solid rgba(200, 200, 200, 0.1);
+  border-radius: 4px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.quellen-liste li::before {
+  content: counter(quellen-counter);
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: "Cinzel", serif;
+  font-size: 0.9rem;
+  color: #c0c0c0;
+  font-weight: 600;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(30, 30, 30, 0.6);
+  border-radius: 50%;
+}
+
+.quellen-liste li:hover {
+  border-color: rgba(200, 200, 200, 0.3);
+  background: rgba(30, 30, 30, 0.5);
+  transform: translateY(-2px);
+}
+
+/* ================= DARK MODE ANPASSUNGEN ================= */
+body.dark-mode .text-abschnitt {
+  background: rgba(40, 40, 40, 0.3);
+  border-color: rgba(220, 220, 220, 0.15);
+}
+
+body.dark-mode .text-abschnitt:hover {
+  background: rgba(50, 50, 50, 0.4);
+  border-color: rgba(220, 220, 220, 0.3);
+}
+
+body.dark-mode .text-abschnitt.highlight {
+  background: rgba(45, 45, 45, 0.4);
+  border-color: rgba(220, 220, 220, 0.6);
+}
+
+body.dark-mode .kernaussage-box {
+  background: linear-gradient(135deg, 
+    rgba(40, 40, 40, 0.7) 0%, 
+    rgba(50, 50, 50, 0.8) 100%);
+  border-color: rgba(220, 220, 220, 0.25);
+}
+
+body.dark-mode .text-zielgruppe {
+  background: rgba(40, 40, 40, 0.3);
+  border-color: rgba(220, 220, 220, 0.2);
+}
+
+body.dark-mode .zielgruppe-warnung {
+  background: rgba(60, 30, 30, 0.4);
+  border-color: rgba(220, 120, 120, 0.4);
+}
+
+body.dark-mode .quellen-liste li {
+  background: rgba(40, 40, 40, 0.4);
+  border-color: rgba(220, 220, 220, 0.15);
+}
+
+body.dark-mode .quellen-liste li:hover {
+  background: rgba(50, 50, 50, 0.5);
+  border-color: rgba(220, 220, 220, 0.3);
+}
+
+/* ================= RESPONSIVE DESIGN ================= */
+@media screen and (max-width: 768px) {
+  .text-einleitung p {
+    font-size: 1.15rem;
   }
   
-  body {
-    background-color: white !important;
-    color: black !important;
-    font-size: 12pt;
+  .text-einleitung p:first-child {
+    font-size: 1.25rem;
   }
   
-  .logo {
-    filter: invert(1);
+  .text-abschnitt p {
+    font-size: 1.1rem;
   }
   
-  .inhalt {
-    padding: 20px 0;
-    max-width: 100%;
+  .kernaussage-text {
+    font-size: 1.2rem;
   }
   
-  h1 {
-    color: black !important;
-    font-size: 18pt;
+  .warnung-text {
+    font-size: 1.1rem;
   }
   
-  p {
-    color: #333 !important;
-    text-align: justify;
+  .quellen-liste {
+    grid-template-columns: 1fr;
+  }
+  
+  .zielgruppe-warnung {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+  }
+  
+  .warnung-icon {
+    margin: 0 auto;
   }
 }
 
+@media screen and (max-width: 480px) {
+  .text-abschnitt {
+    padding: 15px;
+  }
+  
+  .text-abschnitt.highlight h4 {
+    font-size: 1.2rem;
+  }
+  
+  .kernaussage-box {
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .kernaussage-icon {
+    margin: 0 auto;
+  }
+  
+  .text-zielgruppe {
+    padding: 20px 15px;
+  }
+}
 /* ==========================================================================
-   KRITISCHE FIXES
+   ZUSÄTZLICHE ICONS FÜR DIGITALE LESEPROBE
    ========================================================================== */
-/* Sicherstellen, dass alles klickbar ist */
-body {
-  pointer-events: auto !important;
+
+/* Buch-Icon für digitale Leseprobe */
+.button-icon {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.3s ease;
 }
 
-button, a, .burger, .hauptnavigation a, .silber-button, .social-link {
-  pointer-events: auto !important;
-  cursor: pointer !important;
+.silber-button:hover .button-icon {
+  transform: scale(1.15);
 }
 
-/* Z-Index Hierarchie fixen */
-#preloader {
-  z-index: 9990;
+/* Spezifische Icon-Farben */
+.silber-button .button-icon {
+  color: #c0c0c0;
 }
 
-.menu-overlay {
-  z-index: 998;
+.silber-button.secondary .button-icon {
+  color: #c0c0c0;
 }
 
-.hauptnavigation {
-  z-index: 999;
+.silber-button.tertiary .button-icon {
+  color: #a0a0a0;
 }
 
-.burger {
-  z-index: 1001;
+/* Responsive Anpassungen */
+@media (max-width: 768px) {
+  .buch-actions {
+    flex-direction: column;
+  }
+  
+  .button-group {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .button-group .silber-button {
+    flex: 1;
+    min-width: 120px;
+  }
 }
 
-.dark-mode-toggle {
-  z-index: 1000;
+@media (max-width: 480px) {
+  .button-group {
+    flex-direction: column;
+  }
+  
+  .button-group .silber-button {
+    width: 100%;
+  }
 }
-
 /* ==========================================================================
    FOOTER-LINKS STYLES
    ========================================================================== */
+
 .footer-links {
     display: flex;
     justify-content: center;
@@ -1140,6 +2156,7 @@ button, a, .burger, .hauptnavigation a, .silber-button, .social-link {
 /* ==========================================================================
    IMPRESSUM & DATENSCHUTZ CONTENT STYLES
    ========================================================================== */
+
 .impressum-content,
 .datenschutz-content {
     max-width: 800px;
@@ -1198,609 +2215,48 @@ button, a, .burger, .hauptnavigation a, .silber-button, .social-link {
 }
 
 /* ==========================================================================
-   WERKE-SEITEN STYLES
+   RESPONSIVE FOOTER-LINKS
    ========================================================================== */
 
-/* ================ KARUSSELL STYLES ================ */
-.karussell-container {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  margin: 40px 0;
-}
-
-.karussell-track {
-  display: flex;
-  transition: transform 0.5s ease;
-  width: 100%;
-}
-
-.karussell-item {
-  flex: 0 0 100%;
-  min-width: 100%;
-  box-sizing: border-box;
-  padding: 20px;
-  display: none;
-}
-
-.karussell-item.active {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-}
-
-@media (min-width: 768px) {
-  .karussell-item.active {
-    flex-direction: row;
-    align-items: flex-start;
-  }
-}
-
-/* ================ BUCHCOVER-LINKS ================ */
-.buch-cover-link {
-  display: block;
-  position: relative;
-  width: 100%;
-  height: 100%;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.buch-cover {
-  position: relative;
-  width: 100%;
-  height: 400px;
-  overflow: hidden;
-  border-radius: 8px;
-}
-
-.cover-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.3s ease;
-}
-
-.buch-cover-link:hover .cover-image {
-  transform: scale(1.03);
-}
-
-.cover-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.7));
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  display: flex;
-  align-items: flex-end;
-  padding: 20px;
-}
-
-.buch-cover-link:hover .cover-overlay {
-  opacity: 1;
-}
-
-.overlay-content {
-  color: white;
-  text-align: center;
-  width: 100%;
-}
-
-.buch-title {
-  font-family: 'Cinzel', serif;
-  font-size: 1.4rem;
-  margin-bottom: 5px;
-}
-
-.buch-subtitle {
-  font-family: 'EB Garamond', serif;
-  font-size: 1rem;
-  opacity: 0.9;
-}
-
-/* ================ KARUSSELL NAVIGATION ================ */
-.karussell-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(192, 192, 192, 0.2);
-  border: none;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  cursor: pointer;
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.3s;
-}
-
-.karussell-btn:hover {
-  background: rgba(192, 192, 192, 0.4);
-}
-
-.karussell-btn.prev {
-  left: 10px;
-}
-
-.karussell-btn.next {
-  right: 10px;
-}
-
-.karussell-btn svg {
-  width: 24px;
-  height: 24px;
-  fill: #333;
-}
-
-.dark-mode .karussell-btn svg {
-  fill: #fff;
-}
-
-.karussell-dots {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 20px;
-}
-
-.dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: #ccc;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-.dot.active {
-  background: #888;
-}
-
-.dark-mode .dot {
-  background: #555;
-}
-
-.dark-mode .dot.active {
-  background: #aaa;
-}
-
-/* ================ BUCH-INFO ================ */
-.buch-info {
-  flex: 1;
-  padding: 20px;
-}
-
-.buch-info h3 {
-  font-family: "Cinzel", serif;
-  color: #e4e6ea;
-  margin-bottom: 10px;
-  font-size: 1.5rem;
-}
-
-.buch-info .untertitel {
-  font-style: italic;
-  color: #b0b5bc;
-  margin-bottom: 20px;
-  text-align: left;
-}
-
-.buch-info p {
-  margin-bottom: 25px;
-  text-align: left;
-}
-
-/* ================ AKTUELLE ARBEITEN ================ */
-.aktuelle-arbeiten {
-  margin-top: 60px;
-}
-
-.aktuelles-buch {
-  background: rgba(20, 20, 20, 0.3);
-  padding: 30px;
-  border-radius: 8px;
-  border: 1px solid rgba(200, 200, 200, 0.1);
-}
-
-.buch-header {
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-.buch-header h3 {
-  font-family: "Cinzel", serif;
-  color: #e4e6ea;
-  margin-bottom: 10px;
-  font-size: 1.8rem;
-}
-
-.untertitel {
-  font-style: italic;
-  color: #b0b5bc;
-  margin-bottom: 15px;
-  text-align: center;
-  width: 100%;
-  display: block;
-}
-
-.arbeit-status {
-  text-align: center;
-  width: 100%;
-  display: block;
-  font-style: italic;
-  color: #888;
-  margin-bottom: 30px;
-}
-
-.fortschritts-container {
-  margin: 30px 0;
-}
-
-.fortschritt-item {
-  margin-bottom: 25px;
-}
-
-.fortschritt-header {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 8px;
-}
-
-.fortschritt-text {
-  font-family: "Cinzel", serif;
-  color: #e4e6ea;
-  font-size: 1rem;
-}
-
-.fortschritt-prozent {
-  color: #c0c0c0;
-  font-weight: bold;
-}
-
-.fortschritt-balken {
-  height: 6px;
-  background: rgba(200, 200, 200, 0.1);
-  border-radius: 3px;
-  overflow: hidden;
-}
-
-.fortschritt-fill {
-  height: 100%;
-  background: linear-gradient(90deg, #c0c0c0, #a0a0a0);
-  border-radius: 3px;
-  transition: width 1s ease;
-}
-
-.fortschritt-info {
-  font-size: 0.9rem;
-  color: #9da2a8;
-  margin-top: 8px;
-  text-align: center;
-}
-
-.hinweis-box {
-  text-align: center;
-  margin-top: 30px;
-  padding: 15px;
-  background: rgba(192, 192, 192, 0.1);
-  border-left: 4px solid silver;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-}
-
-.hinweis-box p {
-  margin: 0;
-  text-align: center;
-  font-size: 0.9rem;
-}
-
-.hinweis-icon {
-  width: 24px;
-  height: 24px;
-  fill: #c0c0c0;
-  flex-shrink: 0;
-}
-
-/* ================ BEWERTUNGSSYSTEM ================ */
-.bewertungs-section {
-  margin-top: 60px;
-}
-
-.bewertungs-container {
-  background: rgba(20, 20, 20, 0.3);
-  padding: 30px;
-  border-radius: 8px;
-  border: 1px solid rgba(200, 200, 200, 0.1);
-}
-
-.bewertungs-einleitung {
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-.bewertungs-einleitung p {
-  text-align: center;
-  font-size: 1.1rem;
-}
-
-.bewertungs-optionen {
-  margin-bottom: 30px;
-}
-
-.bewertungs-optionen h4 {
-  font-family: "Cinzel", serif;
-  color: #e4e6ea;
-  margin-bottom: 15px;
-  font-size: 1.2rem;
-  text-align: center;
-}
-
-.buch-auswahl {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 15px;
-  margin-top: 20px;
-}
-
-.buch-option {
-  display: flex;
-  align-items: center;
-  padding: 12px 15px;
-  background: rgba(10, 10, 10, 0.5);
-  border: 1px solid rgba(200, 200, 200, 0.1);
-  border-radius: 4px;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-.buch-option:hover {
-  background: rgba(30, 30, 30, 0.5);
-  border-color: rgba(200, 200, 200, 0.3);
-}
-
-.buch-option input[type="radio"] {
-  margin-right: 10px;
-}
-
-.buch-option span {
-  font-family: "EB Garamond", serif;
-  color: #b0b5bc;
-}
-
-/* ================ STERNE-BEWERTUNG ================ */
-.sterne-bewertung {
-  margin-bottom: 30px;
-}
-
-.sterne-bewertung h4 {
-  font-family: "Cinzel", serif;
-  color: #e4e6ea;
-  margin-bottom: 15px;
-  font-size: 1.2rem;
-  text-align: center;
-}
-
-.sterne-container {
-  text-align: center;
-}
-
-.sterne {
-  display: flex;
-  justify-content: center;
-  gap: 5px;
-  margin-bottom: 20px;
-}
-
-.stern {
-  font-size: 2.5rem;
-  color: #555;
-  cursor: pointer;
-  transition: all 0.3s;
-  user-select: none;
-}
-
-.stern:hover,
-.stern.hovered {
-  color: #ffc107;
-  transform: scale(1.1);
-}
-
-.stern.active {
-  color: #ffc107;
-}
-
-.bewertungs-anzeige {
-  text-align: center;
-}
-
-.bewertungs-anzeige p {
-  margin-bottom: 5px;
-  text-align: center;
-}
-
-.durchschnitts-bewertung {
-  color: #c0c0c0;
-  font-style: italic;
-}
-
-/* ================ BEWERTUNGSBUTTON ================ */
-.bewertungs-button-container {
-  margin-top: 20px;
-  text-align: center;
-}
-
-.bewertungs-button-container .silber-button {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 12px 30px;
-  font-size: 1rem;
-}
-
-.bewertungs-button-container .button-icon {
-  width: 20px;
-  height: 20px;
-  fill: currentColor;
-}
-
-/* ================ BEWERTUNGS-STATISTIK ================ */
-.bewertungs-statistik {
-  margin-top: 40px;
-}
-
-.bewertungs-statistik h4 {
-  font-family: "Cinzel", serif;
-  color: #e4e6ea;
-  margin-bottom: 20px;
-  font-size: 1.2rem;
-  text-align: center;
-}
-
-.statistik-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-  text-align: center;
-}
-
-.statistik-item {
-  padding: 20px;
-  background: rgba(10, 10, 10, 0.5);
-  border: 1px solid rgba(200, 200, 200, 0.1);
-  border-radius: 6px;
-}
-
-.statistik-zahl {
-  display: block;
-  font-family: "Cinzel", serif;
-  font-size: 2.5rem;
-  color: #e4e6ea;
-  margin-bottom: 5px;
-}
-
-.statistik-label {
-  font-size: 0.9rem;
-  color: #9da2a8;
-}
-
-/* ================ WERKE CTA ================ */
-.werke-cta {
-  text-align: center;
-  margin-top: 50px;
-  padding: 30px;
-  background: rgba(192, 192, 192, 0.05);
-  border-radius: 8px;
-  border: 1px solid rgba(200, 200, 200, 0.1);
-}
-
-.werke-cta p {
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 1.1rem;
-}
-
-/* ================ RESPONSIVE WERKE ================ */
 @media screen and (max-width: 768px) {
-  .karussell-item.active {
-    flex-direction: column;
-  }
-  
-  .buch-cover {
-    height: 300px;
-  }
-  
-  .buch-info {
-    padding: 20px 0;
-  }
-  
-  .buch-info h3 {
-    text-align: center;
-  }
-  
-  .buch-info .untertitel {
-    text-align: center;
-  }
-  
-  .buch-info p {
-    text-align: center;
-  }
-  
-  .buch-auswahl {
-    grid-template-columns: 1fr;
-  }
-  
-  .statistik-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .cover-overlay {
-    opacity: 1;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.8));
-  }
+    .footer-links {
+        gap: 15px;
+        margin-bottom: 20px;
+    }
+    
+    .footer-links a {
+        font-size: 0.8rem;
+        padding: 4px 8px;
+    }
+    
+    .impressum-section h2,
+    .datenschutz-section h2 {
+        font-size: 1.3rem;
+    }
+    
+    .impressum-section h3,
+    .datenschutz-section h3 {
+        font-size: 1.1rem;
+    }
 }
 
 @media screen and (max-width: 480px) {
-  .karussell-btn {
-    width: 40px;
-    height: 40px;
-  }
-  
-  .karussell-btn svg {
-    width: 20px;
-    height: 20px;
-  }
-  
-  .stern {
-    font-size: 2rem;
-  }
-  
-  .statistik-zahl {
-    font-size: 2rem;
-  }
-  
-  .werke-cta {
-    padding: 20px;
-  }
-}
-
-/* ==========================================================================
-   DARK MODE ANPASSUNGEN FÜR WERKE
-   ========================================================================== */
-body.dark-mode .aktuelles-buch {
-  background: rgba(40, 40, 40, 0.3);
-  border-color: rgba(220, 220, 220, 0.15);
-}
-
-body.dark-mode .buch-option {
-  background: rgba(40, 40, 40, 0.5);
-  border-color: rgba(220, 220, 220, 0.15);
-}
-
-body.dark-mode .buch-option:hover {
-  background: rgba(60, 60, 60, 0.5);
-  border-color: rgba(220, 220, 220, 0.3);
-}
-
-body.dark-mode .stern {
-  color: #777;
-}
-
-body.dark-mode .statistik-item {
-  background: rgba(40, 40, 40, 0.5);
-  border-color: rgba(220, 220, 220, 0.1);
-}
-
-body.dark-mode .werke-cta {
-  background: rgba(220, 220, 220, 0.05);
-  border-color: rgba(220, 220, 220, 0.1);
-}
-
-body.dark-mode .hinweis-box {
-  background: rgba(220, 220, 220, 0.08);
+    .footer-links {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+    
+    .footer-links a {
+        font-size: 0.85rem;
+        padding: 8px 15px;
+        border: 1px solid rgba(200, 205, 215, 0.1);
+        border-radius: 4px;
+        width: 200px;
+        text-align: center;
+    }
+    
+    .footer-links a:hover {
+        background: rgba(200, 205, 215, 0.05);
+    }
 }
