@@ -30,7 +30,7 @@
             
             document.addEventListener('DOMContentLoaded', function() {
                 setTimeout(function() {
-                    ['button', 'a', '.burger', '.dark-mode-toggle', '.silber-button', '.social-link', '.kapitel-link'].forEach(selector => {
+                    ['button', 'a', '.burger', '.dark-mode-toggle', '.silber-button', '.social-link'].forEach(selector => {
                         document.querySelectorAll(selector).forEach(el => {
                             el.style.pointerEvents = 'auto';
                             el.style.cursor = 'pointer';
@@ -41,23 +41,6 @@
                     if (yearElement && !yearElement.textContent) {
                         yearElement.textContent = new Date().getFullYear();
                     }
-                    
-                    // Kapitel-Navigation Scroll
-                    document.querySelectorAll('.kapitel-link').forEach(link => {
-                        link.addEventListener('click', function(e) {
-                            e.preventDefault();
-                            const targetId = this.getAttribute('href').substring(1);
-                            const targetElement = document.getElementById(targetId);
-                            if (targetElement) {
-                                window.scrollTo({
-                                    top: targetElement.offsetTop - 100,
-                                    behavior: 'smooth'
-                                });
-                            }
-                        });
-                    });
-                    
-                    console.log('✅ Website mit erweiterter Quellenstruktur geladen');
                 }, 100);
             });
         })();
@@ -102,43 +85,6 @@
                 transparent 0%, 
                 rgba(200, 205, 215, 0.3) 50%, 
                 transparent 100%);
-        }
-        
-        /* Schnellnavigation für Kapitel */
-        .kapitel-navigation {
-            background: rgba(200, 205, 215, 0.05);
-            border: 1px solid rgba(200, 205, 215, 0.2);
-            border-radius: 6px;
-            padding: 25px;
-            margin: 30px 0;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 10px;
-        }
-        
-        .kapitel-navigation h3 {
-            grid-column: 1 / -1;
-            color: #e4e6ea;
-            font-family: "Cinzel", serif;
-            margin-bottom: 15px;
-            font-size: 1.3rem;
-        }
-        
-        .kapitel-link {
-            color: #b0b5bc;
-            text-decoration: none;
-            padding: 8px 12px;
-            border-radius: 4px;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            border: 1px solid transparent;
-            text-align: center;
-        }
-        
-        .kapitel-link:hover {
-            background: rgba(200, 205, 215, 0.1);
-            color: #e4e6ea;
-            border-color: rgba(200, 205, 215, 0.3);
         }
         
         /* Buchkapitel-Gruppen */
@@ -310,12 +256,53 @@
             margin-bottom: 20px;
         }
         
-        /* DARK MODE ANPASSUNGEN */
-        body.dark-mode .kapitel-navigation {
-            background: rgba(220, 225, 235, 0.05);
-            border-color: rgba(220, 225, 235, 0.25);
+        /* Optimierte Textformatierung für den Header */
+        .quellen-header-text h1 {
+            font-family: "Cinzel", serif;
+            color: #e4e6ea;
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            letter-spacing: 0.05em;
+            text-shadow: 0 0 15px rgba(200, 200, 200, 0.2);
+            line-height: 1.2;
+            word-wrap: break-word;
+            hyphens: none;
         }
-        
+
+        .quellen-header-text .untertitel {
+            color: #b0b5bc;
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            font-style: italic;
+            border-bottom: 1px solid rgba(200, 205, 215, 0.2);
+            padding-bottom: 15px;
+            line-height: 1.4;
+            word-wrap: break-word;
+            hyphens: auto;
+        }
+
+        .quellen-header-text p {
+            color: #b0b5bc;
+            line-height: 1.7;
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+            text-align: justify;
+            word-wrap: break-word;
+        }
+
+        /* Spezifische Optimierungen für den Untertitel */
+        .untertitel {
+            display: block;
+            overflow-wrap: break-word;
+            word-break: keep-all;
+            /* Verhindert das Trennen von "Nationalsozialismus" */
+            -webkit-hyphens: manual;
+            -moz-hyphens: manual;
+            -ms-hyphens: manual;
+            hyphens: manual;
+        }
+
+        /* DARK MODE ANPASSUNGEN */
         body.dark-mode .kapitel-gruppe {
             background: rgba(30, 30, 30, 0.4);
             border-color: rgba(220, 225, 235, 0.15);
@@ -344,8 +331,12 @@
                 padding: 15px;
             }
             
-            .kapitel-navigation {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            .quellen-header-text h1 {
+                font-size: 2rem;
+            }
+            
+            .quellen-header-text .untertitel {
+                font-size: 1.1rem;
             }
         }
         
@@ -356,8 +347,19 @@
                 padding: 20px;
             }
             
-            .kapitel-navigation {
-                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            .quellen-header-text h1 {
+                font-size: 1.8rem;
+                text-align: center;
+            }
+            
+            .quellen-header-text .untertitel {
+                font-size: 1.1rem;
+                text-align: center;
+                padding: 0 10px 15px 10px;
+            }
+            
+            .quellen-header-text p {
+                text-align: left;
             }
             
             .kapitel-titel {
@@ -376,10 +378,6 @@
         }
         
         @media screen and (max-width: 480px) {
-            .kapitel-navigation {
-                grid-template-columns: 1fr 1fr;
-            }
-            
             .kapitel-gruppe {
                 padding: 15px;
             }
@@ -395,7 +393,6 @@
         
         /* Druck-Optimierung */
         @media print {
-            .kapitel-navigation,
             .social-section,
             .footer {
                 display: none;
@@ -473,35 +470,18 @@
             </div>        
             <div class="quellen-header-text">
                 <h1>DER LANGE WEG IN DIE FINSTERNIS</h1>
-                <p class="untertitel">Wie das Kaiserreich den Nationalsozialismus vorbereitete – Vollständige Quellenedition</p>
+                <p class="untertitel">Wie das Kaiserreich den Nationalsozialismus vorbereitete<br>Vollständige Quellenedition</p>
                 
                 <p>Diese vollständige Quellenedition bietet strukturierten Zugang zu allen wissenschaftlichen Grundlagen des Werkes. Jedes Kapitel wird durch Primärquellen, Forschungsliteratur und digitale Archive dokumentiert – vollständig nachvollziehbar und überprüfbar.</p>
                 
                 <div class="hinweis-kasten">
-                    <strong>Struktur:</strong> Die Quellen sind nach Buchkapiteln geordnet. Jeder Link führt direkt zur Originalquelle oder wissenschaftlichen Publikation. Farbcodierte Punkte zeigen den Quellentyp an: <span class="quelle-typ typ-archiv">Archiv</span> <span class="quelle-typ typ-buch">Buch</span> <span class="quelle-typ typ-akademisch">Akademisch</span> <span class="quelle-typ typ-zeitschrift">Zeitschrift</span>
+                    <strong>Struktur:</strong> Die Quellen sind nach Buchkapiteln geordnet. Jeder Link führt direkt zur Originalquelle oder wissenschaftlichen Publikation. Farbcodierte Punkte zeigen den Quellentyp an: 
+                    <span class="quelle-typ typ-archiv">Archiv</span> 
+                    <span class="quelle-typ typ-buch">Buch</span> 
+                    <span class="quelle-typ typ-akademisch">Akademisch</span> 
+                    <span class="quelle-typ typ-zeitschrift">Zeitschrift</span>
                 </div>
             </div>
-        </div>
-
-        <!-- ================= KAPITEL-SPRUNGNAVIGATION ================= -->
-        <div class="kapitel-navigation">
-            <h3>Direkt zu Kapitel:</h3>
-            <a href="#kapitel1" class="kapitel-link">Kapitel 1</a>
-            <a href="#kapitel2" class="kapitel-link">Kapitel 2</a>
-            <a href="#kapitel3" class="kapitel-link">Kapitel 3</a>
-            <a href="#kapitel4" class="kapitel-link">Kapitel 4</a>
-            <a href="#kapitel5" class="kapitel-link">Kapitel 5</a>
-            <a href="#kapitel6" class="kapitel-link">Kapitel 6</a>
-            <a href="#kapitel7" class="kapitel-link">Kapitel 7</a>
-            <a href="#kapitel8" class="kapitel-link">Kapitel 8</a>
-            <a href="#kapitel9" class="kapitel-link">Kapitel 9</a>
-            <a href="#kapitel10" class="kapitel-link">Kapitel 10</a>
-            <a href="#kapitel11" class="kapitel-link">Kapitel 11</a>
-            <a href="#kapitel12" class="kapitel-link">Kapitel 12</a>
-            <a href="#kapitel13-20" class="kapitel-link">Kapitel 13-20</a>
-            <a href="#kapitel21-26" class="kapitel-link">Kapitel 21-26</a>
-            <a href="#kapitel27-30" class="kapitel-link">Kapitel 27-30</a>
-            <a href="#bonus" class="kapitel-link">Bonus-Quellen</a>
         </div>
 
         <!-- ================= KAPITEL-GRUPPEN ================= -->
@@ -511,7 +491,7 @@
             <h2>Teil I: Die Fundamente</h2>
             
             <!-- Kapitel 1 -->
-            <div class="kapitel-item" id="kapitel1">
+            <div class="kapitel-item">
                 <div class="kapitel-titel">
                     <div class="kapitel-nummer">Kapitel 1</div>
                     <div class="kapitel-name">Der Schatten des Kaiserreichs</div>
@@ -537,7 +517,7 @@
             </div>
             
             <!-- Kapitel 2 -->
-            <div class="kapitel-item" id="kapitel2">
+            <div class="kapitel-item">
                 <div class="kapitel-titel">
                     <div class="kapitel-nummer">Kapitel 2</div>
                     <div class="kapitel-name">Die Saat des Hasses</div>
@@ -562,7 +542,7 @@
             </div>
             
             <!-- Kapitel 3 -->
-            <div class="kapitel-item" id="kapitel3">
+            <div class="kapitel-item">
                 <div class="kapitel-titel">
                     <div class="kapitel-nummer">Kapitel 3</div>
                     <div class="kapitel-name">Propaganda im Alltag</div>
@@ -587,7 +567,7 @@
             </div>
             
             <!-- Kapitel 4 -->
-            <div class="kapitel-item" id="kapitel4">
+            <div class="kapitel-item">
                 <div class="kapitel-titel">
                     <div class="kapitel-nummer">Kapitel 4</div>
                     <div class="kapitel-name">Mythos von Stärke und Reinheit</div>
@@ -617,7 +597,7 @@
             <h2>Teil II: Institutionelle Vorbereitung</h2>
             
             <!-- Kapitel 5 -->
-            <div class="kapitel-item" id="kapitel5">
+            <div class="kapitel-item">
                 <div class="kapitel-titel">
                     <div class="kapitel-nummer">Kapitel 5</div>
                     <div class="kapitel-name">Kolonien als Bühne der Gewalt</div>
@@ -642,7 +622,7 @@
             </div>
             
             <!-- Kapitel 6 -->
-            <div class="kapitel-item" id="kapitel6">
+            <div class="kapitel-item">
                 <div class="kapitel-titel">
                     <div class="kapitel-nummer">Kapitel 6</div>
                     <div class="kapitel-name">Sprache der Feindbilder</div>
@@ -667,7 +647,7 @@
             </div>
             
             <!-- Kapitel 7 -->
-            <div class="kapitel-item" id="kapitel7">
+            <div class="kapitel-item">
                 <div class="kapitel-titel">
                     <div class="kapitel-nummer">Kapitel 7</div>
                     <div class="kapitel-name">Aufstieg der völkischen Vereine</div>
@@ -692,7 +672,7 @@
             </div>
             
             <!-- Kapitel 8 -->
-            <div class="kapitel-item" id="kapitel8">
+            <div class="kapitel-item">
                 <div class="kapitel-titel">
                     <div class="kapitel-nummer">Kapitel 8</div>
                     <div class="kapitel-name">Soldaten des Kaisers</div>
@@ -722,7 +702,7 @@
             <h2>Teil III: Soziale Disziplinierung</h2>
             
             <!-- Kapitel 9 -->
-            <div class="kapitel-item" id="kapitel9">
+            <div class="kapitel-item">
                 <div class="kapitel-titel">
                     <div class="kapitel-nummer">Kapitel 9</div>
                     <div class="kapitel-name">Unterdrückung als Normalität</div>
@@ -747,7 +727,7 @@
             </div>
             
             <!-- Kapitel 10 -->
-            <div class="kapitel-item" id="kapitel10">
+            <div class="kapitel-item">
                 <div class="kapitel-titel">
                     <div class="kapitel-nummer">Kapitel 10</div>
                     <div class="kapitel-name">Wissenschaft im Dienst der Ideologie</div>
@@ -765,7 +745,7 @@
             </div>
             
             <!-- Kapitel 11 -->
-            <div class="kapitel-item" id="kapitel11">
+            <div class="kapitel-item">
                 <div class="kapitel-titel">
                     <div class="kapitel-nummer">Kapitel 11</div>
                     <div class="kapitel-name">Kindheit im Geist der Vernichtung</div>
@@ -783,7 +763,7 @@
             </div>
             
             <!-- Kapitel 12 -->
-            <div class="kapitel-item" id="kapitel12">
+            <div class="kapitel-item">
                 <div class="kapitel-titel">
                     <div class="kapitel-nummer">Kapitel 12</div>
                     <div class="kapitel-name">Kirchen zwischen Schweigen und Zustimmung</div>
@@ -809,7 +789,7 @@
         </div>
         
         <!-- GRUPPE 4: Kapitel 13-20 -->
-        <div class="kapitel-gruppe" id="kapitel13-20">
+        <div class="kapitel-gruppe">
             <h2>Teil IV: Weg in den Krieg</h2>
             <div class="kapitel-item">
                 <div class="kapitel-titel">
@@ -837,7 +817,7 @@
         </div>
         
         <!-- GRUPPE 5: Kapitel 21-26 -->
-        <div class="kapitel-gruppe" id="kapitel21-26">
+        <div class="kapitel-gruppe">
             <h2>Teil V: Kontinuitäten</h2>
             <div class="kapitel-item">
                 <div class="kapitel-titel">
@@ -865,7 +845,7 @@
         </div>
         
         <!-- GRUPPE 6: Kapitel 27-30 -->
-        <div class="kapitel-gruppe" id="kapitel27-30">
+        <div class="kapitel-gruppe">
             <h2>Teil VI: Radikalisierung</h2>
             <div class="kapitel-item">
                 <div class="kapitel-titel">
@@ -891,8 +871,9 @@
                 </ul>
             </div>
         </div>
-                <!-- ================= BONUS-QUELLEN ================= -->
-        <div class="bonus-quellen" id="bonus">
+        
+        <!-- ================= BONUS-QUELLEN ================= -->
+        <div class="bonus-quellen">
             <h2>Bonus: Erweiternde Quellen und Perspektiven</h2>
             <p>Diese Quellen bieten vertiefende Einblicke und erweiternde Forschungsperspektiven, die den Kontext des Werkes bereichern:</p>
             
@@ -1038,7 +1019,6 @@
     <div class="footer-links">
         <a href="impressum.html">Impressum</a>
         <a href="datenschutz.html">Datenschutz</a>
-        <a href="quellen.html#top" class="back-to-top">↑ Nach oben</a>
     </div>
     <p>© <span id="jahr"></span> Matthias Silberhain</p>
 </footer>
@@ -1046,52 +1026,6 @@
 <!-- ================= JAVASCRIPT ================= -->
 <script src="assets/js/global.js"></script>
 <script src="assets/js/menu.js"></script>
-<script>
-    // Zusätzliche Funktionen für die Quellenseite
-    document.addEventListener('DOMContentLoaded', function() {
-        // Back-to-top Button Funktion
-        const backToTopBtn = document.querySelector('.back-to-top');
-        if (backToTopBtn) {
-            backToTopBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-        }
-        
-        // Externe Links mit Warnung öffnen
-        document.querySelectorAll('a[href^="http"]').forEach(link => {
-            if (link.hostname !== window.location.hostname) {
-                link.setAttribute('target', '_blank');
-                link.setAttribute('rel', 'noopener noreferrer');
-            }
-        });
-        
-        // Kapitel-Navigation hervorheben
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '-100px 0px -50% 0px'
-        };
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const id = entry.target.id;
-                    document.querySelectorAll('.kapitel-link').forEach(link => {
-                        link.classList.remove('active');
-                        if (link.getAttribute('href') === `#${id}`) {
-                            link.classList.add('active');
-                        }
-                    });
-                }
-            });
-        }, observerOptions);
-        
-        // Alle Kapitel beobachten
-        document.querySelectorAll('.kapitel-item').forEach(item => {
-            observer.observe(item);
-        });
-    });
-</script>
 
 </body>
 </html>
