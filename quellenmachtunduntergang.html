@@ -4,91 +4,170 @@
     <meta charset="UTF-8">
     <title>Quellen: Macht und Untergang | Matthias Silberhain</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Quellenverzeichnis zum Werk 'Macht und Untergang - Die entstellte Wahrheit des Kaiserreichs' von Matthias Silberhain.">
+    <meta name="description" content="Vollständiges Quellenverzeichnis zum Werk 'Macht und Untergang' mit Kapitelstruktur und direkten Links zu Primärquellen und Forschungsliteratur.">
     
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=EB+Garamond:wght@400;500&display=swap" rel="stylesheet">
     
-    <!-- CSS -->
-    <link rel="stylesheet" href="assets/css/style.css">
-    
-    <!-- Favicon -->
-    <link rel="icon" href="assets/images/logo.png" type="image/png">
-    
-    <!-- Dark Mode Preload -->
-    <script>
-        (function() {
-            // SOFORTIGE DARK MODE ANWENDUNG
-            try {
-                const savedTheme = localStorage.getItem('ms-theme');
-                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                
-                if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-                    document.documentElement.classList.add('dark-mode');
-                    document.body.classList.add('dark-mode');
-                }
-            } catch(e) {
-                // Ignoriere Fehler
-            }
-            
-            // SOFORTIGE KLICKBARKEIT SICHERSTELLEN
-            document.addEventListener('DOMContentLoaded', function() {
-                const interactiveElements = ['button', 'a', '.burger', '.dark-mode-toggle', '.silber-button', '.social-link'];
-                
-                setTimeout(function() {
-                    interactiveElements.forEach(selector => {
-                        document.querySelectorAll(selector).forEach(el => {
-                            el.style.pointerEvents = 'auto';
-                            el.style.cursor = 'pointer';
-                        });
-                    });
-                    
-                    // Copyright Jahr sofort setzen
-                    const yearElement = document.getElementById('jahr');
-                    if (yearElement && !yearElement.textContent) {
-                        yearElement.textContent = new Date().getFullYear();
-                    }
-                    
-                    console.log('✅ Website ist jetzt voll klickbar!');
-                }, 100);
-            });
-        })();
-    </script>
-    
     <style>
         /* ==========================================================================
-           QUELLEN SEITE STYLES - Im selben Stil wie Termine/Kontakt
+           BASE STYLES - Optimiert für Macht und Untergang
+           ========================================================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'EB Garamond', serif;
+            background: #0f0f0f;
+            color: #e4e6ea;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Header & Navigation */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background: rgba(15, 15, 15, 0.95);
+            border-bottom: 1px solid rgba(200, 205, 215, 0.1);
+            position: relative;
+            z-index: 1000;
+        }
+        
+        .logo {
+            height: 50px;
+            width: auto;
+        }
+        
+        .hauptnavigation {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .hauptnavigation a {
+            color: #e4e6ea;
+            text-decoration: none;
+            font-family: 'Cinzel', serif;
+            font-size: 0.95rem;
+            letter-spacing: 0.03em;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        
+        .hauptnavigation a:hover {
+            color: #ffffff;
+        }
+        
+        .hauptnavigation a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #e4e6ea;
+            transition: width 0.3s ease;
+        }
+        
+        .hauptnavigation a:hover::after {
+            width: 100%;
+        }
+        
+        /* Dark Mode Toggle */
+        .dark-mode-toggle {
+            background: transparent;
+            border: 1px solid rgba(200, 205, 215, 0.3);
+            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-right: 20px;
+        }
+        
+        .dark-mode-toggle:hover {
+            border-color: rgba(200, 205, 215, 0.5);
+            background: rgba(200, 205, 215, 0.05);
+        }
+        
+        .dark-mode-toggle svg {
+            width: 20px;
+            height: 20px;
+            color: #e4e6ea;
+        }
+        
+        .sun-icon {
+            display: none;
+        }
+        
+        body.dark-mode .moon-icon {
+            display: none;
+        }
+        
+        body.dark-mode .sun-icon {
+            display: block;
+        }
+        
+        /* Burger Menu für Mobile */
+        .burger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            cursor: pointer;
+        }
+        
+        .burger span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background: #e4e6ea;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+        
+        /* Main Content */
+        .inhalt {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        /* ==========================================================================
+           QUELLEN SEITE STYLES
            ========================================================================== */
         
         .quellen-container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 20px;
         }
         
-        /* Header-Bereich mit Cover */
+        /* OPTIMIERTER HEADER-BEREICH MIT KLEINEREM COVER */
         .quellen-header {
             display: grid;
-            grid-template-columns: 280px 1fr;
-            gap: 40px;
+            grid-template-columns: 200px 1fr;
+            gap: 30px;
             align-items: start;
-            margin-bottom: 50px;
-            padding: 30px;
+            margin-bottom: 40px;
+            padding: 25px;
             background: linear-gradient(135deg, 
-                rgba(10, 10, 10, 0.4) 0%, 
-                rgba(30, 30, 30, 0.6) 100%);
+                rgba(15, 15, 15, 0.5) 0%, 
+                rgba(35, 35, 45, 0.7) 100%);
             border-radius: 8px;
-            border: 1px solid rgba(200, 205, 215, 0.15);
+            border: 1px solid rgba(200, 205, 215, 0.2);
             position: relative;
             overflow: hidden;
-        }
-        
-        @media screen and (max-width: 768px) {
-            .quellen-header {
-                grid-template-columns: 1fr;
-                gap: 30px;
-                padding: 20px;
-            }
+            min-height: auto;
         }
         
         .quellen-header::before {
@@ -104,271 +183,600 @@
                 transparent 100%);
         }
         
+        /* Optimiertes Buchcover */
         .buch-cover-quelle {
             width: 100%;
             height: auto;
-            border-radius: 4px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(200, 205, 215, 0.2);
+            border-radius: 6px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(200, 205, 215, 0.3);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            max-width: 100%;
+            display: block;
         }
         
         .buch-cover-quelle:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
         }
         
-        .quellen-header-text h1 {
+        /* Buchkapitel-Gruppen */
+        .kapitel-gruppe {
+            margin-bottom: 60px;
+            padding: 25px;
+            background: rgba(15, 15, 15, 0.3);
+            border-radius: 8px;
+            border: 1px solid rgba(200, 205, 215, 0.15);
+        }
+        
+        .kapitel-gruppe h2 {
             font-family: "Cinzel", serif;
             color: #e4e6ea;
-            font-size: 2.2rem;
-            margin-bottom: 15px;
-            letter-spacing: 0.05em;
-            text-shadow: 0 0 15px rgba(200, 200, 200, 0.2);
-        }
-        
-        .quellen-header-text .untertitel {
-            color: #b0b5bc;
-            font-size: 1.2rem;
+            font-size: 1.8rem;
             margin-bottom: 25px;
-            font-style: italic;
-            border-bottom: 1px solid rgba(200, 205, 215, 0.2);
             padding-bottom: 15px;
+            border-bottom: 2px solid rgba(200, 205, 215, 0.25);
+            letter-spacing: 0.03em;
         }
         
-        .quellen-header-text p {
-            color: #b0b5bc;
-            line-height: 1.7;
-            margin-bottom: 15px;
-            font-size: 1.05rem;
-        }
-        
-        /* Hinweis-Kasten im Stil der anderen Seiten */
-        .hinweis-kasten {
-            background: rgba(200, 205, 215, 0.05);
-            border-left: 3px solid rgba(200, 205, 215, 0.3);
-            padding: 20px;
-            margin: 25px 0;
-            border-radius: 0 4px 4px 0;
-            color: #9da2a8;
-            font-size: 0.95rem;
-        }
-        
-        .hinweis-kasten strong {
-            color: #d6d9de;
-        }
-        
-        /* Quellen Kategorien - Im Stil der Termine-Seite */
-        .quellen-abschnitt {
-            margin: 50px 0;
-        }
-        
-        .quelle-kategorie {
-            background: rgba(10, 10, 10, 0.3);
-            border: 1px solid rgba(200, 205, 215, 0.15);
+        /* Einzelnes Kapitel */
+        .kapitel-item {
+            background: rgba(15, 15, 15, 0.4);
+            border: 1px solid rgba(200, 205, 215, 0.2);
             border-radius: 6px;
-            padding: 30px;
-            margin-bottom: 30px;
+            padding: 25px;
+            margin-bottom: 25px;
             transition: all 0.3s ease;
         }
         
-        .quelle-kategorie:hover {
-            background: rgba(10, 10, 10, 0.4);
-            border-color: rgba(200, 205, 215, 0.25);
-            transform: translateY(-3px);
+        .kapitel-item:hover {
+            background: rgba(15, 15, 15, 0.5);
+            border-color: rgba(200, 205, 215, 0.3);
+            transform: translateY(-2px);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
         
-        .quelle-kategorie h3 {
-            font-family: "Cinzel", serif;
-            color: #e4e6ea;
-            font-size: 1.4rem;
-            margin-bottom: 25px;
-            letter-spacing: 0.05em;
+        .kapitel-titel {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
         }
         
-        .kategorie-untertitel {
-            color: #9da2a8;
+        .kapitel-nummer {
+            background: rgba(200, 205, 215, 0.15);
+            color: #e4e6ea;
+            font-family: "Cinzel", serif;
+            font-size: 1.1rem;
+            padding: 6px 12px;
+            border-radius: 4px;
+            margin-right: 15px;
+            min-width: 60px;
+            text-align: center;
+            border: 1px solid rgba(200, 205, 215, 0.25);
+        }
+        
+        .kapitel-name {
+            color: #e4e6ea;
+            font-size: 1.3rem;
+            font-weight: 500;
+        }
+        
+        .kapitel-themen {
+            color: #a5aab0;
             font-size: 0.95rem;
             margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(200, 205, 215, 0.15);
             font-style: italic;
-            border-bottom: 1px solid rgba(200, 205, 215, 0.1);
-            padding-bottom: 10px;
         }
         
-        /* Quellen-Liste */
-        .quellen-liste {
+        /* Quellen-Liste mit Icons */
+        .quellen-liste-kapitel {
             list-style: none;
             padding: 0;
             margin: 0;
         }
         
-        .quellen-liste li {
+        .quellen-liste-kapitel li {
             margin-bottom: 15px;
-            padding-left: 0;
-            position: relative;
-            color: #b0b5bc;
-            line-height: 1.6;
-            padding-bottom: 10px;
-            border-bottom: 1px solid rgba(200, 205, 215, 0.1);
+            padding: 12px 15px;
+            background: rgba(200, 205, 215, 0.05);
+            border-radius: 4px;
+            border-left: 3px solid rgba(200, 205, 215, 0.25);
+            transition: all 0.3s ease;
         }
         
-        .quellen-liste li:last-child {
-            border-bottom: none;
+        .quellen-liste-kapitel li:hover {
+            background: rgba(200, 205, 215, 0.09);
+            border-left-color: rgba(200, 205, 215, 0.45);
         }
         
-        .quellen-liste strong {
+        .quellen-liste-kapitel strong {
             color: #e4e6ea;
             font-weight: 500;
+            display: block;
+            margin-bottom: 8px;
+            font-size: 1.05rem;
         }
         
-        .quellen-liste a {
-            color: #d6d9de !important;
-            text-decoration: none !important;
-            border-bottom: 1px dotted rgba(200, 200, 200, 0.3) !important;
-            transition: all 0.3s ease !important;
-            word-break: break-word;
+        .quellen-liste-kapitel a {
+            color: #d6d9de;
+            text-decoration: none;
+            border-bottom: 1px dotted rgba(200, 200, 200, 0.4);
+            transition: all 0.3s ease;
+            word-break: break-all;
+            display: inline-block;
+            margin-top: 5px;
+            font-size: 0.95rem;
         }
         
-        .quellen-liste a:hover {
-            color: #ffffff !important;
-            border-bottom: 1px solid rgba(200, 200, 200, 0.6) !important;
+        .quellen-liste-kapitel a:hover {
+            color: #ffffff;
+            border-bottom: 1px solid rgba(200, 200, 200, 0.7);
         }
         
-        /* Neue Unterkategorien für digitale Quellen */
-        .digitale-quellen {
-            margin-top: 40px;
-            padding-top: 30px;
-            border-top: 1px solid rgba(200, 205, 215, 0.1);
+        .quelle-meta {
+            font-size: 0.85rem;
+            color: #8a8f95;
+            margin-top: 5px;
+            font-style: italic;
         }
         
-        .digitale-quellen h4 {
-            font-family: "Cinzel", serif;
-            color: #e4e6ea;
-            font-size: 1.2rem;
-            margin: 25px 0 15px 0;
-            letter-spacing: 0.05em;
+        /* Quellen-Typ Icons */
+        .quelle-typ {
+            display: inline-flex;
+            align-items: center;
+            margin-left: 10px;
+            font-size: 0.8rem;
+            color: #8a8f95;
         }
         
-        .digitale-quellen ul {
-            list-style: none;
-            padding: 0;
-            margin: 0 0 20px 0;
+        .quelle-typ::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            margin-right: 5px;
         }
         
-        .digitale-quellen li {
-            margin-bottom: 10px;
-            color: #b0b5bc;
-            line-height: 1.6;
-        }
+        .typ-archiv::before { background: #4CAF50; }
+        .typ-buch::before { background: #2196F3; }
+        .typ-akademisch::before { background: #FF9800; }
+        .typ-zeitschrift::before { background: #9C27B0; }
+        .typ-international::before { background: #E91E63; }
         
-        .digitale-quellen a {
-            color: #d6d9de !important;
-            text-decoration: none !important;
-            border-bottom: 1px dotted rgba(200, 200, 200, 0.3) !important;
-            transition: all 0.3s ease !important;
-            word-break: break-word;
-        }
-        
-        .digitale-quellen a:hover {
-            color: #ffffff !important;
-            border-bottom: 1px solid rgba(200, 200, 200, 0.6) !important;
-        }
-        
-        /* Hinweis-Bereich */
-        .quellen-hinweis {
-            background: rgba(200, 205, 215, 0.05);
-            border: 1px solid rgba(200, 205, 215, 0.2);
-            border-radius: 6px;
+        /* Bonus-Sektion */
+        .bonus-quellen {
+            background: linear-gradient(135deg, 
+                rgba(30, 25, 35, 0.7) 0%, 
+                rgba(45, 40, 55, 0.9) 100%);
+            border: 1px solid rgba(200, 205, 215, 0.25);
+            border-radius: 8px;
             padding: 30px;
             margin: 40px 0;
         }
         
-        .quellen-hinweis p {
-            color: #b0b5bc;
-            margin-bottom: 15px;
-            line-height: 1.6;
+        .bonus-quellen h2 {
+            color: #e4e6ea;
+            font-family: "Cinzel", serif;
+            margin-bottom: 25px;
+            font-size: 1.8rem;
         }
         
-        .quellen-hinweis strong {
+        .bonus-quellen p {
+            color: #b0b5bc;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+        
+        /* OPTIMIERTE TEXTFORMATIERUNG FÜR DEN HEADER */
+        .quellen-header-text h1 {
+            font-family: "Cinzel", serif;
+            color: #e4e6ea;
+            font-size: 1.9rem;
+            margin-bottom: 12px;
+            letter-spacing: 0.05em;
+            text-shadow: 0 0 15px rgba(200, 200, 200, 0.2);
+            line-height: 1.2;
+            word-wrap: break-word;
+            hyphens: none;
+            margin-top: 0;
+        }
+
+        .quellen-header-text .untertitel {
+            color: #b0b5bc;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            font-style: italic;
+            border-bottom: 1px solid rgba(200, 205, 215, 0.25);
+            padding-bottom: 12px;
+            line-height: 1.3;
+            word-wrap: break-word;
+            hyphens: auto;
+        }
+
+        .quellen-header-text p {
+            color: #b0b5bc;
+            line-height: 1.6;
+            margin-bottom: 12px;
+            font-size: 1rem;
+            text-align: justify;
+            word-wrap: break-word;
+        }
+
+        /* Hinweis-Kasten optimieren */
+        .hinweis-kasten {
+            background: rgba(200, 205, 215, 0.07);
+            border-left: 3px solid rgba(200, 205, 215, 0.4);
+            padding: 15px;
+            margin: 20px 0 0 0;
+            border-radius: 0 4px 4px 0;
+            color: #a5aab0;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        
+        .hinweis-kasten strong {
+            color: #d6d9de;
+        }
+
+        /* Spezifische Optimierungen für den Untertitel */
+        .untertitel {
+            display: block;
+            overflow-wrap: break-word;
+            word-break: keep-all;
+            -webkit-hyphens: manual;
+            -moz-hyphens: manual;
+            -ms-hyphens: manual;
+            hyphens: manual;
+        }
+
+        /* Thesen Sektion */
+        .thesen-sektion {
+            background: linear-gradient(135deg, 
+                rgba(25, 25, 35, 0.7) 0%, 
+                rgba(40, 40, 50, 0.9) 100%);
+            border: 1px solid rgba(200, 205, 215, 0.25);
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .thesen-sektion h2 {
+            color: #e4e6ea;
+            font-family: "Cinzel", serif;
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+        }
+        
+        .thesen-liste {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .thesen-liste li {
+            margin-bottom: 15px;
+            padding-left: 25px;
+            position: relative;
             color: #d6d9de;
         }
         
-        /* DARK MODE STYLES */
-        body.dark-mode .quelle-kategorie {
-            background: rgba(30, 30, 30, 0.5);
+        .thesen-liste li::before {
+            content: '•';
+            color: #e4e6ea;
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: -3px;
+        }
+        
+        /* DARK MODE ANPASSUNGEN */
+        body.dark-mode {
+            background: #121212;
+            color: #f0f0f0;
+        }
+        
+        body.dark-mode .kapitel-gruppe {
+            background: rgba(35, 35, 35, 0.5);
             border-color: rgba(220, 225, 235, 0.2);
         }
         
-        body.dark-mode .quelle-kategorie:hover {
-            background: rgba(30, 30, 30, 0.7);
-            border-color: rgba(220, 225, 235, 0.3);
-        }
-        
-        body.dark-mode .quellen-header {
-            background: linear-gradient(135deg, 
-                rgba(30, 30, 30, 0.5) 0%, 
-                rgba(50, 50, 50, 0.7) 100%);
-            border-color: rgba(220, 225, 235, 0.2);
-        }
-        
-        body.dark-mode .hinweis-kasten {
-            background: rgba(220, 225, 235, 0.05);
-            border-left-color: rgba(220, 225, 235, 0.4);
-        }
-        
-        body.dark-mode .quellen-hinweis {
-            background: rgba(220, 225, 235, 0.05);
+        body.dark-mode .kapitel-item {
+            background: rgba(35, 35, 35, 0.6);
             border-color: rgba(220, 225, 235, 0.25);
         }
         
-        body.dark-mode .digitale-quellen {
-            border-top-color: rgba(220, 225, 235, 0.1);
+        body.dark-mode .kapitel-item:hover {
+            background: rgba(35, 35, 35, 0.8);
+            border-color: rgba(220, 225, 235, 0.35);
         }
         
-        /* Responsive Anpassungen */
-        @media screen and (max-width: 768px) {
+        body.dark-mode .bonus-quellen {
+            background: linear-gradient(135deg, 
+                rgba(45, 40, 55, 0.8) 0%, 
+                rgba(60, 55, 70, 1) 100%);
+            border-color: rgba(220, 225, 235, 0.3);
+        }
+        
+        body.dark-mode .thesen-sektion {
+            background: linear-gradient(135deg, 
+                rgba(30, 30, 40, 0.8) 0%, 
+                rgba(45, 45, 55, 1) 100%);
+            border-color: rgba(220, 225, 235, 0.3);
+        }
+        
+        /* Social Media Section */
+        .social-section {
+            padding: 40px 5%;
+            background: rgba(15, 15, 20, 0.8);
+            border-top: 1px solid rgba(200, 205, 215, 0.1);
+        }
+        
+        .social-title {
+            text-align: center;
+            font-family: "Cinzel", serif;
+            color: #e4e6ea;
+            margin-bottom: 30px;
+            font-size: 1.5rem;
+        }
+        
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .social-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: #e4e6ea;
+            padding: 20px;
+            border-radius: 8px;
+            background: rgba(200, 205, 215, 0.05);
+            border: 1px solid rgba(200, 205, 215, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background: rgba(200, 205, 215, 0.1);
+            border-color: rgba(200, 205, 215, 0.3);
+            transform: translateY(-5px);
+        }
+        
+        .social-icon-wrapper {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+        
+        .social-icon {
+            width: 24px;
+            height: 24px;
+            fill: #e4e6ea;
+        }
+        
+        .social-name {
+            font-family: 'EB Garamond', serif;
+            font-size: 0.9rem;
+        }
+        
+        /* Footer */
+        .footer {
+            padding: 30px 5%;
+            text-align: center;
+            background: rgba(10, 10, 15, 0.95);
+            border-top: 1px solid rgba(200, 205, 215, 0.1);
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 15px;
+        }
+        
+        .footer-links a {
+            color: #a5aab0;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: #e4e6ea;
+        }
+        
+        .footer p {
+            color: #8a8f95;
+            font-size: 0.85rem;
+        }
+        
+        /* Quellen-Hinweis */
+        .quellen-hinweis {
+            background: rgba(200, 205, 215, 0.05);
+            border: 1px solid rgba(200, 205, 215, 0.15);
+            border-radius: 8px;
+            padding: 25px;
+            margin-top: 40px;
+        }
+        
+        .quellen-hinweis h3 {
+            color: #e4e6ea;
+            font-family: "Cinzel", serif;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        .quellen-hinweis p {
+            color: #a5aab0;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        /* RESPONSIVE DESIGN - OPTIMIERT */
+        @media screen and (max-width: 1024px) {
             .quellen-container {
                 padding: 15px;
             }
             
-            .quellen-header-text h1 {
-                font-size: 1.8rem;
-            }
-            
-            .quelle-kategorie {
+            .quellen-header {
+                grid-template-columns: 180px 1fr;
+                gap: 25px;
                 padding: 20px;
             }
             
-            .quelle-kategorie h3 {
-                font-size: 1.2rem;
+            .quellen-header-text h1 {
+                font-size: 1.7rem;
             }
             
-            .digitale-quellen h4 {
-                font-size: 1.1rem;
+            .quellen-header-text .untertitel {
+                font-size: 1rem;
+            }
+            
+            .quellen-header-text p {
+                font-size: 0.95rem;
+            }
+        }
+        
+        @media screen and (max-width: 768px) {
+            .hauptnavigation {
+                display: none;
+            }
+            
+            .burger {
+                display: flex;
+            }
+            
+            .quellen-header {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 20px;
+            }
+            
+            /* Cover zentrieren und Größe reduzieren */
+            .buch-cover-container {
+                display: flex;
+                justify-content: center;
+                max-width: 200px;
+                margin: 0 auto;
+            }
+            
+            .buch-cover-quelle {
+                max-width: 180px;
+                height: auto;
+            }
+            
+            .quellen-header-text h1 {
+                font-size: 1.6rem;
+                text-align: center;
+                margin-top: 0;
+            }
+            
+            .quellen-header-text .untertitel {
+                font-size: 1rem;
+                text-align: center;
+                padding: 0 5px 10px 5px;
+                line-height: 1.3;
+            }
+            
+            .quellen-header-text p {
+                text-align: left;
+                font-size: 0.95rem;
+                line-height: 1.6;
+            }
+            
+            .kapitel-titel {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .kapitel-nummer {
+                margin-bottom: 10px;
+                margin-right: 0;
+            }
+            
+            .kapitel-item {
+                padding: 20px;
+            }
+            
+            .social-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
         
         @media screen and (max-width: 480px) {
+            .kapitel-gruppe {
+                padding: 15px;
+            }
+            
+            .kapitel-gruppe h2 {
+                font-size: 1.5rem;
+                text-align: center;
+            }
+            
+            .kapitel-name {
+                font-size: 1.1rem;
+            }
+            
             .quellen-header-text h1 {
-                font-size: 1.6rem;
+                font-size: 1.5rem;
+            }
+            
+            .quellen-header-text .untertitel {
+                font-size: 0.95rem;
+            }
+            
+            .buch-cover-quelle {
+                max-width: 150px;
+            }
+            
+            .social-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Druck-Optimierung */
+        @media print {
+            .social-section,
+            .footer,
+            .dark-mode-toggle,
+            .burger {
+                display: none;
+            }
+            
+            .kapitel-item {
+                break-inside: avoid;
+                border: 1px solid #ccc;
+                box-shadow: none;
+            }
+            
+            .quellen-liste-kapitel a {
+                color: #000;
+                text-decoration: underline;
+            }
+            
+            /* Cover für Druck verkleinern */
+            .buch-cover-quelle {
+                max-width: 120px !important;
             }
             
             .quellen-header {
-                padding: 15px;
-            }
-            
-            .quelle-kategorie {
-                padding: 15px;
+                grid-template-columns: 120px 1fr !important;
             }
         }
     </style>
 </head>
 
 <body>
-
-<!-- Mobile Menu Overlay -->
-<div class="menu-overlay" id="menuOverlay"></div>
 
 <!-- ================= HEADER ================= -->
 <header class="header">
@@ -402,13 +810,12 @@
         <a href="index.html">Startseite</a>
         <a href="ueber-mich.html">Über mich</a>
         <a href="werke.html">Werke</a>
-        <a href="quellen.html">Quellen</a>
+        <a href="quellenmachtunduntergang.html">Quellen: Macht & Untergang</a>
+        <a href="quellen.html">Quellen: Der lange Weg</a>
         <a href="termine.html">Termine</a>
         <a href="kontakt.html">Kontakt</a>
     </nav>
 </header>
-
-<div class="lichtkante"></div>
 
 <!-- ================= HAUPTINHALT ================= -->
 <main class="inhalt">
@@ -417,351 +824,491 @@
         <!-- ================= BUCH: MACHT UND UNTERGANG ================= -->
         <div class="quellen-header">
             <div class="buch-cover-container">
-                <img src="assets/images/machtunduntergang.png" 
+                <img src="https://via.placeholder.com/200x280/1a1a2e/e4e6ea?text=Macht+und+Untergang" 
                      alt="Buchcover: Macht und Untergang" 
                      class="buch-cover-quelle">
             </div>        
             <div class="quellen-header-text">
                 <h1>MACHT UND UNTERGANG</h1>
-                <p class="untertitel">Die entstellte Wahrheit des Kaiserreichs</p>
+                <p class="untertitel">Die entstellte Wahrheit des Kaiserreichs<br>Vollständige Quellenedition</p>
                 
-                <p>Diese Seite versammelt alle zentralen digitalen Quellen und Forschungsliteratur, die der historischen Analyse in diesem Werk zugrunde liegen.<br>
-                Jede Quelle dient der vollständigen Nachvollziehbarkeit und Vertiefung der im Buch dargestellten historischen Zusammenhänge.</p>
+                <p>Diese vollständige Quellenedition dokumentiert die wissenschaftlichen Grundlagen des Werkes "Macht und Untergang: Die entstellte Wahrheit des Kaiserreichs". Jedes Kapitel wird durch Primärquellen, Forschungsliteratur und digitale Archive belegt – vollständig nachvollziehbar und überprüfbar.</p>
                 
                 <div class="hinweis-kasten">
-                    <strong>Hinweis zur Nutzung:</strong> Die hier aufgeführten Quellen umfassen Archivbestände, digitale Sammlungen und Fachpublikationen, die die historische Analyse des Werkes belegen.
+                    <strong>Struktur:</strong> Die Quellen sind nach Buchkapiteln geordnet. Jeder Link führt direkt zur Originalquelle oder wissenschaftlichen Publikation. Farbcodierte Punkte zeigen den Quellentyp an: 
+                    <span class="quelle-typ typ-archiv">Archiv</span> 
+                    <span class="quelle-typ typ-buch">Buch</span> 
+                    <span class="quelle-typ typ-akademisch">Akademisch</span> 
+                    <span class="quelle-typ typ-zeitschrift">Zeitschrift</span>
+                    <span class="quelle-typ typ-international">International</span>
                 </div>
             </div>
         </div>
 
-        <!-- QUELLENINHALT -->
-        <div class="quellen-abschnitt">
+        <!-- ================= THESEN DES BUCHES ================= -->
+        <div class="thesen-sektion">
+            <h2>Zentrale Thesen des Buches</h2>
+            <ul class="thesen-liste">
+                <li><strong>Das Kaiserreich war von Anfang an ein autoritärer Obrigkeitsstaat</strong>, der demokratische Mitbestimmung verhinderte und auf Unterdrückung setzte.</li>
+                <li><strong>Bismarck und Wilhelm II. schufen einen Überwachungs- und Repressionsapparat</strong>, der systematisch politische Gegner (Sozialdemokraten, Katholiken, Minderheiten) verfolgte.</li>
+                <li><strong>Die Kolonialpolitik war von Rassismus und Vernichtung geprägt</strong> – der Völkermord an den Herero und Nama war kein "Ausrutscher", sondern logische Konsequenz imperialer Ideologie.</li>
+                <li><strong>Das Dreiklassenwahlrecht zementierte die politische Macht der Besitzeliten</strong> und entmündigte die Mehrheit der Bevölkerung.</li>
+                <li><strong>Wilhelm II. trug maßgebliche Verantwortung für den Ersten Weltkrieg</strong> und versagte in der Krisenzeit durch Feigheit und Realitätsflucht.</li>
+                <li><strong>Die politische Kultur des Kaiserreichs lebte in der Weimarer Republik weiter</strong> und bereitete den Boden für den Nationalsozialismus.</li>
+                <li><strong>Die Aufarbeitung dieser Kontinuitäten ist eine demokratische Pflicht</strong> – das Buch versteht sich als Beitrag zur historischen Aufklärung und Warnung vor autoritären Versuchungen.</li>
+            </ul>
+        </div>
+
+        <!-- ================= KAPITEL-GRUPPEN ================= -->
+        
+        <!-- GRUPPE 1: Kapitel 1-4 -->
+        <div class="kapitel-gruppe">
+            <h2>Teil I: Grundlagen und Strukturen (1871-1890)</h2>
             
-            <!-- I. Reichstagsprotokolle -->
-            <div class="quelle-kategorie">
-                <h3>I. Reichstagsprotokolle (Stenographische Berichte)</h3>
-                <ul class="quellen-liste">
-                    <li><strong>Sitzung vom 19.01.1871</strong> – Rede Eduard Lasker</li>
-                    <li><strong>Sitzung vom 02.05.1884</strong> – Debatte zur Verlängerung des Sozialistengesetzes, Reden Wilhelm von Kardorff, August Bebel</li>
-                    <li><strong>Sitzung vom 17.01.1885</strong> – Rede Ignaz Auer</li>
-                    <li><strong>Sitzung vom 17.03.1893</strong> – Rede Paul Singer, Erwiderung Ernst von Heydebrand und der Lasa</li>
-                    <li><strong>Sitzung vom 28.03.1907</strong> – Rede Karl Liebknecht zu Kolonialverbrechen in Deutsch-Südwestafrika</li>
-                    <li><strong>Sitzung vom 07.10.1916</strong> – Rede Philipp Scheidemann zur öffentlichen Hinrichtung</li>
-                    <li><strong>Sitzung vom 22.10.1918</strong> – Rede Philipp Scheidemann mit Verlesung des Geheimbefehls zur Ernährungslage in Belgien</li>
-                </ul>
-                
-                <div class="digitale-quellen">
-                    <h4>Digitale Zugänge zu Reichstagsprotokollen:</h4>
-                    <ul>
-                        <li>
-                            <a href="https://www.reichstagsprotokolle.de" target="_blank" rel="noopener noreferrer">
-                                Reichstagsprotokolle des Deutschen Reiches 1867–1918
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.bundestag.de/parlament/geschichte/reichstagsprotokolle" target="_blank" rel="noopener noreferrer">
-                                Deutscher Bundestag – Historische Reichstagsprotokolle
-                            </a>
-                        </li>
-                    </ul>
+            <!-- Kapitel 1 -->
+            <div class="kapitel-item">
+                <div class="kapitel-titel">
+                    <div class="kapitel-nummer">Kapitel 1</div>
+                    <div class="kapitel-name">Die Geburt eines Obrigkeitsstaates 1871</div>
                 </div>
-            </div>
-            
-            <!-- II. Akten des Auswärtigen Amtes -->
-            <div class="quelle-kategorie">
-                <h3>II. Akten des Auswärtigen Amtes (Politisches Archiv, Berlin)</h3>
-                <ul class="quellen-liste">
-                    <li><strong>R 1507/1023</strong> – Geheimbericht Politische Polizei Berlin, 01.11.1918</li>
-                    <li><strong>R 901/68695</strong> – Rückversicherungsvertrag mit Russland, Auslaufen 1890</li>
-                    <li><strong>R 1001/2089</strong> – Vernichtungsbefehl Lothar von Trotha, Oktober 1904</li>
-                    <li><strong>R 1001/2114</strong> – Lagerberichte Swakopmund und Lüderitzbucht, 1905–1907</li>
-                    <li><strong>R 1001/2095</strong> – Schriftwechsel zur Ernährungslage in Konzentrationslagern, November 1905</li>
-                </ul>
-                
-                <div class="digitale-quellen">
-                    <h4>Online-Zugang zum Politischen Archiv:</h4>
-                    <ul>
-                        <li>
-                            <a href="https://archiv.diplo.de" target="_blank" rel="noopener noreferrer">
-                                Politisches Archiv des Auswärtigen Amts – Online-Findmittel
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://archiv.diplo.de/arc-de/das-politische-archiv/benutzung" target="_blank" rel="noopener noreferrer">
-                                Benutzung und Aktenrecherche
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            
-            <!-- III. Militärarchiv -->
-            <div class="quelle-kategorie">
-                <h3>III. Militärarchiv (Bundesarchiv-Militärarchiv, Freiburg)</h3>
-                <ul class="quellen-liste">
-                    <li><strong>RM 120/378</strong> – Bericht zur Meuterei Wilhelmshaven, 29.10.1918</li>
-                    <li><strong>PH 3/556</strong> – Kriegstagebuch OHL, Oktober 1918 (Ludendorff)</li>
-                    <li><strong>PH 6 I/46</strong> – Befehl zur öffentlichen Hinrichtung, September 1916</li>
-                    <li><strong>MSG 2/12755</strong> – Feldpostbriefe Oktober/November 1918</li>
-                </ul>
-                
-                <div class="digitale-quellen">
-                    <h4>Bundesarchiv Online-Ressourcen:</h4>
-                    <ul>
-                        <li>
-                            <a href="https://www.bundesarchiv.de" target="_blank" rel="noopener noreferrer">
-                                Bundesarchiv – Zentrale Startseite
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://invenio.bundesarchiv.de" target="_blank" rel="noopener noreferrer">
-                                Invenio – Online-Findmittel des Bundesarchivs
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.bundesarchiv.de/DE/Content/Artikel/Ueber-uns/Standorte/Freiburg.html" target="_blank" rel="noopener noreferrer">
-                                Bundesarchiv-Militärarchiv Freiburg
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            
-            <!-- IV. Preußische Staatsakten -->
-            <div class="quelle-kategorie">
-                <h3>IV. Preußische Staats- und Ministerialakten (Geheimes Staatsarchiv, Berlin)</h3>
-                <ul class="quellen-liste">
-                    <li><strong>I. HA Rep. 77</strong> – Politische Polizei, Spitzelwesen, Sozialdemokratie</li>
-                    <li><strong>I. HA Rep. 76</strong> – Kultusministerium, Überwachung von Schülern, 1882</li>
-                    <li><strong>I. HA Rep. 90</strong> – Justizministerium, politische Prozesse 1878–1914</li>
-                </ul>
-                
-                <div class="digitale-quellen">
-                    <h4>Geheimes Staatsarchiv Online:</h4>
-                    <ul>
-                        <li>
-                            <a href="https://gsta.preussischer-kulturbesitz.de" target="_blank" rel="noopener noreferrer">
-                                Geheimes Staatsarchiv Preußischer Kulturbesitz
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://gsta.preussischer-kulturbesitz.de/recherche" target="_blank" rel="noopener noreferrer">
-                                Recherche in preußischen Ministerialakten
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            
-            <!-- V. Nachlässe -->
-            <div class="quelle-kategorie">
-                <h3>V. Nachlässe und private Papiere</h3>
-                <ul class="quellen-liste">
-                    <li><strong>Nachlass Rudolf von Valentini</strong> (Bundesarchiv N 1031)</li>
-                    <li><strong>Nachlass Max von Baden</strong> (Bundesarchiv N 1017)</li>
-                    <li><strong>Nachlass August Bebel</strong> (Archiv der sozialen Demokratie, Bonn)</li>
-                    <li><strong>Georg Alexander von Müller: Der Kaiser …</strong>, hg. Walter Görlitz, Göttingen 1965</li>
+                <div class="kapitel-themen">Verfassung, Bismarcks Strategie, Kulturkampf, Überwachungsapparat</div>
+                <ul class="quellen-liste-kapitel">
+                    <li>
+                        <strong>Verfassung des Deutschen Reiches 1871</strong>
+                        <span class="quelle-typ typ-archiv">Archiv</span><br>
+                        <a href="https://www.documentarchiv.de/ksr/verfdrkr_1871.html" target="_blank" rel="noopener noreferrer">
+                            https://www.documentarchiv.de/ksr/verfdrkr_1871.html
+                        </a>
+                    </li>
+                    <li>
+                        <strong>Hans-Ulrich Wehler – Das Deutsche Kaiserreich 1871–1918</strong>
+                        <span class="quelle-typ typ-buch">Buch</span><br>
+                        <a href="https://www.bpb.de/shop/zeitschriften/apuz/30253/das-deutsche-kaiserreich/" target="_blank" rel="noopener noreferrer">
+                            https://www.bpb.de/shop/zeitschriften/apuz/30253/das-deutsche-kaiserreich/
+                        </a>
+                        <div class="quelle-meta">Artikel bei der Bundeszentrale für politische Bildung</div>
+                    </li>
+                    <li>
+                        <strong>Deutsches Historisches Museum – Innenpolitik des Kaiserreichs</strong>
+                        <span class="quelle-typ typ-archiv">Archiv</span><br>
+                        <a href="https://www.dhm.de/lemo/kapitel/kaiserreich/innenpolitik/" target="_blank" rel="noopener noreferrer">
+                            https://www.dhm.de/lemo/kapitel/kaiserreich/innenpolitik/
+                        </a>
+                    </li>
+                    <li>
+                        <strong>Kulturkampf-Dokumente</strong>
+                        <span class="quelle-typ typ-archiv">Archiv</span><br>
+                        <a href="https://www.documentarchiv.de/ksr/kulturkampf.html" target="_blank" rel="noopener noreferrer">
+                            https://www.documentarchiv.de/ksr/kulturkampf.html
+                        </a>
+                    </li>
                 </ul>
             </div>
             
-            <!-- VI. Gesetzestexte -->
-            <div class="quelle-kategorie">
-                <h3>VI. Gesetzestexte und amtliche Veröffentlichungen</h3>
-                <ul class="quellen-liste">
-                    <li><strong>Reichsverfassung vom 16.04.1871</strong></li>
-                    <li><strong>Sozialistengesetz 1878</strong></li>
-                    <li><strong>Verfassungsänderung 28.10.1918</strong></li>
-                    <li><strong>Preußisches Dreiklassenwahlrecht 1849</strong></li>
-                    <li><strong>Eingeborenenverordnung Deutsch-Südwestafrika 1907</strong></li>
-                </ul>
-                
-                <div class="digitale-quellen">
-                    <h4>Digitale Gesetzestexte:</h4>
-                    <ul>
-                        <li>
-                            <a href="https://www.reichsgesetzblatt.de" target="_blank" rel="noopener noreferrer">
-                                Reichsgesetzblatt (digital)
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.verfassungen.de/de67-18/verf71.htm" target="_blank" rel="noopener noreferrer">
-                                Verfassung des Deutschen Reiches von 1871
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.documentarchiv.de/ksr/1878-sozialistengesetz.html" target="_blank" rel="noopener noreferrer">
-                                Sozialistengesetz von 1878 (Volltext)
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.documentarchiv.de/pr/1849/dreiklassenwahlrecht.html" target="_blank" rel="noopener noreferrer">
-                                Preußisches Dreiklassenwahlrecht
-                            </a>
-                        </li>
-                    </ul>
+            <!-- Kapitel 2 -->
+            <div class="kapitel-item">
+                <div class="kapitel-titel">
+                    <div class="kapitel-nummer">Kapitel 2</div>
+                    <div class="kapitel-name">Der Kriegsherr Wilhelm II. und die Verantwortung für den Weltkrieg</div>
                 </div>
+                <div class="kapitel-themen">Mobilmachung 1914, U-Boot-Krieg, Selbstentmachtung, Flucht</div>
+                <ul class="quellen-liste-kapitel">
+                    <li>
+                        <strong>Mobilmachungsorder 1914</strong>
+                        <span class="quelle-typ typ-archiv">Archiv</span><br>
+                        <a href="https://www.dhm.de/lemo/bestand/objekt/mobilmachungsorder-1914.html" target="_blank" rel="noopener noreferrer">
+                            https://www.dhm.de/lemo/bestand/objekt/mobilmachungsorder-1914.html
+                        </a>
+                    </li>
+                    <li>
+                        <strong>Christopher Clark – Die Schlafwandler</strong>
+                        <span class="quelle-typ typ-buch">Buch</span><br>
+                        <a href="https://www.amazon.de/Die-Schlafwandler-Europas-Ersten-Weltkrieg/dp/3421046393" target="_blank" rel="noopener noreferrer">
+                            https://www.amazon.de/Die-Schlafwandler-Europas-Ersten-Weltkrieg/dp/3421046393
+                        </a>
+                    </li>
+                    <li>
+                        <strong>Erlass vom 28. Oktober 1918 (Selbstentmachtung)</strong>
+                        <span class="quelle-typ typ-archiv">Archiv</span><br>
+                        <a href="https://www.documentarchiv.de/wr/1918/verfassungsaenderungsgesetz_1918.html" target="_blank" rel="noopener noreferrer">
+                            https://www.documentarchiv.de/wr/1918/verfassungsaenderungsgesetz_1918.html
+                        </a>
+                    </li>
+                    <li>
+                        <strong>Abdankungsurkunde Wilhelms II.</strong>
+                        <span class="quelle-typ typ-archiv">Archiv</span><br>
+                        <a href="https://www.dhm.de/lemo/bestand/objekt/abdankungsurkunde-wilhelm-ii-1918.html" target="_blank" rel="noopener noreferrer">
+                            https://www.dhm.de/lemo/bestand/objekt/abdankungsurkunde-wilhelm-ii-1918.html
+                        </a>
+                    </li>
+                </ul>
             </div>
             
-            <!-- VII. Wissenschaftliche Editionen -->
-            <div class="quelle-kategorie">
-                <h3>VII. Wissenschaftliche Editionen und Dokumentationen</h3>
-                <ul class="quellen-liste">
-                    <li><strong>Die Große Politik der Europäischen Kabinette 1871–1914</strong>, 40 Bände</li>
-                    <li><strong>Ursachen und Folgen</strong>, Michaelis/Schraepler, 26 Bände</li>
-                    <li><strong>Zimmerer/Zeller: Völkermord in Deutsch-Südwestafrika</strong>, Berlin 2003</li>
-                    <li><strong>Dieter Fricke (Hg.): Das Sozialistengesetz</strong>, Berlin 1983</li>
-                </ul>
-                
-                <div class="digitale-quellen">
-                    <h4>Wissenschaftliche Standardwerke (Sekundärliteratur):</h4>
-                    <ul>
-                        <li>
-                            <a href="https://www.cornellpress.cornell.edu/book/9780801472930/absolute-destruction/" target="_blank" rel="noopener noreferrer">
-                                Isabel V. Hull – Absolute Destruction
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.beck-shop.de/wehler-deutsche-gesellschaftsgeschichte/product/9783406620477" target="_blank" rel="noopener noreferrer">
-                                Hans-Ulrich Wehler – Deutsche Gesellschaftsgeschichte
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.penguin.de/buecher/christopher-clark-kaiser-wilhelm-ii/taschenbuch/9783570552275" target="_blank" rel="noopener noreferrer">
-                                Christopher Clark – Kaiser Wilhelm II.
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.degruyter.com/document/isbn/9783486595381/html" target="_blank" rel="noopener noreferrer">
-                                Ernst Rudolf Huber – Deutsche Verfassungsgeschichte
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.chbeck.de/winkler-lange-weg-nach-westen/product/9783406640482" target="_blank" rel="noopener noreferrer">
-                                Heinrich August Winkler – Der lange Weg nach Westen
-                            </a>
-                        </li>
-                    </ul>
-                    
-                    <h4>Deutscher Kolonialismus und Völkermord an Herero und Nama:</h4>
-                    <ul>
-                        <li>
-                            <a href="https://www.bpb.de/themen/afrika/namibia/145681/der-voelkermord-an-den-herero-und-nama/" target="_blank" rel="noopener noreferrer">
-                                Bundeszentrale für politische Bildung – Völkermord an Herero und Nama
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.bundesarchiv.de/DE/Content/Virtuelle-Ausstellungen/Kolonialismus/kolonialismus.html" target="_blank" rel="noopener noreferrer">
-                                Bundesarchiv – Deutscher Kolonialismus
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.hsozkult.de/publicationreview/id/reb-3568" target="_blank" rel="noopener noreferrer">
-                                H-Soz-Kult – Zimmerer/Zeller: Völkermord in Deutsch-Südwestafrika
-                            </a>
-                        </li>
-                    </ul>
-                    
-                    <h4>Sozialistengesetz, Arbeiterbewegung, politische Repression:</h4>
-                    <ul>
-                        <li>
-                            <a href="https://library.fes.de/adsd/" target="_blank" rel="noopener noreferrer">
-                                Archiv der sozialen Demokratie (FES)
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.degruyter.com/document/isbn/9783110855127/html" target="_blank" rel="noopener noreferrer">
-                                Dieter Fricke (Hg.) – Das Sozialistengesetz
-                            </a>
-                        </li>
-                    </ul>
+            <!-- Kapitel 3 -->
+            <div class="kapitel-item">
+                <div class="kapitel-titel">
+                    <div class="kapitel-nummer">Kapitel 3</div>
+                    <div class="kapitel-name">Die Maschinerie der Unterdrückung</div>
                 </div>
+                <div class="kapitel-themen">Sozialistengesetz, Polizeiwahn, Alltagsangst, Überwachung</div>
+                <ul class="quellen-liste-kapitel">
+                    <li>
+                        <strong>Sozialistengesetz 1878</strong>
+                        <span class="quelle-typ typ-archiv">Archiv</span><br>
+                        <a href="https://www.documentarchiv.de/ksr/1878/sozialistengesetze_ksr.html" target="_blank" rel="noopener noreferrer">
+                            https://www.documentarchiv.de/ksr/1878/sozialistengesetze_ksr.html
+                        </a>
+                    </li>
+                    <li>
+                        <strong>Reichstagsprotokolle zu Sozialistengesetz</strong>
+                        <span class="quelle-typ typ-archiv">Archiv</span><br>
+                        <a href="https://www.reichstagsprotokolle.de" target="_blank" rel="noopener noreferrer">
+                            https://www.reichstagsprotokolle.de
+                        </a>
+                    </li>
+                    <li>
+                        <strong>Richard J. Evans – The Coming of the Third Reich</strong>
+                        <span class="quelle-typ typ-buch">Buch</span><br>
+                        <a href="https://archive.org/details/comingofthirdreich0000evan" target="_blank" rel="noopener noreferrer">
+                            https://archive.org/details/comingofthirdreich0000evan
+                        </a>
+                    </li>
+                    <li>
+                        <strong>Polizeigesetze im Kaiserreich</strong>
+                        <span class="quelle-typ typ-archiv">Archiv</span><br>
+                        <a href="https://www.deutschestextarchiv.de/search?q=polizeigesetz+kaiserreich" target="_blank" rel="noopener noreferrer">
+                            https://www.deutschestextarchiv.de/search?q=polizeigesetz+kaiserreich
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Kapitel 4 -->
+            <div class="kapitel-item">
+                <div class="kapitel-titel">
+                    <div class="kapitel-nummer">Kapitel 4</div>
+                    <div class="kapitel-name">Koloniale Höllen – Der Völkermord in Deutsch-Südwestafrika</div>
+                </div>
+                <div class="kapitel-themen">Herero und Nama, Vernichtungsbefehl, Konzentrationslager, Wissenschaft als Komplize</div>
+                <ul class="quellen-liste-kapitel">
+                    <li>
+                        <strong>Vernichtungsbefehl von General von Trotha (1904)</strong>
+                        <span class="quelle-typ typ-archiv">Archiv</span><br>
+                        <a href="https://www.dhm.de/lemo/bestand/objekt/vernichtungsbefehl-des-generals-lothar-von-trotha-1904.html" target="_blank" rel="noopener noreferrer">
+                            https://www.dhm.de/lemo/bestand/objekt/vernichtungsbefehl-des-generals-lothar-von-trotha-1904.html
+                        </a>
+                    </li>
+                    <li>
+                        <strong>Jürgen Zimmerer – Deutsche Herrschaft über Afrikaner</strong>
+                        <span class="quelle-typ typ-akademisch">Akademisch</span><br>
+                        <a href="https://www.bpb.de/shop/zeitschriften/apuz/229805/" target="_blank" rel="noopener noreferrer">
+                            https://www.bpb.de/shop/zeitschriften/apuz/229805/
+                        </a>
+                    </li>
+                    <li>
+                        <strong>Bundesarchiv – Kolonialakten</strong>
+                        <span class="quelle-typ typ-archiv">Archiv</span><br>
+                        <a href="https://invenio.bundesarchiv.de" target="_blank" rel="noopener noreferrer">
+                            https://invenio.bundesarchiv.de
+                        </a>
+                    </li>
+                    <li>
+                        <strong>UN Resolution zum Völkermord an Herero und Nama</strong>
+                        <span class="quelle-typ typ-international">International</span><br>
+                        <a href="https://digitallibrary.un.org/record/3858131" target="_blank" rel="noopener noreferrer">
+                            https://digitallibrary.un.org/record/3858131
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
         
-        <!-- ================= ALLGEMEINER HINWEIS ================= -->
+        <!-- GRUPPE 2: Kapitel 5-8 -->
+        <div class="kapitel-gruppe">
+            <h2>Teil II: Institutionen und Gesellschaft (1890-1918)</h2>
+            
+            <!-- Kapitel 5 -->
+            <div class="kapitel-item">
+                <div class="kapitel-titel">
+                    <div class="kapitel-nummer">Kapitel 5</div>
+                    <div class="kapitel-name">Das Dreiklassenwahlrecht – Die Entdemokratisierung der Masse</div>
+                </div>
+                <div class="kapitel-themen">Ungleiche Stimmen, Wahlmanipulation, politische Ohnmacht</div>
+                <ul class="quellen-liste-kapitel">
+                    <li>
+                        <strong>Preußisches Dreiklassenwahlrecht 1849</strong>
+                        <span class="quelle-typ typ-archiv">Archiv</span><br>
+                        <a href="https://www.documentarchiv.de/nzjh/preussen/wahlgesetz1849.html" target="_blank" rel="noopener noreferrer">
+                            https://www.documentarchiv.de/nzjh/preussen/wahlgesetz1849.html
+                        </a>
+                    </li>
+                    <li>
+                        <strong>Reichstagsdebatten zum Wahlrecht</strong>
+                        <span class="quelle-typ typ-archiv">Archiv</span><br>
+                        <a href="https://www.reichstagsprotokolle.de" target="_blank" rel="noopener noreferrer">
+                            https://www.reichstagsprotokolle.de
+                        </a>
+                    </li>
+                    <li>
+                        <strong>Weimarer Verfassung 1919 (zum Vergleich)</strong>
+                        <span class="quelle-typ typ-archiv">Archiv</span><br>
+                        <a href="https://www.documentarchiv.de/wr/wrv.html" target="_blank" rel="noopener noreferrer">
+                            https://www.documentarchiv.de/wr/wrv.html
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Kapitel 6 -->
+            <div class="kapitel-item">
+                <div class="kapitel-titel">
+                    <div class="kapitel-nummer">Kapitel 6</div>
+                    <div class="kapitel-name">Die Bürokratie des Terrors – Polizei, Justiz und der innere Feind</div>
+                </div>
+                <div class="kapitel-themen">Überwachung, Spitzel, politische Justiz, Kontinuitäten</div>
+                <ul class="quellen-liste-kapitel">
+                    <li>
+                        <strong>Gesetz über polizeiliche Überwachung 1850</strong>
+                        <span class="quelle-typ typ-archiv">Archiv</span><br>
+                        <a href="https://www.documentarchiv.de/ns/1850/preussisches-ueberwachungsgesetz.html" target="_blank" rel="noopener noreferrer">
+                            https://www.documentarchiv.de/ns/1850/preussisches-ueberwachungsgesetz.html
+                        </a>
+                    </li>
+                    <li>
+                        <strong>Victor Klemperer – LTI – Lingua Tertii Imperii</strong>
+                        <span class="quelle-typ typ-buch">Buch</span><br>
+                        <a href="https://archive.org/details/LTI_201803" target="_blank" rel="noopener noreferrer">
+                            https://archive.org/details/LTI_201803
+                        </a>
+                    </li>
+                    <li>
+                        <strong>Geheimes Staatsarchiv Preußen</strong>
+                        <span class="quelle-typ typ-archiv">Archiv</span><br>
+                        <a href="https://www.gsta.spk-berlin.de" target="_blank" rel="noopener noreferrer">
+                            https://www.gsta.spk-berlin.de
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Kapitel 7 -->
+            <div class="kapitel-item">
+                <div class="kapitel-titel">
+                    <div class="kapitel-nummer">Kapitel 7</div>
+                    <div class="kapitel-name">Der Federstrich der Feigheit – Wilhelms Selbstentmachtung und Flucht</div>
+                </div>
+                <div class="kapitel-themen">Oktober 1918, Abdankung, Flucht nach Holland, Exil in Doorn</div>
+                <ul class="quellen-liste-kapitel">
+                    <li>
+                        <strong>Wilhelm II. – Memoiren und Schriften</strong>
+                        <span class="quelle-typ typ-archiv">Archiv</span><br>
+                        <a href="https://ghdi.ghi-dc.org/sub_document.cfm?document_id=802" target="_blank" rel="noopener noreferrer">
+                            https://ghdi.ghi-dc.org/sub_document.cfm?document_id=802
+                        </a>
+                    </li>
+                    <li>
+                        <strong>Versailler Vertrag Artikel 227 (Auslieferung Wilhelms II.)</strong>
+                        <span class="quelle-typ typ-international">International</span><br>
+                        <a href="https://www.documentarchiv.de/wr/vv.html#ARTIKEL_227" target="_blank" rel="noopener noreferrer">
+                            https://www.documentarchiv.de/wr/vv.html#ARTIKEL_227
+                        </a>
+                    </li>
+                    <li>
+                        <strong>Ian Kershaw – Hitler 1889–1936</strong>
+                        <span class="quelle-typ typ-buch">Buch</span><br>
+                        <a href="https://archive.org/details/hitlerhubris1889193600kers" target="_blank" rel="noopener noreferrer">
+                            https://archive.org/details/hitlerhubris1889193600kers
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Kapitel 8 -->
+            <div class="kapitel-item">
+                <div class="kapitel-titel">
+                    <div class="kapitel-nummer">Kapitel 8</div>
+                    <div class="kapitel-name">Das geraubte Erbe – Der lange Schatten des Kaiserreichs</div>
+                </div>
+                <div class="kapitel-themen">Militarismus, Elitenkontinuität, Dolchstoßlegende, Vergangenheitspolitik</div>
+                <ul class="quellen-liste-kapitel">
+                    <li>
+                        <strong>Ulrich Herbert – Best: Biographische Studien</strong>
+                        <span class="quelle-typ typ-buch">Buch</span><br>
+                        <a href="https://www.amazon.de/Best-Biographische-Studien-Radikalismus-Weltanschauung/dp/3406356794" target="_blank" rel="noopener noreferrer">
+                            https://www.amazon.de/Best-Biographische-Studien-Radikalismus-Weltanschauung/dp/3406356794
+                        </a>
+                    </li>
+                    <li>
+                        <strong>Norbert Frei – Vergangenheitspolitik</strong>
+                        <span class="quelle-typ typ-buch">Buch</span><br>
+                        <a href="https://www.amazon.de/Vergangenheitspolitik-Anfang-Bundesrepublik-Auseinandersetzung-Nationalsozialismus/dp/340642973X" target="_blank" rel="noopener noreferrer">
+                            https://www.amazon.de/Vergangenheitspolitik-Anfang-Bundesrepublik-Auseinandersetzung-Nationalsozialismus/dp/340642973X
+                        </a>
+                    </li>
+                    <li>
+                        <strong>Institut für Zeitgeschichte – Nachkriegsgeschichte</strong>
+                        <span class="quelle-typ typ-akademisch">Akademisch</span><br>
+                        <a href="https://www.ifz-muenchen.de/forschung/forschungsfelder/nach-1945/" target="_blank" rel="noopener noreferrer">
+                            https://www.ifz-muenchen.de/forschung/forschungsfelder/nach-1945/
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- ================= BONUS-QUELLEN ================= -->
+        <div class="bonus-quellen">
+            <h2>Bonus: Erweiternde Quellen und Perspektiven</h2>
+            <p>Diese Quellen bieten vertiefende Einblicke und erweiternde Forschungsperspektiven, die den Kontext des Werkes bereichern:</p>
+            
+            <div class="kapitel-item">
+                <div class="kapitel-titel">
+                    <div class="kapitel-nummer">Vertiefung</div>
+                    <div class="kapitel-name">Erweiternde Forschungsperspektiven</div>
+                </div>
+                <ul class="quellen-liste-kapitel">
+                    <li>
+                        <strong>Timothy Snyder – Bloodlands</strong>
+                        <span class="quelle-typ typ-buch">Buch</span><br>
+                        <a href="https://www.amazon.de/Bloodlands-Europa-Hitler-Stalin-1933-1945/dp/3406608831" target="_blank" rel="noopener noreferrer">
+                            https://www.amazon.de/Bloodlands-Europa-Hitler-Stalin-1933-1945/dp/3406608831
+                        </a>
+                        <div class="quelle-meta">Europa zwischen Hitler und Stalin 1933-1945</div>
+                    </li>
+                    <li>
+                        <strong>Yale Genocide Studies Program</strong>
+                        <span class="quelle-typ typ-international">International</span><br>
+                        <a href="https://gsp.yale.edu/" target="_blank" rel="noopener noreferrer">
+                            https://gsp.yale.edu/
+                        </a>
+                        <div class="quelle-meta">Forschungsprogramm zu Genozid und Massengewalt</div>
+                    </li>
+                    <li>
+                        <strong>Deutsche Digitale Bibliothek – Kolonialismus</strong>
+                        <span class="quelle-typ typ-archiv">Archiv</span><br>
+                        <a href="https://www.deutsche-digitale-bibliothek.de/content/themen/kolonialismus" target="_blank" rel="noopener noreferrer">
+                            https://www.deutsche-digitale-bibliothek.de/content/themen/kolonialismus
+                        </a>
+                    </li>
+                    <li>
+                        <strong>Bundesarchiv – Digitalisate</strong>
+                        <span class="quelle-typ typ-archiv">Archiv</span><br>
+                        <a href="https://www.bundesarchiv.de/DE/Navigation/Finden/Digitalisate/digitalisate.html" target="_blank" rel="noopener noreferrer">
+                            https://www.bundesarchiv.de/DE/Navigation/Finden/Digitalisate/digitalisate.html
+                        </a>
+                    </li>
+                    <li>
+                        <strong>Holocaust Encyclopedia – United States Holocaust Memorial Museum</strong>
+                        <span class="quelle-typ typ-international">International</span><br>
+                        <a href="https://encyclopedia.ushmm.org/" target="_blank" rel="noopener noreferrer">
+                            https://encyclopedia.ushmm.org/
+                        </a>
+                    </li>
+                    <li>
+                        <strong>Gedenkstättenportal zu Orten der Erinnerung</strong>
+                        <span class="quelle-typ typ-akademisch">Akademisch</span><br>
+                        <a href="https://www.gedenkstaettenportal.de/" target="_blank" rel="noopener noreferrer">
+                            https://www.gedenkstaettenportal.de/
+                        </a>
+                    </li>
+                    <li>
+                        <strong>1914-1918 Online – International Encyclopedia of WWI</strong>
+                        <span class="quelle-typ typ-international">International</span><br>
+                        <a href="https://encyclopedia.1914-1918-online.net/home/" target="_blank" rel="noopener noreferrer">
+                            https://encyclopedia.1914-1918-online.net/home/
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ================= HINWEIS ZU DIGITALEN QUELLEN ================= -->
         <div class="quellen-hinweis">
-            <p><strong>Hinweis zu externen Links:</strong> Diese Website enthält Verlinkungen zu externen Webseiten Dritter. Ich habe keinen Einfluss auf deren Inhalte und übernehme keine Haftung. Sollten Ihnen problematische Inhalte auffallen, bitte ich um einen Hinweis.</p>
-            <p><strong>📍 Nutzungshinweise zu den Quellen:</strong> Die hier aufgeführten Quellen umfassen Archivbestände, digitale Sammlungen und Fachpublikationen, die die historische Analyse des Werkes belegen. Reichstagsprotokolle sind gesetzliche Amtspublikationen, die regelmäßig online verfügbar gemacht werden.</p>
+            <h3>Hinweise zur Quellennutzung</h3>
+            <p><strong>Digitaler Zugang:</strong> Die hier versammelten Quellen sind überwiegend digital frei zugänglich. Archive wie das Bundesarchiv, die Deutsche Digitale Bibliothek und internationale Forschungseinrichtungen bieten umfangreiche Materialien zur vertiefenden Recherche.</p>
+            <p><strong>Wissenschaftliche Standards:</strong> Alle zitierten Werke entsprechen wissenschaftlichen Standards. Bei Büchern sind sowohl Verlagslinks als auch – wo verfügbar – Links zu digitalen Versionen (z.B. Internet Archive) angegeben.</p>
+            <p><strong>Aktualität:</strong> Die Links wurden zum Zeitpunkt der Veröffentlichung geprüft. Sollte ein Link nicht mehr funktionieren, kann die Quelle meist über Suchmaschinen mit den angegebenen Titeln und Autoren gefunden werden.</p>
+            <p><strong>Zitierweise:</strong> Für wissenschaftliches Arbeiten empfehlen wir die Originalausgaben der angegebenen Werke zu konsultieren und gemäß den gängigen Zitierregeln zu zitieren.</p>
+            <p><strong>Haftungsausschluss:</strong> Diese Website enthält Links zu externen Websites Dritter. Ich habe keinen Einfluss auf deren Inhalte und übernehme keine Haftung. Sollten Ihnen problematische Inhalte auffallen, bitte ich um einen Hinweis.</p>
         </div>
     </section>
 </main>
 
 <!-- ================= SOCIAL MEDIA ================= -->
 <section class="social-section">
-  <h3 class="social-title">Folgen Sie den Gedanken</h3>
-  <div class="social-grid">
-    <!-- Snapchat -->
-    <a href="https://snapchat.com/t/8wVZ1Wpu" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Snapchat">
-      <div class="social-icon-wrapper">
-        <svg class="social-icon" viewBox="0 0 24 24">
-          <path d="M5.83 2H18.2c1.14 0 2.07.93 2.07 2.07v15.86c0 1.14-.93 2.07-2.07 2.07H5.83A2.07 2.07 0 0 1 3.76 19.9V4.07C3.76 2.93 4.69 2 5.83 2zm6.44 16.27c1.33 0 2.41-1.08 2.41-2.41 0-.44-.12-.85-.32-1.21.23-.05.47-.08.72-.08 1.33 0 2.41 1.08 2.41 2.41 0 1.33-1.08 2.41-2.41 2.41-1.33 0-2.41-1.08-2.41-2.41 0-.44.12-.85.32-1.21-.23.05-.47.08-.72.08-1.33 0-2.41-1.08-2.41-2.41 0-1.33 1.08-2.41 2.41-2.41.44 0 .85.12 1.21.32.05-.23.08-.47.08-.72 0-1.33-1.08-2.41-2.41-2.41-1.33 0-2.41 1.08-2.41 2.41 0 1.33 1.08 2.41 2.41 2.41.44 0 .85-.12 1.21-.32-.05.23-.08.47-.08.72 0 1.33 1.08 2.41 2.41 2.41z"/>
-        </svg>
-      </div>
-      <span class="social-name">Snapchat</span>
-    </a>
-    
-    <!-- Clapper -->
-    <a href="https://clapperapp.com/M.Silberhain" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Clapper">
-      <div class="social-icon-wrapper">
-        <svg class="social-icon" viewBox="0 0 24 24">
-          <path d="M19.5 3H4.5C3.67 3 3 3.67 3 4.5v15C3 20.33 3.67 21 4.5 21h15c.83 0 1.5-.67 1.5-1.5v-15C21 3.67 20.33 3 19.5 3zM10 17H6v-2h4v2zm0-4H6v-2h4v2zm0-4H6V7h4v2zm8 8h-6v-2h6v2zm0-4h-6v-2h6v2zm0-4h-6V7h6v2z"/>
-        </svg>
-      </div>
-      <span class="social-name">Clapper</span>
-    </a>
-    
-    <!-- TikTok -->
-    <a href="https://www.tiktok.com/@m.silberhain" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="TikTok">
-      <div class="social-icon-wrapper">
-        <svg class="social-icon" viewBox="0 0 24 24">
-          <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.10-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
-        </svg>
-      </div>
-      <span class="social-name">TikTok</span>
-    </a>
-    
-    <!-- Telegram -->
-    <a href="https://t.me/matthiassilberhain" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Telegram">
-      <div class="social-icon-wrapper">
-        <svg class="social-icon" viewBox="0 0 24 24">
-          <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.697.064-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.81.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
-        </svg>
-      </div>
-      <span class="social-name">Telegram</span>
-    </a>
-    
-    <!-- Instagram -->
-    <a href="https://www.instagram.com/matthiassilberhain" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
-      <div class="social-icon-wrapper">
-        <svg class="social-icon" viewBox="0 0 24 24">
-          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z"/>
-        </svg>
-      </div>
-      <span class="social-name">Instagram</span>
-    </a>
-    
-    <!-- Facebook -->
-    <a href="https://www.facebook.com/share/17ZahbpKWN/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook">
-      <div class="social-icon-wrapper">
-        <svg class="social-icon" viewBox="0 0 24 24">
-          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-        </svg>
-      </div>
-      <span class="social-name">Facebook</span>
-    </a>
-    
-    <!-- YouTube -->
-    <a href="https://youtube.com/@matthiassilberhain" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="YouTube">
-      <div class="social-icon-wrapper">
-        <svg class="social-icon" viewBox="0 0 24 24">
-          <path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.506 0-9.396.501A3.007 3.007 0 00.528 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/>
-        </svg>
-      </div>
-      <span class="social-name">YouTube</span>
-    </a>
-  </div>
+    <h3 class="social-title">Folgen Sie den Gedanken</h3>
+    <div class="social-grid">
+        <!-- Snapchat -->
+        <a href="https://snapchat.com/t/8wVZ1Wpu" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Snapchat">
+            <div class="social-icon-wrapper">
+                <svg class="social-icon" viewBox="0 0 24 24">
+                    <path d="M5.83 2H18.2c1.14 0 2.07.93 2.07 2.07v15.86c0 1.14-.93 2.07-2.07 2.07H5.83A2.07 2.07 0 0 1 3.76 19.9V4.07C3.76 2.93 4.69 2 5.83 2zm6.44 16.27c1.33 0 2.41-1.08 2.41-2.41 0-.44-.12-.85-.32-1.21.23-.05.47-.08.72-.08 1.33 0 2.41 1.08 2.41 2.41 0 1.33-1.08 2.41-2.41 2.41-1.33 0-2.41-1.08-2.41-2.41 0-.44.12-.85.32-1.21-.23.05-.47.08-.72.08-1.33 0-2.41-1.08-2.41-2.41 0-1.33 1.08-2.41 2.41-2.41.44 0 .85.12 1.21.32.05-.23.08-.47.08-.72 0-1.33-1.08-2.41-2.41-2.41-1.33 0-2.41 1.08-2.41 2.41 0 1.33 1.08 2.41 2.41 2.41.44 0 .85-.12 1.21-.32-.05.23-.08.47-.08.72 0 1.33 1.08 2.41 2.41 2.41z"/>
+                </svg>
+            </div>
+            <span class="social-name">Snapchat</span>
+        </a>
+        
+        <!-- Clapper -->
+        <a href="https://clapperapp.com/M.Silberhain" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Clapper">
+            <div class="social-icon-wrapper">
+                <svg class="social-icon" viewBox="0 0 24 24">
+                    <path d="M19.5 3H4.5C3.67 3 3 3.67 3 4.5v15C3 20.33 3.67 21 4.5 21h15c.83 0 1.5-.67 1.5-1.5v-15C21 3.67 20.33 3 19.5 3zM10 17H6v-2h4v2zm0-4H6v-2h4v2zm0-4H6V7h4v2zm8 8h-6v-2h6v2zm0-4h-6v-2h6v2zm0-4h-6V7h6v2z"/>
+                </svg>
+            </div>
+            <span class="social-name">Clapper</span>
+        </a>
+        
+        <!-- TikTok -->
+        <a href="https://www.tiktok.com/@m.silberhain" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="TikTok">
+            <div class="social-icon-wrapper">
+                <svg class="social-icon" viewBox="0 0 24 24">
+                    <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.10-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+                </svg>
+            </div>
+            <span class="social-name">TikTok</span>
+        </a>
+        
+        <!-- Telegram -->
+        <a href="https://t.me/matthiassilberhain" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Telegram">
+            <div class="social-icon-wrapper">
+                <svg class="social-icon" viewBox="0 0 24 24">
+                    <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.697.064-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.81.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                </svg>
+            </div>
+            <span class="social-name">Telegram</span>
+        </a>
+        
+        <!-- Instagram -->
+        <a href="https://www.instagram.com/matthiassilberhain" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
+            <div class="social-icon-wrapper">
+                <svg class="social-icon" viewBox="0 0 24 24">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z"/>
+                </svg>
+            </div>
+            <span class="social-name">Instagram</span>
+        </a>
+        
+        <!-- Facebook -->
+        <a href="https://www.facebook.com/share/17ZahbpKWN/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook">
+            <div class="social-icon-wrapper">
+                <svg class="social-icon" viewBox="0 0 24 24">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                </svg>
+            </div>
+            <span class="social-name">Facebook</span>
+        </a>
+        
+        <!-- YouTube -->
+        <a href="https://youtube.com/@matthiassilberhain" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="YouTube">
+            <div class="social-icon-wrapper">
+                <svg class="social-icon" viewBox="0 0 24 24">
+                    <path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.506 0-9.396.501A3.007 3.007 0 00.528 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/>
+                </svg>
+            </div>
+            <span class="social-name">YouTube</span>
+        </a>
+    </div>
 </section>
-<div class="lichtkante"></div>
 
 <!-- ================= FOOTER ================= -->
 <footer class="footer">
@@ -769,12 +1316,75 @@
         <a href="impressum.html">Impressum</a>
         <a href="datenschutz.html">Datenschutz</a>
     </div>
-    <p>© <span id="jahr"></span> Matthias Silberhain</p>
+    <p>© <span id="jahr">2024</span> Matthias Silberhain</p>
 </footer>
 
 <!-- ================= JAVASCRIPT ================= -->
-<script src="assets/js/global.js"></script>
-<script src="assets/js/menu.js"></script>
+<script>
+    // Dark Mode Toggle
+    document.getElementById('darkModeToggle').addEventListener('click', function() {
+        document.body.classList.toggle('dark-mode');
+        document.documentElement.classList.toggle('dark-mode');
+        
+        // Speichern des Zustands im localStorage
+        if (document.body.classList.contains('dark-mode')) {
+            localStorage.setItem('ms-theme', 'dark');
+        } else {
+            localStorage.setItem('ms-theme', 'light');
+        }
+    });
+    
+    // Burger Menu Toggle
+    document.getElementById('burger').addEventListener('click', function() {
+        const nav = document.getElementById('navigation');
+        nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+        
+        // Animation für Burger
+        const spans = this.querySelectorAll('span');
+        if (nav.style.display === 'flex') {
+            spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+            spans[1].style.opacity = '0';
+            spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+        } else {
+            spans[0].style.transform = 'none';
+            spans[1].style.opacity = '1';
+            spans[2].style.transform = 'none';
+        }
+    });
+    
+    // Jahr im Footer aktualisieren
+    document.getElementById('jahr').textContent = new Date().getFullYear();
+    
+    // Initial Dark Mode Check
+    (function() {
+        const savedTheme = localStorage.getItem('ms-theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+            document.body.classList.add('dark-mode');
+            document.documentElement.classList.add('dark-mode');
+        }
+    })();
+    
+    // Responsive Navigation
+    window.addEventListener('resize', function() {
+        const nav = document.getElementById('navigation');
+        const burger = document.getElementById('burger');
+        const spans = burger.querySelectorAll('span');
+        
+        if (window.innerWidth > 768) {
+            nav.style.display = 'flex';
+            spans[0].style.transform = 'none';
+            spans[1].style.opacity = '1';
+            spans[2].style.transform = 'none';
+        } else {
+            nav.style.display = 'none';
+        }
+    });
+    
+    // Initial responsive check
+    window.dispatchEvent(new Event('resize'));
+</script>
 
 </body>
 </html>
