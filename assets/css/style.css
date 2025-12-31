@@ -1474,3 +1474,96 @@ body.dark-mode .hauptnavigation a.active {
 .no-js .hauptnavigation {
     display: flex;
 }
+/* ==========================================================================
+   ULTIMATIVE FIXES FÜR MOBILE-MENÜ
+   ========================================================================== */
+
+/* MENÜ OVERLAY */
+.menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 998;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    cursor: pointer;
+}
+
+.menu-overlay.active {
+    display: block;
+    opacity: 1;
+}
+
+/* BODY SCROLL SPERRE */
+body.menu-open {
+    overflow: hidden !important;
+}
+
+/* MOBILE MENÜ SPEZIFISCH */
+@media screen and (max-width: 768px) {
+    /* BURGER SICHTBAR */
+    .burger {
+        display: flex !important;
+        position: absolute;
+        top: 30px;
+        right: 20px;
+        z-index: 1001;
+        background: rgba(0, 0, 0, 0.7);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 4px;
+        padding: 8px;
+    }
+    
+    /* NAVIGATION MOBILE */
+    .hauptnavigation {
+        display: none !important;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: #000000;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        padding-top: 100px;
+        z-index: 999;
+        opacity: 0;
+        transform: translateX(-100%);
+        transition: all 0.4s ease;
+        overflow-y: auto;
+    }
+    
+    .hauptnavigation.aktiv {
+        display: flex !important;
+        opacity: 1;
+        transform: translateX(0);
+    }
+    
+    /* MENÜ-LINKS */
+    .hauptnavigation a {
+        display: block;
+        width: 90%;
+        max-width: 300px;
+        padding: 15px 20px;
+        margin: 10px 0;
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        text-align: center;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 4px;
+        text-decoration: none;
+    }
+    
+    /* DARK MODE TOGGLE POSITION */
+    .dark-mode-toggle {
+        position: absolute;
+        top: 30px;
+        left: 20px;
+        z-index: 1000;
+    }
+}
