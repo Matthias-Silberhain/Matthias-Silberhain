@@ -1529,6 +1529,21 @@ button, a, .burger, .hauptnavigation a, .silber-button, .social-link {
     color: #333 !important;
     text-align: justify;
   }
+} /* ← HIER FEHLTE DAS SCHLIESSENDE } */
+
+/* ==========================================================================
+   FIX FÜR BLAUE LINKS - ABSOLUTE PRIORITÄT
+   ========================================================================== */
+
+/* 1. ALLE Links in Datenschutz/Impressum silber machen */
+.datenschutz-content a,
+.impressum-content a {
+    color: #c0c0c0 !important;
+    -webkit-text-fill-color: #c0c0c0 !important;
+    text-decoration: none !important;
+    border-bottom: 1px solid rgba(200, 200, 200, 0.4) !important;
+    transition: all 0.3s ease !important;
+}
 
 /* ==========================================================================
    FIX FÜR BLAUE LINKS - ABSOLUTE PRIORITÄT
