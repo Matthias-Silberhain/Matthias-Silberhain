@@ -1,108 +1,93 @@
 // ============================================================================
-// GLOBAL.JS - KORRIGIERTER PRELOADER
+// GLOBAL.JS - KOMPLETT KORRIGIERT FÜR ALLE GERÄTE
 // ============================================================================
 
-console.log('🚀 global.js wird geladen...');
+console.log('🚀 global.js wird geladen - Mobile & Desktop optimiert');
 
 // ============================================================================
-// 1. PRELOADER ANIMATION - KORRIGIERT
+// 1. PRELOADER - SIMPLER & ROBUSTER FÜR ALLE GERÄTE
 // ============================================================================
 
 (function() {
     'use strict';
     
-    console.log('🌀 Initialisiere Preloader...');
+    // Warte bis die Seite KOMPLETT geladen ist (inkl. Bilder)
+    if (document.readyState === 'complete') {
+        initPreloader();
+    } else {
+        window.addEventListener('load', function() {
+            setTimeout(initPreloader, 100);
+        });
+    }
     
     function initPreloader() {
-        console.log('🔍 Suche Preloader Elemente...');
+        console.log('🎬 Starte Preloader...');
         
         const preloader = document.getElementById('preloader');
         const typeText = document.getElementById('type-text');
         
+        // Fallback: Wenn kein Preloader existiert
         if (!preloader) {
-            console.error('❌ Preloader DIV nicht gefunden!');
-            console.log('🔍 Suche nach:', '#preloader');
-            console.log('🔍 Gefundene Elemente mit ID preloader:', document.querySelectorAll('#preloader').length);
+            console.log('⚠️ Kein Preloader gefunden, überspringe...');
+            enableInteractiveElements();
             return;
         }
         
-        if (!typeText) {
-            console.warn('⚠️ type-text Element nicht gefunden, zeige nur Preloader');
-        }
+        console.log('✅ Preloader gefunden');
         
-        console.log('✅ Preloader Elemente gefunden');
-        
-        // Preloader sofort sichtbar machen (falls CSS es ausblendet)
+        // Sicherstellen dass Preloader sichtbar ist
         preloader.style.display = 'flex';
         preloader.style.opacity = '1';
         preloader.style.visibility = 'visible';
         preloader.style.pointerEvents = 'none';
         
+        // Text für Typing Animation
         const fullText = "MATTHIAS SILBERHAIN";
         let charIndex = 0;
-        const typingSpeed = 100;
         
         function typeCharacter() {
             if (typeText && charIndex < fullText.length) {
-                const currentText = typeText.textContent || '';
                 const nextChar = fullText.charAt(charIndex);
                 
                 if (nextChar === ' ') {
-                    typeText.innerHTML = currentText + '&nbsp;';
+                    typeText.innerHTML += '&nbsp;';
                 } else {
-                    typeText.textContent = currentText + nextChar;
+                    typeText.textContent += nextChar;
                 }
                 
                 charIndex++;
-                setTimeout(typeCharacter, typingSpeed);
+                
+                // Langsamere Animation auf Mobile
+                const isMobile = window.innerWidth <= 768;
+                const speed = isMobile ? 150 : 100;
+                
+                setTimeout(typeCharacter, speed);
             } else {
-                // Animation beendet oder kein typeText
+                // Animation beendet
                 console.log('✅ Typing Animation beendet');
                 
-                // Kurze Pause bevor Preloader ausgeblendet wird
+                // Kurze Pause, dann ausblenden
                 setTimeout(() => {
-                    console.log('👋 Verstecke Preloader...');
-                    
-                    // Preloader ausblenden mit CSS-Klasse
                     preloader.classList.add('hidden');
                     
-                    // Nach der CSS-Transition komplett ausblenden
+                    // Nach Transition komplett verstecken
                     setTimeout(() => {
                         preloader.style.display = 'none';
-                        console.log('✅ Preloader komplett ausgeblendet');
+                        console.log('✅ Preloader ausgeblendet');
                         
-                        // Interaktive Elemente aktivieren
+                        // Interaktive Elemente freigeben
                         enableInteractiveElements();
-                    }, 600); // Muss mit CSS transition-duration übereinstimmen
+                    }, 600);
                 }, 800);
             }
         }
         
-        // Starte Typing Animation nach kurzer Verzögerung
+        // Starte Animation
         setTimeout(() => {
-            console.log('⌨️ Starte Typing Animation...');
-            
-            // typeText leeren, falls noch nicht leer
-            if (typeText) {
-                typeText.textContent = '';
-            }
-            
+            if (typeText) typeText.textContent = '';
             typeCharacter();
         }, 300);
     }
-    
-    // Starte Preloader WENN das DOM geladen ist
-    if (document.readyState === 'loading') {
-        console.log('📄 Warte auf DOM...');
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('📄 DOM geladen, starte Preloader...');
-            setTimeout(initPreloader, 100);
-        });
-    } else {
-        console.log('📄 DOM bereits geladen, starte Preloader direkt...');
-        setTimeout(initPreloader, 100);
-    }
-    
 })();
 
 // ============================================================================
@@ -110,62 +95,89 @@ console.log('🚀 global.js wird geladen...');
 // ============================================================================
 
 function enableInteractiveElements() {
-    console.log('🖱️ Aktiviere interaktive Elemente...');
+    console.log('🖱️ Aktiviere alle klickbaren Elemente...');
     
-    const interactiveSelectors = [
+    // Liste aller interaktiven Elemente
+    const elementsToActivate = [
         'button',
         'a',
         '.burger',
-        '.dark-mode-toggle',
+        '.dark-mode-toggle', 
         '.silber-button',
         '.social-link',
-        '.hauptnavigation a'
+        '.hauptnavigation a',
+        '.karussell-button',
+        '.comment-tag',
+        '.buchauswahl-item',
+        '.star-rating label',
+        '.bewertung-submit'
     ];
     
-    interactiveSelectors.forEach(selector => {
+    elementsToActivate.forEach(selector => {
         try {
             document.querySelectorAll(selector).forEach(el => {
                 el.style.pointerEvents = 'auto';
                 el.style.cursor = 'pointer';
+                el.style.touchAction = 'manipulation'; // Wichtig für Mobile!
+                el.style.webkitTapHighlightColor = 'rgba(200, 200, 200, 0.3)';
             });
         } catch (e) {
-            console.warn('⚠️ Fehler bei:', selector, e);
+            // Ignoriere Fehler bei nicht vorhandenen Selektoren
         }
     });
     
-    console.log('✅ Interaktive Elemente aktiviert');
+    // Speziell für Burger-Menü auf Mobile
+    const burger = document.getElementById('burger');
+    if (burger) {
+        burger.style.touchAction = 'manipulation';
+        burger.style.webkitTapHighlightColor = 'rgba(255, 255, 255, 0.3)';
+    }
+    
+    console.log('✅ Alle Elemente sind jetzt klickbar');
 }
 
 // ============================================================================
-// 3. DARK MODE - VEREINFACHT
+// 3. DARK MODE - EINFACH & FUNKTIONIERT
 // ============================================================================
 
 (function() {
     'use strict';
     
+    // Sofortiges Setup für Dark Mode (verhindert Flackern)
+    function setupDarkModeImmediately() {
+        try {
+            const savedTheme = localStorage.getItem('ms-theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            
+            if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+                document.documentElement.classList.add('dark-mode');
+                document.body.classList.add('dark-mode');
+            }
+        } catch (e) {
+            // Ignoriere Fehler
+        }
+    }
+    
+    // Initial sofort ausführen
+    setupDarkModeImmediately();
+    
+    // Vollständige Initialisierung nach Preloader
     function initDarkMode() {
         const toggleBtn = document.getElementById('darkModeToggle');
+        
         if (!toggleBtn) {
-            console.log('🔍 Dark Mode Button nicht gefunden, versuche es später...');
+            console.log('🔄 Warte auf Dark Mode Button...');
             setTimeout(initDarkMode, 500);
             return;
         }
         
         console.log('✅ Dark Mode Button gefunden');
         
-        // Theme aus localStorage oder System
-        const savedTheme = localStorage.getItem('ms-theme');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const initialTheme = savedTheme || (prefersDark ? 'dark' : 'light');
-        
-        // Theme anwenden
-        if (initialTheme === 'dark') {
-            document.documentElement.classList.add('dark-mode');
-            document.body.classList.add('dark-mode');
-            console.log('🌙 Dark Mode aktiv (initial)');
-        } else {
-            console.log('☀️ Light Mode aktiv (initial)');
-        }
+        // Button für Mobile optimieren
+        toggleBtn.style.touchAction = 'manipulation';
+        toggleBtn.style.webkitTapHighlightColor = 'rgba(255, 255, 255, 0.3)';
+        toggleBtn.style.minWidth = '44px'; // Mindestgröße für Touch
+        toggleBtn.style.minHeight = '44px';
         
         // Toggle-Funktion
         function toggleTheme() {
@@ -175,47 +187,36 @@ function enableInteractiveElements() {
                 document.documentElement.classList.remove('dark-mode');
                 document.body.classList.remove('dark-mode');
                 localStorage.setItem('ms-theme', 'light');
-                console.log('☀️ Zu Light Mode gewechselt');
             } else {
                 document.documentElement.classList.add('dark-mode');
                 document.body.classList.add('dark-mode');
                 localStorage.setItem('ms-theme', 'dark');
-                console.log('🌙 Zu Dark Mode gewechselt');
             }
             
-            // Button-Animation
-            toggleBtn.style.transform = 'scale(1.1)';
-            setTimeout(() => {
-                toggleBtn.style.transform = 'scale(1)';
-            }, 200);
+            // Haptic Feedback für Mobile
+            if (navigator.vibrate) {
+                navigator.vibrate(50);
+            }
         }
         
-        // Event Listener
+        // Event Listener - für Mobile und Desktop
         toggleBtn.addEventListener('click', toggleTheme);
+        toggleBtn.addEventListener('touchstart', function(e) {
+            e.preventDefault(); // Verhindert Doppel-Auslösung
+            toggleTheme();
+        }, { passive: false });
+        
+        // Tastatur-Support
         toggleBtn.addEventListener('keydown', function(e) {
             if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
                 toggleTheme();
             }
         });
-        
-        // System-Änderungen überwachen
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
-            if (!localStorage.getItem('ms-theme')) {
-                if (e.matches) {
-                    document.documentElement.classList.add('dark-mode');
-                    document.body.classList.add('dark-mode');
-                } else {
-                    document.documentElement.classList.remove('dark-mode');
-                    document.body.classList.remove('dark-mode');
-                }
-            }
-        });
     }
     
-    // Starte Dark Mode nach Preloader
-    setTimeout(initDarkMode, 1500);
-    
+    // Starte nach Preloader
+    setTimeout(initDarkMode, 2000);
 })();
 
 // ============================================================================
@@ -229,41 +230,113 @@ function updateYear() {
         yearElements.forEach(el => {
             el.textContent = currentYear;
         });
-        console.log('📅 Jahreszahl aktualisiert:', currentYear);
     }
 }
 
 // ============================================================================
-// 5. HAUPTHAUPT-INITIALISIERUNG
+// 5. MOBILE-OPTIMIERUNGEN
+// ============================================================================
+
+(function() {
+    'use strict';
+    
+    // Verhindert Zoom bei Doppelklick auf iOS
+    document.addEventListener('touchstart', function(event) {
+        if (event.touches.length > 1) {
+            event.preventDefault();
+        }
+    }, { passive: false });
+    
+    // Verhindert Hervorhebung bei langem Touch
+    document.addEventListener('touchstart', function(event) {
+        if (event.target.tagName === 'A' || event.target.tagName === 'BUTTON') {
+            event.target.style.webkitTapHighlightColor = 'rgba(200, 200, 200, 0.3)';
+        }
+    });
+    
+    // Bessere Performance auf Mobile
+    if ('connection' in navigator) {
+        const connection = navigator.connection;
+        if (connection.saveData || connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g') {
+            console.log('📱 Mobile mit langsamer Verbindung erkannt');
+            // Hier könntest du weniger Animationen laden etc.
+        }
+    }
+})();
+
+// ============================================================================
+// 6. HAUPTHAUPT-INITIALISIERUNG
 // ============================================================================
 
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('📄 DOM vollständig geladen');
+    console.log('📄 DOM ist bereit');
     
-    // Jahreszahl sofort aktualisieren
+    // Jahreszahl sofort setzen
     updateYear();
     
-    // Debug: Zeige alle Elemente mit ID preloader
-    console.log('🔍 Anzahl #preloader Elemente:', document.querySelectorAll('#preloader').length);
+    // Prüfe ob wir auf Mobile sind
+    const isMobile = window.innerWidth <= 768;
+    console.log(isMobile ? '📱 Mobile erkannt' : '🖥️ Desktop erkannt');
     
-    // Check ob Preloader existiert
+    // Lade Performance für Mobile verbessern
+    if (isMobile) {
+        // Verzögere nicht-kritische Scripts
+        setTimeout(() => {
+            // Hier könnten spätere Initialisierungen kommen
+        }, 1000);
+    }
+});
+
+// ============================================================================
+// 7. FEHLERBEHANDLUNG & FALLBACKS
+// ============================================================================
+
+// Sanftes Fallback wenn Preloader nicht funktioniert
+setTimeout(function() {
     const preloader = document.getElementById('preloader');
-    if (preloader) {
-        console.log('✅ Preloader gefunden, sollte automatisch starten');
-        preloader.style.display = 'flex'; // Sicherstellen, dass er sichtbar ist
-    } else {
-        console.error('❌ KEIN PRELOADER GEFUNDEN!');
-        // Ohne Preloader sofort interaktive Elemente aktivieren
+    if (preloader && preloader.style.display === 'flex') {
+        console.log('⚠️ Preloader hängt, überspringe...');
+        preloader.style.display = 'none';
+        enableInteractiveElements();
+    }
+}, 10000); // Nach 10 Sekunden Timeout
+
+// Globale Error-Handling
+window.addEventListener('error', function(e) {
+    console.error('❌ Fehler:', e.message);
+    
+    // Bei kritischen Fehlern, sicherstellen dass Seite benutzbar ist
+    if (e.message.includes('preloader') || e.message.includes('undefined')) {
         enableInteractiveElements();
     }
 });
 
 // ============================================================================
-// 6. FEHLERBEHANDLUNG
+// 8. HELPER FUNCTIONS
 // ============================================================================
 
-window.addEventListener('error', function(e) {
-    console.error('❌ JavaScript Fehler:', e.message, 'in', e.filename, 'Zeile:', e.lineno);
+// Sanftes Scrollen (mit Mobile-Support)
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href !== '#') {
+            e.preventDefault();
+            const target = document.querySelector(href);
+            if (target) {
+                window.scrollTo({
+                    top: target.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            }
+        }
+    });
 });
 
-console.log('✅ global.js vollständig geladen');
+// Verbesserte Touch-Unterstützung für Formulare
+document.querySelectorAll('input, textarea, select').forEach(element => {
+    element.addEventListener('touchstart', function() {
+        this.style.fontSize = '16px'; // Verhindert iOS Zoom
+    });
+});
+
+console.log('✅ global.js vollständig geladen und bereit');
