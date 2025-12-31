@@ -1,10 +1,11 @@
 /**
- * MOBILE MENU - FÜR ALLE SEITEN
- * Universelle Version für konsistentes Verhalten
+ * MOBILE MENU - Matthias Silberhain Website
+ * Burger Menu für mobile Navigation
+ * Version 2.1 - Robust, für alle Seiten
  */
 
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('🍔 Menu.js - Für alle Seiten geladen');
+    console.log('🍔 Menu.js geladen');
     
     // Defensive Prüfung aller Elemente
     const burgerButton = document.getElementById('burgerButton');
@@ -27,7 +28,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // Menü umschalten
     function toggleMenu() {
         const isOpen = burgerButton.classList.contains('aktiv');
-        isOpen ? closeMenu() : openMenu();
+        
+        // Toggle mit Animation
+        if (!isOpen) {
+            openMenu();
+        } else {
+            closeMenu();
+        }
     }
     
     // Menü öffnen
@@ -37,17 +44,21 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if (menuOverlay) {
             menuOverlay.classList.add('active');
-            setTimeout(() => menuOverlay.style.opacity = '1', 10);
+            setTimeout(() => {
+                menuOverlay.style.opacity = '1';
+            }, 10);
         }
         
         document.body.classList.add('menu-open');
         
-        // Fokus auf ersten Link setzen
+        // Fokus auf ersten Link setzen für Accessibility
         setTimeout(() => {
             if (navLinks.length > 0) {
                 navLinks[0].focus();
             }
         }, 300);
+        
+        console.log('Mobile Menu geöffnet');
     }
     
     // Menü schließen
@@ -61,6 +72,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         document.body.classList.remove('menu-open');
+        
+        console.log('Mobile Menu geschlossen');
     }
     
     // Event Listeners
@@ -70,6 +83,7 @@ document.addEventListener('DOMContentLoaded', function() {
         menuOverlay.addEventListener('click', closeMenu);
     }
     
+    // Menü schließen bei Link-Klick (mobile)
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
             if (window.innerWidth < 768) {
@@ -86,17 +100,36 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Menü auf Desktop schließen
+    // Menü auf Desktop automatisch schließen
+    let resizeTimer;
     window.addEventListener('resize', () => {
-        if (window.innerWidth > 768 && burgerButton.classList.contains('aktiv')) {
-            closeMenu();
-        }
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            if (window.innerWidth > 768 && burgerButton.classList.contains('aktiv')) {
+                closeMenu();
+            }
+        }, 250);
     });
     
-    // ARIA Attribute setzen
+    // ARIA Attribute für Accessibility
     burgerButton.setAttribute('aria-expanded', 'false');
     burgerButton.setAttribute('aria-controls', 'mainNav');
     burgerButton.setAttribute('aria-label', 'Hauptmenü öffnen');
+    
+    // Update ARIA Attribute bei Zustandsänderung
+    const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+            if (mutation.attributeName === 'class') {
+                const isExpanded = burgerButton.classList.contains('aktiv');
+                burgerButton.setAttribute('aria-expanded', isExpanded.toString());
+                burgerButton.setAttribute('aria-label', 
+                    isExpanded ? 'Hauptmenü schließen' : 'Hauptmenü öffnen'
+                );
+            }
+        });
+    });
+    
+    observer.observe(burgerButton, { attributes: true });
     
     console.log('✅ Menu.js für alle Seiten initialisiert');
 });
