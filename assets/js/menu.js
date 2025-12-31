@@ -1,76 +1,92 @@
 // assets/js/menu.js
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('Mobile Menü JS startet');
+    console.log('Mobile Menü JS gestartet');
     
-    const burger = document.querySelector('.burger');
-    const hauptnavigation = document.querySelector('.hauptnavigation');
-    const menuOverlay = document.querySelector('.menu-overlay');
+    // Elemente mit NEUEN IDs auswählen
+    const burger = document.getElementById('burgerMenu');
+    const navigation = document.getElementById('mainNavigation');
+    const menuOverlay = document.getElementById('menuOverlay');
     
-    if (!burger || !hauptnavigation) {
-        console.error('Menü-Elemente nicht gefunden');
+    if (!burger || !navigation) {
+        console.error('Menü-Elemente nicht gefunden!');
         return;
     }
     
-    // ARIA-Attribute setzen
-    burger.setAttribute('aria-label', 'Hauptmenü öffnen oder schließen');
-    burger.setAttribute('aria-expanded', 'false');
-    burger.setAttribute('aria-controls', 'hauptnavigation');
+    console.log('✅ Burger gefunden:', burger);
+    console.log('✅ Navigation gefunden:', navigation);
+    console.log('✅ Overlay gefunden:', menuOverlay);
+    
+    // Prüfe ob Mobile
+    function isMobile() {
+        return window.innerWidth <= 768;
+    }
+    
+    // Initialzustand setzen
+    function initMenu() {
+        if (isMobile()) {
+            navigation.style.display = 'none';
+            navigation.style.opacity = '0';
+            burger.style.display = 'flex';
+        } else {
+            navigation.style.display = 'flex';
+            navigation.style.opacity = '1';
+            burger.style.display = 'none';
+        }
+    }
     
     // Menü öffnen
     function openMenu() {
-        console.log('Menü öffnen');
+        console.log('🟢 Öffne Menü');
         burger.classList.add('aktiv');
-        hauptnavigation.classList.add('aktiv');
+        navigation.classList.add('aktiv');
+        navigation.style.display = 'flex';
         
-        // Mobile: Display auf flex setzen
-        if (window.innerWidth <= 768) {
-            hauptnavigation.style.display = 'flex';
-        }
+        // Kurze Verzögerung für Transition
+        setTimeout(() => {
+            navigation.style.opacity = '1';
+        }, 10);
         
-        // Overlay aktivieren
         if (menuOverlay) {
             menuOverlay.classList.add('active');
         }
         
-        // Body scrollen sperren
+        // Scrollen sperren
         document.body.style.overflow = 'hidden';
-        document.body.style.position = 'fixed';
-        document.body.style.width = '100%';
-        document.body.style.height = '100%';
+        document.body.classList.add('menu-open');
+        burger.setAttribute('aria-expanded', 'true');
     }
     
     // Menü schließen
     function closeMenu() {
-        console.log('Menü schließen');
+        console.log('🔴 Schließe Menü');
         burger.classList.remove('aktiv');
-        hauptnavigation.classList.remove('aktiv');
+        navigation.style.opacity = '0';
         
-        // Overlay deaktivieren
+        setTimeout(() => {
+            navigation.classList.remove('aktiv');
+            if (isMobile()) {
+                navigation.style.display = 'none';
+            }
+        }, 300);
+        
         if (menuOverlay) {
             menuOverlay.classList.remove('active');
         }
         
-        // Body scrollen erlauben
+        // Scrollen erlauben
         document.body.style.overflow = '';
-        document.body.style.position = '';
-        document.body.style.width = '';
-        document.body.style.height = '';
-        
-        // Auf Mobile nach Animation ausblenden
-        if (window.innerWidth <= 768) {
-            setTimeout(() => {
-                if (!hauptnavigation.classList.contains('aktiv')) {
-                    hauptnavigation.style.display = 'none';
-                }
-            }, 300);
-        }
+        document.body.classList.remove('menu-open');
+        burger.setAttribute('aria-expanded', 'false');
     }
     
     // Menü umschalten
     function toggleMenu(event) {
-        if (event) event.stopPropagation();
+        if (event) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
         
-        if (hauptnavigation.classList.contains('aktiv')) {
+        if (navigation.classList.contains('aktiv')) {
             closeMenu();
         } else {
             openMenu();
@@ -86,47 +102,41 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Menü-Links schließen Menü auf Mobile
-    const navLinks = hauptnavigation.querySelectorAll('a');
+    const navLinks = navigation.querySelectorAll('a');
     navLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            if (window.innerWidth <= 768) {
-                setTimeout(closeMenu, 100);
+        link.addEventListener('click', function(e) {
+            if (isMobile()) {
+                console.log('🔗 Link geklickt:', this.href);
+                setTimeout(closeMenu, 200);
             }
         });
     });
     
     // ESC-Taste schließt Menü
     document.addEventListener('keydown', function(event) {
-        if (event.key === 'Escape' && hauptnavigation.classList.contains('aktiv')) {
+        if (event.key === 'Escape' && navigation.classList.contains('aktiv')) {
             closeMenu();
         }
     });
     
-    // Bei Resize: Menü zurücksetzen wenn auf Desktop
-    window.addEventListener('resize', function() {
-        if (window.innerWidth > 768) {
-            // Auf Desktop: Menü immer sichtbar
+    // Bei Resize
+    function handleResize() {
+        if (!isMobile() && navigation.classList.contains('aktiv')) {
             closeMenu();
-            hauptnavigation.style.display = 'flex';
-        } else {
-            // Auf Mobile: Wenn Menü nicht aktiv ist, ausblenden
-            if (!hauptnavigation.classList.contains('aktiv')) {
-                hauptnavigation.style.display = 'none';
-            }
         }
-    });
-    
-    // Initialisiere Menü-Status basierend auf Bildschirmgröße
-    function initMenuState() {
-        if (window.innerWidth <= 768) {
-            hauptnavigation.style.display = 'none';
-        } else {
-            hauptnavigation.style.display = 'flex';
-        }
+        initMenu();
     }
     
-    // Initialisierung
-    initMenuState();
+    window.addEventListener('resize', handleResize);
     
-    console.log('Mobile Menü JS erfolgreich geladen');
+    // Initialisierung
+    initMenu();
+    burger.setAttribute('aria-label', 'Hauptmenü öffnen oder schließen');
+    burger.setAttribute('aria-expanded', 'false');
+    burger.setAttribute('aria-controls', 'mainNavigation');
+    
+    // Touch-Optimierung
+    burger.style.cursor = 'pointer';
+    
+    console.log('✅ Mobile Menü erfolgreich initialisiert');
 });
