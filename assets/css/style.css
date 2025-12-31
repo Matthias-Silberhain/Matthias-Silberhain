@@ -2656,131 +2656,180 @@ body::before {
 
 
 /* ==========================================================================
-   SPEZIAL-TEXTE FÜR DUNKEL/HELL MODUS KORREKTUR
+   SPEZIAL-TEXTE FIX - ROBUSTE VERSION FÜR ALLE GERÄTE
    ========================================================================== */
 
-/* Haupt-Zitat auf der Index-Seite */
+/* ========== ANSATZ 1: ERZWUNGENE FARBEN ========== */
+/* Zuerst: ALLE relevanten Elemente identifizieren */
 .startseite .credo-headline,
 .startseite .lead-text,
-.startseite .highlight {
-    color: #f8f8f8 !important;
-    text-shadow: 
-        0 2px 4px rgba(0, 0, 0, 0.7),
-        0 0 20px rgba(255, 255, 255, 0.1) !important;
-}
-
-/* Dark Mode für Index-Texte */
-body.dark-mode .startseite .credo-headline,
-body.dark-mode .startseite .lead-text,
-body.dark-mode .startseite .highlight {
-    color: #ffffff !important;
-    text-shadow: 
-        0 2px 6px rgba(0, 0, 0, 0.8),
-        0 0 25px rgba(255, 255, 255, 0.15) !important;
-}
-
-/* Zitat auf der Über-mich Seite */
+.startseite .highlight,
+.startseite .kalligrafie-text,
+.startseite .credo-subtitle,
 .ueber-mich-content .highlight-paragraph,
 .ueber-mich-content .attention-line,
-.ueber-mich-content .schluss-zitat {
-    color: #f0f0f0 !important;
+.ueber-mich-content .schluss-zitat,
+.ueber-mich-content .break-line,
+.kalligrafie-signature,
+.credo-signature .signature-text,
+.text-kernaussage .kernaussage-text {
+    /* ERZWUNGENE Farbe für alle Modi */
+    color: rgb(255, 255, 255) !important; /* RGB statt hex für Browser-Kompatibilität */
+    -webkit-text-fill-color: rgb(255, 255, 255) !important; /* Für Safari/iOS */
     text-shadow: 
-        0 1px 3px rgba(0, 0, 0, 0.6),
-        0 0 15px rgba(255, 255, 255, 0.08) !important;
-}
-
-/* Dark Mode für Über-mich Texte */
-body.dark-mode .ueber-mich-content .highlight-paragraph,
-body.dark-mode .ueber-mich-content .attention-line,
-body.dark-mode .ueber-mich-content .schluss-zitat {
-    color: #ffffff !important;
-    text-shadow: 
-        0 1px 4px rgba(0, 0, 0, 0.8),
-        0 0 20px rgba(255, 255, 255, 0.12) !important;
-}
-
-/* Kalligrafie-Zitat auf Index-Seite */
-.kalligrafie-text {
-    color: #ffffff !important;
-    text-shadow: 
-        0 3px 6px rgba(0, 0, 0, 0.9),
-        0 0 30px rgba(255, 255, 255, 0.2) !important;
-    position: relative;
-}
-
-body.dark-mode .kalligrafie-text {
-    color: #ffffff !important;
-    text-shadow: 
-        0 4px 8px rgba(0, 0, 0, 1),
-        0 0 35px rgba(255, 255, 255, 0.25) !important;
-}
-
-/* Kalligrafie-Signatur */
-.kalligrafie-signature {
-    color: #e0e0e0 !important;
-    text-shadow: 
+        0 1px 0 rgba(0, 0, 0, 0.5),
         0 2px 4px rgba(0, 0, 0, 0.7),
-        0 0 15px rgba(255, 255, 255, 0.1) !important;
+        0 0 10px rgba(255, 255, 255, 0.1) !important;
+    filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.6)) !important;
 }
 
-body.dark-mode .kalligrafie-signature {
-    color: #f0f0f0 !important;
+/* ========== ANSATZ 2: SPEZIFISCHE DARK-MODE ÜBERSCHREIBUNG ========== */
+/* Noch explizitere Regeln für Dark Mode */
+body.dark-mode .startseite .credo-headline,
+body.dark-mode .startseite .lead-text,
+body.dark-mode .startseite .highlight,
+body.dark-mode .startseite .kalligrafie-text,
+body[class*="dark"] .startseite .credo-headline, /* Alternative Selektor */
+body[class~="dark-mode"] .startseite .credo-headline /* Noch eine Alternative */ {
+    color: rgb(255, 255, 255) !important;
+    -webkit-text-fill-color: rgb(255, 255, 255) !important;
     text-shadow: 
-        0 2px 5px rgba(0, 0, 0, 0.9),
-        0 0 20px rgba(255, 255, 255, 0.15) !important;
+        0 1px 0 #000,
+        0 2px 6px rgba(0, 0, 0, 0.9),
+        0 0 15px rgba(255, 255, 255, 0.15) !important;
+    filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.8)) 
+            brightness(1.1) !important; /* Etwas heller */
 }
 
-/* Speziell für die "Wahrheit braucht Stimme" Texte */
-.credo-headline,
-.lead-text,
-.highlight-paragraph {
-    font-weight: 600 !important;
-    letter-spacing: 0.02em !important;
+/* ========== ANSATZ 3: INLINE-STYLE OVERRIDE-SIMULATION ========== */
+/* Erstellt "künstliche" Inline-Style Priorität */
+.startseite .credo-headline {
+    color: white !important;
 }
 
-/* Container für diese speziellen Texte */
+body .startseite .credo-headline {
+    color: white !important;
+}
+
+html body .startseite .credo-headline {
+    color: white !important;
+}
+
+/* ========== ANSATZ 4: ATTRIBUT-SELEKTOR FALLBACK ========== */
+/* Falls die dark-mode Klasse anders geschrieben wird */
+body[class*="dark"] .kalligrafie-text,
+body[class*="dark-mode"] .kalligrafie-text,
+body[data-theme="dark"] .kalligrafie-text,
+body[data-mode="dark"] .kalligrafie-text {
+    color: #ffffff !important;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 1) !important;
+}
+
+/* ========== ANSATZ 5: HINTERGRUND-CONTAINER AUFHELLEN ========== */
+/* Damit der Kontrast besser wird */
 .credo-container,
-.text-kernaussage,
-.kernaussage-box {
-    background-color: rgba(25, 25, 25, 0.85) !important;
-    border: 1px solid rgba(200, 200, 200, 0.25) !important;
+.credo-quote-wrapper,
+.kernaussage-box,
+.text-kernaussage {
+    background-color: rgba(30, 30, 30, 0.9) !important;
+    background-image: linear-gradient(
+        to bottom,
+        rgba(40, 40, 40, 0.9),
+        rgba(25, 25, 25, 0.9)
+    ) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
     box-shadow: 
-        0 20px 60px rgba(0, 0, 0, 0.8),
         0 0 0 1px rgba(255, 255, 255, 0.1) inset,
-        0 0 40px rgba(255, 255, 255, 0.05) inset !important;
+        0 20px 50px rgba(0, 0, 0, 0.8) !important;
 }
 
 body.dark-mode .credo-container,
-body.dark-mode .text-kernaussage,
-body.dark-mode .kernaussage-box {
-    background-color: rgba(40, 40, 40, 0.85) !important;
-    border: 1px solid rgba(220, 220, 220, 0.3) !important;
-    box-shadow: 
-        0 20px 60px rgba(0, 0, 0, 0.9),
-        0 0 0 1px rgba(255, 255, 255, 0.15) inset,
-        0 0 40px rgba(255, 255, 255, 0.08) inset !important;
+body.dark-mode .credo-quote-wrapper,
+body.dark-mode .kernaussage-box,
+body.dark-mode .text-kernaussage {
+    background-color: rgba(50, 50, 50, 0.9) !important;
+    background-image: linear-gradient(
+        to bottom,
+        rgba(60, 60, 60, 0.9),
+        rgba(40, 40, 40, 0.9)
+    ) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
 }
 
-/* Besonders für die Signatur "Matthias Silberhain" */
-.credo-signature,
-.signature-text,
-.kalligrafie-signature {
-    font-weight: 500 !important;
-    letter-spacing: 0.05em !important;
+/* ========== ANSATZ 6: JAVASCRIPT-FALLBACK SIMULATION ========== */
+/* CSS-Variablen für maximale Kontrolle */
+:root {
+    --highlight-color: #ffffff;
+    --highlight-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
 }
 
-/* Responsive Anpassungen */
-@media screen and (max-width: 768px) {
-    .kalligrafie-text {
-        font-size: 2.2rem !important;
+body.dark-mode {
+    --highlight-color: #ffffff;
+    --highlight-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
+}
+
+/* Auf CSS-Variablen umstellen */
+.startseite .credo-headline,
+.startseite .lead-text {
+    color: var(--highlight-color) !important;
+    text-shadow: var(--highlight-shadow) !important;
+}
+
+/* ========== ANSATZ 7: MAXIMUM PRIORITY ========== */
+/* Absolute Priorität - sollte auf jedem Browser/PC funktionieren */
+html > body > .inhalt .startseite .credo-headline,
+html > body > .inhalt .startseite .lead-text,
+html > body.dark-mode > .inhalt .startseite .credo-headline,
+html > body.dark-mode > .inhalt .startseite .lead-text {
+    color: rgb(255, 255, 255) !important;
+    -webkit-text-fill-color: rgb(255, 255, 255) !important;
+    text-shadow: 
+        0 1px 1px #000000,
+        0 2px 3px #000000,
+        0 3px 6px rgba(0, 0, 0, 0.8) !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+}
+
+/* ========== DIREKTE ELEMENT-SELEKTION ========== */
+/* Falls du die HTML-Struktur kennst, noch spezifischer */
+.inhalt > .startseite > .credo-container > .credo-quote-wrapper > .credo-quote > .kalligrafie-text,
+.inhalt > .ueber-mich-content > .highlight-paragraph {
+    color: #ffffff !important;
+    font-weight: bold !important;
+    letter-spacing: 0.5px !important;
+}
+
+/* ========== MOBILE/PC UNTERSCHIEDE ========== */
+@media screen and (min-width: 769px) {
+    /* EXTRA Regeln nur für Desktop */
+    .startseite .credo-headline,
+    .startseite .kalligrafie-text {
+        color: #ffffff !important;
         text-shadow: 
-            0 2px 5px rgba(0, 0, 0, 0.8),
-            0 0 25px rgba(255, 255, 255, 0.15) !important;
+            0 2px 10px rgba(0, 0, 0, 0.9),
+            0 0 30px rgba(255, 255, 255, 0.2) !important;
+        filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.8)) 
+                brightness(1.15) 
+                contrast(1.1) !important;
     }
     
-    .credo-headline,
-    .lead-text {
-        font-size: 1.8rem !important;
+    /* Font-Smoothing für bessere Lesbarkeit auf Desktop */
+    .kalligrafie-text,
+    .credo-headline {
+        -webkit-font-smoothing: antialiased !important;
+        -moz-osx-font-smoothing: grayscale !important;
+        text-rendering: optimizeLegibility !important;
     }
-}   
+}
+
+/* ========== TEST KLASSE ========== */
+/* Zum Debuggen: Füge diese Klasse zum Body hinzu */
+body.text-test .credo-headline,
+body.text-test .kalligrafie-text {
+    background-color: yellow !important;
+    color: red !important;
+    border: 2px solid red !important;
+}
 }
