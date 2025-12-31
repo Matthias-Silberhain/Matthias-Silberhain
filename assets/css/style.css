@@ -1630,4 +1630,278 @@ body.link-fix-test a {
     color: red !important;
     border: 2px solid red !important;
 }
+
+
+/* ==========================================================================
+   ANIMATED STATS SECTION
+   ========================================================================== */
+
+.stats-section {
+    padding: 60px 20px;
+    background: rgba(15, 15, 15, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    margin: 50px auto;
+    max-width: 1000px;
+}
+
+.stats-container {
+    margin: 0 auto;
+}
+
+.stats-title {
+    font-family: "Cinzel", serif;
+    font-size: 2rem;
+    text-align: center;
+    color: #e4e6ea;
+    margin-bottom: 15px;
+    letter-spacing: 0.1em;
+    text-shadow: 0 0 15px rgba(200, 200, 200, 0.3);
+}
+
+.stats-subtitle {
+    text-align: center;
+    color: #b0b5bc;
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+    font-style: italic;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    background: rgba(20, 20, 20, 0.6);
+    border: 1px solid rgba(200, 200, 200, 0.2);
+    border-radius: 10px;
+    padding: 25px 20px;
+    text-align: center;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(200, 200, 200, 0.1), 
+        transparent);
+    transition: left 0.7s ease;
+}
+
+.stat-card:hover::before {
+    left: 100%;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(200, 200, 200, 0.4);
+    box-shadow: 
+        0 10px 25px rgba(0, 0, 0, 0.4),
+        0 0 20px rgba(200, 200, 200, 0.15);
+}
+
+.stat-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid rgba(200, 200, 200, 0.3);
+    border-radius: 50%;
+    background: rgba(30, 30, 30, 0.5);
+    transition: all 0.3s ease;
+}
+
+.stat-card:hover .stat-icon {
+    border-color: rgba(200, 200, 200, 0.6);
+    background: rgba(200, 200, 200, 0.1);
+    transform: scale(1.1);
+}
+
+.stat-icon svg {
+    width: 30px;
+    height: 30px;
+    stroke: #c0c0c0;
+    stroke-width: 1.5;
+    transition: all 0.3s ease;
+}
+
+.stat-card:hover .stat-icon svg {
+    stroke: #ffffff;
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.4));
+}
+
+.stat-number {
+    font-family: "Cinzel", serif;
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 5px;
+    text-shadow: 0 0 20px rgba(200, 200, 200, 0.4);
+    line-height: 1;
+    transition: all 0.3s ease;
+}
+
+.stat-number.animating {
+    color: #ffffff;
+    text-shadow: 0 0 25px rgba(255, 255, 255, 0.6);
+}
+
+.stat-label {
+    font-family: "Cinzel", serif;
+    font-size: 0.9rem;
+    color: #b0b5bc;
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+.stat-trend {
+    font-size: 0.85rem;
+    color: #9da2a8;
+    font-style: italic;
+}
+
+.stats-footer {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 25px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stats-note {
+    color: #9da2a8;
+    font-size: 0.85rem;
+    margin-bottom: 15px;
+}
+
+.stats-demo-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.silber-button.small {
+    padding: 8px 20px;
+    font-size: 0.8rem;
+}
+
+/* ==========================================================================
+   COUNTER ANIMATION EFFECTS
+   ========================================================================== */
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.03); }
+    100% { transform: scale(1); }
+}
+
+@keyframes glow {
+    0% { text-shadow: 0 0 10px rgba(255, 255, 255, 0.3); }
+    50% { text-shadow: 0 0 20px rgba(255, 255, 255, 0.8); }
+    100% { text-shadow: 0 0 10px rgba(255, 255, 255, 0.3); }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+}
+
+.stat-card.pulse {
+    animation: pulse 0.5s ease;
+}
+
+.stat-number.glow {
+    animation: glow 1s ease;
+}
+
+.stat-icon.float {
+    animation: float 2s ease-in-out infinite;
+}
+
+/* ==========================================================================
+   RESPONSIVE STATS
+   ========================================================================== */
+
+@media screen and (max-width: 1024px) {
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .stat-number {
+        font-size: 2.5rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .stats-section {
+        padding: 40px 15px;
+        margin: 40px auto;
+    }
+    
+    .stats-title {
+        font-size: 1.8rem;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .stat-card {
+        padding: 20px 15px;
+    }
+    
+    .stat-number {
+        font-size: 2.3rem;
+    }
+    
+    .stats-demo-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .silber-button.small {
+        width: 200px;
+        margin: 5px 0;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .stats-title {
+        font-size: 1.6rem;
+    }
+    
+    .stat-number {
+        font-size: 2rem;
+    }
+    
+    .stat-icon {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .stat-icon svg {
+        width: 25px;
+        height: 25px;
+    }
+}
+
+
+
+
 }
