@@ -1,97 +1,97 @@
-/**
- * MOBILE MENÜ FUNKTIONALITÄT - KORRIGIERTE VERSION
- */
-
+// assets/js/menu.js
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('Mobile Menu JS geladen'); // Debug
+    console.log('Menu JS geladen');
     
-    // Elemente auswählen
-    const burger = document.querySelector('.burger');
-    const hauptnavigation = document.querySelector('.hauptnavigation');
-    const menuOverlay = document.querySelector('.menu-overlay');
-    const body = document.body;
+    const burger = document.getElementById('burger');
+    const navigation = document.getElementById('navigation');
+    const menuOverlay = document.getElementById('menuOverlay');
     
-    // Debug: Prüfe ob Elemente gefunden wurden
-    console.log('Burger gefunden:', !!burger);
-    console.log('Navigation gefunden:', !!hauptnavigation);
-    console.log('Overlay gefunden:', !!menuOverlay);
-    
-    if (!burger || !hauptnavigation) {
-        console.error('Wichtige Elemente für Mobile Menu nicht gefunden!');
+    if (!burger || !navigation) {
+        console.warn('Menü-Elemente nicht gefunden');
         return;
     }
     
-    // Stelle sicher dass Navigation initial ausgeblendet ist auf Mobile
-    function checkInitialState() {
-        if (window.innerWidth <= 768) {
-            hauptnavigation.style.display = 'none';
-            hauptnavigation.style.opacity = '0';
-            hauptnavigation.style.transform = 'translateX(-100%)';
+    // Mobile/Desktop Check
+    function isMobile() {
+        return window.innerWidth <= 768;
+    }
+    
+    // Initialzustand setzen
+    function initMenuState() {
+        if (isMobile()) {
+            navigation.style.display = 'none';
+            navigation.style.opacity = '0';
+            navigation.style.transform = 'translateX(-100%)';
         } else {
-            hauptnavigation.style.display = 'flex';
-            hauptnavigation.style.opacity = '1';
-            hauptnavigation.style.transform = 'translateX(0)';
+            navigation.style.display = 'flex';
+            navigation.style.opacity = '1';
+            navigation.style.transform = 'translateX(0)';
         }
     }
     
     // Menü öffnen
     function openMenu() {
-        console.log('Menü öffnen');
+        console.log('Öffne Menü');
         burger.classList.add('aktiv');
-        hauptnavigation.classList.add('aktiv');
-        hauptnavigation.style.display = 'flex';
+        navigation.classList.add('aktiv');
+        navigation.style.display = 'flex';
         
-        // Kleine Verzögerung für CSS Transition
+        // Kurze Verzögerung für Transition
         setTimeout(() => {
-            hauptnavigation.style.opacity = '1';
-            hauptnavigation.style.transform = 'translateX(0)';
+            navigation.style.opacity = '1';
+            navigation.style.transform = 'translateX(0)';
         }, 10);
         
         if (menuOverlay) {
             menuOverlay.classList.add('active');
+            menuOverlay.style.display = 'block';
+            setTimeout(() => {
+                menuOverlay.style.opacity = '1';
+            }, 10);
         }
         
-        body.style.overflow = 'hidden';
+        document.body.style.overflow = 'hidden';
         burger.setAttribute('aria-expanded', 'true');
     }
     
     // Menü schließen
     function closeMenu() {
-        console.log('Menü schließen');
+        console.log('Schließe Menü');
         burger.classList.remove('aktiv');
-        hauptnavigation.style.opacity = '0';
-        hauptnavigation.style.transform = 'translateX(-100%)';
-        
-        setTimeout(() => {
-            hauptnavigation.classList.remove('aktiv');
-            if (window.innerWidth <= 768) {
-                hauptnavigation.style.display = 'none';
-            }
-        }, 300);
+        navigation.style.opacity = '0';
+        navigation.style.transform = 'translateX(-100%)';
         
         if (menuOverlay) {
-            menuOverlay.classList.remove('active');
+            menuOverlay.style.opacity = '0';
+            setTimeout(() => {
+                menuOverlay.style.display = 'none';
+                menuOverlay.classList.remove('active');
+            }, 300);
         }
         
-        body.style.overflow = '';
+        setTimeout(() => {
+            navigation.classList.remove('aktiv');
+            if (isMobile()) {
+                navigation.style.display = 'none';
+            }
+            document.body.style.overflow = '';
+        }, 300);
+        
         burger.setAttribute('aria-expanded', 'false');
     }
     
-    // Menü umschalten
-    function toggleMenu() {
-        console.log('Menü toggle, aktueller Status:', hauptnavigation.classList.contains('aktiv'));
+    // Menü toggle
+    function toggleMenu(event) {
+        if (event) event.stopPropagation();
         
-        if (hauptnavigation.classList.contains('aktiv')) {
+        if (navigation.classList.contains('aktiv')) {
             closeMenu();
         } else {
             openMenu();
         }
-        
-        // Verhindere Event-Bubbling
-        event.stopPropagation();
     }
     
-    // Event Listener mit Event Delegation
+    // Event Listener
     burger.addEventListener('click', toggleMenu);
     
     // Overlay schließt Menü
@@ -99,59 +99,40 @@ document.addEventListener('DOMContentLoaded', function() {
         menuOverlay.addEventListener('click', closeMenu);
     }
     
-    // Menü schließt bei Klick auf Links
-    document.addEventListener('click', function(event) {
-        if (hauptnavigation.classList.contains('aktiv') && 
-            !hauptnavigation.contains(event.target) && 
-            !burger.contains(event.target)) {
-            closeMenu();
-        }
+    // Menü-Links schließen Menü
+    document.querySelectorAll('#navigation a').forEach(link => {
+        link.addEventListener('click', () => {
+            if (isMobile()) {
+                setTimeout(closeMenu, 100);
+            }
+        });
     });
     
     // ESC-Taste schließt Menü
-    document.addEventListener('keydown', function(event) {
-        if (event.key === 'Escape' && hauptnavigation.classList.contains('aktiv')) {
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && navigation.classList.contains('aktiv')) {
             closeMenu();
         }
     });
     
-    // Bei Fenster-Resize
-    window.addEventListener('resize', function() {
-        if (window.innerWidth > 768) {
-            // Auf Desktop: Menü immer sichtbar und zurücksetzen
+    // Bei Resize
+    window.addEventListener('resize', () => {
+        if (!isMobile() && navigation.classList.contains('aktiv')) {
             closeMenu();
-            hauptnavigation.style.display = 'flex';
-            hauptnavigation.style.opacity = '1';
-            hauptnavigation.style.transform = 'translateX(0)';
-            body.style.overflow = '';
-        } else {
-            // Auf Mobile: Menü verstecken falls geschlossen
-            if (!hauptnavigation.classList.contains('aktiv')) {
-                hauptnavigation.style.display = 'none';
-                hauptnavigation.style.opacity = '0';
-                hauptnavigation.style.transform = 'translateX(-100%)';
-            }
         }
+        initMenuState();
     });
     
     // Initialisierung
-    checkInitialState();
-    burger.setAttribute('aria-label', 'Hauptmenü öffnen oder schließen');
+    initMenuState();
+    burger.setAttribute('aria-label', 'Menü öffnen/schließen');
     burger.setAttribute('aria-expanded', 'false');
-    burger.setAttribute('aria-controls', 'hauptnavigation');
+    burger.setAttribute('aria-controls', 'navigation');
     
-    // Touch Device Optimierung
+    // Touch-Optimierung
     if ('ontouchstart' in window) {
         burger.style.cursor = 'pointer';
     }
     
-    // Verhindere Klick-Konflikte mit Preloader
-    document.addEventListener('click', function(event) {
-        const preloader = document.getElementById('preloader');
-        if (preloader && !preloader.classList.contains('hidden')) {
-            event.stopPropagation();
-            event.preventDefault();
-            console.log('Preloader blockiert Klick');
-        }
-    }, true);
+    console.log('Menu JS initialisiert');
 });
