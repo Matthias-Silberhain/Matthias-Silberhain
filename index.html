@@ -31,19 +31,27 @@ try {
   </div>
 </div>
 
+<!-- MENU OVERLAY -->
 <div class="menu-overlay" id="menuOverlay"></div>
 
 <header class="header">
   <img src="assets/images/logo.png" class="logo" alt="Matthias Silberhain Logo">
 
+  <!-- BURGER MENU BUTTON (WICHTIG: ALS BUTTON!) -->
+  <button class="burger" id="burgerMenu" aria-label="Hauptmenü öffnen">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <!-- DARK MODE TOGGLE -->
   <button id="darkModeToggle" class="dark-mode-toggle" aria-label="Dark Mode">
     <svg class="moon-icon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3z"/></svg>
     <svg class="sun-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/></svg>
   </button>
 
-  <div class="burger" id="burger"><span></span><span></span><span></span></div>
-
-  <nav class="hauptnavigation" id="navigation">
+  <!-- HAUPTNAVIGATION -->
+  <nav class="hauptnavigation" id="mainNavigation">
     <a href="index.html" class="active">Startseite</a>
     <a href="ueber-mich.html">Über mich</a>
     <a href="werke.html">Werke</a>
@@ -84,14 +92,24 @@ try {
   </p>
 
   <p class="zitat">
-    „Ich schreibe, weil die Wahrheit eine Stimme braucht.“
+    „Ich schreibe, weil die Wahrheit eine Stimme braucht."
     <span class="zitat-autor">– Matthias Silberhain</span>
   </p>
 </div>
 
 <div class="cta-container">
-  <a href="werke.html" class="silber-button">Meine Werke entdecken</a>
-  <a href="ueber-mich.html" class="silber-button secondary">Über den Autor</a>
+  <a href="werke.html" class="silber-button">
+    Meine Werke entdecken
+    <svg class="button-arrow" viewBox="0 0 24 24">
+      <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
+    </svg>
+  </a>
+  <a href="ueber-mich.html" class="silber-button secondary">
+    Über den Autor
+    <svg class="button-arrow" viewBox="0 0 24 24">
+      <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
+    </svg>
+  </a>
 </div>
 
 </section>
@@ -185,11 +203,9 @@ try {
   <p>© <span id="jahr"></span> Matthias Silberhain</p>
 </footer>
 
- <!-- JavaScript Dateien -->
-   <script src="assets/js/global.js"></script>    
+<!-- JavaScript Dateien -->
+<script src="assets/js/global.js"></script>    
 <script src="assets/js/dark-mode.js"></script>
 <script src="assets/js/menu.js"></script>
-    <!-- Alternative: Alle in einer Datei -->
-    <!-- <script src="js/main.js"></script> -->
 </body>
 </html>
