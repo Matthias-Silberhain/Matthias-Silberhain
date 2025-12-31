@@ -101,3 +101,49 @@ document.addEventListener('DOMContentLoaded', function() {
     
     console.log('✅ Menu JS erfolgreich initialisiert');
 });
+// ====== PRELOADER LOGIK ======
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('✅ DOM geladen - Menu JS startet');
+    
+    // ... (deine bestehende Burger-Logik hier) ...
+    
+    // PRELOADER AUTOMATISCH AUSBLENDEN
+    setTimeout(function() {
+        const preloader = document.getElementById('preloader');
+        if (preloader) {
+            console.log('⏳ Blende Preloader aus...');
+            
+            // 1. Fade-Out Effekt
+            preloader.classList.add('fade-out');
+            
+            // 2. Nach Fade-Out komplett ausblenden
+            setTimeout(function() {
+                preloader.style.display = 'none';
+                console.log('✅ Preloader ausgeblendet');
+                
+                // 3. Scrollen wieder aktivieren
+                document.body.style.overflow = 'auto';
+                
+                // 4. Burger definitiv klickbar machen
+                const burger = document.getElementById('burger');
+                if (burger) {
+                    burger.style.pointerEvents = 'auto';
+                    burger.style.zIndex = '9999';
+                    console.log('🍔 Burger ist jetzt klickbar');
+                }
+            }, 500); // Nach Fade-Out Animation
+        }
+    }, 2500); // Preloader nach 2.5 Sekunden ausblenden
+    
+    // NOTFALL: Wenn Seite komplett geladen ist
+    window.addEventListener('load', function() {
+        console.log('📦 Seite komplett geladen');
+        const preloader = document.getElementById('preloader');
+        if (preloader && preloader.style.display !== 'none') {
+            preloader.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    });
+    
+    console.log('✅ Menu JS erfolgreich initialisiert');
+});
