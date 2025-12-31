@@ -1,14 +1,14 @@
-// assets/js/dark-mode.js
+/**
+ * DARK MODE TOGGLE - Matthias Silberhain Website
+ * Theme-Switching mit localStorage-Persistenz
+ * Version 1.1 - Defensiv mit Prüfung auf Existenz
+ */
+
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Dark Mode JS wird geladen');
     
     const themeToggle = document.getElementById('themeToggle');
     const body = document.body;
-    
-    if (!themeToggle) {
-        console.error('Theme Toggle Button nicht gefunden!');
-        return;
-    }
     
     // Initialisiere Theme
     function initTheme() {
@@ -54,20 +54,23 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Toggle Icon aktualisieren
     function updateToggleIcon(isDark) {
-        const moonIcon = themeToggle.querySelector('.moon-icon');
-        const sunIcon = themeToggle.querySelector('.sun-icon');
-        
-        if (moonIcon && sunIcon) {
-            if (isDark) {
-                // Dark Mode aktiv -> Sonne zeigen
-                moonIcon.style.display = 'none';
-                sunIcon.style.display = 'block';
-                themeToggle.setAttribute('aria-label', 'Zum Hellmodus wechseln');
-            } else {
-                // Light Mode aktiv -> Mond zeigen
-                moonIcon.style.display = 'block';
-                sunIcon.style.display = 'none';
-                themeToggle.setAttribute('aria-label', 'Zum Dunkelmodus wechseln');
+        // Wenn der Toggle-Button existiert, aktualisiere das Icon
+        if (themeToggle) {
+            const moonIcon = themeToggle.querySelector('.moon-icon');
+            const sunIcon = themeToggle.querySelector('.sun-icon');
+            
+            if (moonIcon && sunIcon) {
+                if (isDark) {
+                    // Dark Mode aktiv -> Sonne zeigen
+                    moonIcon.style.display = 'none';
+                    sunIcon.style.display = 'block';
+                    themeToggle.setAttribute('aria-label', 'Zum Hellmodus wechseln');
+                } else {
+                    // Light Mode aktiv -> Mond zeigen
+                    moonIcon.style.display = 'block';
+                    sunIcon.style.display = 'none';
+                    themeToggle.setAttribute('aria-label', 'Zum Dunkelmodus wechseln');
+                }
             }
         }
     }
@@ -82,8 +85,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Event Listener
-    themeToggle.addEventListener('click', toggleTheme);
+    // Wenn der Toggle-Button existiert, Event Listener hinzufügen
+    if (themeToggle) {
+        themeToggle.addEventListener('click', toggleTheme);
+    } else {
+        console.warn('Theme Toggle Button nicht gefunden. Dark Mode wird trotzdem initialisiert, aber der Toggle ist nicht klickbar.');
+    }
     
     // System-Präferenzänderung überwachen
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
