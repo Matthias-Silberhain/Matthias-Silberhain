@@ -1,186 +1,269 @@
+// ============================================================================
+// GLOBAL.JS - KORRIGIERTER PRELOADER
+// ============================================================================
+
+console.log('🚀 global.js wird geladen...');
 
 // ============================================================================
-// DARK MODE - KORRIGIERT & VOLL FUNKTIONIERT
+// 1. PRELOADER ANIMATION - KORRIGIERT
 // ============================================================================
 
 (function() {
     'use strict';
     
-    console.log('🌓 Dark Mode Script geladen');
+    console.log('🌀 Initialisiere Preloader...');
     
-    // 1. THEME AUS LOCALSTORAGE LADEN
-    function getSavedTheme() {
-        try {
-            return localStorage.getItem('ms-theme');
-        } catch (e) {
-            console.log('⚠️ Kein Zugriff auf localStorage');
-            return null;
-        }
-    }
-    
-    // 2. SYSTEMPREFERENZ PRÜFEN
-    function getSystemPreference() {
-        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            return 'dark';
-        }
-        return 'light';
-    }
-    
-    // 3. THEME ANWENDEN
-    function applyTheme(theme) {
-        const html = document.documentElement;
-        const body = document.body;
+    function initPreloader() {
+        console.log('🔍 Suche Preloader Elemente...');
         
-        console.log('🎨 Wende Theme an:', theme);
+        const preloader = document.getElementById('preloader');
+        const typeText = document.getElementById('type-text');
         
-        if (theme === 'dark') {
-            html.classList.add('dark-mode');
-            body.classList.add('dark-mode');
-            updateToggleIcon(true);
-            console.log('🌙 Dark Mode aktiv');
-        } else {
-            html.classList.remove('dark-mode');
-            body.classList.remove('dark-mode');
-            updateToggleIcon(false);
-            console.log('☀️ Light Mode aktiv');
-        }
-    }
-    
-    // 4. TOGGLE BUTTON ICON AKTUALISIEREN
-    function updateToggleIcon(isDark) {
-        const toggleBtn = document.getElementById('darkModeToggle');
-        
-        if (!toggleBtn) {
-            console.warn('⚠️ Toggle Button nicht gefunden');
+        if (!preloader) {
+            console.error('❌ Preloader DIV nicht gefunden!');
+            console.log('🔍 Suche nach:', '#preloader');
+            console.log('🔍 Gefundene Elemente mit ID preloader:', document.querySelectorAll('#preloader').length);
             return;
         }
         
-        const moonIcon = toggleBtn.querySelector('.moon-icon');
-        const sunIcon = toggleBtn.querySelector('.sun-icon');
+        if (!typeText) {
+            console.warn('⚠️ type-text Element nicht gefunden, zeige nur Preloader');
+        }
         
-        if (moonIcon && sunIcon) {
-            if (isDark) {
-                moonIcon.style.display = 'none';
-                sunIcon.style.display = 'block';
-                toggleBtn.setAttribute('aria-label', 'Zum Light Mode wechseln');
-                toggleBtn.title = 'Zum Light Mode wechseln';
+        console.log('✅ Preloader Elemente gefunden');
+        
+        // Preloader sofort sichtbar machen (falls CSS es ausblendet)
+        preloader.style.display = 'flex';
+        preloader.style.opacity = '1';
+        preloader.style.visibility = 'visible';
+        preloader.style.pointerEvents = 'none';
+        
+        const fullText = "MATTHIAS SILBERHAIN";
+        let charIndex = 0;
+        const typingSpeed = 100;
+        
+        function typeCharacter() {
+            if (typeText && charIndex < fullText.length) {
+                const currentText = typeText.textContent || '';
+                const nextChar = fullText.charAt(charIndex);
+                
+                if (nextChar === ' ') {
+                    typeText.innerHTML = currentText + '&nbsp;';
+                } else {
+                    typeText.textContent = currentText + nextChar;
+                }
+                
+                charIndex++;
+                setTimeout(typeCharacter, typingSpeed);
             } else {
-                moonIcon.style.display = 'block';
-                sunIcon.style.display = 'none';
-                toggleBtn.setAttribute('aria-label', 'Zum Dark Mode wechseln');
-                toggleBtn.title = 'Zum Dark Mode wechseln';
+                // Animation beendet oder kein typeText
+                console.log('✅ Typing Animation beendet');
+                
+                // Kurze Pause bevor Preloader ausgeblendet wird
+                setTimeout(() => {
+                    console.log('👋 Verstecke Preloader...');
+                    
+                    // Preloader ausblenden mit CSS-Klasse
+                    preloader.classList.add('hidden');
+                    
+                    // Nach der CSS-Transition komplett ausblenden
+                    setTimeout(() => {
+                        preloader.style.display = 'none';
+                        console.log('✅ Preloader komplett ausgeblendet');
+                        
+                        // Interaktive Elemente aktivieren
+                        enableInteractiveElements();
+                    }, 600); // Muss mit CSS transition-duration übereinstimmen
+                }, 800);
             }
         }
         
-        console.log('🔄 Toggle Icon aktualisiert:', isDark ? 'Dark' : 'Light');
+        // Starte Typing Animation nach kurzer Verzögerung
+        setTimeout(() => {
+            console.log('⌨️ Starte Typing Animation...');
+            
+            // typeText leeren, falls noch nicht leer
+            if (typeText) {
+                typeText.textContent = '';
+            }
+            
+            typeCharacter();
+        }, 300);
     }
     
-    // 5. DARK MODE UMSCHALTEN
-    function toggleDarkMode() {
-        const html = document.documentElement;
-        const body = document.body;
-        const isDark = body.classList.contains('dark-mode');
-        
-        console.log('🔄 Toggle Dark Mode. Aktuell:', isDark ? 'Dark' : 'Light');
-        
-        if (isDark) {
-            // Zu Light wechseln
-            html.classList.remove('dark-mode');
-            body.classList.remove('dark-mode');
-            localStorage.setItem('ms-theme', 'light');
-            updateToggleIcon(false);
-            console.log('☀️ Zu Light Mode gewechselt');
-        } else {
-            // Zu Dark wechseln
-            html.classList.add('dark-mode');
-            body.classList.add('dark-mode');
-            localStorage.setItem('ms-theme', 'dark');
-            updateToggleIcon(true);
-            console.log('🌙 Zu Dark Mode gewechselt');
-        }
-        
-        // Animation für Feedback
-        const toggleBtn = document.getElementById('darkModeToggle');
-        if (toggleBtn) {
-            toggleBtn.style.transform = 'scale(1.2)';
-            setTimeout(() => {
-                toggleBtn.style.transform = 'scale(1)';
-            }, 200);
-        }
+    // Starte Preloader WENN das DOM geladen ist
+    if (document.readyState === 'loading') {
+        console.log('📄 Warte auf DOM...');
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('📄 DOM geladen, starte Preloader...');
+            setTimeout(initPreloader, 100);
+        });
+    } else {
+        console.log('📄 DOM bereits geladen, starte Preloader direkt...');
+        setTimeout(initPreloader, 100);
     }
     
-    // 6. INITIALISIERE DARK MODE
+})();
+
+// ============================================================================
+// 2. INTERAKTIVE ELEMENTE AKTIVIEREN
+// ============================================================================
+
+function enableInteractiveElements() {
+    console.log('🖱️ Aktiviere interaktive Elemente...');
+    
+    const interactiveSelectors = [
+        'button',
+        'a',
+        '.burger',
+        '.dark-mode-toggle',
+        '.silber-button',
+        '.social-link',
+        '.hauptnavigation a'
+    ];
+    
+    interactiveSelectors.forEach(selector => {
+        try {
+            document.querySelectorAll(selector).forEach(el => {
+                el.style.pointerEvents = 'auto';
+                el.style.cursor = 'pointer';
+            });
+        } catch (e) {
+            console.warn('⚠️ Fehler bei:', selector, e);
+        }
+    });
+    
+    console.log('✅ Interaktive Elemente aktiviert');
+}
+
+// ============================================================================
+// 3. DARK MODE - VEREINFACHT
+// ============================================================================
+
+(function() {
+    'use strict';
+    
     function initDarkMode() {
-        console.log('🚀 Initialisiere Dark Mode...');
-        
-        // Button finden
         const toggleBtn = document.getElementById('darkModeToggle');
-        
         if (!toggleBtn) {
-            console.error('❌ Dark Mode Toggle Button NICHT GEFUNDEN!');
-            console.log('🔍 Suche Button erneut in 500ms...');
+            console.log('🔍 Dark Mode Button nicht gefunden, versuche es später...');
             setTimeout(initDarkMode, 500);
             return;
         }
         
-        console.log('✅ Dark Mode Toggle Button gefunden');
+        console.log('✅ Dark Mode Button gefunden');
         
-        // Button klickbar machen
-        toggleBtn.style.pointerEvents = 'auto';
-        toggleBtn.style.cursor = 'pointer';
-        toggleBtn.setAttribute('tabindex', '0');
-        toggleBtn.style.opacity = '1';
-        toggleBtn.style.visibility = 'visible';
+        // Theme aus localStorage oder System
+        const savedTheme = localStorage.getItem('ms-theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const initialTheme = savedTheme || (prefersDark ? 'dark' : 'light');
         
-        // Theme bestimmen und anwenden
-        const savedTheme = getSavedTheme();
-        const systemTheme = getSystemPreference();
-        const initialTheme = savedTheme || systemTheme;
+        // Theme anwenden
+        if (initialTheme === 'dark') {
+            document.documentElement.classList.add('dark-mode');
+            document.body.classList.add('dark-mode');
+            console.log('🌙 Dark Mode aktiv (initial)');
+        } else {
+            console.log('☀️ Light Mode aktiv (initial)');
+        }
         
-        applyTheme(initialTheme);
+        // Toggle-Funktion
+        function toggleTheme() {
+            const isDark = document.body.classList.contains('dark-mode');
+            
+            if (isDark) {
+                document.documentElement.classList.remove('dark-mode');
+                document.body.classList.remove('dark-mode');
+                localStorage.setItem('ms-theme', 'light');
+                console.log('☀️ Zu Light Mode gewechselt');
+            } else {
+                document.documentElement.classList.add('dark-mode');
+                document.body.classList.add('dark-mode');
+                localStorage.setItem('ms-theme', 'dark');
+                console.log('🌙 Zu Dark Mode gewechselt');
+            }
+            
+            // Button-Animation
+            toggleBtn.style.transform = 'scale(1.1)';
+            setTimeout(() => {
+                toggleBtn.style.transform = 'scale(1)';
+            }, 200);
+        }
         
-        // Click Event hinzufügen
-        toggleBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            console.log('🎯 Dark Mode Button geklickt');
-            toggleDarkMode();
-        });
-        
-        // Auch per Enter-Taste aktivierbar
+        // Event Listener
+        toggleBtn.addEventListener('click', toggleTheme);
         toggleBtn.addEventListener('keydown', function(e) {
             if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
-                toggleDarkMode();
+                toggleTheme();
             }
         });
         
         // System-Änderungen überwachen
-        if (window.matchMedia) {
-            const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-            mediaQuery.addEventListener('change', function(e) {
-                if (!getSavedTheme()) { // Nur wenn kein manuelles Theme gesetzt
-                    console.log('🖥️ System Theme geändert:', e.matches ? 'dark' : 'light');
-                    applyTheme(e.matches ? 'dark' : 'light');
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+            if (!localStorage.getItem('ms-theme')) {
+                if (e.matches) {
+                    document.documentElement.classList.add('dark-mode');
+                    document.body.classList.add('dark-mode');
+                } else {
+                    document.documentElement.classList.remove('dark-mode');
+                    document.body.classList.remove('dark-mode');
                 }
-            });
-        }
-        
-        console.log('✅ Dark Mode initialisiert');
-    }
-    
-    // 7. STARTE INITIALISIERUNG
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(initDarkMode, 50);
+            }
         });
-    } else {
-        setTimeout(initDarkMode, 50);
     }
     
-    // 8. GLOBALE FUNKTION FÜR EXTERNE ZUGRIFF
-    window.toggleDarkMode = toggleDarkMode;
-    
-    console.log('✅ Dark Mode Script bereit');
+    // Starte Dark Mode nach Preloader
+    setTimeout(initDarkMode, 1500);
     
 })();
+
+// ============================================================================
+// 4. JAHRESZAHL IM FOOTER
+// ============================================================================
+
+function updateYear() {
+    const yearElements = document.querySelectorAll('#jahr');
+    if (yearElements.length > 0) {
+        const currentYear = new Date().getFullYear();
+        yearElements.forEach(el => {
+            el.textContent = currentYear;
+        });
+        console.log('📅 Jahreszahl aktualisiert:', currentYear);
+    }
+}
+
+// ============================================================================
+// 5. HAUPTHAUPT-INITIALISIERUNG
+// ============================================================================
+
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('📄 DOM vollständig geladen');
+    
+    // Jahreszahl sofort aktualisieren
+    updateYear();
+    
+    // Debug: Zeige alle Elemente mit ID preloader
+    console.log('🔍 Anzahl #preloader Elemente:', document.querySelectorAll('#preloader').length);
+    
+    // Check ob Preloader existiert
+    const preloader = document.getElementById('preloader');
+    if (preloader) {
+        console.log('✅ Preloader gefunden, sollte automatisch starten');
+        preloader.style.display = 'flex'; // Sicherstellen, dass er sichtbar ist
+    } else {
+        console.error('❌ KEIN PRELOADER GEFUNDEN!');
+        // Ohne Preloader sofort interaktive Elemente aktivieren
+        enableInteractiveElements();
+    }
+});
+
+// ============================================================================
+// 6. FEHLERBEHANDLUNG
+// ============================================================================
+
+window.addEventListener('error', function(e) {
+    console.error('❌ JavaScript Fehler:', e.message, 'in', e.filename, 'Zeile:', e.lineno);
+});
+
+console.log('✅ global.js vollständig geladen');
