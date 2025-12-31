@@ -1530,3 +1530,55 @@ button, a, .burger, .hauptnavigation a, .silber-button, .social-link {
     text-align: justify;
   }
 }
+/* ==========================================================================
+   KRITISCHE FIXES FÜR PRELOADER & MENÜ
+   ========================================================================== */
+
+/* PRELOADER FIX - WICHTIG! */
+#preloader {
+    pointer-events: auto !important; /* Klicks erlauben */
+}
+
+#preloader.hidden {
+    pointer-events: none !important; /* Nur wenn ausgeblendet */
+}
+
+/* MENÜ OVERLAY FIX */
+.menu-overlay {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.menu-overlay.active {
+    display: block;
+    opacity: 1;
+}
+
+/* BODY FIX FÜR SCROLL-SPERRE */
+body.menu-open {
+    overflow: hidden !important;
+    height: 100vh;
+}
+
+/* BURGER-MENÜ FIX */
+.burger {
+    pointer-events: auto !important;
+    cursor: pointer !important;
+}
+
+/* NAVIGATION FIX FÜR MOBILE */
+@media screen and (max-width: 768px) {
+    .hauptnavigation:not(.aktiv) {
+        display: none !important;
+        opacity: 0 !important;
+        transform: translateX(-100%) !important;
+    }
+    
+    .hauptnavigation.aktiv {
+        display: flex !important;
+        opacity: 1 !important;
+        transform: translateX(0) !important;
+        transition: opacity 0.3s ease, transform 0.3s ease !important;
+    }
+}
