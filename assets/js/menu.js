@@ -1,149 +1,142 @@
-// menu.js - BURGER MENU FIX für KLASSE "burger"
+// ====== KORRIGIERTE menu.js - EINZIGE VERSION ======
 document.addEventListener('DOMContentLoaded', function() {
     console.log('✅ DOM geladen - Menu JS startet');
     
-    // Elemente aus DEINEM HTML
-    const burger = document.getElementById('burger');
-    const navigation = document.getElementById('navigation');
-    const menuOverlay = document.getElementById('menuOverlay');
-    const darkModeToggle = document.getElementById('darkModeToggle');
+    // PRELOADER LOGIK ZUERST
+    function initPreloader() {
+        const preloader = document.getElementById('preloader');
+        if (!preloader) return;
+        
+        console.log('⏳ Initialisiere Preloader...');
+        
+        // 1. Sofort alle interaktiven Elemente klickbar machen
+        document.body.style.pointerEvents = 'auto';
+        
+        // 2. Preloader nach kurzer Verzögerung ausblenden
+        setTimeout(() => {
+            preloader.classList.add('hidden');
+            console.log('✅ Preloader ausgeblendet');
+            
+            // 3. Nach Fade-Out komplett entfernen
+            setTimeout(() => {
+                preloader.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }, 600);
+            
+        }, 1500); // 1.5 statt 2.5 Sekunden
+        
+        // 4. Notfall: Wenn Seite komplett geladen ist
+        window.addEventListener('load', function() {
+            console.log('📦 Seite komplett geladen');
+            if (preloader.style.display !== 'none') {
+                preloader.classList.add('hidden');
+                setTimeout(() => {
+                    preloader.style.display = 'none';
+                }, 600);
+            }
+        });
+    }
     
-    // Log zur Kontrolle
-    console.log('Burger gefunden:', burger);
-    console.log('Navigation gefunden:', navigation);
-    console.log('MenuOverlay gefunden:', menuOverlay);
-    
-    // 1. BURGER KLICK - Menü öffnen/schließen
-    if (burger) {
+    // BURGER-MENÜ LOGIK
+    function initBurgerMenu() {
+        console.log('🍔 Initialisiere Burger-Menü...');
+        
+        const burger = document.getElementById('burger');
+        const navigation = document.getElementById('navigation');
+        const menuOverlay = document.getElementById('menuOverlay');
+        const links = navigation ? navigation.querySelectorAll('a') : [];
+        
+        // Debug-Info
+        console.log('Burger gefunden:', !!burger);
+        console.log('Navigation gefunden:', !!navigation);
+        console.log('MenuOverlay gefunden:', !!menuOverlay);
+        console.log('Links gefunden:', links.length);
+        
+        if (!burger || !navigation || !menuOverlay) {
+            console.error('❌ Kritische Elemente für Burger-Menü nicht gefunden!');
+            return;
+        }
+        
+        // SICHERSTELLEN: Burger ist immer klickbar
+        burger.style.pointerEvents = 'auto';
+        burger.style.zIndex = '9999';
+        burger.style.cursor = 'pointer';
+        
+        // BURGER KLICK
         burger.addEventListener('click', function(e) {
             e.stopPropagation();
             e.preventDefault();
-            console.log('🍔 Burger Button geklickt!');
+            console.log('🍔 Burger geklickt - Menü umschalten');
             
-            // Menü umschalten
-            navigation.classList.toggle('active');
-            menuOverlay.classList.toggle('active');
+            const isOpen = navigation.classList.contains('active');
             
-            // Burger-Animation
-            if (navigation.classList.contains('active')) {
-                // Menü geöffnet - Burger zu X
-                burger.style.background = 'rgba(255, 255, 255, 0.9)';
-                burger.querySelectorAll('span')[0].style.transform = 'rotate(45deg) translate(6px, 6px)';
-                burger.querySelectorAll('span')[1].style.opacity = '0';
-                burger.querySelectorAll('span')[2].style.transform = 'rotate(-45deg) translate(7px, -7px)';
-                document.body.style.overflow = 'hidden'; // Scrollen blockieren
+            if (!isOpen) {
+                // MENÜ ÖFFNEN
+                navigation.classList.add('active');
+                menuOverlay.classList.add('active');
+                burger.classList.add('aktiv'); // WICHTIG: CSS-Klasse 'aktiv'
+                document.body.style.overflow = 'hidden';
+                console.log('📱 Menü geöffnet');
             } else {
-                // Menü geschlossen - X zu Burger
-                burger.style.background = 'rgba(0, 0, 0, 0.8)';
-                burger.querySelectorAll('span')[0].style.transform = 'none';
-                burger.querySelectorAll('span')[1].style.opacity = '1';
-                burger.querySelectorAll('span')[2].style.transform = 'none';
-                document.body.style.overflow = 'auto'; // Scrollen erlauben
+                // MENÜ SCHLIEẞEN
+                closeMenu();
+                console.log('📱 Menü geschlossen');
             }
         });
-    } else {
-        console.error('❌ Burger Button nicht gefunden!');
-    }
-    
-    // 2. OVERLAY KLICK - Menü schließen
-    if (menuOverlay) {
-        menuOverlay.addEventListener('click', function() {
-            console.log('Overlay geklickt - Menü schließen');
-            closeMenu();
+        
+        // OVERLAY KLICK
+        menuOverlay.addEventListener('click', closeMenu);
+        
+        // LINKS KLICK
+        links.forEach(link => {
+            link.addEventListener('click', closeMenu);
         });
-    }
-    
-    // 3. MENÜ-LINKS - Klick schließt Menü
-    if (navigation) {
-        navigation.addEventListener('click', function(e) {
-            if (e.target.tagName === 'A') {
-                console.log('Menü-Link geklickt:', e.target.href);
+        
+        // ESCAPE-TASTE
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && navigation.classList.contains('active')) {
                 closeMenu();
             }
         });
-    }
-    
-    // 4. ESCAPE-TASTE - Menü schließen
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            closeMenu();
+        
+        // Funktion zum Menü schließen
+        function closeMenu() {
+            navigation.classList.remove('active');
+            menuOverlay.classList.remove('active');
+            burger.classList.remove('aktiv');
+            document.body.style.overflow = 'auto';
         }
-    });
-    
-    // 5. DARK MODE TOGGLE (falls vorhanden)
-    if (darkModeToggle) {
-        darkModeToggle.addEventListener('click', function() {
-            console.log('Dark Mode Toggle geklickt');
-            // Deine Dark Mode Logik hier
+        
+        // TOUCH OPTIMIERUNG
+        burger.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            this.style.transform = 'scale(0.95)';
+        }, { passive: false });
+        
+        burger.addEventListener('touchend', function() {
+            this.style.transform = 'scale(1)';
         });
     }
     
-    // Funktion zum Menü schließen
-    function closeMenu() {
-        navigation.classList.remove('active');
-        menuOverlay.classList.remove('active');
-        burger.style.background = 'rgba(0, 0, 0, 0.8)';
-        burger.querySelectorAll('span')[0].style.transform = 'none';
-        burger.querySelectorAll('span')[1].style.opacity = '1';
-        burger.querySelectorAll('span')[2].style.transform = 'none';
-        document.body.style.overflow = 'auto';
+    // DARK MODE TOGGLE (falls existiert)
+    function initDarkMode() {
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        if (!darkModeToggle) return;
+        
+        darkModeToggle.addEventListener('click', function() {
+            console.log('🌙 Dark Mode Toggle geklickt');
+            const isDark = document.body.classList.toggle('dark-mode');
+            document.documentElement.classList.toggle('dark-mode', isDark);
+            
+            // Speichern
+            localStorage.setItem('silberhain-theme', isDark ? 'dark' : 'light');
+        });
     }
     
-    // 6. TOUCH-EVENTS für Mobile optimieren
-    burger.addEventListener('touchstart', function(e) {
-        e.preventDefault();
-        this.style.transform = 'scale(0.95)';
-    }, { passive: false });
-    
-    burger.addEventListener('touchend', function() {
-        this.style.transform = 'scale(1)';
-    });
-    
-    console.log('✅ Menu JS erfolgreich initialisiert');
-});
-// ====== PRELOADER LOGIK ======
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('✅ DOM geladen - Menu JS startet');
-    
-    // ... (deine bestehende Burger-Logik hier) ...
-    
-    // PRELOADER AUTOMATISCH AUSBLENDEN
-    setTimeout(function() {
-        const preloader = document.getElementById('preloader');
-        if (preloader) {
-            console.log('⏳ Blende Preloader aus...');
-            
-            // 1. Fade-Out Effekt
-            preloader.classList.add('fade-out');
-            
-            // 2. Nach Fade-Out komplett ausblenden
-            setTimeout(function() {
-                preloader.style.display = 'none';
-                console.log('✅ Preloader ausgeblendet');
-                
-                // 3. Scrollen wieder aktivieren
-                document.body.style.overflow = 'auto';
-                
-                // 4. Burger definitiv klickbar machen
-                const burger = document.getElementById('burger');
-                if (burger) {
-                    burger.style.pointerEvents = 'auto';
-                    burger.style.zIndex = '9999';
-                    console.log('🍔 Burger ist jetzt klickbar');
-                }
-            }, 500); // Nach Fade-Out Animation
-        }
-    }, 2500); // Preloader nach 2.5 Sekunden ausblenden
-    
-    // NOTFALL: Wenn Seite komplett geladen ist
-    window.addEventListener('load', function() {
-        console.log('📦 Seite komplett geladen');
-        const preloader = document.getElementById('preloader');
-        if (preloader && preloader.style.display !== 'none') {
-            preloader.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-    });
-    
+    // INITIALISIERUNG STARTEN
+    console.log('🚀 Starte Initialisierung...');
+    initPreloader();
+    initBurgerMenu();
+    initDarkMode();
     console.log('✅ Menu JS erfolgreich initialisiert');
 });
