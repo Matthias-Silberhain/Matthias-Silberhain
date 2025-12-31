@@ -8,20 +8,20 @@
     
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=EB+Garamond:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Dancing+Script:wght@400;500&display=swap" rel="stylesheet">
     
     <!-- CSS -->
-   <link rel="stylesheet" href="assets/css/style.css">
-<link rel="stylesheet" href="assets/css/mobile-fix.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     
     <!-- Favicon -->
     <link rel="icon" href="assets/images/logo.png" type="image/png">
     
-    <!-- Dark Mode Preload - KORRIGIERT -->
+    <!-- Dark Mode & Preloader Fix -->
     <script>
+        // SOFORTIGE DARK MODE ANWENDUNG
         (function() {
-            // SOFORTIGE DARK MODE ANWENDUNG
             try {
-                const savedTheme = localStorage.getItem('silberhain-theme');  // ÄNDERUNG: 'silberhain-theme'
+                const savedTheme = localStorage.getItem('silberhain-theme');
                 const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
                 
                 if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
@@ -29,46 +29,21 @@
                     document.body.classList.add('dark-mode');
                 }
             } catch(e) {
-                // Ignoriere Fehler
+                console.log('Dark Mode Fehler:', e);
             }
-            
-            // SOFORTIGE KLICKBARKEIT SICHERSTELLEN
-            document.addEventListener('DOMContentLoaded', function() {
-                // Alle interaktiven Elemente klickbar machen
-                const interactiveElements = ['button', 'a', '.burger', '.dark-mode-toggle', '.silber-button', '.social-link'];
-                
-                setTimeout(function() {
-                    interactiveElements.forEach(selector => {
-                        document.querySelectorAll(selector).forEach(el => {
-                            el.style.pointerEvents = 'auto';
-                            el.style.cursor = 'pointer';
-                        });
-                    });
-                    
-                    // Preloader nicht blockierend
-                    const preloader = document.getElementById('preloader');
-                    if (preloader) {
-                        preloader.style.pointerEvents = 'none';
-                        preloader.style.zIndex = '9990';
-                    }
-                    
-                    console.log('✅ Website ist jetzt voll klickbar!');
-                }, 100);
-            });
         })();
     </script>
 </head>
 
 <body>
 
-<!-- Preloader -->
+<!-- Preloader - ID VERBESSERT -->
 <div id="preloader">
     <div class="preloader-inner">
         <img src="assets/images/logo.png" alt="Logo" class="preloader-logo">
         <div class="text-container">
-            <!-- ÄNDERUNG: Kein <h1>, nur span -->
-            <span class="preloader-text"></span>
-            <span class="cursor"></span>
+            <span class="preloader-text" id="preloaderText"></span>
+            <span class="cursor" id="preloaderCursor"></span>
         </div>
     </div>
 </div>
@@ -122,7 +97,7 @@
         <div class="credo-container">
             <div class="credo-quote-wrapper">
                 <div class="credo-quote">
-                    <p class="quote-text kalligrafie-text">Wenn Wahrheit unbequem wird, braucht sie eine Stimme.</p>
+                    <p class="kalligrafie-text">Wenn Wahrheit unbequem wird, braucht sie eine Stimme.</p>
                 </div>
             </div>
             
@@ -130,15 +105,15 @@
                 <span class="kalligrafie-signature">Matthias Silberhain</span>
             </div>
             
-            <div class="credo-subtitle">
+            <p class="credo-subtitle">
                 Autor zu Macht, Verantwortung und gesellschaftlichen Mechanismen
-            </div>
+            </p>
         </div>
         
         <!-- EINLEITUNGSTEXT -->
         <div class="einleitung">
             <p class="lead-text">
-                <br>Diese Seite ist kein Ort für einfache Antworten oder beruhigende Geschichten.<br>            
+                Diese Seite ist kein Ort für einfache Antworten oder beruhigende Geschichten.
             </p>
             
             <p class="sub-lead-text">
@@ -275,7 +250,77 @@
 </footer>
 
 <!-- ================= JAVASCRIPT ================= -->
-<!-- BEIDE Dateien einbinden! -->
+<!-- PRELOADER FIX ZUERST, DANN DER REST -->
+<script>
+// PRELOADER FIX - DIREKT IM HTML
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('⚡ DOM geladen - Starte Preloader');
+    
+    const preloader = document.getElementById('preloader');
+    const preloaderText = document.getElementById('preloaderText');
+    const cursor = document.getElementById('preloaderCursor');
+    
+    if (!preloaderText) {
+        console.error('❌ preloaderText nicht gefunden!');
+        return;
+    }
+    
+    // Text der geschrieben werden soll
+    const text = "MATTHIAS SILBERHAIN";
+    let index = 0;
+    const speed = 100; // ms pro Buchstabe
+    
+    // Typing Animation Funktion
+    function typeWriter() {
+        if (index < text.length) {
+            // Buchstabe hinzufügen
+            preloaderText.textContent += text.charAt(index);
+            index++;
+            
+            // Nächsten Buchstaben mit Verzögerung
+            setTimeout(typeWriter, speed);
+        } else {
+            // Animation beendet
+            console.log('✅ Typing Animation fertig');
+            
+            // Cursor ausblenden
+            if (cursor) {
+                cursor.style.display = 'none';
+            }
+            
+            // Preloader nach 1 Sekunde ausblenden
+            setTimeout(function() {
+                if (preloader) {
+                    preloader.classList.add('hidden');
+                    console.log('✅ Preloader ausgeblendet');
+                    
+                    // Nach 0.6s komplett entfernen
+                    setTimeout(function() {
+                        preloader.style.display = 'none';
+                        console.log('✅ Preloader entfernt');
+                    }, 600);
+                }
+            }, 1000);
+        }
+    }
+    
+    // Starte Typing Animation nach kurzer Verzögerung
+    setTimeout(function() {
+        console.log('🚀 Starte Typing Animation');
+        typeWriter();
+    }, 500);
+    
+    // Falls Preloader nach 5s immer noch da ist, zwangsweise entfernen
+    setTimeout(function() {
+        if (preloader && !preloader.classList.contains('hidden')) {
+            console.warn('⚠️ Preloader Timeout - zwangsweise entfernen');
+            preloader.style.display = 'none';
+        }
+    }, 5000);
+});
+</script>
+
+<!-- WEITERE JAVASCRIPT DATEIEN -->
 <script src="assets/js/global.js"></script>
 <script src="assets/js/menu.js"></script>
 
