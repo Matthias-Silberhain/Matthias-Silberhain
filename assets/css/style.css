@@ -36,14 +36,14 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 9990;
+  z-index: 9999; /* HIER ÄNDERN: von 9990 auf 9999 */
   opacity: 1;
   visibility: visible;
   pointer-events: none;
   transition: opacity 0.6s ease, visibility 0.6s ease;
 }
 
-#preloader.hidden {
+#preloader.loaded { /* HIER ÄNDERN: .hidden in .loaded */
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
