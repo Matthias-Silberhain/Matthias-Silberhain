@@ -1,84 +1,66 @@
-// assets/js/menu.js
+// Mobile Navigation
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('🚀 Mobile Menü wird geladen');
+    const burgerButton = document.getElementById('burgerButton');
+    const mainNav = document.getElementById('mainNav');
+    const menuOverlay = document.querySelector('.menu-overlay');
+    const body = document.body;
     
-    const burger = document.querySelector('.burger');
-    const nav = document.querySelector('.hauptnavigation');
-    const overlay = document.querySelector('.menu-overlay');
+    if (!burgerButton || !mainNav || !menuOverlay) return;
     
-    if (!burger || !nav) {
-        console.error('❌ Menü-Elemente nicht gefunden');
-        return;
-    }
-    
-    console.log('✅ Elemente gefunden:', { burger, nav, overlay });
-    
-    // Einfache Toggle-Funktion
+    // Toggle Menu
     function toggleMenu() {
-        console.log('🔄 Toggle Menü');
+        const isActive = mainNav.classList.contains('active');
         
-        const isActive = nav.classList.contains('aktiv');
+        burgerButton.classList.toggle('active');
+        mainNav.classList.toggle('active');
+        menuOverlay.classList.toggle('active');
         
-        if (isActive) {
-            // Menü schließen
-            burger.classList.remove('aktiv');
-            nav.classList.remove('aktiv');
-            if (overlay) overlay.classList.remove('active');
-            document.body.style.overflow = '';
+        if (!isActive) {
+            body.classList.add('no-scroll');
+            burgerButton.setAttribute('aria-expanded', 'true');
         } else {
-            // Menü öffnen
-            burger.classList.add('aktiv');
-            nav.classList.add('aktiv');
-            if (overlay) overlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
+            body.classList.remove('no-scroll');
+            burgerButton.setAttribute('aria-expanded', 'false');
         }
     }
     
-    // Menü schließen
+    // Close Menu
     function closeMenu() {
-        burger.classList.remove('aktiv');
-        nav.classList.remove('aktiv');
-        if (overlay) overlay.classList.remove('active');
-        document.body.style.overflow = '';
+        burgerButton.classList.remove('active');
+        mainNav.classList.remove('active');
+        menuOverlay.classList.remove('active');
+        body.classList.remove('no-scroll');
+        burgerButton.setAttribute('aria-expanded', 'false');
     }
     
-    // Event Listener
-    burger.addEventListener('click', function(e) {
+    // Event Listeners
+    burgerButton.addEventListener('click', function(e) {
         e.stopPropagation();
         toggleMenu();
     });
     
-    // Overlay schließt Menü
-    if (overlay) {
-        overlay.addEventListener('click', closeMenu);
-    }
+    menuOverlay.addEventListener('click', closeMenu);
     
-    // Links schließen Menü auf Mobile
-    const navLinks = nav.querySelectorAll('a');
-    navLinks.forEach(link => {
+    // Close on link click (mobile)
+    document.querySelectorAll('.hauptnavigation a').forEach(link => {
         link.addEventListener('click', function() {
-            if (window.innerWidth <= 768) {
-                setTimeout(closeMenu, 100);
+            if (window.innerWidth < 768) {
+                setTimeout(closeMenu, 300);
             }
         });
     });
     
-    // ESC-Taste schließt Menü
+    // ESC key to close
     document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && nav.classList.contains('aktiv')) {
+        if (e.key === 'Escape' && mainNav.classList.contains('active')) {
             closeMenu();
         }
     });
     
-    // Bei Resize: Menü zurücksetzen wenn auf Desktop
+    // Auto-close on resize to desktop
     window.addEventListener('resize', function() {
-        if (window.innerWidth > 768 && nav.classList.contains('aktiv')) {
+        if (window.innerWidth >= 768) {
             closeMenu();
         }
     });
-    
-    // Initialisierung
-    burger.setAttribute('aria-label', 'Menü öffnen/schließen');
-    
-    console.log('✅ Mobile Menü bereit');
 });
