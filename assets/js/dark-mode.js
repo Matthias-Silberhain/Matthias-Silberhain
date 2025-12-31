@@ -1,36 +1,69 @@
-/**
- * DARK MODE TOGGLE FUNKTIONALITÄT
- */
-
+// assets/js/dark-mode.js
 document.addEventListener('DOMContentLoaded', function() {
-    const darkModeToggle = document.querySelector('.dark-mode-toggle');
+    console.log('Dark Mode JS wird geladen');
+    
+    const themeToggle = document.getElementById('themeToggle');
     const body = document.body;
     
-    // Prüfe gespeicherte Einstellung oder System-Präferenz
-    function initDarkMode() {
-        const savedMode = localStorage.getItem('darkMode');
+    if (!themeToggle) {
+        console.error('Theme Toggle nicht gefunden');
+        return;
+    }
+    
+    // Theme initialisieren
+    function initTheme() {
+        // Prüfe Local Storage
+        const savedTheme = localStorage.getItem('silberhain-theme');
+        
+        // Prüfe System-Präferenz
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
         
-        if (savedMode === 'enabled' || (savedMode === null && prefersDark)) {
+        // Entscheidungslogik
+        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
             enableDarkMode();
         } else {
             disableDarkMode();
         }
     }
     
+    // Dark Mode aktivieren
     function enableDarkMode() {
+        console.log('Aktiviere Dark Mode');
         body.classList.add('dark-mode');
-        localStorage.setItem('darkMode', 'enabled');
-        updateButtonText(true);
+        body.classList.remove('light-mode');
+        localStorage.setItem('silberhain-theme', 'dark');
+        updateToggleIcon(true);
     }
     
+    // Dark Mode deaktivieren
     function disableDarkMode() {
+        console.log('Aktiviere Light Mode');
         body.classList.remove('dark-mode');
-        localStorage.setItem('darkMode', 'disabled');
-        updateButtonText(false);
+        body.classList.add('light-mode');
+        localStorage.setItem('silberhain-theme', 'light');
+        updateToggleIcon(false);
     }
     
-    function toggleDarkMode() {
+    // Icon aktualisieren
+    function updateToggleIcon(isDark) {
+        const moonIcon = themeToggle.querySelector('.moon-icon');
+        const sunIcon = themeToggle.querySelector('.sun-icon');
+        
+        if (moonIcon && sunIcon) {
+            if (isDark) {
+                moonIcon.style.display = 'none';
+                sunIcon.style.display = 'block';
+                themeToggle.setAttribute('aria-label', 'Zum Hellmodus wechseln');
+            } else {
+                moonIcon.style.display = 'block';
+                sunIcon.style.display = 'none';
+                themeToggle.setAttribute('aria-label', 'Zum Dunkelmodus wechseln');
+            }
+        }
+    }
+    
+    // Theme umschalten
+    function toggleTheme() {
         if (body.classList.contains('dark-mode')) {
             disableDarkMode();
         } else {
@@ -38,23 +71,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    function updateButtonText(isDark) {
-        // Optional: Button-Text oder Icon ändern
-        const button = darkModeToggle;
-        button.setAttribute('aria-label', 
-            isDark ? 'Zum Hellmodus wechseln' : 'Zum Dunkelmodus wechseln'
-        );
-    }
-    
     // Event Listener
-    if (darkModeToggle) {
-        darkModeToggle.addEventListener('click', toggleDarkMode);
-        darkModeToggle.setAttribute('aria-label', 'Farbmodus wechseln');
-    }
+    themeToggle.addEventListener('click', toggleTheme);
     
-    // System-Präferenzänderung überwachen
-    window.matchMedia('(prefers-color-scheme: dark)').addListener((e) => {
-        if (!localStorage.getItem('darkMode')) {
+    // System-Themeänderungen überwachen
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+        // Nur ändern wenn kein manueller Theme gespeichert ist
+        if (!localStorage.getItem('silberhain-theme')) {
             if (e.matches) {
                 enableDarkMode();
             } else {
@@ -64,5 +87,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Initialisierung
-    initDarkMode();
+    initTheme();
+    
+    console.log('Dark Mode JS erfolgreich geladen');
 });
