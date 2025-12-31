@@ -17,7 +17,6 @@ document.addEventListener('DOMContentLoaded', function() {
     if (burger && navigation) {
         console.log('✅ Navigation Elemente gefunden');
         
-        // Menü öffnen/schließen
         burger.addEventListener('click', function(e) {
             e.stopPropagation();
             
@@ -28,13 +27,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 menuOverlay.classList.toggle('active');
             }
             
-            // Scrollen verhindern/erlauben
             document.body.style.overflow = isActive ? 'hidden' : '';
             
             console.log(isActive ? '✅ Menü geöffnet' : '✅ Menü geschlossen');
         });
         
-        // Menü schließen bei Klick auf Overlay
         if (menuOverlay) {
             menuOverlay.addEventListener('click', function() {
                 burger.classList.remove('aktiv');
@@ -45,7 +42,6 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
         
-        // Menü schließen bei Klick auf Navigation-Links
         const navLinks = navigation.querySelectorAll('a');
         navLinks.forEach(link => {
             link.addEventListener('click', function() {
@@ -61,7 +57,6 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
         
-        // Menü schließen bei ESC-Taste
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape' && navigation.classList.contains('aktiv')) {
                 burger.classList.remove('aktiv');
@@ -74,7 +69,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
         
-        // Menü schließen bei Fenster-Resize (zu Desktop)
         window.addEventListener('resize', function() {
             if (window.innerWidth > 768 && navigation.classList.contains('aktiv')) {
                 burger.classList.remove('aktiv');
@@ -86,15 +80,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.log('✅ Menü via Resize geschlossen');
             }
         });
-    } else {
-        console.warn('⚠️ Navigation Elemente nicht gefunden');
     }
     
     // ================= DARK MODE FUNKTIONALITÄT =================
     if (darkModeToggle) {
         console.log('✅ Dark Mode Toggle gefunden');
         
-        // Theme aus LocalStorage lesen
         function getCurrentTheme() {
             try {
                 const savedTheme = localStorage.getItem('silberhain-theme');
@@ -106,7 +97,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
         
-        // Theme anwenden
         function applyTheme(theme) {
             const isDark = theme === 'dark';
             
@@ -118,7 +108,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.documentElement.classList.remove('dark-mode');
             }
             
-            // In LocalStorage speichern
             try {
                 localStorage.setItem('silberhain-theme', theme);
             } catch (e) {
@@ -129,23 +118,20 @@ document.addEventListener('DOMContentLoaded', function() {
             return isDark;
         }
         
-        // Initiales Theme setzen
         const currentTheme = getCurrentTheme();
         const isDarkMode = applyTheme(currentTheme);
         console.log('✅ Initiales Theme:', currentTheme, 'Dark Mode:', isDarkMode);
         
-        // Dark Mode Toggle Event
         darkModeToggle.addEventListener('click', function() {
             const isCurrentlyDark = body.classList.contains('dark-mode');
             const newTheme = isCurrentlyDark ? 'light' : 'dark';
             
             applyTheme(newTheme);
-            this.blur(); // Button Focus entfernen
+            this.blur();
             
             console.log('✅ Dark Mode geändert zu:', newTheme);
         });
         
-        // System Theme Änderungen überwachen
         const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
         mediaQuery.addEventListener('change', function(e) {
             if (!localStorage.getItem('silberhain-theme')) {
@@ -153,8 +139,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.log('✅ System Theme geändert:', e.matches ? 'dark' : 'light');
             }
         });
-    } else {
-        console.warn('⚠️ Dark Mode Toggle nicht gefunden');
     }
     
     // ================= ACTIVE LINK HIGHLIGHTING =================
@@ -175,44 +159,11 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('✅ Aktive Links gesetzt für:', currentPage);
     }
     
-    // Initial setzen
     setActiveLink();
-    
-    // ================= PRELOADER FUNKTIONALITÄT =================
-    function handlePreloader() {
-        const preloader = document.getElementById('preloader');
-        
-        if (preloader) {
-            // Preloader nach 1.5 Sekunden ausblenden
-            setTimeout(() => {
-                preloader.classList.add('hidden');
-                
-                // Preloader nach Animation komplett entfernen
-                setTimeout(() => {
-                    preloader.style.display = 'none';
-                    console.log('✅ Preloader entfernt');
-                }, 600);
-            }, 1500);
-        }
-    }
-    
-    // Preloader starten (mit Verzögerung für globale.js)
-    setTimeout(handlePreloader, 500);
-    
-    // ================= TOUCH DEVICE OPTIMIERUNGEN =================
-    // Verhindert Doppel-Tap-Zoom auf iOS
-    let lastTouchEnd = 0;
-    document.addEventListener('touchend', function(event) {
-        const now = Date.now();
-        if (now - lastTouchEnd <= 300) {
-            event.preventDefault();
-        }
-        lastTouchEnd = now;
-    }, false);
     
     console.log('✅ menu.js erfolgreich geladen');
     
-    // ================= EXPORT FÜR DEBUGGING =================
+    // ================= EXPORT =================
     window.MenuManager = {
         toggleMenu: function() {
             if (burger) burger.click();
