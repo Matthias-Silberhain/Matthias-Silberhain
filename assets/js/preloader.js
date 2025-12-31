@@ -1,71 +1,39 @@
 /**
- * PRELOADER FUNKTIONALITÄT
+ * PRELOADER - KORRIGIERTE VERSION
  */
 
 document.addEventListener('DOMContentLoaded', function() {
     const preloader = document.getElementById('preloader');
     
-    // Text-Animation für Preloader
-    function animatePreloaderText() {
-        const text = "Erkunde die tiefsten Geheimnisse der Seele...";
-        const textElement = document.querySelector('.preloader-text');
-        const cursor = document.querySelector('.cursor');
-        let index = 0;
-        
-        if (!textElement) return;
-        
-        textElement.textContent = '';
-        
-        function typeWriter() {
-            if (index < text.length) {
-                textElement.textContent += text.charAt(index);
-                index++;
-                setTimeout(typeWriter, 50); // Geschwindigkeit anpassen
-            } else {
-                // Text fertig, Cursor entfernen nach kurzer Zeit
-                setTimeout(() => {
-                    if (cursor) cursor.style.display = 'none';
-                }, 1000);
-            }
-        }
-        
-        // Starte Animation nach kurzer Verzögerung
-        setTimeout(typeWriter, 800);
-    }
+    if (!preloader) return;
     
-    // Preloader ausblenden
+    // Preloader sofort interaktiv machen
+    preloader.style.pointerEvents = 'auto';
+    
     function hidePreloader() {
         if (!preloader) return;
         
-        // Warte bis Text-Animation fertig ist
-        const minDisplayTime = 3000; // Mindestanzeigezeit in ms
-        const startTime = Date.now();
+        console.log('Preloader wird ausgeblendet');
         
-        function removePreloader() {
-            const elapsedTime = Date.now() - startTime;
-            
-            if (elapsedTime >= minDisplayTime) {
-                preloader.classList.add('hidden');
-                
-                // Entferne Preloader aus DOM nach Animation
-                setTimeout(() => {
-                    preloader.style.display = 'none';
-                }, 600);
-            } else {
-                setTimeout(removePreloader, minDisplayTime - elapsedTime);
-            }
-        }
+        // 1. Preloader ausblenden
+        preloader.classList.add('hidden');
         
-        // Starte die Prüfung
-        removePreloader();
+        // 2. Pointer-events nach der Animation deaktivieren
+        setTimeout(() => {
+            preloader.style.pointerEvents = 'none';
+            preloader.style.display = 'none';
+            console.log('Preloader komplett entfernt');
+        }, 600);
+        
+        // 3. Body wieder klickbar machen
+        document.body.style.pointerEvents = 'auto';
     }
     
-    // Initialisierung
-    animatePreloaderText();
+    // Warte auf alle Ressourcen
+    window.addEventListener('load', function() {
+        setTimeout(hidePreloader, 1500); // Mindestanzeigezeit
+    });
     
-    // Preloader ausblenden wenn alles geladen ist
-    window.addEventListener('load', hidePreloader);
-    
-    // Fallback: Maximal 5 Sekunden warten
+    // Fallback nach 5 Sekunden
     setTimeout(hidePreloader, 5000);
 });
