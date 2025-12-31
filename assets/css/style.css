@@ -2653,4 +2653,134 @@ body::before {
     visibility: visible !important;
     opacity: 1 !important;
 }
+
+
+/* ==========================================================================
+   SPEZIAL-TEXTE FÜR DUNKEL/HELL MODUS KORREKTUR
+   ========================================================================== */
+
+/* Haupt-Zitat auf der Index-Seite */
+.startseite .credo-headline,
+.startseite .lead-text,
+.startseite .highlight {
+    color: #f8f8f8 !important;
+    text-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.7),
+        0 0 20px rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Dark Mode für Index-Texte */
+body.dark-mode .startseite .credo-headline,
+body.dark-mode .startseite .lead-text,
+body.dark-mode .startseite .highlight {
+    color: #ffffff !important;
+    text-shadow: 
+        0 2px 6px rgba(0, 0, 0, 0.8),
+        0 0 25px rgba(255, 255, 255, 0.15) !important;
+}
+
+/* Zitat auf der Über-mich Seite */
+.ueber-mich-content .highlight-paragraph,
+.ueber-mich-content .attention-line,
+.ueber-mich-content .schluss-zitat {
+    color: #f0f0f0 !important;
+    text-shadow: 
+        0 1px 3px rgba(0, 0, 0, 0.6),
+        0 0 15px rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Dark Mode für Über-mich Texte */
+body.dark-mode .ueber-mich-content .highlight-paragraph,
+body.dark-mode .ueber-mich-content .attention-line,
+body.dark-mode .ueber-mich-content .schluss-zitat {
+    color: #ffffff !important;
+    text-shadow: 
+        0 1px 4px rgba(0, 0, 0, 0.8),
+        0 0 20px rgba(255, 255, 255, 0.12) !important;
+}
+
+/* Kalligrafie-Zitat auf Index-Seite */
+.kalligrafie-text {
+    color: #ffffff !important;
+    text-shadow: 
+        0 3px 6px rgba(0, 0, 0, 0.9),
+        0 0 30px rgba(255, 255, 255, 0.2) !important;
+    position: relative;
+}
+
+body.dark-mode .kalligrafie-text {
+    color: #ffffff !important;
+    text-shadow: 
+        0 4px 8px rgba(0, 0, 0, 1),
+        0 0 35px rgba(255, 255, 255, 0.25) !important;
+}
+
+/* Kalligrafie-Signatur */
+.kalligrafie-signature {
+    color: #e0e0e0 !important;
+    text-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.7),
+        0 0 15px rgba(255, 255, 255, 0.1) !important;
+}
+
+body.dark-mode .kalligrafie-signature {
+    color: #f0f0f0 !important;
+    text-shadow: 
+        0 2px 5px rgba(0, 0, 0, 0.9),
+        0 0 20px rgba(255, 255, 255, 0.15) !important;
+}
+
+/* Speziell für die "Wahrheit braucht Stimme" Texte */
+.credo-headline,
+.lead-text,
+.highlight-paragraph {
+    font-weight: 600 !important;
+    letter-spacing: 0.02em !important;
+}
+
+/* Container für diese speziellen Texte */
+.credo-container,
+.text-kernaussage,
+.kernaussage-box {
+    background-color: rgba(25, 25, 25, 0.85) !important;
+    border: 1px solid rgba(200, 200, 200, 0.25) !important;
+    box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.8),
+        0 0 0 1px rgba(255, 255, 255, 0.1) inset,
+        0 0 40px rgba(255, 255, 255, 0.05) inset !important;
+}
+
+body.dark-mode .credo-container,
+body.dark-mode .text-kernaussage,
+body.dark-mode .kernaussage-box {
+    background-color: rgba(40, 40, 40, 0.85) !important;
+    border: 1px solid rgba(220, 220, 220, 0.3) !important;
+    box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.9),
+        0 0 0 1px rgba(255, 255, 255, 0.15) inset,
+        0 0 40px rgba(255, 255, 255, 0.08) inset !important;
+}
+
+/* Besonders für die Signatur "Matthias Silberhain" */
+.credo-signature,
+.signature-text,
+.kalligrafie-signature {
+    font-weight: 500 !important;
+    letter-spacing: 0.05em !important;
+}
+
+/* Responsive Anpassungen */
+@media screen and (max-width: 768px) {
+    .kalligrafie-text {
+        font-size: 2.2rem !important;
+        text-shadow: 
+            0 2px 5px rgba(0, 0, 0, 0.8),
+            0 0 25px rgba(255, 255, 255, 0.15) !important;
+    }
+    
+    .credo-headline,
+    .lead-text {
+        font-size: 1.8rem !important;
+    }
+}   
 }
