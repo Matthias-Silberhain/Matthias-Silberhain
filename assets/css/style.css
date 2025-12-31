@@ -80,7 +80,7 @@ body {
   font-size: 34px;
   letter-spacing: 0.2em;
   color: #e0e0e0;
-  white-space: normal; /* KORRIGIERT: von nowrap zu normal */
+  white-space: normal;
   word-wrap: break-word;
   text-align: center;
   text-shadow: 0 0 10px rgba(200, 200, 200, 0.3);
@@ -1627,5 +1627,42 @@ body.dark-mode .cursor {
   p {
     color: #333 !important;
     text-align: justify;
+  }
+}
+
+/* ==========================================================================
+   MOBILE MENU FALLBACK - FÜR SICHERHEIT
+   ========================================================================== */
+
+/* Sicherstellen dass Burger sichtbar ist */
+@media screen and (max-width: 768px) {
+  .burger {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  
+  /* Emergency fix falls andere CSS überschreibt */
+  .hauptnavigation:not(.aktiv) {
+    display: none !important;
+  }
+  
+  .hauptnavigation.aktiv {
+    display: flex !important;
+  }
+}
+
+/* Touch-friendly größere Ziele für Mobile */
+@media (hover: none) and (pointer: coarse) {
+  .hauptnavigation a {
+    min-height: 48px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  
+  .burger {
+    min-width: 44px !important;
+    min-height: 44px !important;
   }
 }
