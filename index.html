@@ -7,28 +7,27 @@
     <meta name="description" content="Matthias Silberhain - Autor zu Macht, Verantwortung und gesellschaftlichen Mechanismen">
     
     <!-- Frühes Theme-Setup für perfekten Preloader-Übergang -->
-    <script>
-      (function() {
-        'use strict';
-        const savedTheme = localStorage.getItem('theme');
-        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        
-        let theme = savedTheme;
-        if (!theme) {
-          theme = systemPrefersDark ? 'dark' : 'light';
-        }
-        
-        if (theme === 'dark') {
-          document.documentElement.classList.add('dark-theme');
-          document.documentElement.classList.remove('light-theme');
-        } else {
-          document.documentElement.classList.add('light-theme');
-          document.documentElement.classList.remove('dark-theme');
-        }
-        
-        window.__USER_THEME = theme;
-      })();
-    </script>
+   <script>
+  (function() {
+    'use strict';
+    const savedTheme = localStorage.getItem('theme');
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    let theme = savedTheme;
+    if (!theme) {
+      theme = systemPrefersDark ? 'dark' : 'light';
+    }
+    
+    // Kompatibilität: Beide Klassen setzen
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark-mode');
+      document.documentElement.classList.remove('light-mode');
+    } else {
+      document.documentElement.classList.add('light-mode');
+      document.documentElement.classList.remove('dark-mode');
+    }
+  })();
+</script>
     
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=EB+Garamond:wght@400;500&display=swap" rel="stylesheet">
