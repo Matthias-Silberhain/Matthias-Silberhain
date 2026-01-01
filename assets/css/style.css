@@ -1016,3 +1016,119 @@ body:not(.dark-mode) .dark-mode-toggle .moon-icon {
 body:not(.dark-mode) .dark-mode-toggle .sun-icon {
     display: none !important;
 }
+/* AN DAS ENDE IHRER BESTEHENDEN style.css anhängen */
+/* ==========================================================================
+   CSS-ONLY ANIMATIONEN & EFFEKTE - AN style.css ANHÄNGEN
+   ========================================================================== */
+
+/* Smooth Scroll-Verhalten */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Preloader Zustände - SICHERSTELLEN DASS ES KORREKT IST */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+#preloader.loaded {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* Fade-in Animation für Inhalt nach Preloader */
+body.loaded .inhalt {
+    animation: contentFadeIn 0.8s ease-out;
+}
+
+body.loaded .inhalt > * {
+    opacity: 0;
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+body.loaded .inhalt > *:nth-child(1) { animation-delay: 0.1s; }
+body.loaded .inhalt > *:nth-child(2) { animation-delay: 0.2s; }
+body.loaded .inhalt > *:nth-child(3) { animation-delay: 0.3s; }
+body.loaded .inhalt > *:nth-child(4) { animation-delay: 0.4s; }
+body.loaded .inhalt > *:nth-child(5) { animation-delay: 0.5s; }
+body.loaded .inhalt > *:nth-child(6) { animation-delay: 0.6s; }
+
+/* Parallax Effekt für Header - sehr subtil */
+.header {
+    transition: transform 0.3s ease-out;
+}
+
+/* Logo Animation nur auf Startseite */
+body.loaded .logo {
+    animation: float 6s ease-in-out infinite;
+}
+
+/* Keyframes - WENN NOCH NICHT IN IHRER CSS EXISTIEREN, HIER EINFÜGEN */
+@keyframes contentFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+/* Accessibility: Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+    
+    .header,
+    body.loaded .inhalt,
+    body.loaded .inhalt > *,
+    body.loaded .logo,
+    .logo,
+    #preloader {
+        animation: none !important;
+        transition: none !important;
+    }
+    
+    body.loaded .inhalt > * {
+        opacity: 1 !important;
+    }
+}
+
+/* Mobile Optimierung */
+@media screen and (max-width: 768px) {
+    body.loaded .inhalt > * {
+        animation-duration: 0.5s;
+    }
+    
+    body.loaded .logo {
+        animation: float 8s ease-in-out infinite;
+    }
+    
+    /* Parallax deaktivieren auf Mobile für bessere Performance */
+    .header {
+        transition: none;
+    }
+}
