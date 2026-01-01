@@ -2,9 +2,9 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>Quellen: Macht und Untergang | Matthias Silberhain</title>
+    <title>Quellen: Der lange Weg in die Finsternis | Matthias Silberhain</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Vollständiges Quellenverzeichnis zum Werk 'Macht und Untergang' mit Kapitelstruktur und direkten Links zu Primärquellen und Forschungsliteratur.">
+    <meta name="description" content="Quellenverzeichnis zum Werk 'Der lange Weg in die Finsternis - Eine ungewöhnliche Betrachtung historischer Entwicklungen' von Matthias Silberhain.">
     
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=EB+Garamond:wght@400;500&display=swap" rel="stylesheet">
@@ -17,23 +17,23 @@
     
     <style>
         /* ==========================================================================
-           ERWEITERTE QUELLEN STYLES
+           QUELLEN SEITE STYLES - Im selben Stil wie Termine/Kontakt
            ========================================================================== */
         
         .quellen-container {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
         }
         
-        /* OPTIMIERTER HEADER-BEREICH MIT KLEINEREM COVER */
+        /* Header-Bereich mit Cover */
         .quellen-header {
             display: grid;
-            grid-template-columns: 200px 1fr; /* Cover auf 200px reduziert */
-            gap: 30px;
+            grid-template-columns: 280px 1fr;
+            gap: 40px;
             align-items: start;
-            margin-bottom: 40px;
-            padding: 25px;
+            margin-bottom: 50px;
+            padding: 30px;
             background: linear-gradient(135deg, 
                 rgba(10, 10, 10, 0.4) 0%, 
                 rgba(30, 30, 30, 0.6) 100%);
@@ -41,7 +41,14 @@
             border: 1px solid rgba(200, 205, 215, 0.15);
             position: relative;
             overflow: hidden;
-            min-height: auto; /* Entfernt feste Höhe */
+        }
+        
+        @media screen and (max-width: 768px) {
+            .quellen-header {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                padding: 20px;
+            }
         }
         
         .quellen-header::before {
@@ -57,390 +64,222 @@
                 transparent 100%);
         }
         
-        /* Optimiertes Buchcover */
         .buch-cover-quelle {
             width: 100%;
             height: auto;
-            border-radius: 6px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(200, 205, 215, 0.25);
+            border-radius: 4px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(200, 205, 215, 0.2);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            max-width: 100%; /* Verhindert Überlauf */
-            display: block;
         }
         
         .buch-cover-quelle:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
         }
         
-        /* Quellen-Gruppen (Tabelle-Stil) */
-        .quellen-gruppe {
-            margin-bottom: 60px;
-            padding: 25px;
-            background: rgba(10, 10, 10, 0.25);
-            border-radius: 8px;
-            border: 1px solid rgba(200, 205, 215, 0.1);
-        }
-        
-        .quellen-gruppe h2 {
-            font-family: "Cinzel", serif;
-            color: #e4e6ea;
-            font-size: 1.8rem;
-            margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid rgba(200, 205, 215, 0.2);
-            letter-spacing: 0.03em;
-        }
-        
-        /* Tabellen-Stil für Quellen */
-        .quellen-tabelle {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        
-        .quellen-tabelle th {
-            background: rgba(200, 205, 215, 0.1);
-            color: #e4e6ea;
-            font-family: "Cinzel", serif;
-            font-weight: 600;
-            padding: 15px;
-            text-align: left;
-            border: 1px solid rgba(200, 205, 215, 0.2);
-            font-size: 1.1rem;
-        }
-        
-        .quellen-tabelle td {
-            color: #d6d9de;
-            padding: 15px;
-            border: 1px solid rgba(200, 205, 215, 0.15);
-            vertical-align: top;
-        }
-        
-        .quellen-tabelle tr:hover {
-            background: rgba(200, 205, 215, 0.05);
-        }
-        
-        .quelle-link {
-            color: #d6d9de;
-            text-decoration: none;
-            border-bottom: 1px dotted rgba(200, 200, 200, 0.3);
-            transition: all 0.3s ease;
-            word-break: break-all;
-            display: inline-block;
-            margin-top: 5px;
-            font-size: 0.95rem;
-        }
-        
-        .quelle-link:hover {
-            color: #ffffff;
-            border-bottom: 1px solid rgba(200, 200, 200, 0.6);
-        }
-        
-        /* These-Liste */
-        .these-liste {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        
-        .these-item {
-            margin-bottom: 20px;
-            padding: 15px;
-            background: rgba(10, 10, 10, 0.3);
-            border: 1px solid rgba(200, 205, 215, 0.15);
-            border-radius: 6px;
-            transition: all 0.3s ease;
-        }
-        
-        .these-item:hover {
-            background: rgba(10, 10, 10, 0.4);
-            border-color: rgba(200, 205, 215, 0.25);
-            transform: translateY(-2px);
-        }
-        
-        .these-titel {
-            color: #e4e6ea;
-            font-weight: 600;
-            margin-bottom: 10px;
-            font-size: 1.1rem;
-        }
-        
-        .these-quellen {
-            color: #9da2a8;
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-        
-        /* Quellen-Typ Icons */
-        .quelle-typ {
-            display: inline-flex;
-            align-items: center;
-            margin-left: 10px;
-            font-size: 0.8rem;
-            color: #8a8f95;
-        }
-        
-        .quelle-typ::before {
-            content: '';
-            display: inline-block;
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            margin-right: 5px;
-        }
-        
-        .typ-archiv::before { background: #4CAF50; }
-        .typ-buch::before { background: #2196F3; }
-        .typ-akademisch::before { background: #FF9800; }
-        .typ-zeitschrift::before { background: #9C27B0; }
-        .typ-international::before { background: #E91E63; }
-        
-        /* Quellen-Hinweis Bereich */
-        .quellen-hinweis {
-            background: linear-gradient(135deg, 
-                rgba(25, 25, 40, 0.6) 0%, 
-                rgba(40, 40, 60, 0.8) 100%);
-            border: 1px solid rgba(200, 205, 215, 0.2);
-            border-radius: 8px;
-            padding: 30px;
-            margin: 40px 0;
-        }
-        
-        .quellen-hinweis h3 {
-            color: #e4e6ea;
-            font-family: "Cinzel", serif;
-            margin-bottom: 20px;
-            font-size: 1.6rem;
-        }
-        
-        .quellen-hinweis p {
-            color: #b0b5bc;
-            line-height: 1.7;
-            margin-bottom: 15px;
-        }
-        
-        .quellen-hinweis strong {
-            color: #d6d9de;
-        }
-
-        /* OPTIMIERTE TEXTFORMATIERUNG FÜR DEN HEADER */
         .quellen-header-text h1 {
             font-family: "Cinzel", serif;
             color: #e4e6ea;
-            font-size: 1.9rem; /* Etwas kleiner */
-            margin-bottom: 12px;
+            font-size: 2.2rem;
+            margin-bottom: 15px;
             letter-spacing: 0.05em;
             text-shadow: 0 0 15px rgba(200, 200, 200, 0.2);
-            line-height: 1.2;
-            word-wrap: break-word;
-            hyphens: none;
-            margin-top: 0; /* Kein zusätzlicher Abstand oben */
         }
-
+        
         .quellen-header-text .untertitel {
             color: #b0b5bc;
-            font-size: 1.1rem; /* Etwas kleiner */
-            margin-bottom: 20px;
+            font-size: 1.2rem;
+            margin-bottom: 25px;
             font-style: italic;
             border-bottom: 1px solid rgba(200, 205, 215, 0.2);
-            padding-bottom: 12px;
-            line-height: 1.3;
-            word-wrap: break-word;
-            hyphens: auto;
+            padding-bottom: 15px;
         }
-
+        
         .quellen-header-text p {
             color: #b0b5bc;
-            line-height: 1.6; /* Kompakter */
-            margin-bottom: 12px;
-            font-size: 1rem; /* Etwas kleiner */
-            text-align: justify;
-            word-wrap: break-word;
+            line-height: 1.7;
+            margin-bottom: 15px;
+            font-size: 1.05rem;
         }
-
-        /* Hinweis-Kasten optimieren */
+        
+        /* Hinweis-Kasten im Stil der anderen Seiten */
         .hinweis-kasten {
             background: rgba(200, 205, 215, 0.05);
             border-left: 3px solid rgba(200, 205, 215, 0.3);
-            padding: 15px;
-            margin: 20px 0 0 0; /* Weniger Abstand oben */
+            padding: 20px;
+            margin: 25px 0;
             border-radius: 0 4px 4px 0;
             color: #9da2a8;
-            font-size: 0.9rem;
-            line-height: 1.5;
+            font-size: 0.95rem;
         }
         
         .hinweis-kasten strong {
             color: #d6d9de;
         }
-
-        /* Spezifische Optimierungen für den Untertitel */
-        .untertitel {
-            display: block;
-            overflow-wrap: break-word;
-            word-break: keep-all;
-            -webkit-hyphens: manual;
-            -moz-hyphens: manual;
-            -ms-hyphens: manual;
-            hyphens: manual;
-        }
-
-        /* DARK MODE ANPASSUNGEN */
-        body.dark-mode .quellen-gruppe {
-            background: rgba(30, 30, 30, 0.4);
-            border-color: rgba(220, 225, 235, 0.15);
+        
+        /* Quellen Kategorien - Im Stil der Termine-Seite */
+        .quellen-abschnitt {
+            margin: 50px 0;
         }
         
-        body.dark-mode .these-item {
+        .quelle-kategorie {
+            background: rgba(10, 10, 10, 0.3);
+            border: 1px solid rgba(200, 205, 215, 0.15);
+            border-radius: 6px;
+            padding: 30px;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+        }
+        
+        .quelle-kategorie:hover {
+            background: rgba(10, 10, 10, 0.4);
+            border-color: rgba(200, 205, 215, 0.25);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .quelle-kategorie h3 {
+            font-family: "Cinzel", serif;
+            color: #e4e6ea;
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            letter-spacing: 0.05em;
+        }
+        
+        .kategorie-untertitel {
+            color: #9da2a8;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            font-style: italic;
+            border-bottom: 1px solid rgba(200, 205, 215, 0.1);
+            padding-bottom: 10px;
+        }
+        
+        /* Quellen-Liste */
+        .quellen-liste {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .quellen-liste li {
+            margin-bottom: 25px;
+            padding-left: 0;
+            position: relative;
+            color: #b0b5bc;
+            line-height: 1.6;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(200, 205, 215, 0.1);
+        }
+        
+        .quellen-liste li:last-child {
+            border-bottom: none;
+        }
+        
+        .quellen-liste strong {
+            color: #e4e6ea;
+            font-weight: 500;
+            display: block;
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+        
+        .quellen-liste a {
+            color: #d6d9de;
+            text-decoration: none;
+            border-bottom: 1px dotted rgba(200, 200, 200, 0.3);
+            transition: all 0.3s ease;
+            word-break: break-all;
+        }
+        
+        .quellen-liste a:hover {
+            color: #ffffff;
+            border-bottom: 1px solid rgba(200, 200, 200, 0.6);
+        }
+        
+        /* Hinweis-Bereich */
+        .quellen-hinweis {
+            background: rgba(200, 205, 215, 0.05);
+            border: 1px solid rgba(200, 205, 215, 0.2);
+            border-radius: 6px;
+            padding: 30px;
+            margin: 40px 0;
+        }
+        
+        .quellen-hinweis p {
+            color: #b0b5bc;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .quellen-hinweis strong {
+            color: #d6d9de;
+        }
+        
+        /* DARK MODE STYLES */
+        body.dark-mode .quelle-kategorie {
             background: rgba(30, 30, 30, 0.5);
             border-color: rgba(220, 225, 235, 0.2);
         }
         
-        body.dark-mode .these-item:hover {
+        body.dark-mode .quelle-kategorie:hover {
             background: rgba(30, 30, 30, 0.7);
             border-color: rgba(220, 225, 235, 0.3);
         }
         
-        body.dark-mode .quellen-hinweis {
+        body.dark-mode .quellen-header {
             background: linear-gradient(135deg, 
-                rgba(40, 40, 60, 0.7) 0%, 
-                rgba(60, 60, 80, 0.9) 100%);
+                rgba(30, 30, 30, 0.5) 0%, 
+                rgba(50, 50, 50, 0.7) 100%);
+            border-color: rgba(220, 225, 235, 0.2);
+        }
+        
+        body.dark-mode .hinweis-kasten {
+            background: rgba(220, 225, 235, 0.05);
+            border-left-color: rgba(220, 225, 235, 0.4);
+        }
+        
+        body.dark-mode .quellen-hinweis {
+            background: rgba(220, 225, 235, 0.05);
             border-color: rgba(220, 225, 235, 0.25);
         }
         
-        /* RESPONSIVE DESIGN - OPTIMIERT */
-        @media screen and (max-width: 1024px) {
+        /* Responsive Anpassungen */
+        @media screen and (max-width: 768px) {
             .quellen-container {
                 padding: 15px;
             }
             
-            .quellen-header {
-                grid-template-columns: 180px 1fr; /* Noch schmaleres Cover */
-                gap: 25px;
+            .quellen-header-text h1 {
+                font-size: 1.8rem;
+            }
+            
+            .quelle-kategorie {
                 padding: 20px;
             }
             
-            .quellen-header-text h1 {
-                font-size: 1.7rem;
-            }
-            
-            .quellen-header-text .untertitel {
-                font-size: 1rem;
-            }
-            
-            .quellen-header-text p {
-                font-size: 0.95rem;
-            }
-            
-            .quellen-tabelle {
-                display: block;
-                overflow-x: auto;
-            }
-        }
-        
-        @media screen and (max-width: 768px) {
-            .quellen-header {
-                grid-template-columns: 1fr;
-                gap: 20px;
-                padding: 20px;
-            }
-            
-            /* Cover zentrieren und Größe reduzieren */
-            .buch-cover-container {
-                display: flex;
-                justify-content: center;
-                max-width: 200px; /* Maximalbreite für mobiles Cover */
-                margin: 0 auto;
-            }
-            
-            .buch-cover-quelle {
-                max-width: 180px; /* Noch kleiner auf Mobilgeräten */
-                height: auto;
-            }
-            
-            .quellen-header-text h1 {
-                font-size: 1.6rem;
-                text-align: center;
-                margin-top: 0;
-            }
-            
-            .quellen-header-text .untertitel {
-                font-size: 1rem;
-                text-align: center;
-                padding: 0 5px 10px 5px;
-                line-height: 1.3;
-            }
-            
-            .quellen-header-text p {
-                text-align: left;
-                font-size: 0.95rem;
-                line-height: 1.6;
-            }
-            
-            .quellen-gruppe {
-                padding: 15px;
-            }
-            
-            .quellen-gruppe h2 {
-                font-size: 1.5rem;
-                text-align: center;
-            }
-            
-            .quellen-tabelle th,
-            .quellen-tabelle td {
-                padding: 10px;
-                font-size: 0.9rem;
+            .quelle-kategorie h3 {
+                font-size: 1.2rem;
             }
         }
         
         @media screen and (max-width: 480px) {
-            .quellen-gruppe h2 {
-                font-size: 1.3rem;
-            }
-            
             .quellen-header-text h1 {
-                font-size: 1.5rem;
-            }
-            
-            .quellen-header-text .untertitel {
-                font-size: 0.95rem;
-            }
-            
-            .buch-cover-quelle {
-                max-width: 150px; /* Sehr klein für sehr kleine Bildschirme */
-            }
-            
-            .quellen-tabelle {
-                font-size: 0.8rem;
-            }
-            
-            .quellen-tabelle th,
-            .quellen-tabelle td {
-                padding: 8px 5px;
-            }
-        }
-        
-        /* Druck-Optimierung */
-        @media print {
-            .social-section,
-            .footer {
-                display: none;
-            }
-            
-            .quelle-link {
-                color: #000;
-                text-decoration: underline;
-            }
-            
-            /* Cover für Druck verkleinern */
-            .buch-cover-quelle {
-                max-width: 120px !important;
+                font-size: 1.6rem;
             }
             
             .quellen-header {
-                grid-template-columns: 120px 1fr !important;
+                padding: 15px;
+            }
+            
+            .quelle-kategorie {
+                padding: 15px;
+            }
+            
+            .quellen-liste li {
+                margin-bottom: 20px;
+                padding-bottom: 10px;
             }
         }
     </style>
@@ -453,40 +292,40 @@
 
 <!-- ================= HEADER ================= -->
 <header class="header">
-  <img src="assets/images/logo.png" alt="Matthias Silberhain Logo" class="logo">
-  
-  <!-- Dark Mode Toggle Button -->
-  <button id="themeToggle" class="dark-mode-toggle" aria-label="Dark Mode umschalten" title="Dark Mode umschalten">
-    <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-    </svg>
-    <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="12" cy="12" r="5"></circle>
-      <line x1="12" y1="1" x2="12" y2="3"></line>
-      <line x1="12" y1="21" x2="12" y2="23"></line>
-      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-      <line x1="1" y1="12" x2="3" y2="12"></line>
-      <line x1="21" y1="12" x2="23" y2="12"></line>
-      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-    </svg>
-  </button>
+    <img src="assets/images/logo.png" alt="Matthias Silberhain Logo" class="logo">
+    
+    <!-- Dark Mode Toggle Button -->
+    <button id="themeToggle" class="dark-mode-toggle" aria-label="Dark Mode umschalten" title="Dark Mode umschalten">
+        <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+        <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+    </button>
 
-  <div class="burger" id="burgerButton" title="Menü öffnen/schließen">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
+    <div class="burger" id="burgerButton" title="Menü öffnen/schließen">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
 
-  <nav class="hauptnavigation" id="mainNav">
-    <a href="index.html">Startseite</a>
-    <a href="ueber-mich.html">Über mich</a>
-    <a href="werke.html">Werke</a>
-    <a href="quellen.html" class="active">Quellen</a>
-    <a href="termine.html">Termine</a>
-    <a href="kontakt.html">Kontakt</a>
-  </nav>
+    <nav class="hauptnavigation" id="mainNav">
+        <a href="index.html">Startseite</a>
+        <a href="ueber-mich.html">Über mich</a>
+        <a href="werke.html">Werke</a>
+        <a href="quellen.html">Quellen</a>
+        <a href="termine.html">Termine</a>
+        <a href="kontakt.html">Kontakt</a>
+    </nav>
 </header>
 
 <div class="lichtkante"></div>
@@ -495,308 +334,208 @@
 <main class="inhalt">
     <section class="quellen-container">
         
-        <!-- ================= BUCH: MACHT UND UNTERGANG ================= -->
+        <!-- ================= BUCH: DER LANGE WEG IN DIE FINSTERNIS ================= -->
         <div class="quellen-header">
             <div class="buch-cover-container">
-                <img src="assets/images/machtunduntergang.png" 
-                     alt="Buchcover: Macht und Untergang" 
+                <img src="assets/images/derlangeweg.png" 
+                     alt="Buchcover: Der lange Weg in die Finsternis" 
                      class="buch-cover-quelle">
             </div>        
             <div class="quellen-header-text">
-                <h1>MACHT UND UNTERGANG</h1>
-                <p class="untertitel">Strukturen und Prozesse des autoritären Staates<br>Vollständige Quellenedition</p>
+                <h1>DER LANGE WEG IN DIE FINSTERNIS</h1>
+                <p class="untertitel">Eine ungewöhnliche Betrachtung historischer Entwicklungen</p>
                 
-                <p>Diese vollständige Quellenedition dokumentiert die wissenschaftlichen Grundlagen des Werkes "Macht und Untergang". Hier finden Sie direkte Links zu Primärquellen, Reichstagsprotokollen, Gesetzestexten, Kolonialakten und zeitgenössischen Publikationen – vollständig nachvollziehbar und überprüfbar.</p>
+                <p>Diese Seite versammelt die zentralen digitalen Quellen und wissenschaftlichen Ressourcen, die der historischen Analyse in diesem Werk zugrunde liegen.<br>
+                Jede Quelle dient der vollständigen Nachvollziehbarkeit und Vertiefung der im Buch dargestellten historischen Zusammenhänge.</p>
                 
                 <div class="hinweis-kasten">
-                    <strong>Hinweis:</strong> Viele der verlinkten Quellen sind primärhistorische Dokumente, die direkt als Beleg für die Buchthesen dienen. Wo keine direkten Online-Links existieren, sind Archivsignaturen oder gedruckte Editionen genannt.
+                    <strong>Hinweis zur Nutzung:</strong> Die hier aufgeführten Quellen umfassen digitale Archive, Forschungspublikationen und Primärquellenbestände, die die historische Analyse des Werkes belegen und nachprüfbar machen.
                 </div>
             </div>
         </div>
 
-        <!-- ================= QUELLENGRUPPEN ================= -->
-        
-        <!-- GRUPPE I: Reichstagsprotokolle und Gesetzestexte -->
-        <div class="quellen-gruppe">
-            <h2>I. Reichstagsprotokolle und Gesetzestexte</h2>
+        <!-- QUELLENINHALT -->
+        <div class="quellen-abschnitt">
             
-            <table class="quellen-tabelle">
-                <thead>
-                    <tr>
-                        <th>Quelle</th>
-                        <th>Beschreibung</th>
-                        <th>Link</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Reichstagsprotokolle 1871–1918</td>
-                        <td>Offizielle Stenografische Berichte</td>
-                        <td>
-                            <a href="https://www.reichstagsprotokolle.de" target="_blank" rel="noopener noreferrer" class="quelle-link">
-                                Reichstagsprotokolle bei Münchener Digitalisierungszentrum
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Verfassung des Deutschen Reiches (1871)</td>
-                        <td>Verfassungstext</td>
-                        <td>
-                            <a href="https://www.verfassungen.de/de/de67-18/verfassung71-i.htm" target="_blank" rel="noopener noreferrer" class="quelle-link">
-                                Verfassung 1871 – verfassungen.de
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Sozialistengesetz (1878)</td>
-                        <td>Gesetz gegen die gemeingefährlichen Bestrebungen der Sozialdemokratie</td>
-                        <td>
-                            <a href="https://www.verfassungen.de/de/de67-18/sozialistengesetz78.htm" target="_blank" rel="noopener noreferrer" class="quelle-link">
-                                Sozialistengesetz – verfassungen.de
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Dreiklassenwahlrecht (Preußen)</td>
-                        <td>Wahlgesetz von 1849</td>
-                        <td>
-                            <a href="https://www.documentarchiv.de/nzjh/vv1849_preussen.html" target="_blank" rel="noopener noreferrer" class="quelle-link">
-                                Preußisches Wahlrecht – documentArchiv.de
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Weimarer Verfassung (1919)</td>
-                        <td>Zum Vergleich</td>
-                        <td>
-                            <a href="https://www.verfassungen.de/de/de19-33/verfassung19.htm" target="_blank" rel="noopener noreferrer" class="quelle-link">
-                                Weimarer Verfassung – verfassungen.de
-                            </a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <!-- I. Digitale Quellenarchive -->
+            <div class="quelle-kategorie">
+                <h3>I. Digitale Quellen und Archive</h3>
+                <ul class="quellen-liste">
+                    <li>
+                        <strong>Reichstagsprotokolle – Digitale Gesamtausgabe (1867–1942)</strong><br>
+                        <a href="https://www.reichstagsprotokolle.de" target="_blank" rel="noopener noreferrer">
+                            https://www.reichstagsprotokolle.de
+                        </a><br>
+                        Vollständige stenographische Sitzungsberichte des Reichstags und Reichsrats vom Norddeutschen Bund bis 1942.
+                    </li>
+                    
+                    <li>
+                        <strong>Bayerische Staatsbibliothek München – Münchener Digitalisierungszentrum (MDZ)</strong><br>
+                        <a href="https://www.digitale-sammlungen.de" target="_blank" rel="noopener noreferrer">
+                            https://www.digitale-sammlungen.de
+                        </a><br>
+                        Digitalisierte Bestände, darunter zehntausende Seiten Reichstagsprotokolle, Gesetzestexte und zeitgenössische Drucke.
+                    </li>
+                    
+                    <li>
+                        <strong>MDZ Direktzugang Reichstagsprotokolle</strong><br>
+                        <a href="https://www.digitale-sammlungen.de/de/reichstagsprotokolle-verhandlungen-des-deutschen-reichstags-und" target="_blank" rel="noopener noreferrer">
+                            https://www.digitale-sammlungen.de/de/reichstagsprotokolle-verhandlungen-des-deutschen-reichstags-und
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <strong>Clio Online – Fachportal für Geschichtswissenschaft</strong><br>
+                        <a href="https://www.clio-online.de" target="_blank" rel="noopener noreferrer">
+                            https://www.clio-online.de
+                        </a><br>
+                        Wissenschaftliches Portal mit Hinweisen und Zugängen zu digitalen Reichstagsquellen.
+                    </li>
+                    
+                    <li>
+                        <strong>Clio / MDZ – Reichstagsprotokolle Verzeichnis</strong><br>
+                        <a href="http://mdz.bib-bvb.de/digbib/reichstag/" target="_blank" rel="noopener noreferrer">
+                            http://mdz.bib-bvb.de/digbib/reichstag/
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <strong>Deutsche Digitale Bibliothek</strong><br>
+                        <a href="https://www.deutsche-digitale-bibliothek.de" target="_blank" rel="noopener noreferrer">
+                            https://www.deutsche-digitale-bibliothek.de
+                        </a><br>
+                        Zentrale Plattform für Archive, Bibliotheken und Museen in Deutschland.
+                    </li>
+                    
+                    <li>
+                        <strong>Collections from Colonial Contexts (DDB)</strong><br>
+                        <a href="https://ccc.deutsche-digitale-bibliothek.de" target="_blank" rel="noopener noreferrer">
+                            https://ccc.deutsche-digitale-bibliothek.de
+                        </a><br>
+                        Digitale Sammlungen zu deutschen Kolonialkontexten.
+                    </li>
+                    
+                    <li>
+                        <strong>Bundesarchiv – Quellen zur deutschen Kolonialgeschichte</strong><br>
+                        <a href="https://www.bundesarchiv.de/im-archiv-recherchieren/archivgut-recherchieren/nach-themen/kolonialgeschichte/" target="_blank" rel="noopener noreferrer">
+                            https://www.bundesarchiv.de/im-archiv-recherchieren/archivgut-recherchieren/nach-themen/kolonialgeschichte/
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <strong>Bundesarchiv – Digitalisierte Bestände</strong><br>
+                        <a href="https://www.bundesarchiv.de/im-archiv-recherchieren/archivgut-recherchieren/digitalisierte-bestaende/" target="_blank" rel="noopener noreferrer">
+                            https://www.bundesarchiv.de/im-archiv-recherchieren/archivgut-recherchieren/digitalisierte-bestaende/
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <strong>Rechercheportal Bundesarchiv</strong><br>
+                        <a href="https://recherche-bundesarchiv.de" target="_blank" rel="noopener noreferrer">
+                            https://recherche-bundesarchiv.de
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <strong>Archive Guide to German Colonial History</strong><br>
+                        <a href="https://www.fh-potsdam.de/en/hochschule/fachbereiche/stadt-bau-kultur/archivportal-german-colonial-history" target="_blank" rel="noopener noreferrer">
+                            https://www.fh-potsdam.de/en/hochschule/fachbereiche/stadt-bau-kultur/archivportal-german-colonial-history
+                        </a><br>
+                        Metaportal zu über 400 Archiven zur deutschen Kolonialgeschichte.
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- II. Parlamentarismus und Gesetzestexte -->
+            <div class="quelle-kategorie">
+                <h3>II. Parlamentarismus und historische Gesetzestexte</h3>
+                <ul class="quellen-liste">
+                    <li>
+                        <strong>Parlamentarismus.de – Reichstagsprotokolle</strong><br>
+                        <a href="https://www.parlamentarismus.de/reichstagsprotokolle/" target="_blank" rel="noopener noreferrer">
+                            https://www.parlamentarismus.de/reichstagsprotokolle/
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <strong>DBIS – Datenbank: Verhandlungen des Deutschen Reichstags</strong><br>
+                        <a href="https://dbis.uni-regensburg.de/STABI/resources/11523" target="_blank" rel="noopener noreferrer">
+                            https://dbis.uni-regensburg.de/STABI/resources/11523
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <strong>Reichstagsakten – Digitale Editionsprojekte</strong><br>
+                        <a href="https://reichstagsakten.de" target="_blank" rel="noopener noreferrer">
+                            https://reichstagsakten.de
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <strong>DokumentArchiv – Verfassungen und Gesetzestexte</strong><br>
+                        <a href="https://www.dokumentarchiv.de" target="_blank" rel="noopener noreferrer">
+                            https://www.dokumentarchiv.de
+                        </a><br>
+                        Historische Gesetzestexte des Kaiserreichs, u. a. Reichsverfassung von 1871.
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- III. Internationale Quellen und Archive -->
+            <div class="quelle-kategorie">
+                <h3>III. Internationale Quellen und Archive</h3>
+                <ul class="quellen-liste">
+                    <li>
+                        <strong>EUDocs – German Empire Primary Documents</strong><br>
+                        <a href="https://eudocs.lib.byu.edu/index.php/Eighteenth_and_Nineteenth_Century_Germany" target="_blank" rel="noopener noreferrer">
+                            https://eudocs.lib.byu.edu/index.php/Eighteenth_and_Nineteenth_Century_Germany
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <strong>„Willy–Nicky“-Telegramme (World War I Document Archive)</strong><br>
+                        <a href="https://www.firstworldwar.com/source/willynicky.htm" target="_blank" rel="noopener noreferrer">
+                            https://www.firstworldwar.com/source/willynicky.htm
+                        </a><br>
+                        Originaltelegramme zwischen Wilhelm II. und Zar Nikolaus II. im Juli 1914.
+                    </li>
+                    
+                    <li>
+                        <strong>Wikipedia – Willy–Nicky Korrespondenz</strong><br>
+                        <a href="https://en.wikipedia.org/wiki/Willy%E2%80%93Nicky_correspondence" target="_blank" rel="noopener noreferrer">
+                            https://en.wikipedia.org/wiki/Willy%E2%80%93Nicky_correspondence
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <strong>History.com – Kontext zu den Telegrammen</strong><br>
+                        <a href="https://www.history.com/this-day-in-history/july-29/kaiser-wilhelm-of-germany-and-czar-nicholas-of-russia-exchange-telegrams" target="_blank" rel="noopener noreferrer">
+                            https://www.history.com/this-day-in-history/july-29/kaiser-wilhelm-of-germany-and-czar-nicholas-of-russia-exchange-telegrams
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <strong>Europeana – Europäische Digitale Bibliothek</strong><br>
+                        <a href="https://www.europeana.eu" target="_blank" rel="noopener noreferrer">
+                            https://www.europeana.eu
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <strong>Deutsche Nationalbibliothek</strong><br>
+                        <a href="https://portal.dnb.de" target="_blank" rel="noopener noreferrer">
+                            https://portal.dnb.de
+                        </a><br>
+                        Zentrale Bibliografie und Nachweise zu historischen Veröffentlichungen.
+                    </li>
+                </ul>
+            </div>
         </div>
         
-        <!-- GRUPPE II: Kolonialakten und Völkermord-Dokumente -->
-        <div class="quellen-gruppe">
-            <h2>II. Kolonialakten und Völkermord-Dokumente</h2>
-            
-            <table class="quellen-tabelle">
-                <thead>
-                    <tr>
-                        <th>Quelle</th>
-                        <th>Beschreibung</th>
-                        <th>Link</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Vernichtungsbefehl von Trotha (1904)</td>
-                        <td>Befehl des Generals Lothar von Trotha</td>
-                        <td>
-                            <a href="https://www.dhm.de/lemo/bestand/objekt/vernichtungsbefehl-des-generals-lothar-von-trotha-1904.html" target="_blank" rel="noopener noreferrer" class="quelle-link">
-                                Vernichtungsbefehl – DHM
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Akten des Reichskolonialamts</td>
-                        <td>Digitalisierte Bestände im Bundesarchiv</td>
-                        <td>
-                            <a href="https://www.bundesarchiv.de/DE/Navigation/Finden/Bestaendeuebersicht/bestaendeuebersicht.html" target="_blank" rel="noopener noreferrer" class="quelle-link">
-                                Bundesarchiv Kolonialakten
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Berichte aus Deutsch-Südwestafrika</td>
-                        <td>Militärische und Verwaltungsberichte</td>
-                        <td>
-                            <a href="https://sammlungen.ub.uni-frankfurt.de/koloniales/periodical/titleinfo/2582113" target="_blank" rel="noopener noreferrer" class="quelle-link">
-                                Sammlung Universität Frankfurt
-                            </a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        
-        <!-- GRUPPE III: Zeitgenössische Presse und Publikationen -->
-        <div class="quellen-gruppe">
-            <h2>III. Zeitgenössische Presse und Publikationen</h2>
-            
-            <table class="quellen-tabelle">
-                <thead>
-                    <tr>
-                        <th>Quelle</th>
-                        <th>Beschreibung</th>
-                        <th>Link</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Vorwärts (SPD-Zeitung)</td>
-                        <td>Digitalisierte Ausgaben</td>
-                        <td>
-                            <a href="https://www.fes.de/archiv-der-sozialen-demokratie/bestandsuebersicht/digitale-angebote/vorwaerts" target="_blank" rel="noopener noreferrer" class="quelle-link">
-                                Vorwärts-Archiv – FES
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Kladderadatsch (Satirezeitschrift)</td>
-                        <td>Politische Karikaturen</td>
-                        <td>
-                            <a href="https://digi.ub.uni-heidelberg.de/diglit/kladderadatsch" target="_blank" rel="noopener noreferrer" class="quelle-link">
-                                Kladderadatsch – Uni Heidelberg
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Simplicissimus</td>
-                        <td>Weitere satirische Zeitschrift</td>
-                        <td>
-                            <a href="https://www.digi-hub.de/viewer/toc/bsb00052887/1/" target="_blank" rel="noopener noreferrer" class="quelle-link">
-                                Simplicissimus – MDZ
-                            </a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        
-        <!-- GRUPPE IV: Briefe und private Dokumente -->
-        <div class="quellen-gruppe">
-            <h2>IV. Briefe und private Dokumente</h2>
-            
-            <table class="quellen-tabelle">
-                <thead>
-                    <tr>
-                        <th>Quelle</th>
-                        <th>Beschreibung</th>
-                        <th>Link</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Bismarck-Briefe</td>
-                        <td>Politische Korrespondenz</td>
-                        <td>
-                            <a href="https://www.bundesarchiv.de/DE/Navigation/Finden/Bestaendeuebersicht/bestaendeuebersicht.html" target="_blank" rel="noopener noreferrer" class="quelle-link">
-                                Bismarck-Papiere – Archiv der BStU
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Wilhelm II. – Aufzeichnungen</td>
-                        <td>Reden und private Notizen</td>
-                        <td>
-                            <a href="https://www.deutschestextarchiv.de/search?q=Wilhelm+II." target="_blank" rel="noopener noreferrer" class="quelle-link">
-                                Wilhelm II. – Dokumentensammlung
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Tagebücher von Zeitzeugen</td>
-                        <td>z.B. Kurt Eisner, Rosa Luxemburg</td>
-                        <td>
-                            <a href="https://www.fes.de/archiv-der-sozialen-demokratie/bestandsuebersicht" target="_blank" rel="noopener noreferrer" class="quelle-link">
-                                Archiv der sozialen Demokratie – FES
-                            </a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        
-        <!-- GRUPPE V: Militärische und justizielle Quellen -->
-        <div class="quellen-gruppe">
-            <h2>V. Militärische und justizielle Quellen</h2>
-            
-            <table class="quellen-tabelle">
-                <thead>
-                    <tr>
-                        <th>Quelle</th>
-                        <th>Beschreibung</th>
-                        <th>Link</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Schlieffen-Plan</td>
-                        <td>Militärische Strategie</td>
-                        <td>
-                            <a href="https://www.dhm.de/lemo/bestand/objekt/schlieffen-plan-1905.html" target="_blank" rel="noopener noreferrer" class="quelle-link">
-                                Schlieffen-Plan – DHM
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Militärgerichtsakten</td>
-                        <td>Dokumente zu Standgerichten im Ersten Weltkrieg</td>
-                        <td>
-                            <a href="https://www.bundesarchiv.de/DE/Navigation/Finden/Bestaendeuebersicht/bestaendeuebersicht.html" target="_blank" rel="noopener noreferrer" class="quelle-link">
-                                Bundesarchiv Militärgerichtsbarkeit
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Polizeiakten zur politischen Verfolgung</td>
-                        <td>Überlieferungen in Landesarchiven</td>
-                        <td>
-                            <a href="https://www.gsta.spk-berlin.de/" target="_blank" rel="noopener noreferrer" class="quelle-link">
-                                Geheimes Staatsarchiv Preußen
-                            </a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        
-        <!-- ================= THESEN UND QUELLENBEZÜGE ================= -->
-        <div class="quellen-gruppe">
-            <h2>Wie die Quellen die Thesen untermauern</h2>
-            
-            <ul class="these-liste">
-                <li class="these-item">
-                    <div class="these-titel">Obrigkeitsstaat</div>
-                    <div class="these-quellen">Verfassung von 1871 (keine parlamentarische Regierungsverantwortung)</div>
-                </li>
-                <li class="these-item">
-                    <div class="these-titel">Repressionsapparat</div>
-                    <div class="these-quellen">Sozialistengesetz, Polizeiakten, Spitzelberichte</div>
-                </li>
-                <li class="these-item">
-                    <div class="these-titel">Kolonialer Völkermord</div>
-                    <div class="these-quellen">Vernichtungsbefehl von Trotha, Lagerberichte, anthropologische Sammlungen</div>
-                </li>
-                <li class="these-item">
-                    <div class="these-titel">Wahlrechtsungleichheit</div>
-                    <div class="these-quellen">Dreiklassenwahlrecht, Reichstagsdebatten</div>
-                </li>
-                <li class="these-item">
-                    <div class="these-titel">Verantwortung Wilhelm II.</div>
-                    <div class="these-quellen">Seine Reden, Telegramme, Erlass vom 28.10.1918</div>
-                </li>
-                <li class="these-item">
-                    <div class="these-titel">Kontinuität ins NS-Regime</div>
-                    <div class="these-quellen">Personelle und ideologische Verbindungslinien in Akten der Weimarer Justiz und Verwaltung</div>
-                </li>
-                <li class="these-item">
-                    <div class="these-titel">Demokratische Mahnung</div>
-                    <div class="these-quellen">Schlusskapitel des Buches, Bezug zur Gegenwart</div>
-                </li>
-            </ul>
-        </div>
-
-        <!-- ================= HINWEISE ZUR NUTZUNG ================= -->
+        <!-- ================= ALLGEMEINER HINWEIS ================= -->
         <div class="quellen-hinweis">
-            <h3>📌 Hinweise zur Nutzung</h3>
-            <p>Viele der verlinkten Quellen sind primärhistorische Dokumente, die direkt als Beleg für die Buchthesen dienen.</p>
-            <p>Wo keine direkten Online-Links existieren, sind Archivsignaturen oder gedruckte Editionen genannt.</p>
-            <p>Das Buch selbst zitiert aus Archivbeständen in Berlin, Freiburg, Koblenz und regionalen Archiven.</p>
-            <p><strong>Möchten Sie zu einer bestimmten These oder Quelle noch vertiefende Informationen?</strong></p>
+            <p><strong>Hinweis zur Nutzung:</strong> Die Inhalte dieses Buches basieren auf historischen Primärquellen und etablierter wissenschaftlicher Forschung. Ein Schwerpunkt liegt auf den stenographischen Reichstagsprotokollen des Deutschen Kaiserreichs sowie auf staatlichen Archivbeständen zur Kolonialgeschichte. Alle genannten Quellen sind öffentlich zugänglich und dienen der Nachprüfbarkeit.</p>
+            <p><strong>Hinweis zu externen Links:</strong> Diese Website enthält Verlinkungen zu externen Webseiten Dritter. Ich habe keinen Einfluss auf deren Inhalte und übernehme keine Haftung. Sollten Ihnen problematische Inhalte auffallen, bitte ich um einen Hinweis. Die Verfügbarkeit und Inhalte können sich jederzeit ändern.</p>
         </div>
     </section>
 </main>
