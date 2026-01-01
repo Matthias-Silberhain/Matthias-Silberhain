@@ -1699,3 +1699,71 @@ body:not(.dark-mode) .dark-mode-toggle .sun-icon {
     text-transform: uppercase;
     font-family: 'Cinzel', serif;
 }
+/* Sternenhimmel Effekte */
+#star-container {
+    pointer-events: none;
+}
+
+.silber-star {
+    animation: star-twinkle 4s infinite alternate;
+}
+
+@keyframes star-twinkle {
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 0.8; }
+}
+
+.big-star {
+    animation: big-star-pulse 6s infinite alternate;
+}
+
+@keyframes big-star-pulse {
+    0% { transform: scale(1) rotate(0deg); }
+    100% { transform: scale(1.3) rotate(180deg); }
+}
+
+/* Silberne Links (für Kontaktseite) */
+a[href^="mailto:"] {
+    color: #c0c0c0 !important;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+a[href^="mailto:"]:hover {
+    color: #f0f0f0 !important;
+    text-shadow: 0 0 10px rgba(192, 192, 192, 0.5);
+    text-decoration: underline;
+}
+
+/* Preloader Unterstrich */
+.silber-underline {
+    animation: underline-glow 2s infinite alternate;
+}
+
+@keyframes underline-glow {
+    0% { box-shadow: 0 0 10px rgba(192, 192, 192, 0.3); }
+    100% { box-shadow: 0 0 30px rgba(192, 192, 192, 0.8); }
+}
+
+/* Mobile Optimierung */
+@media (max-width: 768px) {
+    .silber-star {
+        display: none; /* Weniger Sterne auf Mobile für Performance */
+    }
+    
+    .big-star {
+        display: none;
+    }
+}
+
+/* Reduzierte Bewegung für Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .silber-star,
+    .big-star,
+    .falling-star,
+    .explosion-star,
+    .button-star,
+    .icon-star {
+        animation: none !important;
+    }
+}
