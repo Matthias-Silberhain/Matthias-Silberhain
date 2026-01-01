@@ -1720,3 +1720,180 @@ body.loaded .inhalt {
         font-size: 24px;
     }
 }
+/* ==========================================================================
+   KRITISCHE THEME-FIXES - KEIN FLACKERN MEHR
+   ========================================================================== */
+
+/* 1. SOFORTIGER DARK MODE (ohne Übergang beim Laden) */
+body.dark-mode {
+    background-color: #000000 !important;
+    color: #cfd2d6 !important;
+    transition: none !important; /* Kein Übergang beim Laden */
+}
+
+body.light-mode {
+    background-color: #f8f8f8 !important;
+    color: #333333 !important;
+    transition: none !important;
+}
+
+/* 2. CRITICAL RENDER PATH: Erstes Paint sofort korrekt */
+body.dark-mode .header,
+body.dark-mode .inhalt,
+body.dark-mode .footer {
+    background-color: transparent !important;
+}
+
+body.light-mode .header,
+body.light-mode .inhalt,
+body.light-mode .footer {
+    background-color: transparent !important;
+}
+
+/* 3. Preloader Theme-Anpassung */
+body.dark-mode #preloader {
+    background: linear-gradient(135deg, #000000 0%, #111111 50%, #000000 100%) !important;
+}
+
+body.light-mode #preloader {
+    background: linear-gradient(135deg, #f8f8f8 0%, #ffffff 50%, #f8f8f8 100%) !important;
+}
+
+body.dark-mode .preloader-text {
+    color: #e0e0e0 !important;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3) !important;
+}
+
+body.light-mode .preloader-text {
+    color: #333333 !important;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* 4. Dunkelgraue Elemente (Ihr Wunsch) */
+body.dark-mode .hauptnavigation,
+body.dark-mode .menu-overlay.active {
+    background-color: rgba(20, 20, 20, 0.98) !important;
+    background: rgba(20, 20, 20, 0.98) !important;
+}
+
+body.light-mode .hauptnavigation,
+body.light-mode .menu-overlay.active {
+    background-color: rgba(240, 240, 240, 0.98) !important;
+    background: rgba(240, 240, 240, 0.98) !important;
+}
+
+/* 5. Dunkelgrauer Preloader-Hintergrund */
+#preloader {
+    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+                visibility 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 6. Theme-Übergänge NACH dem Laden */
+body.dark-mode.loaded {
+    transition: background-color 0.5s ease, color 0.5s ease !important;
+}
+
+body.light-mode.loaded {
+    transition: background-color 0.5s ease, color 0.5s ease !important;
+}
+
+/* 7. Menü und Navigation */
+body.dark-mode .hauptnavigation a {
+    color: #d6d9de !important;
+    background: rgba(30, 30, 30, 0.8) !important;
+}
+
+body.light-mode .hauptnavigation a {
+    color: #555555 !important;
+    background: rgba(250, 250, 250, 0.8) !important;
+}
+
+body.dark-mode .hauptnavigation a:hover {
+    color: #ffffff !important;
+    background: rgba(50, 50, 50, 0.9) !important;
+}
+
+body.light-mode .hauptnavigation a:hover {
+    color: #000000 !important;
+    background: rgba(230, 230, 230, 0.9) !important;
+}
+
+/* 8. Lichtkanten Theme-Anpassung */
+body.dark-mode .lichtkante {
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(200, 205, 215, 0.3) 20%,
+        rgba(200, 205, 215, 0.6) 50%,
+        rgba(200, 205, 215, 0.3) 80%,
+        transparent
+    ) !important;
+}
+
+body.light-mode .lichtkante {
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(100, 100, 100, 0.2) 20%,
+        rgba(100, 100, 100, 0.4) 50%,
+        rgba(100, 100, 100, 0.2) 80%,
+        transparent
+    ) !important;
+}
+
+/* 9. CTA Buttons */
+body.dark-mode .silber-button {
+    border-color: rgba(200, 205, 215, 0.4) !important;
+    color: #d6d9de !important;
+}
+
+body.light-mode .silber-button {
+    border-color: rgba(100, 100, 100, 0.3) !important;
+    color: #555555 !important;
+}
+
+/* 10. Footer */
+body.dark-mode .footer {
+    color: #9da2a8 !important;
+}
+
+body.light-mode .footer {
+    color: #666666 !important;
+}
+
+body.dark-mode .footer-links a {
+    color: #a8adb5 !important;
+}
+
+body.light-mode .footer-links a {
+    color: #777777 !important;
+}
+
+/* 11. Dark Mode Toggle Button */
+body.dark-mode .dark-mode-toggle {
+    border-color: rgba(200, 205, 215, 0.3) !important;
+    color: #d6d9de !important;
+    background: rgba(30, 30, 30, 0.8) !important;
+}
+
+body.light-mode .dark-mode-toggle {
+    border-color: rgba(100, 100, 100, 0.3) !important;
+    color: #555555 !important;
+    background: rgba(250, 250, 250, 0.8) !important;
+}
+
+/* 12. Mobile Menu */
+@media screen and (max-width: 768px) {
+    body.dark-mode .hauptnavigation {
+        background: rgba(20, 20, 20, 0.98) !important;
+    }
+    
+    body.light-mode .hauptnavigation {
+        background: rgba(240, 240, 240, 0.98) !important;
+    }
+}
+
+/* 13. Verhindere Flackern beim Theme-Wechsel */
+body.theme-changing {
+    transition: none !important;
+}
