@@ -1781,3 +1781,96 @@ a[href^="mailto:"]:hover {
     text-shadow: 0 0 8px rgba(192, 192, 192, 0.4);
     border-bottom-color: rgba(240, 240, 240, 0.6);
 }
+/* Preloader Typing Cursor */
+@keyframes cursor-blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+.typing-cursor {
+    font-weight: 300;
+    color: #c0c0c0;
+    animation: cursor-blink 1s infinite;
+}
+
+/* Silberner Unterstrich Animation */
+.silber-underline-final {
+    animation: underline-pulse 3s infinite alternate;
+}
+
+@keyframes underline-pulse {
+    0% { 
+        box-shadow: 0 0 20px rgba(192, 192, 192, 0.4);
+        background: linear-gradient(90deg, transparent, #c0c0c0, #f0f0f0, #c0c0c0, transparent);
+    }
+    100% { 
+        box-shadow: 0 0 40px rgba(255, 255, 255, 0.7);
+        background: linear-gradient(90deg, transparent, #f0f0f0, #ffffff, #f0f0f0, transparent);
+    }
+}
+
+/* Preloader Sterne */
+.preloader-star {
+    animation: preloader-star-twinkle 3s infinite alternate;
+}
+
+@keyframes preloader-star-twinkle {
+    0% { opacity: 0.2; transform: scale(1); }
+    100% { opacity: 0.8; transform: scale(1.2); }
+}
+
+.preloader-big-star {
+    animation: preloader-big-star-pulse 4s infinite alternate;
+}
+
+@keyframes preloader-big-star-pulse {
+    0% { transform: scale(1); opacity: 0.5; }
+    100% { transform: scale(1.3); opacity: 0.9; }
+}
+
+/* Mobile Optimierung */
+@media (max-width: 768px) {
+    .preloader-text {
+        font-size: 1.5rem;
+        letter-spacing: 0.2rem;
+    }
+    
+    .preloader-logo {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .silber-underline-final {
+        height: 2px;
+        bottom: -15px;
+    }
+}
+
+/* Reduzierte Bewegung */
+@media (prefers-reduced-motion: reduce) {
+    .preloader-star,
+    .preloader-big-star,
+    .falling-star,
+    .typing-cursor,
+    .silber-underline-final {
+        animation: none !important;
+    }
+    
+    .typing-cursor {
+        opacity: 1 !important;
+    }
+}
+/* Silberne E-Mail Links */
+a[href^="mailto:"] {
+    color: #c0c0c0 !important;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(192, 192, 192, 0.3);
+    padding-bottom: 1px;
+    transition: all 0.3s ease;
+}
+
+a[href^="mailto:"]:hover {
+    color: #f0f0f0 !important;
+    border-bottom-color: rgba(240, 240, 240, 0.7);
+    text-shadow: 0 0 8px rgba(192, 192, 192, 0.4);
+}
