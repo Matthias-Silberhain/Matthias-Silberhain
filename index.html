@@ -1,3 +1,5 @@
+Index.html
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -5,67 +7,6 @@
     <title>Matthias Silberhain | Startseite</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Matthias Silberhain - Autor zu Macht, Verantwortung und gesellschaftlichen Mechanismen">
-    
-    <!-- EXTREM FRÜHES THEME-SETUP - VOR ALLEM ANDEREN -->
-    <script>
-    (function() {
-        'use strict';
-        
-        // 1. SOFORT HTML-Element färben (noch vor CSS)
-        document.documentElement.style.backgroundColor = '#000000';
-        document.documentElement.style.color = '#cfd2d6';
-        
-        // 2. Theme aus localStorage (ohne media query - schneller)
-        const savedTheme = localStorage.getItem('theme');
-        
-        // 3. SOFORT Klasse setzen (vor CSS-Load)
-        if (savedTheme === 'light') {
-            document.body.className = 'light-mode';
-            document.documentElement.style.backgroundColor = '#f8f8f8';
-            document.documentElement.style.color = '#333333';
-        } else {
-            // DEFAULT: Immer Dark Mode
-            document.body.className = 'dark-mode';
-        }
-        
-        // 4. Für Preloader: Direktes Styling
-        const preloaderStyle = document.createElement('style');
-        preloaderStyle.textContent = `
-            #preloader {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                height: 100dvh;
-                background-color: #000000;
-                z-index: 9999;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                opacity: 1;
-                visibility: visible;
-                transition: opacity 0.8s ease, visibility 0.8s ease;
-            }
-            
-            body.light-mode #preloader {
-                background-color: #f8f8f8;
-            }
-            
-            .preloader-text {
-                color: #e0e0e0;
-                font-family: "Cinzel", serif;
-            }
-            
-            body.light-mode .preloader-text {
-                color: #333333;
-            }
-        `;
-        document.head.appendChild(preloaderStyle);
-        
-        window.__INITIAL_THEME = savedTheme || 'dark';
-    })();
-    </script>
     
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=EB+Garamond:wght@400;500&display=swap" rel="stylesheet">
