@@ -1132,3 +1132,326 @@ body.loaded .logo {
         transition: none;
     }
 }
+/* ==========================================================================
+   LUXURIÖSE HINTERGRÜNDE & PERFEKTER PRELOADER-ÜBERGANG
+   ========================================================================== */
+
+/* ================= LUXUS-HINTERGRÜNDE (ELEGANTE TEXTUREN) ================= */
+:root {
+    /* Dunkles Theme Variablen */
+    --dark-bg-primary: #0a0a0a;
+    --dark-bg-secondary: #111111;
+    --dark-bg-gradient: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
+    --dark-bg-texture: 
+        radial-gradient(circle at 15% 20%, rgba(100, 100, 100, 0.03) 0%, transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba(150, 150, 150, 0.02) 0%, transparent 25%);
+    
+    /* Helles Theme Variablen */
+    --light-bg-primary: #f8f8f8;
+    --light-bg-secondary: #ffffff;
+    --light-bg-gradient: linear-gradient(135deg, #f8f8f8 0%, #ffffff 50%, #f8f8f8 100%);
+    --light-bg-texture: 
+        radial-gradient(circle at 15% 20%, rgba(0, 0, 0, 0.02) 0%, transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba(0, 0, 0, 0.01) 0%, transparent 25%);
+}
+
+/* ================= DARK THEME - EDEL & DRAMATISCH ================= */
+.dark-theme body {
+    background-color: var(--dark-bg-primary);
+    background-image: var(--dark-bg-texture), var(--dark-bg-gradient);
+    background-attachment: fixed;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Edler Glanzeffekt für Dark Theme */
+.dark-theme body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(ellipse at top, rgba(255, 255, 255, 0.03) 0%, transparent 70%),
+        radial-gradient(ellipse at bottom, rgba(200, 200, 200, 0.02) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: -1;
+    animation: shimmerDark 20s ease-in-out infinite;
+}
+
+/* ================= LIGHT THEME - ELEGANT & HELL ================= */
+.light-theme body {
+    background-color: var(--light-bg-primary);
+    background-image: var(--light-bg-texture), var(--light-bg-gradient);
+    background-attachment: fixed;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.light-theme body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(ellipse at top, rgba(0, 0, 0, 0.02) 0%, transparent 70%),
+        radial-gradient(ellipse at bottom, rgba(0, 0, 0, 0.01) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: -1;
+    animation: shimmerLight 20s ease-in-out infinite;
+}
+
+/* ================= PRELOADER - PERFEKTER THEME-ÜBERGANG ================= */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    height: 100dvh;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), 
+                visibility 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Dark Theme Preloader */
+.dark-theme #preloader {
+    background: var(--dark-bg-gradient);
+    background-image: var(--dark-bg-texture);
+}
+
+/* Light Theme Preloader */
+.light-theme #preloader {
+    background: var(--light-bg-gradient);
+    background-image: var(--light-bg-texture);
+}
+
+#preloader.loaded {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* Preloader-Inner mit opulentem Design */
+.preloader-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Logo Glanzeffekt */
+.preloader-logo {
+    width: 180px;
+    height: auto;
+    margin-bottom: 40px;
+    filter: 
+        brightness(1.2) 
+        drop-shadow(0 4px 20px rgba(255, 255, 255, 0.3));
+    animation: logoPulse 2s ease-in-out infinite;
+}
+
+.dark-theme .preloader-logo {
+    filter: 
+        brightness(1.2) 
+        drop-shadow(0 4px 20px rgba(255, 255, 255, 0.4));
+}
+
+.light-theme .preloader-logo {
+    filter: 
+        brightness(1) 
+        drop-shadow(0 4px 20px rgba(0, 0, 0, 0.2));
+}
+
+/* Typing Text mit Theme-adaptiver Farbe */
+.preloader-text {
+    font-family: "Cinzel", serif;
+    font-size: 34px;
+    letter-spacing: 0.2em;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.dark-theme .preloader-text {
+    color: #e8e8e8;
+    text-shadow: 
+        0 0 10px rgba(255, 255, 255, 0.3),
+        0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+.light-theme .preloader-text {
+    color: #333333;
+    text-shadow: 
+        0 0 10px rgba(0, 0, 0, 0.1),
+        0 0 20px rgba(0, 0, 0, 0.05);
+}
+
+/* ================= ELEGANTE ÜBERGÄNGE ================= */
+.dark-theme .inhalt,
+.dark-theme .header,
+.dark-theme .footer {
+    transition: background-color 0.5s ease, 
+                color 0.5s ease,
+                border-color 0.5s ease;
+}
+
+.light-theme .inhalt,
+.light-theme .header,
+.light-theme .footer {
+    transition: background-color 0.5s ease, 
+                color 0.5s ease,
+                border-color 0.5s ease;
+}
+
+/* ================= LICHTKANTEN THEME-ADAPTIV ================= */
+.dark-theme .lichtkante {
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(200, 205, 215, 0.3) 20%,
+        rgba(200, 205, 215, 0.6) 50%,
+        rgba(200, 205, 215, 0.3) 80%,
+        transparent
+    );
+}
+
+.light-theme .lichtkante {
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(100, 100, 100, 0.2) 20%,
+        rgba(100, 100, 100, 0.4) 50%,
+        rgba(100, 100, 100, 0.2) 80%,
+        transparent
+    );
+}
+
+/* ================= LUXURIÖSE ANIMATIONEN ================= */
+@keyframes shimmerDark {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 0.8; }
+}
+
+@keyframes shimmerLight {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+}
+
+@keyframes logoPulse {
+    0%, 100% { 
+        transform: scale(1) rotate(0deg);
+        filter: brightness(1.2) drop-shadow(0 4px 20px rgba(255, 255, 255, 0.3));
+    }
+    50% { 
+        transform: scale(1.05) rotate(0.5deg);
+        filter: brightness(1.3) drop-shadow(0 6px 25px rgba(255, 255, 255, 0.4));
+    }
+}
+
+@keyframes fadeInLuxury {
+    from {
+        opacity: 0;
+        transform: translateY(40px) scale(0.98);
+        filter: blur(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+@keyframes textGlow {
+    0%, 100% { text-shadow: 0 0 10px currentColor; }
+    50% { text-shadow: 0 0 20px currentColor, 0 0 30px currentColor; }
+}
+
+/* ================= LUXURIÖSE INHALTS-ANIMATIONEN ================= */
+body.loaded .inhalt > * {
+    opacity: 0;
+    animation: fadeInLuxury 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+body.loaded .inhalt > *:nth-child(1) { animation-delay: 0.2s; }
+body.loaded .inhalt > *:nth-child(2) { animation-delay: 0.4s; }
+body.loaded .inhalt > *:nth-child(3) { animation-delay: 0.6s; }
+body.loaded .inhalt > *:nth-child(4) { animation-delay: 0.8s; }
+body.loaded .inhalt > *:nth-child(5) { animation-delay: 1s; }
+
+/* Kalligrafie Text mit opulenter Animation */
+.kalligrafie-text {
+    animation: textGlow 3s ease-in-out infinite;
+}
+
+/* ================= RESPONSIVE ANPASSUNGEN ================= */
+@media screen and (max-width: 768px) {
+    .preloader-logo {
+        width: 140px;
+        margin-bottom: 30px;
+    }
+    
+    .preloader-text {
+        font-size: 24px;
+        letter-spacing: 0.15em;
+    }
+    
+    body::before {
+        animation-duration: 30s;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .preloader-logo {
+        width: 110px;
+    }
+    
+    .preloader-text {
+        font-size: 20px;
+    }
+}
+
+/* ================= BARRIEREFREIHEIT ================= */
+@media (prefers-reduced-motion: reduce) {
+    body::before,
+    .preloader-logo,
+    .kalligrafie-text,
+    body.loaded .inhalt > * {
+        animation: none !important;
+    }
+    
+    #preloader {
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+}
+
+/* ================= DARK MODE TOGGLE STYLING ================= */
+.dark-theme .dark-mode-toggle {
+    border-color: rgba(200, 205, 215, 0.4);
+    color: #e8e8e8;
+    background: rgba(30, 30, 30, 0.8);
+}
+
+.light-theme .dark-mode-toggle {
+    border-color: rgba(100, 100, 100, 0.3);
+    color: #333333;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.dark-theme .dark-mode-toggle:hover {
+    border-color: rgba(255, 255, 255, 0.7);
+    background: rgba(50, 50, 50, 0.9);
+}
+
+.light-theme .dark-mode-toggle:hover {
+    border-color: rgba(0, 0, 0, 0.5);
+    background: rgba(255, 255, 255, 1);
+}
