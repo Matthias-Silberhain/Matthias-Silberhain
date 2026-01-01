@@ -1455,3 +1455,161 @@ body.loaded .inhalt > *:nth-child(5) { animation-delay: 1s; }
     border-color: rgba(0, 0, 0, 0.5);
     background: rgba(255, 255, 255, 1);
 }
+/* ==========================================================================
+   FIX FÜR WEISSEN HINTERGRUND & KOMPATIBILITÄT
+   ========================================================================== */
+
+/* Basis-Hintergrund für alle Fälle */
+body {
+    background-color: #000000 !important;
+    min-height: 100vh;
+}
+
+/* Dark Mode (Ihr existierendes System) */
+body.dark-mode {
+    background-color: #0a0a0a !important;
+    color: #e8e8e8;
+}
+
+/* Light Mode (falls gewünscht) */
+body:not(.dark-mode) {
+    background-color: #f8f8f8 !important;
+    color: #333333;
+}
+
+/* Preloader mit Theme-Unterstützung */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    height: 100dvh;
+    background-color: #000000;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+/* Preloader im Dark Mode */
+body.dark-mode #preloader {
+    background-color: #0a0a0a;
+    background-image: 
+        radial-gradient(circle at 15% 20%, rgba(100, 100, 100, 0.03) 0%, transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba(150, 150, 150, 0.02) 0%, transparent 25%);
+}
+
+/* Preloader im Light Mode */
+body:not(.dark-mode) #preloader {
+    background-color: #f8f8f8;
+    background-image: 
+        radial-gradient(circle at 15% 20%, rgba(0, 0, 0, 0.02) 0%, transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba(0, 0, 0, 0.01) 0%, transparent 25%);
+}
+
+#preloader.loaded {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* Preloader Logo Animation */
+.preloader-logo {
+    width: 180px;
+    height: auto;
+    margin-bottom: 40px;
+    animation: logoPulse 2s ease-in-out infinite;
+    filter: brightness(1.2) drop-shadow(0 4px 20px rgba(255, 255, 255, 0.3));
+}
+
+body:not(.dark-mode) .preloader-logo {
+    filter: brightness(1) drop-shadow(0 4px 20px rgba(0, 0, 0, 0.2));
+}
+
+/* Preloader Text */
+.preloader-text {
+    font-family: "Cinzel", serif;
+    font-size: 34px;
+    letter-spacing: 0.2em;
+    color: #e0e0e0;
+    text-shadow: 0 0 10px rgba(200, 200, 200, 0.3);
+}
+
+body:not(.dark-mode) .preloader-text {
+    color: #333333;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Hintergrund-Effekte für den Rest der Seite */
+body.dark-mode::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(ellipse at top, rgba(255, 255, 255, 0.03) 0%, transparent 70%),
+        radial-gradient(ellipse at bottom, rgba(200, 200, 200, 0.02) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+body:not(.dark-mode)::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(ellipse at top, rgba(0, 0, 0, 0.02) 0%, transparent 70%),
+        radial-gradient(ellipse at bottom, rgba(0, 0, 0, 0.01) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Animation Keyframes */
+@keyframes logoPulse {
+    0%, 100% { 
+        transform: scale(1) rotate(0deg);
+        filter: brightness(1.2) drop-shadow(0 4px 20px rgba(255, 255, 255, 0.3));
+    }
+    50% { 
+        transform: scale(1.05) rotate(0.5deg);
+        filter: brightness(1.3) drop-shadow(0 6px 25px rgba(255, 255, 255, 0.4));
+    }
+}
+
+/* Fade-In für Inhalt nach Preloader */
+body.loaded .inhalt {
+    animation: contentFadeIn 0.8s ease-out;
+}
+
+@keyframes contentFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Mobile Optimierung */
+@media screen and (max-width: 768px) {
+    .preloader-logo {
+        width: 140px;
+    }
+    
+    .preloader-text {
+        font-size: 24px;
+    }
+    
+    body::before {
+        animation-duration: 30s;
+    }
+}
