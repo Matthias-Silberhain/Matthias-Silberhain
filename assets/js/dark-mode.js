@@ -1,67 +1,112 @@
-(function() {
-    'use strict';
+/**
+ * DARK MODE TOGGLE - Matthias Silberhain Website
+ * Theme-Switching für alle Seiten
+ * Version 2.1 - Universal
+ */
 
-    // Funktion für sofortigen Theme-Wechsel OHNE Flackern
-    function switchTheme(isDark) {
-        // 1. Blockiere Übergänge während des Wechsels
-        document.body.classList.add('theme-changing');
-        
-        // 2. Setze neue Klasse
-        if (isDark) {
-            document.body.className = 'dark-mode';
-            localStorage.setItem('theme', 'dark');
-        } else {
-            document.body.className = 'light-mode';
-            localStorage.setItem('theme', 'light');
-        }
-        
-        // 3. Aktualisiere Preloader-Hintergrund sofort
-        const preloader = document.getElementById('preloader');
-        if (preloader) {
-            preloader.style.backgroundColor = isDark ? '#000000' : '#f8f8f8';
-            preloader.style.backgroundImage = isDark 
-                ? 'linear-gradient(135deg, #000000 0%, #111111 50%, #000000 100%)'
-                : 'linear-gradient(135deg, #f8f8f8 0%, #ffffff 50%, #f8f8f8 100%)';
-        }
-        
-        // 4. Entferne Block nach kurzer Zeit
-        setTimeout(() => {
-            document.body.classList.remove('theme-changing');
-            // Füge loaded Klasse hinzu für Animationen
-            if (!document.body.classList.contains('loaded')) {
-                document.body.classList.add('loaded');
-            }
-        }, 50);
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('🌙 Dark Mode JS geladen');
+    
+    const themeToggle = document.getElementById('themeToggle');
+    const body = document.body;
+    
+    // Funktion um Dark Mode zu aktivieren
+    function enableDarkMode() {
+        body.classList.add('dark-mode');
+        localStorage.setItem('silberhain-theme', 'dark');
+        updateToggleIcon(true);
+        console.log('Dark Mode aktiviert');
     }
-
-    document.addEventListener('DOMContentLoaded', function() {
-        const themeToggle = document.getElementById('themeToggle');
-        
+    
+    // Funktion um Light Mode zu aktivieren
+    function disableDarkMode() {
+        body.classList.remove('dark-mode');
+        localStorage.setItem('silberhain-theme', 'light');
+        updateToggleIcon(false);
+        console.log('Light Mode aktiviert');
+    }
+    
+    // Icon aktualisieren
+    function updateToggleIcon(isDark) {
         if (!themeToggle) return;
         
-        // Initial: Theme aus Body-Klasse lesen
-        const isInitiallyDark = document.body.classList.contains('dark-mode');
-        themeToggle.setAttribute('data-theme', isInitiallyDark ? 'dark' : 'light');
+        const moonIcon = themeToggle.querySelector('.moon-icon');
+        const sunIcon = themeToggle.querySelector('.sun-icon');
         
-        // Toggle Event
-        themeToggle.addEventListener('click', function() {
-            const willBeDark = !document.body.classList.contains('dark-mode');
-            switchTheme(willBeDark);
-            
-            // Button Animation
-            this.style.transform = 'scale(0.9)';
+        if (moonIcon && sunIcon) {
+            if (isDark) {
+                moonIcon.style.display = 'none';
+                sunIcon.style.display = 'block';
+                themeToggle.setAttribute('aria-label', 'Zum Hellmodus wechseln');
+            } else {
+                moonIcon.style.display = 'block';
+                sunIcon.style.display = 'none';
+                themeToggle.setAttribute('aria-label', 'Zum Dunkelmodus wechseln');
+            }
+        }
+    }
+    
+    // Theme umschalten
+    function toggleTheme() {
+        if (body.classList.contains('dark-mode')) {
+            disableDarkMode();
+        } else {
+            enableDarkMode();
+        }
+        
+        // Visuelles Feedback
+        if (themeToggle) {
+            themeToggle.style.transform = 'scale(0.95)';
             setTimeout(() => {
-                this.style.transform = '';
-            }, 200);
-        });
+                themeToggle.style.transform = '';
+            }, 150);
+        }
+    }
+    
+    // Event Listener für Toggle Button
+    if (themeToggle) {
+        themeToggle.addEventListener('click', toggleTheme);
         
-        // System Theme Change (optional)
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
-        prefersDark.addEventListener('change', function(e) {
-            // Nur wenn kein manuelles Theme gesetzt wurde
-            if (!localStorage.getItem('theme')) {
-                switchTheme(e.matches);
+        // Accessibility: Toggle mit Tastatur
+        themeToggle.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                toggleTheme();
             }
         });
+    }
+    
+    // Initialisiere Theme basierend auf Local Storage oder System
+    function initTheme() {
+        const savedTheme = localStorage.getItem('silberhain-theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        console.log('Gespeichertes Theme:', savedTheme);
+        console.log('System-Präferenz:', prefersDark ? 'dark' : 'light');
+        
+        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+            enableDarkMode();
+        } else {
+            disableDarkMode();
+        }
+    }
+    
+    // System-Präferenzänderung überwachen
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    mediaQuery.addEventListener('change', (e) => {
+        // Nur ändern wenn keine manuelle Einstellung
+        if (!localStorage.getItem('silberhain-theme')) {
+            console.log('System-Theme geändert:', e.matches ? 'dark' : 'light');
+            if (e.matches) {
+                enableDarkMode();
+            } else {
+                disableDarkMode();
+            }
+        }
     });
-})();
+    
+    // Initialisierung
+    initTheme();
+    
+    console.log('✅ Dark Mode für alle Seiten initialisiert');
+});
