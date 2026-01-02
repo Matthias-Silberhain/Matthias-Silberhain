@@ -1016,3 +1016,558 @@ body:not(.dark-mode) .dark-mode-toggle .moon-icon {
 body:not(.dark-mode) .dark-mode-toggle .sun-icon {
     display: none !important;
 }
+/* ==========================================================================
+   KOMPLETTER SILBER-THEME ANHANG
+   ========================================================================== */
+
+/* ==========================================================================
+   1. LOGO ANIMATION & HOVER EFFECTS
+   ========================================================================== */
+
+/* Pulsierende Animation für das Logo */
+@keyframes logoPulse {
+    0% { 
+        transform: scale(1);
+        filter: brightness(1.1) drop-shadow(0 0 0px rgba(192, 192, 192, 0));
+    }
+    50% { 
+        transform: scale(1.03);
+        filter: brightness(1.2) drop-shadow(0 0 5px rgba(192, 192, 192, 0.3));
+    }
+    100% { 
+        transform: scale(1);
+        filter: brightness(1.1) drop-shadow(0 0 0px rgba(192, 192, 192, 0));
+    }
+}
+
+/* Starke Hover-Glow Animation */
+@keyframes logoGlow {
+    0% { 
+        filter: brightness(1.1) drop-shadow(0 0 5px rgba(192, 192, 192, 0.3));
+    }
+    50% { 
+        filter: brightness(1.3) drop-shadow(0 0 15px rgba(192, 192, 192, 0.7));
+    }
+    100% { 
+        filter: brightness(1.1) drop-shadow(0 0 5px rgba(192, 192, 192, 0.3));
+    }
+}
+
+/* Anwenden der Puls-Animation auf das Hauptlogo */
+.logo {
+    animation: logoPulse 6s infinite ease-in-out;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Hover-Effekt mit silbernem Glow */
+.logo:hover {
+    animation: logoGlow 1.5s infinite ease-in-out;
+    transform: scale(1.05);
+}
+
+/* Preloader-Logo ebenfalls animieren */
+.preloader-logo {
+    animation: logoPulse 4s infinite ease-in-out;
+}
+
+/* ==========================================================================
+   2. EINHEITLICHE SILBERNE LINK-FARBEN
+   ========================================================================== */
+
+/* Basis-Link-Farben für alle Links */
+a {
+    color: #c0c0c0 !important;
+    transition: color 0.3s ease, text-shadow 0.3s ease, transform 0.3s ease !important;
+}
+
+/* Entferne alle blauen/goldenen Standard-Farben */
+a:visited {
+    color: #a0a0a0 !important;
+}
+
+/* Spezifische Farben für verschiedene Link-Typen - Silber */
+.hauptnavigation a {
+    color: #d6d9de !important;
+}
+
+.footer-links a {
+    color: #9da2a8 !important;
+}
+
+.social-link {
+    color: #9da2a8 !important;
+}
+
+/* Entferne alle unerwünschten Farben und setze Silber */
+a:hover,
+a:focus,
+a:active {
+    color: #ffffff !important;
+}
+
+/* ==========================================================================
+   3. SILBERNE HOVER EFFECTS FÜR ALLE INTERAKTIVEN ELEMENTE
+   ========================================================================== */
+
+/* Hauptnavigation Hover - Desktop */
+.hauptnavigation a:hover {
+    color: #ffffff !important;
+    text-shadow: 0 0 15px rgba(192, 192, 192, 0.8);
+    transform: translateY(-2px);
+    background: linear-gradient(45deg, 
+        rgba(192, 192, 192, 0.1), 
+        rgba(192, 192, 192, 0.05));
+    box-shadow: 
+        0 5px 15px rgba(192, 192, 192, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Aktive Navigation-Links - Silberner Effekt */
+.hauptnavigation a.active {
+    color: #ffffff !important;
+    text-shadow: 
+        0 0 10px rgba(192, 192, 192, 0.8),
+        0 0 20px rgba(192, 192, 192, 0.4);
+    background: linear-gradient(45deg, 
+        rgba(192, 192, 192, 0.15), 
+        rgba(192, 192, 192, 0.05));
+    border: 1px solid rgba(192, 192, 192, 0.3);
+}
+
+/* Hauptnavigation Hover - Mobile */
+@media screen and (max-width: 768px) {
+    .hauptnavigation a:hover {
+        background: rgba(192, 192, 192, 0.15);
+        border-color: rgba(192, 192, 192, 0.7);
+        transform: translateY(-3px);
+        box-shadow: 
+            0 10px 20px rgba(192, 192, 192, 0.4),
+            inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
+    
+    .hauptnavigation a.active {
+        background: rgba(192, 192, 192, 0.2);
+        border-color: rgba(192, 192, 192, 0.5);
+    }
+}
+
+/* CTA Buttons - Primärer Silber-Effekt */
+.silber-button {
+    background: linear-gradient(135deg, 
+        rgba(192, 192, 192, 0.1) 0%, 
+        rgba(192, 192, 192, 0.05) 100%);
+    border: 1px solid rgba(192, 192, 192, 0.4);
+    color: #d6d9de;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.silber-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(192, 192, 192, 0.2), 
+        transparent);
+    transition: left 0.6s ease;
+}
+
+.silber-button:hover {
+    background: linear-gradient(135deg, 
+        rgba(192, 192, 192, 0.2) 0%, 
+        rgba(192, 192, 192, 0.1) 100%);
+    border-color: rgba(192, 192, 192, 0.8);
+    color: #ffffff !important;
+    transform: translateY(-4px);
+    box-shadow: 
+        0 10px 25px rgba(192, 192, 192, 0.5),
+        0 0 20px rgba(192, 192, 192, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.silber-button:hover::before {
+    left: 100%;
+}
+
+/* Sekundäre Buttons (falls vorhanden) */
+.silber-button.secondary {
+    background: transparent;
+    border: 1px solid rgba(192, 192, 192, 0.3);
+}
+
+.silber-button.secondary:hover {
+    background: rgba(192, 192, 192, 0.1);
+}
+
+/* Social Media Icons Hover */
+.social-link:hover {
+    color: #ffffff !important;
+    transform: translateY(-5px) scale(1.1);
+}
+
+.social-link:hover .social-icon-wrapper {
+    border-color: rgba(192, 192, 192, 0.8);
+    background: rgba(192, 192, 192, 0.2);
+    box-shadow: 
+        0 0 20px rgba(192, 192, 192, 0.6),
+        inset 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+.social-link:hover .social-icon {
+    fill: #ffffff !important;
+    filter: drop-shadow(0 0 8px rgba(192, 192, 192, 0.8));
+}
+
+/* Footer Links Hover */
+.footer-links a:hover {
+    color: #ffffff !important;
+    text-shadow: 0 0 10px rgba(192, 192, 192, 0.8);
+    transform: translateY(-2px);
+}
+
+/* Dark Mode Toggle Hover */
+.dark-mode-toggle:hover {
+    border-color: rgba(192, 192, 192, 0.7);
+    transform: scale(1.15);
+    box-shadow: 
+        0 0 20px rgba(192, 192, 192, 0.5),
+        inset 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+/* Burger Menu Hover */
+.burger:hover span {
+    background-color: rgba(192, 192, 192, 0.9);
+    box-shadow: 0 0 10px rgba(192, 192, 192, 0.6);
+}
+
+.burger.aktiv:hover span {
+    background-color: #ffffff;
+    box-shadow: 0 0 15px rgba(192, 192, 192, 0.8);
+}
+
+/* ==========================================================================
+   4. SILBERNE AKZENTE & FEINSCHLIFF FÜR TEXT UND ELEMENTE
+   ========================================================================== */
+
+/* Silberne Lichtkanten verstärken */
+.lichtkante,
+.footer-lichtkante,
+.social-lichtkante {
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(192, 192, 192, 0.9),
+        rgba(192, 192, 192, 0.6),
+        rgba(192, 192, 192, 0.9),
+        transparent
+    );
+    margin: 25px 0;
+    box-shadow: 0 0 10px rgba(192, 192, 192, 0.3);
+}
+
+/* Kalligrafie-Zitat silberner machen */
+.kalligrafie-text {
+    color: #f0f0f0 !important;
+    text-shadow: 
+        0 2px 4px rgba(0,0,0,0.8),
+        0 0 10px rgba(192, 192, 192, 0.4);
+}
+
+/* Zitat-Autor in Silber */
+.zitat-autor {
+    color: #c0c0c0 !important;
+}
+
+/* Highlight-Text in Silber */
+.highlight {
+    color: #e4e6ea !important;
+    border-left: 2px solid rgba(192, 192, 192, 0.5) !important;
+    border-right: 2px solid rgba(192, 192, 192, 0.5) !important;
+    text-shadow: 0 0 5px rgba(192, 192, 192, 0.3);
+}
+
+/* Lead-Text in hellem Silber */
+.lead-text {
+    color: #f0f0f0 !important;
+    text-shadow: 0 0 5px rgba(192, 192, 192, 0.2);
+}
+
+/* Social Media Titel */
+.social-title {
+    color: #e4e6ea !important;
+    text-shadow: 0 0 5px rgba(192, 192, 192, 0.3);
+}
+
+/* Zitat-Text im Hauptinhalt */
+.zitat {
+    color: #e4e6ea !important;
+    border-top: 1px solid rgba(192, 192, 192, 0.3);
+    border-bottom: 1px solid rgba(192, 192, 192, 0.3);
+    padding: 30px 20px;
+    position: relative;
+}
+
+.zitat::before,
+.zitat::after {
+    content: '"';
+    color: rgba(192, 192, 192, 0.5);
+    font-size: 4rem;
+    position: absolute;
+    font-family: serif;
+}
+
+.zitat::before {
+    top: 10px;
+    left: 10px;
+}
+
+.zitat::after {
+    bottom: 10px;
+    right: 10px;
+}
+
+/* ==========================================================================
+   5. DARK MODE ANPASSUNGEN FÜR SILBERNES THEMA
+   ========================================================================== */
+
+body.dark-mode .logo:hover {
+    filter: brightness(1.3) drop-shadow(0 0 15px rgba(192, 192, 192, 0.8));
+}
+
+body.dark-mode .silber-button:hover {
+    background: linear-gradient(135deg, 
+        rgba(192, 192, 192, 0.25) 0%, 
+        rgba(192, 192, 192, 0.15) 100%);
+    box-shadow: 
+        0 10px 25px rgba(192, 192, 192, 0.6),
+        0 0 25px rgba(192, 192, 192, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+body.dark-mode .lichtkante,
+body.dark-mode .footer-lichtkante,
+body.dark-mode .social-lichtkante {
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(192, 192, 192, 1),
+        rgba(192, 192, 192, 0.7),
+        rgba(192, 192, 192, 1),
+        transparent
+    );
+    box-shadow: 0 0 15px rgba(192, 192, 192, 0.5);
+}
+
+body.dark-mode .hauptnavigation a:hover {
+    background: linear-gradient(45deg, 
+        rgba(192, 192, 192, 0.2), 
+        rgba(192, 192, 192, 0.1));
+    box-shadow: 
+        0 5px 20px rgba(192, 192, 192, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+body.dark-mode .social-link:hover .social-icon-wrapper {
+    background: rgba(192, 192, 192, 0.3);
+    box-shadow: 
+        0 0 25px rgba(192, 192, 192, 0.8),
+        inset 0 0 15px rgba(255, 255, 255, 0.15);
+}
+
+/* ==========================================================================
+   6. RESPONSIVE ANPASSUNGEN FÜR SILBER-THEME
+   ========================================================================== */
+
+@media screen and (max-width: 768px) {
+    .logo:hover {
+        animation: logoGlow 1.2s infinite ease-in-out;
+        transform: scale(1.03);
+    }
+    
+    .silber-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 
+            0 8px 20px rgba(192, 192, 192, 0.4),
+            0 0 15px rgba(192, 192, 192, 0.2),
+            inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    }
+    
+    .social-link:hover {
+        transform: translateY(-3px) scale(1.05);
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .logo {
+        animation: logoPulse 8s infinite ease-in-out;
+    }
+    
+    .logo:hover {
+        transform: scale(1.02);
+    }
+    
+    .silber-button {
+        padding: 12px 25px;
+        font-size: 0.9rem;
+    }
+    
+    .silber-button:hover {
+        transform: translateY(-2px);
+    }
+}
+
+/* ==========================================================================
+   7. ANIMATIONEN FÜR SILBERNE ELEMENTE
+   ========================================================================== */
+
+/* Glow-Animation für verschiedene Elemente */
+@keyframes silverGlow {
+    0% {
+        box-shadow: 0 0 5px rgba(192, 192, 192, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 15px rgba(192, 192, 192, 0.7);
+    }
+    100% {
+        box-shadow: 0 0 5px rgba(192, 192, 192, 0.3);
+    }
+}
+
+/* Subtile Glow-Animation für aktive Navigationselemente */
+.hauptnavigation a.active {
+    animation: silverGlow 3s infinite ease-in-out;
+}
+
+/* ==========================================================================
+   8. UNIVERSAL BUTTON STYLES (für alle Buttons auf der Seite)
+   ========================================================================== */
+
+/* Dieser Style gilt für ALLE Buttons außer den spezifischen */
+button:not(.dark-mode-toggle):not(.burger) {
+    background: linear-gradient(135deg, 
+        rgba(192, 192, 192, 0.1) 0%, 
+        rgba(192, 192, 192, 0.05) 100%);
+    border: 1px solid rgba(192, 192, 192, 0.4);
+    color: #d6d9de;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-family: "Cinzel", serif;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:not(.dark-mode-toggle):not(.burger):hover {
+    background: linear-gradient(135deg, 
+        rgba(192, 192, 192, 0.2) 0%, 
+        rgba(192, 192, 192, 0.1) 100%);
+    border-color: rgba(192, 192, 192, 0.8);
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 
+        0 5px 15px rgba(192, 192, 192, 0.4),
+        0 0 10px rgba(192, 192, 192, 0.2);
+}
+
+/* ==========================================================================
+   9. FORM ELEMENTE IM SILBER-STIL
+   ========================================================================== */
+
+/* Für Kontaktformulare und andere Inputs */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea,
+select {
+    background: rgba(10, 10, 10, 0.7);
+    border: 1px solid rgba(192, 192, 192, 0.3);
+    color: #d6d9de;
+    padding: 12px 15px;
+    border-radius: 4px;
+    font-family: "EB Garamond", serif;
+    transition: all 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: rgba(192, 192, 192, 0.7);
+    box-shadow: 0 0 10px rgba(192, 192, 192, 0.3);
+    background: rgba(20, 20, 20, 0.8);
+}
+
+/* Formular-Submit-Buttons */
+input[type="submit"],
+button[type="submit"] {
+    background: linear-gradient(135deg, 
+        rgba(192, 192, 192, 0.15) 0%, 
+        rgba(192, 192, 192, 0.05) 100%);
+    border: 1px solid rgba(192, 192, 192, 0.5);
+    color: #d6d9de;
+    padding: 12px 30px;
+    border-radius: 4px;
+    font-family: "Cinzel", serif;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+input[type="submit"]:hover,
+button[type="submit"]:hover {
+    background: linear-gradient(135deg, 
+        rgba(192, 192, 192, 0.25) 0%, 
+        rgba(192, 192, 192, 0.15) 100%);
+    border-color: rgba(192, 192, 192, 0.8);
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 
+        0 8px 20px rgba(192, 192, 192, 0.5),
+        0 0 15px rgba(192, 192, 192, 0.3);
+}
+
+/* ==========================================================================
+   10. SILBERNE RAHMEN UND SEPARATOREN
+   ========================================================================== */
+
+/* Silberne Trennlinien für verschiedene Bereiche */
+.content-separator {
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(192, 192, 192, 0.4),
+        transparent
+    );
+    margin: 40px auto;
+    width: 80%;
+    max-width: 600px;
+}
+
+/* Silberne Rahmen für hervorgehobene Boxen */
+.silver-box {
+    border: 1px solid rgba(192, 192, 192, 0.3);
+    border-radius: 4px;
+    padding: 20px;
+    background: rgba(10, 10, 10, 0.5);
+    margin: 20px 0;
+    transition: all 0.3s ease;
+}
+
+.silver-box:hover {
+    border-color: rgba(192, 192, 192, 0.6);
+    background: rgba(20, 20, 20, 0.6);
+    box-shadow: 0 5px 15px rgba(192, 192, 192, 0.2);
+}
+
+/* ==========================================================================
+   ENDE DES SILBER-THEME ANHANGS
+   ========================================================================== */
