@@ -60,12 +60,14 @@ body {
 }
 
 .preloader-logo {
-  width: 180px;
+  width: 220px;
   height: auto;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
   display: block;
-  filter: brightness(1.1);
-  animation: logoAppear 1s ease-out forwards;
+  filter: brightness(1.2) drop-shadow(0 0 10px rgba(192, 192, 192, 0.4));
+  animation: preloaderLogoPulse 3s infinite ease-in-out,
+             preloaderLogoGlow 4s infinite ease-in-out;
+  transform-origin: center;
 }
 
 .preloader-text {
@@ -74,6 +76,35 @@ body {
   letter-spacing: 0.2em;
   color: #e0e0e0;
   text-shadow: 0 0 10px rgba(200, 200, 200, 0.3);
+}
+
+/* ==========================================================================
+   PRELOADER SILBERNER STRICH
+   ========================================================================== */
+.preloader-line {
+  position: absolute;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg,
+    transparent,
+    #c0c0c0,
+    transparent
+  );
+  opacity: 0;
+  border-radius: 2px;
+  box-shadow: 
+    0 0 10px rgba(192, 192, 192, 0.5),
+    0 0 20px rgba(192, 192, 192, 0.3);
+}
+
+/* Animation für den silbernen Strich */
+.preloader-line.active {
+  animation: 
+    lineExpand 2.5s cubic-bezier(0.4, 0, 0.2, 1) forwards,
+    lineGlow 2.5s ease-in-out;
 }
 
 /* ==========================================================================
@@ -93,6 +124,14 @@ body {
   margin: 0 auto 25px;
   display: block;
   filter: brightness(1.1);
+  animation: logoPulse 6s infinite ease-in-out;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Hover-Effekt mit silbernem Glow */
+.logo:hover {
+  animation: logoGlow 1.5s infinite ease-in-out;
+  transform: scale(1.05);
 }
 
 /* ==========================================================================
@@ -118,8 +157,11 @@ body {
 }
 
 .dark-mode-toggle:hover {
-  border-color: rgba(200, 205, 215, 0.6);
-  transform: scale(1.1);
+  border-color: rgba(192, 192, 192, 0.7);
+  transform: scale(1.15);
+  box-shadow: 
+    0 0 20px rgba(192, 192, 192, 0.5),
+    inset 0 0 10px rgba(255, 255, 255, 0.1);
 }
 
 .moon-icon, .sun-icon {
@@ -176,6 +218,16 @@ body {
   transform: rotate(-45deg) translate(5px, -5px);
 }
 
+.burger:hover span {
+  background-color: rgba(192, 192, 192, 0.9);
+  box-shadow: 0 0 10px rgba(192, 192, 192, 0.6);
+}
+
+.burger.aktiv:hover span {
+  background-color: #ffffff;
+  box-shadow: 0 0 15px rgba(192, 192, 192, 0.8);
+}
+
 /* ==========================================================================
    NAVIGATION - DESKTOP
    ========================================================================== */
@@ -184,8 +236,27 @@ body {
   justify-content: center;
   gap: 32px;
   flex-wrap: wrap;
-  padding: 10px 0;
+  padding: 15px 30px;
   z-index: 100;
+  background: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(10px);
+  border-radius: 8px;
+  margin: 0 auto;
+  max-width: fit-content;
+  border: 1px solid rgba(192, 192, 192, 0.1);
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* Bei Scroll leichten Effekt hinzufügen */
+body.scrolled .hauptnavigation {
+  background: rgba(5, 5, 5, 0.95);
+  backdrop-filter: blur(15px);
+  box-shadow: 
+    0 15px 35px rgba(0, 0, 0, 0.7),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(192, 192, 192, 0.15);
 }
 
 .hauptnavigation a {
@@ -201,12 +272,27 @@ body {
 
 .hauptnavigation a:hover {
   color: #ffffff;
-  text-shadow: 0 0 12px rgba(200, 200, 200, 0.6);
+  text-shadow: 0 0 15px rgba(192, 192, 192, 0.8);
+  transform: translateY(-2px);
+  background: linear-gradient(45deg, 
+    rgba(192, 192, 192, 0.1), 
+    rgba(192, 192, 192, 0.05));
+  box-shadow: 
+    0 5px 15px rgba(192, 192, 192, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .hauptnavigation a.active {
   color: #ffffff;
   font-weight: 600;
+  text-shadow: 
+    0 0 10px rgba(192, 192, 192, 0.8),
+    0 0 20px rgba(192, 192, 192, 0.4);
+  background: linear-gradient(45deg, 
+    rgba(192, 192, 192, 0.15), 
+    rgba(192, 192, 192, 0.05));
+  border: 1px solid rgba(192, 192, 192, 0.3);
+  animation: silverGlow 3s infinite ease-in-out;
 }
 
 /* ==========================================================================
@@ -219,10 +305,13 @@ body {
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(200, 205, 215, 0.85),
+    rgba(192, 192, 192, 0.9),
+    rgba(192, 192, 192, 0.6),
+    rgba(192, 192, 192, 0.9),
     transparent
   );
   margin: 25px 0;
+  box-shadow: 0 0 10px rgba(192, 192, 192, 0.3);
 }
 
 /* ==========================================================================
@@ -289,6 +378,8 @@ p {
 
 .footer-links a:hover {
   color: #ffffff;
+  text-shadow: 0 0 10px rgba(192, 192, 192, 0.8);
+  transform: translateY(-2px);
 }
 
 /* ==========================================================================
@@ -349,6 +440,13 @@ p {
     overflow-y: auto;
     transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: -5px 0 30px rgba(0, 0, 0, 0.8);
+    background: rgba(10, 10, 10, 0.98) !important;
+    backdrop-filter: blur(15px) !important;
+    border: none !important;
+    border-radius: 0 !important;
+    max-width: 280px !important;
+    padding-top: 120px !important;
+    box-shadow: -5px 0 40px rgba(0, 0, 0, 0.9) !important;
   }
   
   .hauptnavigation.aktiv {
@@ -369,9 +467,17 @@ p {
   }
   
   .hauptnavigation a:hover {
-    background-color: rgba(200, 205, 215, 0.1);
-    border-color: rgba(200, 205, 215, 0.5);
-    transform: translateY(-2px);
+    background-color: rgba(192, 192, 192, 0.15);
+    border-color: rgba(192, 192, 192, 0.7);
+    transform: translateY(-3px);
+    box-shadow: 
+      0 10px 20px rgba(192, 192, 192, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+  
+  .hauptnavigation a.active {
+    background: rgba(192, 192, 192, 0.2);
+    border-color: rgba(192, 192, 192, 0.5);
   }
   
   /* MENU OVERLAY - KORRIGIERT */
@@ -421,6 +527,27 @@ p {
   .footer {
     padding: 20px 15px;
   }
+  
+  .logo:hover {
+    animation: logoGlow 1.2s infinite ease-in-out;
+    transform: scale(1.03);
+  }
+  
+  .silber-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 
+      0 8px 20px rgba(192, 192, 192, 0.4),
+      0 0 15px rgba(192, 192, 192, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+  
+  .social-link:hover {
+    transform: translateY(-3px) scale(1.05);
+  }
+  
+  body.scrolled .hauptnavigation {
+    background: rgba(10, 10, 10, 0.98) !important;
+  }
 }
 
 /* ==========================================================================
@@ -454,7 +581,7 @@ p {
 
 @media screen and (max-width: 480px) {
   .preloader-logo {
-    width: 120px;
+    width: 110px;
   }
   
   .preloader-text {
@@ -508,6 +635,23 @@ p {
     padding: 20px 12px;
     font-size: 0.85rem;
   }
+  
+  .logo {
+    animation: logoPulse 8s infinite ease-in-out;
+  }
+  
+  .logo:hover {
+    transform: scale(1.02);
+  }
+  
+  .silber-button {
+    padding: 12px 25px;
+    font-size: 0.9rem;
+  }
+  
+  .silber-button:hover {
+    transform: translateY(-2px);
+  }
 }
 
 /* ==========================================================================
@@ -527,11 +671,21 @@ body.dark-mode .header {
 }
 
 body.dark-mode .hauptnavigation {
-  background: rgba(20, 20, 20, 0.98);
+  background: rgba(15, 15, 15, 0.9);
+  border: 1px solid rgba(192, 192, 192, 0.15);
 }
 
 body.dark-mode .hauptnavigation a {
   background: rgba(30, 30, 30, 0.8);
+}
+
+body.dark-mode .hauptnavigation a:hover {
+  background: linear-gradient(45deg, 
+    rgba(192, 192, 192, 0.15), 
+    rgba(192, 192, 192, 0.08));
+  box-shadow: 
+    0 5px 20px rgba(192, 192, 192, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 body.dark-mode p {
@@ -544,6 +698,41 @@ body.dark-mode h1 {
 
 body.dark-mode .footer {
   background-color: rgba(26, 26, 26, 0.9);
+}
+
+body.dark-mode .logo:hover {
+  filter: brightness(1.3) drop-shadow(0 0 15px rgba(192, 192, 192, 0.8));
+}
+
+body.dark-mode .silber-button:hover {
+  background: linear-gradient(135deg, 
+    rgba(192, 192, 192, 0.25) 0%, 
+    rgba(192, 192, 192, 0.15) 100%);
+  box-shadow: 
+    0 10px 25px rgba(192, 192, 192, 0.6),
+    0 0 25px rgba(192, 192, 192, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+body.dark-mode .lichtkante,
+body.dark-mode .footer-lichtkante,
+body.dark-mode .social-lichtkante {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(192, 192, 192, 1),
+    rgba(192, 192, 192, 0.7),
+    rgba(192, 192, 192, 1),
+    transparent
+  );
+  box-shadow: 0 0 15px rgba(192, 192, 192, 0.5);
+}
+
+body.dark-mode .social-link:hover .social-icon-wrapper {
+  background: rgba(192, 192, 192, 0.3);
+  box-shadow: 
+    0 0 25px rgba(192, 192, 192, 0.8),
+    inset 0 0 15px rgba(255, 255, 255, 0.15);
 }
 
 /* ==========================================================================
@@ -561,6 +750,7 @@ body.dark-mode .footer {
   margin-bottom: 35px;
   font-size: 1.4rem;
   letter-spacing: 0.1em;
+  text-shadow: 0 0 5px rgba(192, 192, 192, 0.3);
 }
 
 .social-grid {
@@ -609,16 +799,20 @@ body.dark-mode .footer {
 
 .social-link:hover {
   color: #ffffff;
-  transform: translateY(-3px);
+  transform: translateY(-5px) scale(1.1);
 }
 
 .social-link:hover .social-icon-wrapper {
-  border-color: rgba(200, 205, 215, 0.7);
-  background: rgba(200, 205, 215, 0.15);
+  border-color: rgba(192, 192, 192, 0.8);
+  background: rgba(192, 192, 192, 0.2);
+  box-shadow: 
+    0 0 20px rgba(192, 192, 192, 0.6),
+    inset 0 0 10px rgba(255, 255, 255, 0.1);
 }
 
 .social-link:hover .social-icon {
   fill: #ffffff;
+  filter: drop-shadow(0 0 8px rgba(192, 192, 192, 0.8));
 }
 
 /* ==========================================================================
@@ -641,9 +835,10 @@ body.dark-mode .footer {
 .lead-text {
   font-size: 1.4rem;
   text-align: center;
-  color: #e4e6ea;
+  color: #f0f0f0;
   margin-bottom: 15px;
   font-weight: 500;
+  text-shadow: 0 0 5px rgba(192, 192, 192, 0.2);
 }
 
 .sub-lead-text {
@@ -664,8 +859,9 @@ body.dark-mode .footer {
   font-style: italic;
   margin: 40px 0;
   padding: 20px;
-  border-left: 2px solid rgba(200, 205, 215, 0.3);
-  border-right: 2px solid rgba(200, 205, 215, 0.3);
+  border-left: 2px solid rgba(192, 192, 192, 0.5);
+  border-right: 2px solid rgba(192, 192, 192, 0.5);
+  text-shadow: 0 0 5px rgba(192, 192, 192, 0.3);
 }
 
 .kerninhalt .zitat {
@@ -675,13 +871,34 @@ body.dark-mode .footer {
   margin: 50px 0;
   padding: 30px 20px;
   position: relative;
+  border-top: 1px solid rgba(192, 192, 192, 0.3);
+  border-bottom: 1px solid rgba(192, 192, 192, 0.3);
+}
+
+.zitat::before,
+.zitat::after {
+  content: '"';
+  color: rgba(192, 192, 192, 0.5);
+  font-size: 4rem;
+  position: absolute;
+  font-family: serif;
+}
+
+.zitat::before {
+  top: 10px;
+  left: 10px;
+}
+
+.zitat::after {
+  bottom: 10px;
+  right: 10px;
 }
 
 .zitat-autor {
   display: block;
   margin-top: 15px;
   font-size: 1rem;
-  color: #b0b5bc;
+  color: #c0c0c0;
   font-style: normal;
 }
 
@@ -705,11 +922,13 @@ body.dark-mode .footer {
   font-size: 3.2rem;
   font-weight: 400;
   line-height: 1.2;
-  color: #ffffff;
+  color: #f0f0f0;
   text-align: center;
   margin: 0 auto 1.5rem;
   letter-spacing: 1.5px;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+  text-shadow: 
+    0 2px 4px rgba(0,0,0,0.8),
+    0 0 10px rgba(192, 192, 192, 0.4);
   position: relative;
   padding: 0 2rem;
   max-width: 800px;
@@ -731,23 +950,59 @@ body.dark-mode .footer {
   align-items: center;
   gap: 12px;
   padding: 15px 35px;
-  background: transparent;
+  background: linear-gradient(135deg, 
+    rgba(192, 192, 192, 0.1) 0%, 
+    rgba(192, 192, 192, 0.05) 100%);
   color: #d6d9de;
-  border: 1px solid rgba(200, 205, 215, 0.4);
+  border: 1px solid rgba(192, 192, 192, 0.4);
   border-radius: 4px;
   font-family: "Cinzel", serif;
   letter-spacing: 0.1em;
   text-decoration: none;
   font-size: 0.95rem;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
+  overflow: hidden;
+}
+
+.silber-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(192, 192, 192, 0.2), 
+    transparent);
+  transition: left 0.6s ease;
 }
 
 .silber-button:hover {
-  background: rgba(200, 205, 215, 0.1);
+  background: linear-gradient(135deg, 
+    rgba(192, 192, 192, 0.2) 0%, 
+    rgba(192, 192, 192, 0.1) 100%);
+  border-color: rgba(192, 192, 192, 0.8);
   color: #ffffff;
-  border-color: rgba(200, 205, 215, 0.7);
-  transform: translateY(-3px);
+  transform: translateY(-4px);
+  box-shadow: 
+    0 10px 25px rgba(192, 192, 192, 0.5),
+    0 0 20px rgba(192, 192, 192, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.silber-button:hover::before {
+  left: 100%;
+}
+
+.silber-button.secondary {
+  background: transparent;
+  border: 1px solid rgba(192, 192, 192, 0.3);
+}
+
+.silber-button.secondary:hover {
+  background: rgba(192, 192, 192, 0.1);
 }
 
 .button-arrow {
@@ -825,6 +1080,148 @@ body.dark-mode .footer {
   }
 }
 
+/* Pulsierende Animation für das Logo */
+@keyframes logoPulse {
+  0% { 
+    transform: scale(1);
+    filter: brightness(1.1) drop-shadow(0 0 0px rgba(192, 192, 192, 0));
+  }
+  50% { 
+    transform: scale(1.03);
+    filter: brightness(1.2) drop-shadow(0 0 5px rgba(192, 192, 192, 0.3));
+  }
+  100% { 
+    transform: scale(1);
+    filter: brightness(1.1) drop-shadow(0 0 0px rgba(192, 192, 192, 0));
+  }
+}
+
+/* Starke Hover-Glow Animation */
+@keyframes logoGlow {
+  0% { 
+    filter: brightness(1.1) drop-shadow(0 0 5px rgba(192, 192, 192, 0.3));
+  }
+  50% { 
+    filter: brightness(1.3) drop-shadow(0 0 15px rgba(192, 192, 192, 0.7));
+  }
+  100% { 
+    filter: brightness(1.1) drop-shadow(0 0 5px rgba(192, 192, 192, 0.3));
+  }
+}
+
+/* Spezielle Animation für Preloader-Logo */
+@keyframes preloaderLogoPulse {
+  0%, 100% { 
+    transform: scale(1);
+    filter: brightness(1.2) drop-shadow(0 0 10px rgba(192, 192, 192, 0.4));
+  }
+  50% { 
+    transform: scale(1.1);
+    filter: brightness(1.4) drop-shadow(0 0 20px rgba(192, 192, 192, 0.7));
+  }
+}
+
+@keyframes preloaderLogoGlow {
+  0%, 100% { 
+    opacity: 1;
+  }
+  50% { 
+    opacity: 0.9;
+  }
+}
+
+/* Animation für den silbernen Strich */
+@keyframes lineExpand {
+  0% {
+    width: 0;
+    opacity: 0;
+    transform: translateX(-50%) scaleX(0.1);
+  }
+  20% {
+    opacity: 1;
+    transform: translateX(-50%) scaleX(1);
+  }
+  80% {
+    width: 300px;
+    opacity: 1;
+    transform: translateX(-50%) scaleX(1);
+  }
+  100% {
+    width: 300px;
+    opacity: 0;
+    transform: translateX(-50%) scaleX(1);
+  }
+}
+
+@keyframes lineGlow {
+  0%, 100% { 
+    box-shadow: 
+      0 0 10px rgba(192, 192, 192, 0.5),
+      0 0 20px rgba(192, 192, 192, 0.3);
+  }
+  50% { 
+    box-shadow: 
+      0 0 20px rgba(192, 192, 192, 0.8),
+      0 0 40px rgba(192, 192, 192, 0.5),
+      0 0 60px rgba(192, 192, 192, 0.3);
+  }
+}
+
+/* Glow-Animation für verschiedene Elemente */
+@keyframes silverGlow {
+  0% {
+    box-shadow: 0 0 5px rgba(192, 192, 192, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(192, 192, 192, 0.7);
+  }
+  100% {
+    box-shadow: 0 0 5px rgba(192, 192, 192, 0.3);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 /* ==========================================================================
    UTILITY CLASSES
    ========================================================================== */
@@ -858,6 +1255,7 @@ body:not(.dark-mode) .dark-mode-toggle .moon-icon {
 body:not(.dark-mode) .dark-mode-toggle .sun-icon {
   display: none;
 }
+
 /* ==========================================================================
    MOBILE PRELOADER FIXES - AM ENDE DER DATEI HINZUFÜGEN
    ========================================================================== */
@@ -901,11 +1299,13 @@ body:not(.dark-mode) .dark-mode-toggle .sun-icon {
     }
     
     .preloader-logo {
-        width: 140px !important;
+        width: 180px !important;
         height: auto;
         margin-bottom: 20px;
         display: block;
         filter: brightness(1.1);
+        animation: preloaderLogoPulse 4s infinite ease-in-out,
+                   preloaderLogoGlow 5s infinite ease-in-out;
     }
     
     .preloader-text {
@@ -915,6 +1315,11 @@ body:not(.dark-mode) .dark-mode-toggle .sun-icon {
         color: #e0e0e0;
         text-shadow: 0 0 10px rgba(200, 200, 200, 0.3);
         min-height: 30px;
+    }
+    
+    .preloader-line {
+        bottom: 80px;
+        height: 1.5px;
     }
     
     /* Verhindere Scrolling während Preloader */
@@ -928,12 +1333,17 @@ body:not(.dark-mode) .dark-mode-toggle .sun-icon {
 /* Noch kleinere Screens */
 @media screen and (max-width: 480px) {
     .preloader-logo {
-        width: 110px !important;
+        width: 140px !important;
     }
     
     .preloader-text {
         font-size: 20px !important;
         letter-spacing: 0.1em;
+    }
+    
+    .preloader-line {
+        bottom: 60px;
+        height: 1px;
     }
 }
 
@@ -955,123 +1365,8 @@ body:not(.dark-mode) .dark-mode-toggle .sun-icon {
 .delay-3 { animation-delay: 0.6s !important; }
 .delay-4 { animation-delay: 0.8s !important; }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes slideUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes slideInRight {
-    from {
-        opacity: 0;
-        transform: translateX(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-@keyframes scaleIn {
-    from {
-        opacity: 0;
-        transform: scale(0.95);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
 /* ==========================================================================
-   DARK MODE TOGGLE VISIBILITY - WICHTIG FÜR ALLE SEITEN
-   ========================================================================== */
-
-body.dark-mode .dark-mode-toggle .moon-icon {
-    display: none !important;
-}
-
-body.dark-mode .dark-mode-toggle .sun-icon {
-    display: block !important;
-}
-
-body:not(.dark-mode) .dark-mode-toggle .moon-icon {
-    display: block !important;
-}
-
-body:not(.dark-mode) .dark-mode-toggle .sun-icon {
-    display: none !important;
-}
-/* ==========================================================================
-   KOMPLETTER SILBER-THEME ANHANG
-   ========================================================================== */
-
-/* ==========================================================================
-   1. LOGO ANIMATION & HOVER EFFECTS
-   ========================================================================== */
-
-/* Pulsierende Animation für das Logo */
-@keyframes logoPulse {
-    0% { 
-        transform: scale(1);
-        filter: brightness(1.1) drop-shadow(0 0 0px rgba(192, 192, 192, 0));
-    }
-    50% { 
-        transform: scale(1.03);
-        filter: brightness(1.2) drop-shadow(0 0 5px rgba(192, 192, 192, 0.3));
-    }
-    100% { 
-        transform: scale(1);
-        filter: brightness(1.1) drop-shadow(0 0 0px rgba(192, 192, 192, 0));
-    }
-}
-
-/* Starke Hover-Glow Animation */
-@keyframes logoGlow {
-    0% { 
-        filter: brightness(1.1) drop-shadow(0 0 5px rgba(192, 192, 192, 0.3));
-    }
-    50% { 
-        filter: brightness(1.3) drop-shadow(0 0 15px rgba(192, 192, 192, 0.7));
-    }
-    100% { 
-        filter: brightness(1.1) drop-shadow(0 0 5px rgba(192, 192, 192, 0.3));
-    }
-}
-
-/* Anwenden der Puls-Animation auf das Hauptlogo */
-.logo {
-    animation: logoPulse 6s infinite ease-in-out;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Hover-Effekt mit silbernem Glow */
-.logo:hover {
-    animation: logoGlow 1.5s infinite ease-in-out;
-    transform: scale(1.05);
-}
-
-/* Preloader-Logo ebenfalls animieren */
-.preloader-logo {
-    animation: logoPulse 4s infinite ease-in-out;
-}
-
-/* ==========================================================================
-   2. EINHEITLICHE SILBERNE LINK-FARBEN
+   EINHEITLICHE SILBERNE LINK-FARBEN
    ========================================================================== */
 
 /* Basis-Link-Farben für alle Links */
@@ -1106,346 +1401,7 @@ a:active {
 }
 
 /* ==========================================================================
-   3. SILBERNE HOVER EFFECTS FÜR ALLE INTERAKTIVEN ELEMENTE
-   ========================================================================== */
-
-/* Hauptnavigation Hover - Desktop */
-.hauptnavigation a:hover {
-    color: #ffffff !important;
-    text-shadow: 0 0 15px rgba(192, 192, 192, 0.8);
-    transform: translateY(-2px);
-    background: linear-gradient(45deg, 
-        rgba(192, 192, 192, 0.1), 
-        rgba(192, 192, 192, 0.05));
-    box-shadow: 
-        0 5px 15px rgba(192, 192, 192, 0.3),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1);
-}
-
-/* Aktive Navigation-Links - Silberner Effekt */
-.hauptnavigation a.active {
-    color: #ffffff !important;
-    text-shadow: 
-        0 0 10px rgba(192, 192, 192, 0.8),
-        0 0 20px rgba(192, 192, 192, 0.4);
-    background: linear-gradient(45deg, 
-        rgba(192, 192, 192, 0.15), 
-        rgba(192, 192, 192, 0.05));
-    border: 1px solid rgba(192, 192, 192, 0.3);
-}
-
-/* Hauptnavigation Hover - Mobile */
-@media screen and (max-width: 768px) {
-    .hauptnavigation a:hover {
-        background: rgba(192, 192, 192, 0.15);
-        border-color: rgba(192, 192, 192, 0.7);
-        transform: translateY(-3px);
-        box-shadow: 
-            0 10px 20px rgba(192, 192, 192, 0.4),
-            inset 0 1px 0 rgba(255, 255, 255, 0.1);
-    }
-    
-    .hauptnavigation a.active {
-        background: rgba(192, 192, 192, 0.2);
-        border-color: rgba(192, 192, 192, 0.5);
-    }
-}
-
-/* CTA Buttons - Primärer Silber-Effekt */
-.silber-button {
-    background: linear-gradient(135deg, 
-        rgba(192, 192, 192, 0.1) 0%, 
-        rgba(192, 192, 192, 0.05) 100%);
-    border: 1px solid rgba(192, 192, 192, 0.4);
-    color: #d6d9de;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.silber-button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, 
-        transparent, 
-        rgba(192, 192, 192, 0.2), 
-        transparent);
-    transition: left 0.6s ease;
-}
-
-.silber-button:hover {
-    background: linear-gradient(135deg, 
-        rgba(192, 192, 192, 0.2) 0%, 
-        rgba(192, 192, 192, 0.1) 100%);
-    border-color: rgba(192, 192, 192, 0.8);
-    color: #ffffff !important;
-    transform: translateY(-4px);
-    box-shadow: 
-        0 10px 25px rgba(192, 192, 192, 0.5),
-        0 0 20px rgba(192, 192, 192, 0.3),
-        inset 0 1px 0 rgba(255, 255, 255, 0.2);
-}
-
-.silber-button:hover::before {
-    left: 100%;
-}
-
-/* Sekundäre Buttons (falls vorhanden) */
-.silber-button.secondary {
-    background: transparent;
-    border: 1px solid rgba(192, 192, 192, 0.3);
-}
-
-.silber-button.secondary:hover {
-    background: rgba(192, 192, 192, 0.1);
-}
-
-/* Social Media Icons Hover */
-.social-link:hover {
-    color: #ffffff !important;
-    transform: translateY(-5px) scale(1.1);
-}
-
-.social-link:hover .social-icon-wrapper {
-    border-color: rgba(192, 192, 192, 0.8);
-    background: rgba(192, 192, 192, 0.2);
-    box-shadow: 
-        0 0 20px rgba(192, 192, 192, 0.6),
-        inset 0 0 10px rgba(255, 255, 255, 0.1);
-}
-
-.social-link:hover .social-icon {
-    fill: #ffffff !important;
-    filter: drop-shadow(0 0 8px rgba(192, 192, 192, 0.8));
-}
-
-/* Footer Links Hover */
-.footer-links a:hover {
-    color: #ffffff !important;
-    text-shadow: 0 0 10px rgba(192, 192, 192, 0.8);
-    transform: translateY(-2px);
-}
-
-/* Dark Mode Toggle Hover */
-.dark-mode-toggle:hover {
-    border-color: rgba(192, 192, 192, 0.7);
-    transform: scale(1.15);
-    box-shadow: 
-        0 0 20px rgba(192, 192, 192, 0.5),
-        inset 0 0 10px rgba(255, 255, 255, 0.1);
-}
-
-/* Burger Menu Hover */
-.burger:hover span {
-    background-color: rgba(192, 192, 192, 0.9);
-    box-shadow: 0 0 10px rgba(192, 192, 192, 0.6);
-}
-
-.burger.aktiv:hover span {
-    background-color: #ffffff;
-    box-shadow: 0 0 15px rgba(192, 192, 192, 0.8);
-}
-
-/* ==========================================================================
-   4. SILBERNE AKZENTE & FEINSCHLIFF FÜR TEXT UND ELEMENTE
-   ========================================================================== */
-
-/* Silberne Lichtkanten verstärken */
-.lichtkante,
-.footer-lichtkante,
-.social-lichtkante {
-    height: 1px;
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(192, 192, 192, 0.9),
-        rgba(192, 192, 192, 0.6),
-        rgba(192, 192, 192, 0.9),
-        transparent
-    );
-    margin: 25px 0;
-    box-shadow: 0 0 10px rgba(192, 192, 192, 0.3);
-}
-
-/* Kalligrafie-Zitat silberner machen */
-.kalligrafie-text {
-    color: #f0f0f0 !important;
-    text-shadow: 
-        0 2px 4px rgba(0,0,0,0.8),
-        0 0 10px rgba(192, 192, 192, 0.4);
-}
-
-/* Zitat-Autor in Silber */
-.zitat-autor {
-    color: #c0c0c0 !important;
-}
-
-/* Highlight-Text in Silber */
-.highlight {
-    color: #e4e6ea !important;
-    border-left: 2px solid rgba(192, 192, 192, 0.5) !important;
-    border-right: 2px solid rgba(192, 192, 192, 0.5) !important;
-    text-shadow: 0 0 5px rgba(192, 192, 192, 0.3);
-}
-
-/* Lead-Text in hellem Silber */
-.lead-text {
-    color: #f0f0f0 !important;
-    text-shadow: 0 0 5px rgba(192, 192, 192, 0.2);
-}
-
-/* Social Media Titel */
-.social-title {
-    color: #e4e6ea !important;
-    text-shadow: 0 0 5px rgba(192, 192, 192, 0.3);
-}
-
-/* Zitat-Text im Hauptinhalt */
-.zitat {
-    color: #e4e6ea !important;
-    border-top: 1px solid rgba(192, 192, 192, 0.3);
-    border-bottom: 1px solid rgba(192, 192, 192, 0.3);
-    padding: 30px 20px;
-    position: relative;
-}
-
-.zitat::before,
-.zitat::after {
-    content: '"';
-    color: rgba(192, 192, 192, 0.5);
-    font-size: 4rem;
-    position: absolute;
-    font-family: serif;
-}
-
-.zitat::before {
-    top: 10px;
-    left: 10px;
-}
-
-.zitat::after {
-    bottom: 10px;
-    right: 10px;
-}
-
-/* ==========================================================================
-   5. DARK MODE ANPASSUNGEN FÜR SILBERNES THEMA
-   ========================================================================== */
-
-body.dark-mode .logo:hover {
-    filter: brightness(1.3) drop-shadow(0 0 15px rgba(192, 192, 192, 0.8));
-}
-
-body.dark-mode .silber-button:hover {
-    background: linear-gradient(135deg, 
-        rgba(192, 192, 192, 0.25) 0%, 
-        rgba(192, 192, 192, 0.15) 100%);
-    box-shadow: 
-        0 10px 25px rgba(192, 192, 192, 0.6),
-        0 0 25px rgba(192, 192, 192, 0.4),
-        inset 0 1px 0 rgba(255, 255, 255, 0.3);
-}
-
-body.dark-mode .lichtkante,
-body.dark-mode .footer-lichtkante,
-body.dark-mode .social-lichtkante {
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(192, 192, 192, 1),
-        rgba(192, 192, 192, 0.7),
-        rgba(192, 192, 192, 1),
-        transparent
-    );
-    box-shadow: 0 0 15px rgba(192, 192, 192, 0.5);
-}
-
-body.dark-mode .hauptnavigation a:hover {
-    background: linear-gradient(45deg, 
-        rgba(192, 192, 192, 0.2), 
-        rgba(192, 192, 192, 0.1));
-    box-shadow: 
-        0 5px 20px rgba(192, 192, 192, 0.5),
-        inset 0 1px 0 rgba(255, 255, 255, 0.2);
-}
-
-body.dark-mode .social-link:hover .social-icon-wrapper {
-    background: rgba(192, 192, 192, 0.3);
-    box-shadow: 
-        0 0 25px rgba(192, 192, 192, 0.8),
-        inset 0 0 15px rgba(255, 255, 255, 0.15);
-}
-
-/* ==========================================================================
-   6. RESPONSIVE ANPASSUNGEN FÜR SILBER-THEME
-   ========================================================================== */
-
-@media screen and (max-width: 768px) {
-    .logo:hover {
-        animation: logoGlow 1.2s infinite ease-in-out;
-        transform: scale(1.03);
-    }
-    
-    .silber-button:hover {
-        transform: translateY(-3px);
-        box-shadow: 
-            0 8px 20px rgba(192, 192, 192, 0.4),
-            0 0 15px rgba(192, 192, 192, 0.2),
-            inset 0 1px 0 rgba(255, 255, 255, 0.2);
-    }
-    
-    .social-link:hover {
-        transform: translateY(-3px) scale(1.05);
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .logo {
-        animation: logoPulse 8s infinite ease-in-out;
-    }
-    
-    .logo:hover {
-        transform: scale(1.02);
-    }
-    
-    .silber-button {
-        padding: 12px 25px;
-        font-size: 0.9rem;
-    }
-    
-    .silber-button:hover {
-        transform: translateY(-2px);
-    }
-}
-
-/* ==========================================================================
-   7. ANIMATIONEN FÜR SILBERNE ELEMENTE
-   ========================================================================== */
-
-/* Glow-Animation für verschiedene Elemente */
-@keyframes silverGlow {
-    0% {
-        box-shadow: 0 0 5px rgba(192, 192, 192, 0.3);
-    }
-    50% {
-        box-shadow: 0 0 15px rgba(192, 192, 192, 0.7);
-    }
-    100% {
-        box-shadow: 0 0 5px rgba(192, 192, 192, 0.3);
-    }
-}
-
-/* Subtile Glow-Animation für aktive Navigationselemente */
-.hauptnavigation a.active {
-    animation: silverGlow 3s infinite ease-in-out;
-}
-
-/* ==========================================================================
-   8. UNIVERSAL BUTTON STYLES (für alle Buttons auf der Seite)
+   UNIVERSAL BUTTON STYLES (für alle Buttons auf der Seite)
    ========================================================================== */
 
 /* Dieser Style gilt für ALLE Buttons außer den spezifischen */
@@ -1476,7 +1432,7 @@ button:not(.dark-mode-toggle):not(.burger):hover {
 }
 
 /* ==========================================================================
-   9. FORM ELEMENTE IM SILBER-STIL
+   FORM ELEMENTE IM SILBER-STIL
    ========================================================================== */
 
 /* Für Kontaktformulare und andere Inputs */
@@ -1535,7 +1491,7 @@ button[type="submit"]:hover {
 }
 
 /* ==========================================================================
-   10. SILBERNE RAHMEN UND SEPARATOREN
+   SILBERNE RAHMEN UND SEPARATOREN
    ========================================================================== */
 
 /* Silberne Trennlinien für verschiedene Bereiche */
@@ -1569,5 +1525,5 @@ button[type="submit"]:hover {
 }
 
 /* ==========================================================================
-   ENDE DES SILBER-THEME ANHANGS
+   ENDE DER CSS-DATEI
    ========================================================================== */
