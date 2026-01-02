@@ -6,6 +6,7 @@
     <title>Matthias Silberhain | Startseite</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
     <meta name="description" content="Matthias Silberhain - Autor zu Macht, Verantwortung und gesellschaftlichen Mechanismen">
+    <meta name="theme-color" content="#000000">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,16 +20,16 @@
     <link rel="icon" href="assets/images/logo.png" type="image/png">
     
     <!-- CSS Fallback für JavaScript disabled -->
-    <style>
-        /* Minimal CSS für JS-deaktivierte Browser */
-        .no-js #preloader { display: none !important; }
-        .no-js .inhalt, 
-        .no-js .social-section, 
-        .no-js .footer { 
-            opacity: 1 !important; 
-            transform: none !important; 
-        }
-    </style>
+    <noscript>
+        <style>
+            #preloader { display: none !important; }
+            .inhalt, .social-section, .footer { 
+                opacity: 1 !important; 
+                transform: none !important; 
+            }
+            .burger { display: none !important; }
+        </style>
+    </noscript>
 </head>
 
 <body>
@@ -36,10 +37,10 @@
 <!-- Preloader -->
 <div id="preloader" role="status" aria-label="Ladevorgang">
     <div class="preloader-inner">
-        <img src="assets/images/logo.png" alt="Logo" class="preloader-logo" width="200" height="200" loading="eager">
+        <img src="assets/images/logo.png" alt="Logo" class="preloader-logo" width="200" height="200">
         <div class="text-container">
             <h1 class="preloader-text" aria-live="polite">
-                <span id="type-text">MATTHIAS SILBERHAIN</span>
+                <span id="type-text"></span>
             </h1>
         </div>
         <!-- Silberner Strich -->
@@ -48,11 +49,11 @@
 </div>
 
 <!-- Menu Overlay -->
-<div class="menu-overlay" tabindex="-1" aria-hidden="true"></div>
+<div class="menu-overlay" tabindex="-1" aria-hidden="true" role="button" aria-label="Menü schließen"></div>
 
 <!-- ================= HEADER ================= -->
 <header class="header" role="banner">
-    <img src="assets/images/logo.png" alt="Matthias Silberhain Logo" class="logo" width="420" height="auto" loading="eager">
+    <img src="assets/images/logo.png" alt="Matthias Silberhain Logo" class="logo" width="420" height="auto">
     
     <!-- Dark Mode Toggle Button -->
     <button class="dark-mode-toggle" id="themeToggle" aria-label="Dark Mode umschalten" aria-pressed="false">
@@ -240,9 +241,9 @@
     document.documentElement.classList.remove('no-js');
     document.documentElement.classList.add('js');
 </script>
-<script src="assets/js/global.js" defer></script>
-<script src="assets/js/dark-mode.js" defer></script>
-<script src="assets/js/menu.js" defer></script>
+
+<script src="assets/js/global.js"></script>
+<script src="assets/js/menu.js"></script>
 
 </body>
 </html>
