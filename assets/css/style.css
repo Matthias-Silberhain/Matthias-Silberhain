@@ -1721,3 +1721,41 @@ body.loaded .inhalt {
         margin-bottom: 25px;
     }
 }
+/* ==========================================================================
+   FADE-IN ANIMATION FÜR INHALT
+   ========================================================================== */
+
+/* Initialer Zustand - Inhalt versteckt */
+.header,
+.inhalt,
+.social-section,
+.footer {
+    opacity: 0;
+    transform: translateY(20px);
+    will-change: opacity, transform;
+}
+
+/* Wenn Preloader fertig ist - Inhalt einblenden */
+body.loaded .header {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+body.loaded .inhalt {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s;
+}
+
+body.loaded .social-section {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.6s ease 0.4s, transform 0.6s ease 0.4s;
+}
+
+body.loaded .footer {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.6s ease 0.6s, transform 0.6s ease 0.6s;
+}
