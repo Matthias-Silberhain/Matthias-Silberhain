@@ -1874,3 +1874,146 @@ a[href^="mailto:"]:hover {
     border-bottom-color: rgba(240, 240, 240, 0.7);
     text-shadow: 0 0 8px rgba(192, 192, 192, 0.4);
 }
+/* ========== BURGER MENÜ STYLES ========== */
+/* Desktop: Navigation immer sichtbar */
+@media (min-width: 769px) {
+    .hauptnavigation {
+        display: flex !important;
+        opacity: 1 !important;
+        position: static;
+        transform: none !important;
+        background: transparent;
+    }
+    
+    .burger {
+        display: none !important;
+    }
+    
+    .menu-overlay {
+        display: none !important;
+    }
+}
+
+/* Mobile: Navigation versteckt */
+@media (max-width: 768px) {
+    .hauptnavigation {
+        display: none;
+        position: fixed;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background: rgba(10, 10, 10, 0.95);
+        backdrop-filter: blur(10px);
+        flex-direction: column;
+        padding: 2rem;
+        z-index: 1000;
+        border-top: 1px solid rgba(192, 192, 192, 0.2);
+    }
+    
+    .hauptnavigation.active {
+        display: flex;
+    }
+    
+    .hauptnavigation a {
+        padding: 1rem;
+        font-size: 1.2rem;
+        text-align: center;
+        border-bottom: 1px solid rgba(192, 192, 192, 0.1);
+    }
+    
+    .hauptnavigation a:last-child {
+        border-bottom: none;
+    }
+    
+    .burger {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 30px;
+        height: 24px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        z-index: 1001;
+    }
+    
+    .burger span {
+        display: block;
+        width: 100%;
+        height: 2px;
+        background: #ffffff;
+        transition: all 0.3s ease;
+    }
+    
+    .menu-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        z-index: 999;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+    }
+    
+    .menu-overlay.active {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+/* ========== PRELOADER ANIMATIONEN ========== */
+@keyframes underline-glow {
+    0%, 100% { 
+        box-shadow: 0 0 20px rgba(192, 192, 192, 0.4);
+    }
+    50% { 
+        box-shadow: 0 0 40px rgba(192, 192, 192, 0.8), 
+                    0 0 80px rgba(192, 192, 192, 0.4);
+    }
+}
+
+.silber-underline {
+    animation: underline-glow 2s infinite alternate;
+}
+
+/* ========== SILBERNE E-MAIL LINKS ========== */
+a[href^="mailto:"] {
+    color: #c0c0c0 !important;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+a[href^="mailto:"]:hover {
+    color: #f0f0f0 !important;
+    text-shadow: 0 0 8px rgba(192, 192, 192, 0.5);
+}
+
+/* ========== MOBILE OPTIMIERUNG ========== */
+@media (max-width: 768px) {
+    .preloader-text {
+        font-size: 1.5rem;
+        letter-spacing: 0.2rem;
+    }
+    
+    .preloader-logo {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .silber-underline {
+        height: 3px;
+        bottom: -15px;
+    }
+}
+
+/* ========== ACCESSIBILITY ========== */
+@media (prefers-reduced-motion: reduce) {
+    .silber-underline,
+    .silber-particle,
+    .preloader-logo {
+        animation: none !important;
+    }
+}
