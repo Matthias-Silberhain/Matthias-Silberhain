@@ -1625,6 +1625,99 @@ body.loaded .inhalt {
         bottom: 60px;
         height: 1px;
     }
-}/* ==========================================================================
-   ENDE DER CSS-DATEI
+}
+/* ==========================================================================
+   PRELOADER-LINE POSITIONSKORREKTUR
    ========================================================================== */
+
+/* Korrektur für Preloader-Line Position */
+.preloader-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Preloader-Line direkt unter dem Typewriter positionieren */
+.preloader-line {
+    position: absolute !important;
+    top: calc(50% + 80px) !important; /* Direkt unter dem Typewriter */
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+        transparent,
+        #c0c0c0,
+        #ffffff,
+        #c0c0c0,
+        transparent
+    ) !important;
+    opacity: 0;
+    border-radius: 2px;
+    box-shadow: 
+        0 0 10px rgba(192, 192, 192, 0.5),
+        0 0 20px rgba(192, 192, 192, 0.3);
+    z-index: 10000 !important;
+    visibility: visible !important;
+    bottom: auto !important; /* Bottom überschreiben */
+}
+
+/* Typewriter-Text Container anpassen */
+.text-container {
+    position: relative;
+    margin-top: -30px; /* Logo näher am Text */
+    margin-bottom: 40px; /* Abstand zur Line */
+}
+
+/* Preloader Logo Position anpassen */
+.preloader-logo {
+    width: 220px !important;
+    height: auto;
+    margin-bottom: 20px !important; /* Weniger Abstand zum Text */
+    display: block;
+    filter: brightness(1.2) drop-shadow(0 0 10px rgba(192, 192, 192, 0.4));
+    animation: preloaderLogoPulse 3s infinite ease-in-out,
+               preloaderLogoGlow 4s infinite ease-in-out;
+    transform-origin: center;
+}
+
+/* Responsive Anpassungen */
+@media screen and (max-width: 768px) {
+    .preloader-line {
+        top: calc(50% + 60px) !important; /* Höher auf Mobile */
+        height: 1.5px;
+    }
+    
+    .preloader-logo {
+        width: 180px !important;
+        margin-bottom: 15px !important;
+    }
+    
+    .text-container {
+        margin-top: -20px;
+        margin-bottom: 30px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .preloader-line {
+        top: calc(50% + 50px) !important; /* Noch höher auf sehr kleinen Screens */
+        height: 1px;
+    }
+    
+    .preloader-logo {
+        width: 140px !important;
+        margin-bottom: 10px !important;
+    }
+    
+    .text-container {
+        margin-top: -15px;
+        margin-bottom: 25px;
+    }
+}
