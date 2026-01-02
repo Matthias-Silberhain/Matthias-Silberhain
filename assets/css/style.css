@@ -1834,3 +1834,42 @@ body.loaded .footer {
         height: 1px;
     }
 }
+/* ==========================================================================
+   MOBILE MENÜ SICHTBARKEIT KORREKTUR
+   ========================================================================== */
+
+/* Burger-Menü Button muss immer sichtbar sein */
+.burger {
+    opacity: 1 !important;
+    visibility: visible !important;
+    z-index: 10001 !important; /* Über dem Preloader */
+}
+
+/* Mobile Navigation muss immer sichtbar sein, wenn aktiv */
+.hauptnavigation.aktiv {
+    opacity: 1 !important;
+    visibility: visible !important;
+    z-index: 10000 !important; /* Über dem Preloader */
+}
+
+/* Menu Overlay muss immer sichtbar sein, wenn aktiv */
+.menu-overlay.active {
+    opacity: 1 !important;
+    visibility: visible !important;
+    z-index: 9999 !important; /* Unter dem Menü, über dem Preloader */
+}
+
+/* Dark Mode Toggle muss immer sichtbar sein */
+.dark-mode-toggle {
+    opacity: 1 !important;
+    visibility: visible !important;
+    z-index: 10001 !important; /* Über dem Preloader */
+}
+
+/* Verhindere dass Header-Animation das Menü beeinflusst */
+.header .burger,
+.header .dark-mode-toggle,
+.hauptnavigation,
+.menu-overlay {
+    transition: none !important; /* Keine Fade-Animation für Menü-Elemente */
+}
