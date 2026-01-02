@@ -1220,3 +1220,28 @@ body:not(.dark-mode) .dark-mode-toggle .sun-icon {
     text-align: justify;
   }
 }
+/* ==========================================================================
+   NOTFALL-CSS FÜR SICHTBARKEIT
+   ========================================================================== */
+
+/* Stelle sicher, dass Inhalt IMMER sichtbar ist, wenn body.loaded */
+body.loaded .inhalt,
+body.loaded .social-section,
+body.loaded .footer,
+body.loaded .header {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    visibility: visible !important;
+}
+
+/* Sofortige Sichtbarkeit ohne Transition für Notfall */
+body.loaded *:not(#preloader):not(.preloader-line) {
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
+}
+
+/* Preloader sollte komplett verschwinden */
+#preloader.loaded {
+    display: none !important;
+}
