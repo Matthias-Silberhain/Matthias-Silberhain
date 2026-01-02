@@ -14,6 +14,224 @@
     
     <!-- Favicon -->
     <link rel="icon" href="assets/images/logo.png" type="image/png">
+    
+    <style>
+        /* ================= DATENSCHUTZ SEITE STYLES ================= */
+        .datenschutz-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 4rem;
+        }
+
+        .datenschutz-content h1 {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(148, 148, 148, 0.2);
+            font-family: 'Cinzel', serif;
+            font-size: 2.3rem;
+            color: #e4e6ea;
+            letter-spacing: 1px;
+        }
+
+        body.dark-mode .datenschutz-content h1 {
+            color: #ffffff !important;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
+        .datenschutz-section {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(148, 148, 148, 0.1);
+        }
+
+        .datenschutz-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .datenschutz-section h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.6rem;
+            color: #e4e6ea;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid rgba(200, 205, 215, 0.3);
+        }
+
+        body.dark-mode .datenschutz-section h2 {
+            color: #ffffff !important;
+            border-color: rgba(255, 255, 255, 0.2) !important;
+        }
+
+        .datenschutz-section h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            color: #d6d9de;
+            margin: 2rem 0 1rem;
+            font-weight: 500;
+        }
+
+        body.dark-mode .datenschutz-section h3 {
+            color: #ffffff !important;
+        }
+
+        .datenschutz-section p {
+            line-height: 1.7;
+            color: #b0b5bc;
+            margin-bottom: 1.2rem;
+            text-align: justify;
+            hyphens: auto;
+        }
+
+        body.dark-mode .datenschutz-section p {
+            color: #e0e0e0 !important;
+        }
+
+        /* Styling für Listen */
+        .datenschutz-section ul,
+        .datenschutz-section ol {
+            margin: 1.5rem 0;
+            padding-left: 1.5rem;
+            color: #b0b5bc;
+        }
+
+        body.dark-mode .datenschutz-section ul,
+        body.dark-mode .datenschutz-section ol {
+            color: #e0e0e0 !important;
+        }
+
+        .datenschutz-section li {
+            margin-bottom: 0.75rem;
+            line-height: 1.6;
+        }
+
+        /* Styling für Links - KEINE BLAUEN LINKS */
+        .datenschutz-section a {
+            color: #c0c0c0 !important;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(192, 192, 192, 0.4);
+            transition: all 0.3s ease;
+            padding-bottom: 1px;
+            background: rgba(20, 20, 20, 0.3);
+            border-radius: 2px;
+            padding: 2px 4px;
+        }
+
+        body.dark-mode .datenschutz-section a {
+            color: #ffffff !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.4) !important;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .datenschutz-section a:hover {
+            color: #ffffff !important;
+            border-bottom-color: #c0c0c0 !important;
+            background: rgba(192, 192, 192, 0.2);
+        }
+
+        body.dark-mode .datenschutz-section a:hover {
+            color: #ffffff !important;
+            border-bottom-color: #ffffff !important;
+            background: rgba(255, 255, 255, 0.2) !important;
+        }
+
+        /* Hervorgehobene Textabschnitte */
+        .datenschutz-section strong {
+            color: #e4e6ea;
+            font-weight: 600;
+        }
+
+        body.dark-mode .datenschutz-section strong {
+            color: #ffffff !important;
+        }
+
+        /* Adress-Block */
+        .adresse-block {
+            background: rgba(15, 15, 15, 0.4);
+            border: 1px solid rgba(200, 205, 215, 0.2);
+            border-radius: 4px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            line-height: 1.8;
+        }
+
+        body.dark-mode .adresse-block {
+            background: rgba(40, 40, 40, 0.4) !important;
+            border-color: rgba(255, 255, 255, 0.2) !important;
+        }
+
+        /* Responsive Anpassungen */
+        @media screen and (max-width: 768px) {
+            .datenschutz-content {
+                padding: 1.5rem 1rem 3rem;
+            }
+            
+            .datenschutz-content h1 {
+                font-size: 1.8rem;
+                margin-bottom: 2rem;
+            }
+            
+            .datenschutz-section {
+                margin-bottom: 2rem;
+                padding-bottom: 1.5rem;
+            }
+            
+            .datenschutz-section h2 {
+                font-size: 1.4rem;
+                margin-bottom: 1.2rem;
+            }
+            
+            .datenschutz-section h3 {
+                font-size: 1.2rem;
+                margin: 1.5rem 0 0.8rem;
+            }
+            
+            .datenschutz-section p {
+                text-align: left;
+                font-size: 1rem;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .datenschutz-content h1 {
+                font-size: 1.6rem;
+            }
+            
+            .datenschutz-section h2 {
+                font-size: 1.3rem;
+            }
+            
+            .datenschutz-section h3 {
+                font-size: 1.1rem;
+            }
+            
+            .datenschutz-section ul,
+            .datenschutz-section ol {
+                padding-left: 1.2rem;
+            }
+            
+            .adresse-block {
+                padding: 1rem;
+            }
+        }
+
+        /* Druckoptimierung */
+        @media print {
+            .datenschutz-section a {
+                color: #000000 !important;
+                text-decoration: underline;
+                border-bottom: none;
+                background: none;
+                padding: 0;
+            }
+            
+            .datenschutz-section {
+                border-bottom: 1px solid #ccc;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -84,7 +302,7 @@
                San Francisco, CA 94107<br>
                USA</p>
             <p>Weitere Informationen entnehmen Sie der Datenschutzerklärung von GitHub:<br>
-               <a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement" target="_blank">GitHub Privacy Statement</a></p>
+               <a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement" target="_blank" rel="noopener noreferrer">GitHub Privacy Statement</a></p>
         </div>
         
         <div class="datenschutz-section">
@@ -94,10 +312,12 @@
             <p>Die Betreiber dieser Seiten nehmen den Schutz Ihrer persönlichen Daten sehr ernst. Wir behandeln Ihre personenbezogenen Daten vertraulich und entsprechend der gesetzlichen Datenschutzvorschriften sowie dieser Datenschutzerklärung.</p>
             
             <h3>Hinweis zur verantwortlichen Stelle</h3>
-            <p>Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist:<br>
-               Matthias Silberhain<br>
-               [Deine Straße und Hausnummer]<br>
-               [Deine Postleitzahl und Stadt]</p>
+            <p>Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist:</p>
+            <div class="adresse-block">
+                Matthias Silberhain<br>
+                [Deine Straße]<br>
+                [Stadt]
+            </div>
             
             <h3>Speicherdauer</h3>
             <p>Soweit innerhalb dieser Datenschutzerklärung keine speziellere Speicherdauer genannt wurde, verbleiben Ihre personenbezogenen Daten bei uns, bis der Zweck für die Datenverarbeitung entfällt.</p>
@@ -117,10 +337,19 @@
             <h2>5. Ihre Rechte</h2>
             <p>Sie haben jederzeit das Recht auf Auskunft über Ihre gespeicherten personenbezogenen Daten, deren Herkunft und Empfänger und den Zweck der Datenverarbeitung sowie ein Recht auf Berichtigung, Sperrung oder Löschung dieser Daten.</p>
         </div>
+        
+        <div class="datenschutz-section">
+            <h2>6. Widerspruchsrecht</h2>
+            <p>Sie haben das Recht, aus Gründen, die sich aus Ihrer besonderen Situation ergeben, jederzeit gegen die Verarbeitung Ihrer personenbezogenen Daten Widerspruch einzulegen.</p>
+        </div>
+        
+        <div class="datenschutz-section">
+            <h2>7. Datensicherheit</h2>
+            <p>Wir verwenden innerhalb des Website-Besuchs das verbreitete SSL-Verfahren (Secure Socket Layer) in Verbindung mit der jeweils höchsten Verschlüsselungsstufe, die von Ihrem Browser unterstützt wird.</p>
+        </div>
     </section>
 </main>
 
-<!-- ================= SOCIAL MEDIA ================= -->
 <!-- ================= SOCIAL MEDIA ================= -->
 <section class="social-section">
     <h3 class="social-title">Folgen Sie den Gedanken</h3>
@@ -159,7 +388,7 @@
         <a href="https://t.me/matthiassilberhain" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Telegram">
             <div class="social-icon-wrapper">
                 <svg class="social-icon" viewBox="0 0 24 24">
-                    <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.697.064-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.81.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                    <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.697.064-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
                 </svg>
             </div>
             <span class="social-name">Telegram</span>
@@ -197,6 +426,7 @@
     </div>
 </section>
 <div class="lichtkante"></div>
+
 <!-- ================= FOOTER ================= -->
 <footer class="footer">
     <div class="footer-links">
