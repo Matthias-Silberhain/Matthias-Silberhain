@@ -1759,3 +1759,78 @@ body.loaded .footer {
     transform: translateY(0);
     transition: opacity 0.6s ease 0.6s, transform 0.6s ease 0.6s;
 }
+/* ==========================================================================
+   PRELOADER ABSTANDSKORREKTUREN
+   ========================================================================== */
+
+/* Preloader-Logo Abstand zum Typewriter */
+.preloader-logo {
+    width: 220px !important;
+    height: auto;
+    margin-bottom: 40px !important; /* Mehr Abstand zum Text */
+    display: block;
+}
+
+/* Typewriter-Text Container */
+.text-container {
+    margin-bottom: 60px !important; /* Mehr Abstand zur Line */
+    min-height: 50px;
+}
+
+/* Preloader-Line Position korrigieren */
+.preloader-line {
+    position: absolute !important;
+    top: calc(50% + 40px) !important; /* Höher positioniert - direkt unter Typewriter */
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+        transparent,
+        #c0c0c0,
+        #ffffff,
+        #c0c0c0,
+        transparent
+    ) !important;
+    opacity: 0;
+    border-radius: 2px;
+    box-shadow: 
+        0 0 10px rgba(192, 192, 192, 0.5),
+        0 0 20px rgba(192, 192, 192, 0.3);
+    z-index: 10000 !important;
+    visibility: visible !important;
+    bottom: auto !important;
+}
+
+/* Responsive Anpassungen */
+@media screen and (max-width: 768px) {
+    .preloader-logo {
+        width: 180px !important;
+        margin-bottom: 30px !important;
+    }
+    
+    .text-container {
+        margin-bottom: 50px !important;
+    }
+    
+    .preloader-line {
+        top: calc(50% + 30px) !important;
+        height: 1.5px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .preloader-logo {
+        width: 140px !important;
+        margin-bottom: 20px !important;
+    }
+    
+    .text-container {
+        margin-bottom: 40px !important;
+    }
+    
+    .preloader-line {
+        top: calc(50% + 20px) !important;
+        height: 1px;
+    }
+}
