@@ -1,40 +1,40 @@
 /**
  * DARK MODE TOGGLE - Matthias Silberhain Website
- * Version 2.0 - Komplett überarbeitet
+ * Version 2.1 - Kompatibel mit Preloader
  */
 
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('🌙 Dark Mode Skript geladen');
+    console.log('🌙 Dark Mode Skript geladen (kompatibel mit Preloader)');
     
     const darkModeToggle = document.getElementById('themeToggle');
     const body = document.body;
     
     // Prüfe gespeicherten Modus oder Systemeinstellung
     const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-    const savedTheme = localStorage.getItem('theme');
+    const savedTheme = localStorage.getItem('darkMode');
     
-    // Theme setzen
-    if (savedTheme === 'dark' || (!savedTheme && prefersDarkScheme.matches)) {
+    // Theme setzen - WICHTIG: Gleicher Key wie global.js
+    if (savedTheme === 'true' || (!savedTheme && prefersDarkScheme.matches)) {
         body.classList.add('dark-mode');
-        console.log('Dark Mode aktiviert (gespeichert oder System)');
+        updateToggleIcon(true);
+        console.log('✅ Dark Mode aktiviert (gespeichert oder System)');
     } else {
         body.classList.remove('dark-mode');
-        console.log('Light Mode aktiviert');
+        updateToggleIcon(false);
+        console.log('✅ Light Mode aktiviert');
     }
     
     // Toggle-Funktion
     if (darkModeToggle) {
         darkModeToggle.addEventListener('click', function() {
             body.classList.toggle('dark-mode');
+            const isDarkMode = body.classList.contains('dark-mode');
             
-            // Speichere Einstellung
-            if (body.classList.contains('dark-mode')) {
-                localStorage.setItem('theme', 'dark');
-                console.log('Dark Mode aktiviert und gespeichert');
-            } else {
-                localStorage.setItem('theme', 'light');
-                console.log('Light Mode aktiviert und gespeichert');
-            }
+            // Speichere Einstellung - WICHTIG: Gleicher Key wie global.js
+            localStorage.setItem('darkMode', isDarkMode);
+            updateToggleIcon(isDarkMode);
+            
+            console.log('🔄 Dark Mode:', isDarkMode ? 'aktiviert' : 'deaktiviert');
             
             // Haptic Feedback für Mobile
             if (navigator.vibrate) {
@@ -53,18 +53,20 @@ document.addEventListener('DOMContentLoaded', function() {
             this.style.boxShadow = 'none';
         });
     } else {
-        console.warn('Dark Mode Toggle Button nicht gefunden!');
+        console.warn('⚠️ Dark Mode Toggle Button nicht gefunden!');
     }
     
     // System-Änderungen überwachen
     prefersDarkScheme.addEventListener('change', function(e) {
-        if (!localStorage.getItem('theme')) {
+        if (!localStorage.getItem('darkMode')) {
             if (e.matches) {
                 body.classList.add('dark-mode');
-                console.log('Dark Mode (Systemänderung)');
+                updateToggleIcon(true);
+                console.log('🌙 Dark Mode (Systemänderung)');
             } else {
                 body.classList.remove('dark-mode');
-                console.log('Light Mode (Systemänderung)');
+                updateToggleIcon(false);
+                console.log('☀️ Light Mode (Systemänderung)');
             }
         }
     });
@@ -73,7 +75,31 @@ document.addEventListener('DOMContentLoaded', function() {
     document.addEventListener('keydown', function(e) {
         if (e.altKey && e.key === 'd') {
             darkModeToggle.click();
-            console.log('Dark Mode via Tastatur getoggled');
+            console.log('⌨️ Dark Mode via Tastatur getoggled');
         }
     });
+    
+    // Hilfsfunktion zum Aktualisieren des Toggle Icons
+    function updateToggleIcon(isDarkMode) {
+        if (!darkModeToggle) return;
+        
+        const moonIcon = darkModeToggle.querySelector('.moon-icon');
+        const sunIcon = darkModeToggle.querySelector('.sun-icon');
+        
+        if (moonIcon && sunIcon) {
+            if (isDarkMode) {
+                moonIcon.style.display = 'none';
+                sunIcon.style.display = 'block';
+            } else {
+                moonIcon.style.display = 'block';
+                sunIcon.style.display = 'none';
+            }
+        }
+        
+        // Setze ARIA Attribute für Accessibility
+        darkModeToggle.setAttribute('aria-pressed', isDarkMode);
+        darkModeToggle.setAttribute('aria-label', 
+            isDarkMode ? 'Dark Mode deaktivieren' : 'Dark Mode aktivieren'
+        );
+    }
 });
