@@ -1,18 +1,10 @@
 /**
  * MOBILE MENU - Matthias Silberhain Website
- * Version 3.0 - Vollständig konsistent für alle Browser
+ * Version 2.4 - Fix für Mobile Schließen-Problem
  */
 
-// Warte bis DOM komplett geladen ist
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initMenu);
-} else {
-    // DOM ist bereits geladen
-    initMenu();
-}
-
-function initMenu() {
-    console.log('🍔 Menu.js geladen - Browser-konsistent');
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('🍔 Menu.js geladen - Mobile-Fix');
     
     // Defensive Prüfung aller Elemente
     const burgerButton = document.getElementById('burgerButton');
@@ -32,7 +24,6 @@ function initMenu() {
     
     const navLinks = mainNav.querySelectorAll('a');
     let isMenuOpen = false;
-    let resizeTimer;
     
     // ================= MENÜ FUNKTIONEN =================
     function toggleMenu(event) {
@@ -58,8 +49,11 @@ function initMenu() {
         
         document.body.classList.add('menu-open');
         
-        // Verhindere Scrollen im Hintergrund
-        disableBodyScroll();
+        // Verhindere Scrollen im Hintergrund (Mobile-Fix)
+        document.body.style.overflow = 'hidden';
+        document.body.style.height = '100%';
+        document.body.style.position = 'fixed';
+        document.body.style.width = '100%';
         
         // Fokus für Accessibility
         setTimeout(() => {
@@ -84,8 +78,11 @@ function initMenu() {
         
         document.body.classList.remove('menu-open');
         
-        // Erlaube Scrollen wieder
-        enableBodyScroll();
+        // Erlaube Scrollen wieder (Mobile-Fix)
+        document.body.style.overflow = '';
+        document.body.style.height = '';
+        document.body.style.position = '';
+        document.body.style.width = '';
         
         // Setze Fokus zurück zum Burger Button
         burgerButton.focus();
@@ -96,65 +93,33 @@ function initMenu() {
         console.log('📱 Menü geschlossen');
     }
     
-    // ================= SCROLL CONTROL =================
-    function disableBodyScroll() {
-        // Für moderne Browser
-        document.body.style.overflow = 'hidden';
-        document.body.style.position = 'fixed';
-        document.body.style.width = '100%';
-        document.body.style.height = '100%';
-        
-        // Für iOS Safari
-        document.body.style.top = `-${window.scrollY}px`;
-    }
-    
-    function enableBodyScroll() {
-        // Für moderne Browser
-        document.body.style.overflow = '';
-        document.body.style.position = '';
-        document.body.style.width = '';
-        document.body.style.height = '';
-        
-        // Für iOS Safari - Setze Scroll-Position zurück
-        const scrollY = document.body.style.top;
-        if (scrollY) {
-            document.body.style.top = '';
-            window.scrollTo(0, parseInt(scrollY || '0') * -1);
-        }
-    }
-    
     // ================= EVENT LISTENERS =================
-    // Touch und Click Events
+    // Burger Button
     burgerButton.addEventListener('click', toggleMenu);
-    burgerButton.addEventListener('touchstart', toggleMenu, { passive: true });
+    burgerButton.addEventListener('touchend', toggleMenu, { passive: true });
     
+    // Overlay zum Schließen
     if (menuOverlay) {
         menuOverlay.addEventListener('click', closeMenu);
-        menuOverlay.addEventListener('touchstart', closeMenu, { passive: true });
+        menuOverlay.addEventListener('touchend', closeMenu, { passive: true });
     }
     
-    // Menü schließen bei Link-Klick (nur mobile)
+    // Menü schließen bei Link-Klick (MOBILE-FIX: Sofort schließen)
     navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            if (window.innerWidth < 768) {
+        link.addEventListener('click', (e) => {
+            // Nur auf Mobile schließen oder wenn Menü offen ist
+            if (window.innerWidth < 768 || isMenuOpen) {
+                e.stopPropagation();
                 setTimeout(closeMenu, 100);
             }
         });
         
-        link.addEventListener('touchstart', () => {
-            if (window.innerWidth < 768) {
+        link.addEventListener('touchend', (e) => {
+            if (window.innerWidth < 768 || isMenuOpen) {
+                e.stopPropagation();
                 setTimeout(closeMenu, 100);
             }
         }, { passive: true });
-        
-        // Keyboard Navigation
-        link.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                if (window.innerWidth < 768) {
-                    setTimeout(closeMenu, 100);
-                }
-            }
-        });
     });
     
     // ESC Taste zum Schließen
@@ -164,42 +129,42 @@ function initMenu() {
         }
     });
     
-    // Tab Navigation im Menü
-    document.addEventListener('focusin', (e) => {
-        if (isMenuOpen && mainNav.contains(e.target)) {
-            // Tab bleibt innerhalb des Menüs
-            const focusableElements = mainNav.querySelectorAll('a, button, [tabindex]:not([tabindex="-1"])');
-            const firstElement = focusableElements[0];
-            const lastElement = focusableElements[focusableElements.length - 1];
-            
-            if (e.target === lastElement && !e.shiftKey) {
-                firstElement.focus();
-                e.preventDefault();
-            }
-            
-            if (e.target === firstElement && e.shiftKey) {
-                lastElement.focus();
-                e.preventDefault();
-            }
+    // Touch-Gesten für Swipe-to-Close
+    let touchStartX = 0;
+    let touchStartY = 0;
+    
+    document.addEventListener('touchstart', (e) => {
+        if (!isMenuOpen) return;
+        
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+    }, { passive: true });
+    
+    document.addEventListener('touchend', (e) => {
+        if (!isMenuOpen) return;
+        
+        const touchEndX = e.changedTouches[0].clientX;
+        const touchEndY = e.changedTouches[0].clientY;
+        
+        const deltaX = touchEndX - touchStartX;
+        const deltaY = touchEndY - touchStartY;
+        
+        // Swipe von rechts nach links (mindestens 50px) um Menü zu schließen
+        if (deltaX < -50 && Math.abs(deltaY) < 50) {
+            closeMenu();
         }
-    });
+    }, { passive: true });
     
     // ================= RESPONSIVE HANDLING =================
-    function handleResize() {
+    let resizeTimer;
+    window.addEventListener('resize', () => {
         clearTimeout(resizeTimer);
         resizeTimer = setTimeout(() => {
             if (window.innerWidth > 768 && isMenuOpen) {
                 closeMenu();
             }
-            
-            // Update Menü-Position für iOS Safari
-            if (window.innerWidth <= 768 && isMenuOpen) {
-                mainNav.style.right = '0';
-            }
         }, 150);
-    }
-    
-    window.addEventListener('resize', handleResize, { passive: true });
+    });
     
     // ================= ACCESSIBILITY =================
     function updateAriaAttributes() {
@@ -218,60 +183,5 @@ function initMenu() {
     burgerButton.setAttribute('aria-haspopup', 'true');
     updateAriaAttributes();
     
-    // Setze Tabindex für Menü wenn geschlossen
-    if (window.innerWidth <= 768) {
-        navLinks.forEach(link => {
-            if (!isMenuOpen) {
-                link.setAttribute('tabindex', '-1');
-            }
-        });
-    }
-    
-    // Observer für Menü-Status Änderungen
-    const observer = new MutationObserver((mutations) => {
-        mutations.forEach((mutation) => {
-            if (mutation.attributeName === 'class') {
-                updateAriaAttributes();
-                
-                // Update Tabindex für mobile
-                if (window.innerWidth <= 768) {
-                    navLinks.forEach(link => {
-                        link.setAttribute('tabindex', isMenuOpen ? '0' : '-1');
-                    });
-                }
-            }
-        });
-    });
-    
-    observer.observe(burgerButton, { attributes: true });
-    observer.observe(mainNav, { attributes: true });
-    
-    // ================= TOUCH GESTURE SUPPORT =================
-    let touchStartX = 0;
-    let touchStartY = 0;
-    
-    document.addEventListener('touchstart', (e) => {
-        touchStartX = e.touches[0].clientX;
-        touchStartY = e.touches[0].clientY;
-    }, { passive: true });
-    
-    document.addEventListener('touchend', (e) => {
-        const touchEndX = e.changedTouches[0].clientX;
-        const touchEndY = e.changedTouches[0].clientY;
-        
-        const deltaX = touchEndX - touchStartX;
-        const deltaY = touchEndY - touchStartY;
-        
-        // Swipe von rechts nach links um Menü zu schließen
-        if (isMenuOpen && deltaX < -50 && Math.abs(deltaY) < 50) {
-            closeMenu();
-        }
-    }, { passive: true });
-    
-    console.log('✅ Menu.js erfolgreich initialisiert');
-}
-
-// Fallback für alte Browser ohne MutationObserver
-if (!window.MutationObserver) {
-    console.warn('MutationObserver nicht unterstützt - einige Menu.js Features deaktiviert');
-}
+    console.log('✅ Menu.js erfolgreich initialisiert mit Mobile-Fixes');
+});
