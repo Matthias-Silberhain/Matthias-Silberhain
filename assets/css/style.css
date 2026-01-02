@@ -57,16 +57,16 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
+  padding: 20px;
 }
 
 .preloader-logo {
   width: 220px;
   height: auto;
-  margin-bottom: 40px;
+  margin-bottom: 60px;
   display: block;
   filter: brightness(1.2) drop-shadow(0 0 10px rgba(192, 192, 192, 0.4));
-  animation: preloaderLogoPulse 3s infinite ease-in-out,
-             preloaderLogoGlow 4s infinite ease-in-out;
+  animation: preloaderLogoPulse 3s infinite ease-in-out;
   transform-origin: center;
 }
 
@@ -76,34 +76,53 @@ body {
   letter-spacing: 0.2em;
   color: #e0e0e0;
   text-shadow: 0 0 10px rgba(200, 200, 200, 0.3);
+  margin-bottom: 80px;
+  min-height: 50px;
+  position: relative;
+}
+
+/* Typewriter Cursor */
+.preloader-text::after {
+  content: '|';
+  animation: blink 1s infinite;
+  margin-left: 5px;
+  color: #c0c0c0;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
 }
 
 /* ==========================================================================
-   PRELOADER SILBERNER STRICH
+   PRELOADER SILBERNER STRICH - KORRIGIERT
    ========================================================================== */
 .preloader-line {
-    position: absolute;
-    bottom: 100px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0;
-    height: 2px;
-    background: linear-gradient(90deg,
-        transparent,
-        #c0c0c0,
-        transparent
-    );
-    opacity: 0;
-    border-radius: 2px;
-    box-shadow: 
-        0 0 10px rgba(192, 192, 192, 0.5),
-        0 0 20px rgba(192, 192, 192, 0.3);
+  position: absolute;
+  bottom: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg,
+    transparent,
+    #c0c0c0,
+    #ffffff,
+    #c0c0c0,
+    transparent
+  );
+  opacity: 0;
+  border-radius: 2px;
+  box-shadow: 
+    0 0 10px rgba(192, 192, 192, 0.5),
+    0 0 20px rgba(192, 192, 192, 0.3);
+  z-index: 10000;
 }
 
 .preloader-line.active {
-    animation: 
-        lineExpand 2.5s cubic-bezier(0.4, 0, 0.2, 1) forwards,
-        lineGlow 2.5s ease-in-out;
+  animation: 
+    lineExpand 2.5s cubic-bezier(0.4, 0, 0.2, 1) forwards,
+    lineGlow 2.5s ease-in-out;
 }
 
 /* ==========================================================================
@@ -114,6 +133,8 @@ body {
   text-align: center;
   background-color: transparent;
   position: relative;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .logo {
@@ -127,14 +148,13 @@ body {
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Hover-Effekt mit silbernem Glow */
 .logo:hover {
   animation: logoGlow 1.5s infinite ease-in-out;
   transform: scale(1.05);
 }
 
 /* ==========================================================================
-   DARK MODE TOGGLE - KORRIGIERT
+   DARK MODE TOGGLE
    ========================================================================== */
 .dark-mode-toggle {
   position: absolute;
@@ -151,8 +171,10 @@ body {
   justify-content: center;
   border-radius: 50%;
   transition: all 0.3s ease;
-  z-index: 1002;
+  z-index: 10002;
   padding: 0;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .dark-mode-toggle:hover {
@@ -175,7 +197,7 @@ body {
 }
 
 /* ==========================================================================
-   BURGER MENÜ - KORRIGIERT
+   BURGER MENÜ
    ========================================================================== */
 .burger {
   display: none;
@@ -191,7 +213,9 @@ body {
   align-items: center;
   gap: 6px;
   position: absolute;
-  z-index: 1002;
+  z-index: 10002;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .burger span {
@@ -248,7 +272,6 @@ body {
     inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
-/* Bei Scroll leichten Effekt hinzufügen */
 body.scrolled .hauptnavigation {
   background: rgba(5, 5, 5, 0.95);
   backdrop-filter: blur(15px);
@@ -260,7 +283,7 @@ body.scrolled .hauptnavigation {
 
 .hauptnavigation a {
   font-family: "Cinzel", serif;
-  color: #d6d9de;
+  color: #d6d9de !important;
   text-decoration: none;
   letter-spacing: 0.15em;
   font-size: 0.95rem;
@@ -270,7 +293,7 @@ body.scrolled .hauptnavigation {
 }
 
 .hauptnavigation a:hover {
-  color: #ffffff;
+  color: #ffffff !important;
   text-shadow: 0 0 15px rgba(192, 192, 192, 0.8);
   transform: translateY(-2px);
   background: linear-gradient(45deg, 
@@ -282,7 +305,7 @@ body.scrolled .hauptnavigation {
 }
 
 .hauptnavigation a.active {
-  color: #ffffff;
+  color: #ffffff !important;
   font-weight: 600;
   text-shadow: 
     0 0 10px rgba(192, 192, 192, 0.8),
@@ -314,12 +337,20 @@ body.scrolled .hauptnavigation {
 }
 
 /* ==========================================================================
-   INHALT
+   INHALT - FADE-IN ANIMATION
    ========================================================================== */
 .inhalt {
   padding: 60px 20px;
   max-width: 720px;
   margin: 0 auto;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s;
+}
+
+body.loaded .inhalt {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 h1 {
@@ -341,406 +372,20 @@ p {
 }
 
 /* ==========================================================================
-   FOOTER
-   ========================================================================== */
-.footer {
-  text-align: center;
-  padding: 25px 20px;
-  font-size: 0.9rem;
-  color: #9da2a8;
-  background-color: transparent;
-  width: 100%;
-}
-
-.footer p {
-  text-align: center;
-  margin: 0;
-}
-
-.footer-links {
-  display: flex;
-  justify-content: center;
-  gap: 25px;
-  margin-bottom: 15px;
-  flex-wrap: wrap;
-}
-
-.footer-links a {
-  font-family: "Cinzel", serif;
-  color: #9da2a8;
-  text-decoration: none;
-  font-size: 0.85rem;
-  letter-spacing: 0.1em;
-  padding: 5px 10px;
-  transition: all 0.3s ease;
-}
-
-.footer-links a:hover {
-  color: #ffffff;
-  text-shadow: 0 0 10px rgba(192, 192, 192, 0.8);
-  transform: translateY(-2px);
-}
-
-/* ==========================================================================
-   MOBILE NAVIGATION - VOLLSTÄNDIG KORRIGIERT
-   ========================================================================== */
-@media screen and (max-width: 768px) {
-  .header {
-    padding: 25px 15px 15px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-    min-height: 100px;
-  }
-  
-  .logo {
-    width: min(65vw, 280px);
-    margin: 0 auto 0;
-    order: 1;
-  }
-  
-  .burger {
-    display: flex;
-    position: absolute;
-    top: 30px;
-    right: 20px;
-    z-index: 1002;
-    order: 3;
-  }
-  
-  .dark-mode-toggle {
-    position: absolute;
-    top: 30px;
-    left: 20px;
-    right: auto;
-    z-index: 1001;
-    order: 2;
-  }
-  
-  /* HAUPTNAVIGATION MOBILE - KORRIGIERT */
-  .hauptnavigation {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 280px;
-    height: 100vh;
-    height: 100dvh;
-    background: rgba(10, 10, 10, 0.98);
-    backdrop-filter: blur(10px);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 15px;
-    z-index: 1000;
-    padding-top: 120px;
-    padding-bottom: 40px;
-    overflow-y: auto;
-    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: -5px 0 30px rgba(0, 0, 0, 0.8);
-    background: rgba(10, 10, 10, 0.98) !important;
-    backdrop-filter: blur(15px) !important;
-    border: none !important;
-    border-radius: 0 !important;
-    max-width: 280px !important;
-    padding-top: 120px !important;
-    box-shadow: -5px 0 40px rgba(0, 0, 0, 0.9) !important;
-  }
-  
-  .hauptnavigation.aktiv {
-    right: 0;
-  }
-  
-  .hauptnavigation a {
-    font-size: 1.2rem;
-    padding: 18px 30px;
-    width: 90%;
-    max-width: 300px;
-    text-align: center;
-    border: 1px solid rgba(200, 205, 215, 0.2);
-    border-radius: 4px;
-    transition: all 0.3s ease;
-    background: rgba(20, 20, 20, 0.7);
-    margin: 5px 0;
-  }
-  
-  .hauptnavigation a:hover {
-    background-color: rgba(192, 192, 192, 0.15);
-    border-color: rgba(192, 192, 192, 0.7);
-    transform: translateY(-3px);
-    box-shadow: 
-      0 10px 20px rgba(192, 192, 192, 0.4),
-      inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  }
-  
-  .hauptnavigation a.active {
-    background: rgba(192, 192, 192, 0.2);
-    border-color: rgba(192, 192, 192, 0.5);
-  }
-  
-  /* MENU OVERLAY - KORRIGIERT */
-  .menu-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    z-index: 999;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-    backdrop-filter: blur(3px);
-  }
-  
-  .menu-overlay.active {
-    opacity: 1;
-    visibility: visible;
-  }
-  
-  /* SCROLL SPERREN WENN MENÜ OFFEN */
-  body.menu-open {
-    overflow: hidden;
-  }
-  
-  .inhalt {
-    padding: 40px 15px;
-  }
-  
-  h1 {
-    font-size: 1.8rem;
-    margin-bottom: 30px;
-  }
-  
-  p {
-    font-size: 1.05rem;
-    text-align: center;
-    line-height: 1.7;
-  }
-  
-  .lichtkante {
-    margin: 20px 0;
-  }
-  
-  .footer {
-    padding: 20px 15px;
-  }
-  
-  .logo:hover {
-    animation: logoGlow 1.2s infinite ease-in-out;
-    transform: scale(1.03);
-  }
-  
-  .silber-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 
-      0 8px 20px rgba(192, 192, 192, 0.4),
-      0 0 15px rgba(192, 192, 192, 0.2),
-      inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  }
-  
-  .social-link:hover {
-    transform: translateY(-3px) scale(1.05);
-  }
-  
-  body.scrolled .hauptnavigation {
-    background: rgba(10, 10, 10, 0.98) !important;
-  }
-}
-
-/* ==========================================================================
-   RESPONSIVE BREAKPOINTS
-   ========================================================================== */
-@media screen and (max-width: 1024px) {
-  .preloader-logo {
-    width: 160px;
-  }
-  
-  .preloader-text {
-    font-size: 28px;
-  }
-  
-  .logo {
-    width: min(70vw, 320px);
-  }
-  
-  .hauptnavigation {
-    gap: 25px;
-  }
-  
-  h1 {
-    font-size: 2rem;
-  }
-  
-  p {
-    font-size: 1.1rem;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .preloader-logo {
-    width: 110px;
-  }
-  
-  .preloader-text {
-    font-size: 20px;
-    letter-spacing: 0.15em;
-  }
-  
-  .logo {
-    width: min(60vw, 220px);
-  }
-  
-  .hauptnavigation {
-    width: 250px;
-    padding-top: 100px;
-  }
-  
-  .hauptnavigation a {
-    font-size: 1.1rem;
-    padding: 16px 25px;
-  }
-  
-  .burger {
-    top: 25px;
-    right: 15px;
-    width: 28px;
-    height: 28px;
-  }
-  
-  .dark-mode-toggle {
-    top: 25px;
-    left: 15px;
-    width: 32px;
-    height: 32px;
-  }
-  
-  .inhalt {
-    padding: 30px 12px;
-  }
-  
-  h1 {
-    font-size: 1.6rem;
-    margin-bottom: 25px;
-  }
-  
-  p {
-    font-size: 1rem;
-    margin-bottom: 22px;
-  }
-  
-  .footer {
-    padding: 20px 12px;
-    font-size: 0.85rem;
-  }
-  
-  .logo {
-    animation: logoPulse 8s infinite ease-in-out;
-  }
-  
-  .logo:hover {
-    transform: scale(1.02);
-  }
-  
-  .silber-button {
-    padding: 12px 25px;
-    font-size: 0.9rem;
-  }
-  
-  .silber-button:hover {
-    transform: translateY(-2px);
-  }
-}
-
-/* ==========================================================================
-   DARK MODE STYLES - KORRIGIERT FÜR ALLE SEITEN
-   ========================================================================== */
-body.dark-mode {
-  background-color: #1a1a1a;
-  color: #e8e8e8;
-}
-
-body.dark-mode .inhalt {
-  background-color: rgba(30, 30, 30, 0.9);
-}
-
-body.dark-mode .header {
-  background-color: rgba(26, 26, 26, 0.9);
-}
-
-body.dark-mode .hauptnavigation {
-  background: rgba(15, 15, 15, 0.9);
-  border: 1px solid rgba(192, 192, 192, 0.15);
-}
-
-body.dark-mode .hauptnavigation a {
-  background: rgba(30, 30, 30, 0.8);
-}
-
-body.dark-mode .hauptnavigation a:hover {
-  background: linear-gradient(45deg, 
-    rgba(192, 192, 192, 0.15), 
-    rgba(192, 192, 192, 0.08));
-  box-shadow: 
-    0 5px 20px rgba(192, 192, 192, 0.5),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
-}
-
-body.dark-mode p {
-  color: #d0d5dc;
-}
-
-body.dark-mode h1 {
-  color: #f4f6fa;
-}
-
-body.dark-mode .footer {
-  background-color: rgba(26, 26, 26, 0.9);
-}
-
-body.dark-mode .logo:hover {
-  filter: brightness(1.3) drop-shadow(0 0 15px rgba(192, 192, 192, 0.8));
-}
-
-body.dark-mode .silber-button:hover {
-  background: linear-gradient(135deg, 
-    rgba(192, 192, 192, 0.25) 0%, 
-    rgba(192, 192, 192, 0.15) 100%);
-  box-shadow: 
-    0 10px 25px rgba(192, 192, 192, 0.6),
-    0 0 25px rgba(192, 192, 192, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
-}
-
-body.dark-mode .lichtkante,
-body.dark-mode .footer-lichtkante,
-body.dark-mode .social-lichtkante {
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(192, 192, 192, 1),
-    rgba(192, 192, 192, 0.7),
-    rgba(192, 192, 192, 1),
-    transparent
-  );
-  box-shadow: 0 0 15px rgba(192, 192, 192, 0.5);
-}
-
-body.dark-mode .social-link:hover .social-icon-wrapper {
-  background: rgba(192, 192, 192, 0.3);
-  box-shadow: 
-    0 0 25px rgba(192, 192, 192, 0.8),
-    inset 0 0 15px rgba(255, 255, 255, 0.15);
-}
-
-/* ==========================================================================
-   SOCIAL MEDIA STYLES
+   SOCIAL MEDIA SECTION - FADE-IN ANIMATION
    ========================================================================== */
 .social-section {
   margin: 50px 0;
   padding: 40px 20px;
   text-align: center;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease 0.4s, transform 0.6s ease 0.4s;
+}
+
+body.loaded .social-section {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .social-title {
@@ -766,7 +411,7 @@ body.dark-mode .social-link:hover .social-icon-wrapper {
   flex-direction: column;
   align-items: center;
   text-decoration: none;
-  color: #9da2a8;
+  color: #9da2a8 !important;
   transition: all 0.3s ease;
   width: 80px;
 }
@@ -797,7 +442,7 @@ body.dark-mode .social-link:hover .social-icon-wrapper {
 }
 
 .social-link:hover {
-  color: #ffffff;
+  color: #ffffff !important;
   transform: translateY(-5px) scale(1.1);
 }
 
@@ -812,6 +457,55 @@ body.dark-mode .social-link:hover .social-icon-wrapper {
 .social-link:hover .social-icon {
   fill: #ffffff;
   filter: drop-shadow(0 0 8px rgba(192, 192, 192, 0.8));
+}
+
+/* ==========================================================================
+   FOOTER - FADE-IN ANIMATION
+   ========================================================================== */
+.footer {
+  text-align: center;
+  padding: 25px 20px;
+  font-size: 0.9rem;
+  color: #9da2a8;
+  background-color: transparent;
+  width: 100%;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease 0.6s, transform 0.6s ease 0.6s;
+}
+
+body.loaded .footer {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.footer p {
+  text-align: center;
+  margin: 0;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+}
+
+.footer-links a {
+  font-family: "Cinzel", serif;
+  color: #9da2a8 !important;
+  text-decoration: none;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  padding: 5px 10px;
+  transition: all 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #ffffff !important;
+  text-shadow: 0 0 10px rgba(192, 192, 192, 0.8);
+  transform: translateY(-2px);
 }
 
 /* ==========================================================================
@@ -1016,70 +710,377 @@ body.dark-mode .social-link:hover .social-icon-wrapper {
 }
 
 /* ==========================================================================
-   DRUCK STYLES
+   MOBILE NAVIGATION
    ========================================================================== */
-@media print {
-  #preloader,
-  .burger,
-  .hauptnavigation,
-  .dark-mode-toggle,
-  .social-section,
-  .cta-container {
-    display: none;
-  }
-  
-  body {
-    background-color: white;
-    color: black;
-    font-size: 12pt;
+@media screen and (max-width: 768px) {
+  .header {
+    padding: 25px 15px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    min-height: 100px;
   }
   
   .logo {
-    filter: invert(1);
+    width: min(65vw, 280px);
+    margin: 0 auto 0;
+    order: 1;
+  }
+  
+  .burger {
+    display: flex;
+    position: absolute;
+    top: 30px;
+    right: 20px;
+    z-index: 10002;
+    order: 3;
+  }
+  
+  .dark-mode-toggle {
+    position: absolute;
+    top: 30px;
+    left: 20px;
+    right: auto;
+    z-index: 10001;
+    order: 2;
+  }
+  
+  /* MOBILE NAVIGATION */
+  .hauptnavigation {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 280px;
+    height: 100vh;
+    height: 100dvh;
+    background: rgba(10, 10, 10, 0.98) !important;
+    backdrop-filter: blur(15px) !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 15px;
+    z-index: 10000;
+    padding-top: 120px;
+    padding-bottom: 40px;
+    overflow-y: auto;
+    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: -5px 0 40px rgba(0, 0, 0, 0.9);
+    border: none !important;
+    border-radius: 0 !important;
+    max-width: 280px !important;
+  }
+  
+  .hauptnavigation.aktiv {
+    right: 0;
+  }
+  
+  .hauptnavigation a {
+    font-size: 1.2rem;
+    padding: 18px 30px;
+    width: 90%;
+    max-width: 300px;
+    text-align: center;
+    border: 1px solid rgba(200, 205, 215, 0.2);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    background: rgba(20, 20, 20, 0.7);
+    margin: 5px 0;
+  }
+  
+  .hauptnavigation a:hover {
+    background-color: rgba(192, 192, 192, 0.15);
+    border-color: rgba(192, 192, 192, 0.7);
+    transform: translateY(-3px);
+    box-shadow: 
+      0 10px 20px rgba(192, 192, 192, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+  
+  .hauptnavigation a.active {
+    background: rgba(192, 192, 192, 0.2);
+    border-color: rgba(192, 192, 192, 0.5);
+  }
+  
+  /* MENU OVERLAY */
+  .menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    backdrop-filter: blur(3px);
+  }
+  
+  .menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  /* SCROLL SPERREN WENN MENÜ OFFEN */
+  body.menu-open {
+    overflow: hidden;
   }
   
   .inhalt {
-    padding: 20px 0;
-    max-width: 100%;
+    padding: 40px 15px;
   }
   
   h1 {
-    color: black;
-    font-size: 18pt;
+    font-size: 1.8rem;
+    margin-bottom: 30px;
   }
   
   p {
-    color: #333;
-    text-align: justify;
+    font-size: 1.05rem;
+    text-align: center;
+    line-height: 1.7;
   }
+  
+  .lichtkante {
+    margin: 20px 0;
+  }
+  
+  .footer {
+    padding: 20px 15px;
+  }
+  
+  .logo:hover {
+    transform: scale(1.03);
+  }
+  
+  .silber-button:hover {
+    transform: translateY(-3px);
+  }
+  
+  .social-link:hover {
+    transform: translateY(-3px) scale(1.05);
+  }
+  
+  /* MOBILE PRELOADER ANPASSUNGEN */
+  .preloader-logo {
+    width: 180px !important;
+    margin-bottom: 40px !important;
+  }
+  
+  .preloader-text {
+    font-size: 24px !important;
+    margin-bottom: 60px !important;
+  }
+  
+  .preloader-line {
+    bottom: 35% !important;
+    height: 1.5px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .preloader-logo {
+    width: 140px !important;
+    margin-bottom: 30px !important;
+  }
+  
+  .preloader-text {
+    font-size: 20px !important;
+    margin-bottom: 50px !important;
+  }
+  
+  .preloader-line {
+    bottom: 40% !important;
+    height: 1px;
+  }
+  
+  .logo {
+    width: min(60vw, 220px);
+  }
+  
+  .hauptnavigation {
+    width: 250px;
+    padding-top: 100px;
+  }
+  
+  .hauptnavigation a {
+    font-size: 1.1rem;
+    padding: 16px 25px;
+  }
+  
+  .burger {
+    top: 25px;
+    right: 15px;
+    width: 28px;
+    height: 28px;
+  }
+  
+  .dark-mode-toggle {
+    top: 25px;
+    left: 15px;
+    width: 32px;
+    height: 32px;
+  }
+  
+  .inhalt {
+    padding: 30px 12px;
+  }
+  
+  h1 {
+    font-size: 1.6rem;
+    margin-bottom: 25px;
+  }
+  
+  p {
+    font-size: 1rem;
+    margin-bottom: 22px;
+  }
+  
+  .footer {
+    padding: 20px 12px;
+    font-size: 0.85rem;
+  }
+  
+  .silber-button {
+    padding: 12px 25px;
+    font-size: 0.9rem;
+  }
+}
+
+/* ==========================================================================
+   RESPONSIVE BREAKPOINTS
+   ========================================================================== */
+@media screen and (max-width: 1024px) {
+  .preloader-logo {
+    width: 160px;
+  }
+  
+  .preloader-text {
+    font-size: 28px;
+  }
+  
+  .logo {
+    width: min(70vw, 320px);
+  }
+  
+  .hauptnavigation {
+    gap: 25px;
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+  
+  p {
+    font-size: 1.1rem;
+  }
+}
+
+/* ==========================================================================
+   DARK MODE STYLES
+   ========================================================================== */
+body.dark-mode {
+  background-color: #1a1a1a;
+  color: #e8e8e8;
+}
+
+body.dark-mode .inhalt {
+  background-color: rgba(30, 30, 30, 0.9);
+}
+
+body.dark-mode .header {
+  background-color: rgba(26, 26, 26, 0.9);
+}
+
+body.dark-mode .hauptnavigation {
+  background: rgba(15, 15, 15, 0.9);
+  border: 1px solid rgba(192, 192, 192, 0.15);
+}
+
+body.dark-mode .hauptnavigation a {
+  background: rgba(30, 30, 30, 0.8);
+}
+
+body.dark-mode .hauptnavigation a:hover {
+  background: linear-gradient(45deg, 
+    rgba(192, 192, 192, 0.15), 
+    rgba(192, 192, 192, 0.08));
+  box-shadow: 
+    0 5px 20px rgba(192, 192, 192, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+body.dark-mode p {
+  color: #d0d5dc;
+}
+
+body.dark-mode h1 {
+  color: #f4f6fa;
+}
+
+body.dark-mode .footer {
+  background-color: rgba(26, 26, 26, 0.9);
+}
+
+body.dark-mode .logo:hover {
+  filter: brightness(1.3) drop-shadow(0 0 15px rgba(192, 192, 192, 0.8));
+}
+
+body.dark-mode .silber-button:hover {
+  background: linear-gradient(135deg, 
+    rgba(192, 192, 192, 0.25) 0%, 
+    rgba(192, 192, 192, 0.15) 100%);
+  box-shadow: 
+    0 10px 25px rgba(192, 192, 192, 0.6),
+    0 0 25px rgba(192, 192, 192, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+body.dark-mode .lichtkante,
+body.dark-mode .footer-lichtkante,
+body.dark-mode .social-lichtkante {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(192, 192, 192, 1),
+    rgba(192, 192, 192, 0.7),
+    rgba(192, 192, 192, 1),
+    transparent
+  );
+  box-shadow: 0 0 15px rgba(192, 192, 192, 0.5);
+}
+
+body.dark-mode .social-link:hover .social-icon-wrapper {
+  background: rgba(192, 192, 192, 0.3);
+  box-shadow: 
+    0 0 25px rgba(192, 192, 192, 0.8),
+    inset 0 0 15px rgba(255, 255, 255, 0.15);
+}
+
+/* ==========================================================================
+   DARK MODE ICON TOGGLE
+   ========================================================================== */
+body.dark-mode .dark-mode-toggle .moon-icon {
+  display: none;
+}
+
+body.dark-mode .dark-mode-toggle .sun-icon {
+  display: block;
+}
+
+body:not(.dark-mode) .dark-mode-toggle .moon-icon {
+  display: block;
+}
+
+body:not(.dark-mode) .dark-mode-toggle .sun-icon {
+  display: none;
 }
 
 /* ==========================================================================
    ANIMATIONEN
    ========================================================================== */
-@keyframes logoAppear {
-  0% { 
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  100% { 
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes contentFadeIn {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Pulsierende Animation für das Logo */
 @keyframes logoPulse {
   0% { 
     transform: scale(1);
@@ -1095,7 +1096,6 @@ body.dark-mode .social-link:hover .social-icon-wrapper {
   }
 }
 
-/* Starke Hover-Glow Animation */
 @keyframes logoGlow {
   0% { 
     filter: brightness(1.1) drop-shadow(0 0 5px rgba(192, 192, 192, 0.3));
@@ -1108,7 +1108,6 @@ body.dark-mode .social-link:hover .social-icon-wrapper {
   }
 }
 
-/* Spezielle Animation für Preloader-Logo */
 @keyframes preloaderLogoPulse {
   0%, 100% { 
     transform: scale(1);
@@ -1120,16 +1119,6 @@ body.dark-mode .social-link:hover .social-icon-wrapper {
   }
 }
 
-@keyframes preloaderLogoGlow {
-  0%, 100% { 
-    opacity: 1;
-  }
-  50% { 
-    opacity: 0.9;
-  }
-}
-
-/* Animation für den silbernen Strich */
 @keyframes lineExpand {
   0% {
     width: 0;
@@ -1166,7 +1155,6 @@ body.dark-mode .social-link:hover .social-icon-wrapper {
   }
 }
 
-/* Glow-Animation für verschiedene Elemente */
 @keyframes silverGlow {
   0% {
     box-shadow: 0 0 5px rgba(192, 192, 192, 0.3);
@@ -1176,48 +1164,6 @@ body.dark-mode .social-link:hover .social-icon-wrapper {
   }
   100% {
     box-shadow: 0 0 5px rgba(192, 192, 192, 0.3);
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slideInRight {
-  from {
-    opacity: 0;
-    transform: translateX(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes scaleIn {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
   }
 }
 
@@ -1237,639 +1183,40 @@ body.dark-mode .social-link:hover .social-icon-wrapper {
 }
 
 /* ==========================================================================
-   DARK MODE ICON TOGGLE
+   DRUCK STYLES
    ========================================================================== */
-body.dark-mode .dark-mode-toggle .moon-icon {
-  display: none;
-}
-
-body.dark-mode .dark-mode-toggle .sun-icon {
-  display: block;
-}
-
-body:not(.dark-mode) .dark-mode-toggle .moon-icon {
-  display: block;
-}
-
-body:not(.dark-mode) .dark-mode-toggle .sun-icon {
-  display: none;
-}
-
-/* ==========================================================================
-   MOBILE PRELOADER FIXES - AM ENDE DER DATEI HINZUFÜGEN
-   ========================================================================== */
-
-/* Sicherstellen, dass Preloader auf Mobile korrekt angezeigt wird */
-@media screen and (max-width: 768px) {
-    #preloader {
-        position: fixed !important;
-        top: 0 !important;
-        left: 0 !important;
-        width: 100% !important;
-        height: 100% !important;
-        height: 100dvh !important;
-        background: #000000 !important;
-        display: flex !important;
-        justify-content: center !important;
-        align-items: center !important;
-        z-index: 9999 !important;
-        opacity: 1 !important;
-        visibility: visible !important;
-        -webkit-backface-visibility: hidden !important;
-        backface-visibility: hidden !important;
-    }
-    
-    #preloader.loaded {
-        opacity: 0 !important;
-        visibility: hidden !important;
-        transition: opacity 0.4s ease, visibility 0.4s ease !important;
-    }
-    
-    .preloader-inner {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        padding: 20px;
-    }
-    
-    .preloader-logo {
-        width: 180px !important;
-        height: auto;
-        margin-bottom: 20px;
-        display: block;
-        filter: brightness(1.1);
-        animation: preloaderLogoPulse 4s infinite ease-in-out,
-                   preloaderLogoGlow 5s infinite ease-in-out;
-    }
-    
-    .preloader-text {
-        font-family: "Cinzel", serif;
-        font-size: 24px !important;
-        letter-spacing: 0.15em;
-        color: #e0e0e0;
-        text-shadow: 0 0 10px rgba(200, 200, 200, 0.3);
-        min-height: 30px;
-    }
-    
-    .preloader-line {
-        bottom: 80px;
-        height: 1.5px;
-    }
-    
-    /* Verhindere Scrolling während Preloader */
-    body.menu-open {
-        overflow: hidden;
-        position: fixed;
-        width: 100%;
-    }
-}
-
-/* Noch kleinere Screens */
-@media screen and (max-width: 480px) {
-    .preloader-logo {
-        width: 140px !important;
-    }
-    
-    .preloader-text {
-        font-size: 20px !important;
-        letter-spacing: 0.1em;
-    }
-    
-    .preloader-line {
-        bottom: 60px;
-        height: 1px;
-    }
-}
-
-/* ==========================================================================
-   ANIMATIONEN FÜR ANDERE SEITEN (ohne Preloader)
-   ========================================================================== */
-
-/* Fade-In Animation für Seiten ohne Preloader */
-.fade-in {
-    animation: fadeIn 0.8s ease-out forwards;
-}
-
-.slide-up {
-    animation: slideUp 0.6s ease-out forwards;
-}
-
-.delay-1 { animation-delay: 0.2s !important; }
-.delay-2 { animation-delay: 0.4s !important; }
-.delay-3 { animation-delay: 0.6s !important; }
-.delay-4 { animation-delay: 0.8s !important; }
-
-/* ==========================================================================
-   EINHEITLICHE SILBERNE LINK-FARBEN
-   ========================================================================== */
-
-/* Basis-Link-Farben für alle Links */
-a {
-    color: #c0c0c0 !important;
-    transition: color 0.3s ease, text-shadow 0.3s ease, transform 0.3s ease !important;
-}
-
-/* Entferne alle blauen/goldenen Standard-Farben */
-a:visited {
-    color: #a0a0a0 !important;
-}
-
-/* Spezifische Farben für verschiedene Link-Typen - Silber */
-.hauptnavigation a {
-    color: #d6d9de !important;
-}
-
-.footer-links a {
-    color: #9da2a8 !important;
-}
-
-.social-link {
-    color: #9da2a8 !important;
-}
-
-/* Entferne alle unerwünschten Farben und setze Silber */
-a:hover,
-a:focus,
-a:active {
-    color: #ffffff !important;
-}
-
-/* ==========================================================================
-   UNIVERSAL BUTTON STYLES (für alle Buttons auf der Seite)
-   ========================================================================== */
-
-/* Dieser Style gilt für ALLE Buttons außer den spezifischen */
-button:not(.dark-mode-toggle):not(.burger) {
-    background: linear-gradient(135deg, 
-        rgba(192, 192, 192, 0.1) 0%, 
-        rgba(192, 192, 192, 0.05) 100%);
-    border: 1px solid rgba(192, 192, 192, 0.4);
-    color: #d6d9de;
-    padding: 10px 20px;
-    border-radius: 4px;
-    font-family: "Cinzel", serif;
-    letter-spacing: 0.1em;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-button:not(.dark-mode-toggle):not(.burger):hover {
-    background: linear-gradient(135deg, 
-        rgba(192, 192, 192, 0.2) 0%, 
-        rgba(192, 192, 192, 0.1) 100%);
-    border-color: rgba(192, 192, 192, 0.8);
-    color: #ffffff;
-    transform: translateY(-2px);
-    box-shadow: 
-        0 5px 15px rgba(192, 192, 192, 0.4),
-        0 0 10px rgba(192, 192, 192, 0.2);
-}
-
-/* ==========================================================================
-   FORM ELEMENTE IM SILBER-STIL
-   ========================================================================== */
-
-/* Für Kontaktformulare und andere Inputs */
-input[type="text"],
-input[type="email"],
-input[type="tel"],
-textarea,
-select {
-    background: rgba(10, 10, 10, 0.7);
-    border: 1px solid rgba(192, 192, 192, 0.3);
-    color: #d6d9de;
-    padding: 12px 15px;
-    border-radius: 4px;
-    font-family: "EB Garamond", serif;
-    transition: all 0.3s ease;
-}
-
-input[type="text"]:focus,
-input[type="email"]:focus,
-input[type="tel"]:focus,
-textarea:focus,
-select:focus {
-    outline: none;
-    border-color: rgba(192, 192, 192, 0.7);
-    box-shadow: 0 0 10px rgba(192, 192, 192, 0.3);
-    background: rgba(20, 20, 20, 0.8);
-}
-
-/* Formular-Submit-Buttons */
-input[type="submit"],
-button[type="submit"] {
-    background: linear-gradient(135deg, 
-        rgba(192, 192, 192, 0.15) 0%, 
-        rgba(192, 192, 192, 0.05) 100%);
-    border: 1px solid rgba(192, 192, 192, 0.5);
-    color: #d6d9de;
-    padding: 12px 30px;
-    border-radius: 4px;
-    font-family: "Cinzel", serif;
-    letter-spacing: 0.1em;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-input[type="submit"]:hover,
-button[type="submit"]:hover {
-    background: linear-gradient(135deg, 
-        rgba(192, 192, 192, 0.25) 0%, 
-        rgba(192, 192, 192, 0.15) 100%);
-    border-color: rgba(192, 192, 192, 0.8);
-    color: #ffffff;
-    transform: translateY(-2px);
-    box-shadow: 
-        0 8px 20px rgba(192, 192, 192, 0.5),
-        0 0 15px rgba(192, 192, 192, 0.3);
-}
-
-/* ==========================================================================
-   SILBERNE RAHMEN UND SEPARATOREN
-   ========================================================================== */
-
-/* Silberne Trennlinien für verschiedene Bereiche */
-.content-separator {
-    height: 1px;
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(192, 192, 192, 0.4),
-        transparent
-    );
-    margin: 40px auto;
-    width: 80%;
-    max-width: 600px;
-}
-
-/* Silberne Rahmen für hervorgehobene Boxen */
-.silver-box {
-    border: 1px solid rgba(192, 192, 192, 0.3);
-    border-radius: 4px;
-    padding: 20px;
-    background: rgba(10, 10, 10, 0.5);
-    margin: 20px 0;
-    transition: all 0.3s ease;
-}
-
-.silver-box:hover {
-    border-color: rgba(192, 192, 192, 0.6);
-    background: rgba(20, 20, 20, 0.6);
-    box-shadow: 0 5px 15px rgba(192, 192, 192, 0.2);
-}
-/* ==========================================================================
-   PRELOADER FALLBACK & FEHLERKORREKTUR
-   ========================================================================== */
-
-/* Sicherstellen, dass der Inhalt nicht sichtbar ist während Preloader aktiv */
-body:not(.loaded) .inhalt {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-body.loaded .inhalt {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Typewriter Text Container */
-.text-container {
-    min-height: 50px;
-    margin-bottom: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.preloader-text {
-    font-family: "Cinzel", serif;
-    font-size: 34px;
-    letter-spacing: 0.2em;
-    color: #e0e0e0;
-    text-shadow: 0 0 10px rgba(200, 200, 200, 0.3);
-    position: relative;
-}
-
-/* Typewriter Cursor Blink-Effekt */
-.preloader-text::after {
-    content: '|';
-    animation: blink 1s infinite;
-    margin-left: 5px;
-}
-
-@keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
-}
-
-/* Silberner Strich Animation - Korrektur für Mobile */
-@media screen and (max-width: 768px) {
-    @keyframes lineExpand {
-        0% {
-            width: 0;
-            opacity: 0;
-            transform: translateX(-50%) scaleX(0.1);
-        }
-        20% {
-            opacity: 1;
-            transform: translateX(-50%) scaleX(1);
-        }
-        80% {
-            width: 200px;
-            opacity: 1;
-            transform: translateX(-50%) scaleX(1);
-        }
-        100% {
-            width: 200px;
-            opacity: 0;
-            transform: translateX(-50%) scaleX(1);
-        }
-    }
-    
-    .preloader-line {
-        bottom: 80px;
-        height: 1.5px;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    @keyframes lineExpand {
-        0% {
-            width: 0;
-            opacity: 0;
-            transform: translateX(-50%) scaleX(0.1);
-        }
-        20% {
-            opacity: 1;
-            transform: translateX(-50%) scaleX(1);
-        }
-        80% {
-            width: 150px;
-            opacity: 1;
-            transform: translateX(-50%) scaleX(1);
-        }
-        100% {
-            width: 150px;
-            opacity: 0;
-            transform: translateX(-50%) scaleX(1);
-        }
-    }
-    
-    .preloader-line {
-        bottom: 60px;
-        height: 1px;
-    }
-}
-/* ==========================================================================
-   PRELOADER-LINE POSITIONSKORREKTUR
-   ========================================================================== */
-
-/* Korrektur für Preloader-Line Position */
-.preloader-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 20px;
-}
-
-/* Preloader-Line direkt unter dem Typewriter positionieren */
-.preloader-line {
-    position: absolute !important;
-    top: calc(50% + 80px) !important; /* Direkt unter dem Typewriter */
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-    width: 0;
-    height: 2px;
-    background: linear-gradient(90deg,
-        transparent,
-        #c0c0c0,
-        #ffffff,
-        #c0c0c0,
-        transparent
-    ) !important;
-    opacity: 0;
-    border-radius: 2px;
-    box-shadow: 
-        0 0 10px rgba(192, 192, 192, 0.5),
-        0 0 20px rgba(192, 192, 192, 0.3);
-    z-index: 10000 !important;
-    visibility: visible !important;
-    bottom: auto !important; /* Bottom überschreiben */
-}
-
-/* Typewriter-Text Container anpassen */
-.text-container {
-    position: relative;
-    margin-top: -30px; /* Logo näher am Text */
-    margin-bottom: 40px; /* Abstand zur Line */
-}
-
-/* Preloader Logo Position anpassen */
-.preloader-logo {
-    width: 220px !important;
-    height: auto;
-    margin-bottom: 20px !important; /* Weniger Abstand zum Text */
-    display: block;
-    filter: brightness(1.2) drop-shadow(0 0 10px rgba(192, 192, 192, 0.4));
-    animation: preloaderLogoPulse 3s infinite ease-in-out,
-               preloaderLogoGlow 4s infinite ease-in-out;
-    transform-origin: center;
-}
-
-/* Responsive Anpassungen */
-@media screen and (max-width: 768px) {
-    .preloader-line {
-        top: calc(50% + 60px) !important; /* Höher auf Mobile */
-        height: 1.5px;
-    }
-    
-    .preloader-logo {
-        width: 180px !important;
-        margin-bottom: 15px !important;
-    }
-    
-    .text-container {
-        margin-top: -20px;
-        margin-bottom: 30px;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .preloader-line {
-        top: calc(50% + 50px) !important; /* Noch höher auf sehr kleinen Screens */
-        height: 1px;
-    }
-    
-    .preloader-logo {
-        width: 140px !important;
-        margin-bottom: 10px !important;
-    }
-    
-    .text-container {
-        margin-top: -15px;
-        margin-bottom: 25px;
-    }
-}
-/* ==========================================================================
-   FADE-IN ANIMATION FÜR INHALT
-   ========================================================================== */
-
-/* Initialer Zustand - Inhalt versteckt */
-.header,
-.inhalt,
-.social-section,
-.footer {
-    opacity: 0;
-    transform: translateY(20px);
-    will-change: opacity, transform;
-}
-
-/* Wenn Preloader fertig ist - Inhalt einblenden */
-body.loaded .header {
-    opacity: 1;
-    transform: translateY(0);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-body.loaded .inhalt {
-    opacity: 1;
-    transform: translateY(0);
-    transition: opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s;
-}
-
-body.loaded .social-section {
-    opacity: 1;
-    transform: translateY(0);
-    transition: opacity 0.6s ease 0.4s, transform 0.6s ease 0.4s;
-}
-
-body.loaded .footer {
-    opacity: 1;
-    transform: translateY(0);
-    transition: opacity 0.6s ease 0.6s, transform 0.6s ease 0.6s;
-}
-/* ==========================================================================
-   PRELOADER ABSTANDSKORREKTUREN
-   ========================================================================== */
-
-/* Preloader-Logo Abstand zum Typewriter */
-.preloader-logo {
-    width: 220px !important;
-    height: auto;
-    margin-bottom: 40px !important; /* Mehr Abstand zum Text */
-    display: block;
-}
-
-/* Typewriter-Text Container */
-.text-container {
-    margin-bottom: 60px !important; /* Mehr Abstand zur Line */
-    min-height: 50px;
-}
-
-/* Preloader-Line Position korrigieren */
-.preloader-line {
-    position: absolute !important;
-    top: calc(50% + 40px) !important; /* Höher positioniert - direkt unter Typewriter */
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-    width: 0;
-    height: 2px;
-    background: linear-gradient(90deg,
-        transparent,
-        #c0c0c0,
-        #ffffff,
-        #c0c0c0,
-        transparent
-    ) !important;
-    opacity: 0;
-    border-radius: 2px;
-    box-shadow: 
-        0 0 10px rgba(192, 192, 192, 0.5),
-        0 0 20px rgba(192, 192, 192, 0.3);
-    z-index: 10000 !important;
-    visibility: visible !important;
-    bottom: auto !important;
-}
-
-/* Responsive Anpassungen */
-@media screen and (max-width: 768px) {
-    .preloader-logo {
-        width: 180px !important;
-        margin-bottom: 30px !important;
-    }
-    
-    .text-container {
-        margin-bottom: 50px !important;
-    }
-    
-    .preloader-line {
-        top: calc(50% + 30px) !important;
-        height: 1.5px;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .preloader-logo {
-        width: 140px !important;
-        margin-bottom: 20px !important;
-    }
-    
-    .text-container {
-        margin-bottom: 40px !important;
-    }
-    
-    .preloader-line {
-        top: calc(50% + 20px) !important;
-        height: 1px;
-    }
-}
-/* ==========================================================================
-   MOBILE MENÜ SICHTBARKEIT KORREKTUR
-   ========================================================================== */
-
-/* Burger-Menü Button muss immer sichtbar sein */
-.burger {
-    opacity: 1 !important;
-    visibility: visible !important;
-    z-index: 10001 !important; /* Über dem Preloader */
-}
-
-/* Mobile Navigation muss immer sichtbar sein, wenn aktiv */
-.hauptnavigation.aktiv {
-    opacity: 1 !important;
-    visibility: visible !important;
-    z-index: 10000 !important; /* Über dem Preloader */
-}
-
-/* Menu Overlay muss immer sichtbar sein, wenn aktiv */
-.menu-overlay.active {
-    opacity: 1 !important;
-    visibility: visible !important;
-    z-index: 9999 !important; /* Unter dem Menü, über dem Preloader */
-}
-
-/* Dark Mode Toggle muss immer sichtbar sein */
-.dark-mode-toggle {
-    opacity: 1 !important;
-    visibility: visible !important;
-    z-index: 10001 !important; /* Über dem Preloader */
-}
-
-/* Verhindere dass Header-Animation das Menü beeinflusst */
-.header .burger,
-.header .dark-mode-toggle,
-.hauptnavigation,
-.menu-overlay {
-    transition: none !important; /* Keine Fade-Animation für Menü-Elemente */
+@media print {
+  #preloader,
+  .burger,
+  .hauptnavigation,
+  .dark-mode-toggle,
+  .social-section,
+  .cta-container {
+    display: none;
+  }
+  
+  body {
+    background-color: white;
+    color: black;
+    font-size: 12pt;
+  }
+  
+  .logo {
+    filter: invert(1);
+  }
+  
+  .inhalt {
+    padding: 20px 0;
+    max-width: 100%;
+  }
+  
+  h1 {
+    color: black;
+    font-size: 18pt;
+  }
+  
+  p {
+    color: #333;
+    text-align: justify;
+  }
 }
