@@ -14,6 +14,304 @@
   
   <!-- Favicon -->
   <link rel="icon" href="assets/images/logo.png" type="image/png">
+  
+  <style>
+    /* ================= KONTAKT PAGE STYLES ================= */
+    .kontakt-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+    }
+
+    .kontakt-header {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid rgba(148, 148, 148, 0.2);
+    }
+
+    .kontakt-header h1 {
+      font-family: 'Cinzel', serif;
+      font-size: 2.8rem;
+      color: var(--text-color);
+      margin-bottom: 0.5rem;
+      letter-spacing: 1px;
+    }
+
+    .untertitel {
+      font-size: 1.2rem;
+      color: #9da2a8;
+      font-style: italic;
+      margin-top: 0;
+    }
+
+    /* Layout mit zwei Spalten */
+    .kontakt-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      margin-top: 2rem;
+    }
+
+    @media (max-width: 768px) {
+      .kontakt-layout {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+    }
+
+    /* Linke Spalte */
+    .kontakt-info {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+      border: 1px solid rgba(148, 148, 148, 0.15);
+    }
+
+    .kontakt-info h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.6rem;
+      color: var(--text-color);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .kontakt-info h2 .icon {
+      width: 24px;
+      height: 24px;
+      color: var(--accent-color);
+    }
+
+    /* E-Mail Button Styling */
+    .email-card {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      border: 1px solid rgba(148, 148, 148, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .email-card:hover {
+      border-color: var(--accent-color);
+      transform: translateY(-2px);
+    }
+
+    .label {
+      font-size: 0.9rem;
+      color: #9da2a8;
+      margin-bottom: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .email-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--accent-color);
+      color: #1a1a1a;
+      text-decoration: none;
+      padding: 1rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      width: 100%;
+      border: none;
+      cursor: pointer;
+      gap: 1rem;
+    }
+
+    .email-button:hover {
+      background: #ffffff;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 255, 255, 0.15);
+    }
+
+    .email-button .arrow {
+      width: 20px;
+      height: 20px;
+      opacity: 0.9;
+    }
+
+    .hinweis {
+      font-size: 0.85rem;
+      color: #9da2a8;
+      margin-top: 0.75rem;
+      text-align: center;
+    }
+
+    /* Kontakt Details */
+    .kontakt-details {
+      margin-top: 2rem;
+    }
+
+    .kontakt-details h3 {
+      font-size: 1.3rem;
+      color: var(--text-color);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .tipp-liste {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .tipp-liste li {
+      padding: 0.5rem 0;
+      color: var(--text-color);
+      border-bottom: 1px solid rgba(148, 148, 148, 0.1);
+      font-size: 0.95rem;
+    }
+
+    .tipp-liste li:last-child {
+      border-bottom: none;
+    }
+
+    .tipp-liste li strong {
+      color: var(--accent-color);
+      margin-right: 0.5rem;
+    }
+
+    /* Rechte Spalte */
+    .kontakt-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .text-block {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+      border: 1px solid rgba(148, 148, 148, 0.15);
+    }
+
+    .text-block h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.4rem;
+      color: var(--text-color);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .text-block h3 .icon {
+      width: 22px;
+      height: 22px;
+      color: var(--accent-color);
+    }
+
+    .text-block p {
+      line-height: 1.7;
+      color: var(--text-color);
+      margin-bottom: 1rem;
+      opacity: 0.9;
+    }
+
+    .highlight {
+      color: var(--accent-color);
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    /* Antwortzeit Info */
+    .antwortzeit {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+      padding: 0.75rem 1rem;
+      background: rgba(148, 148, 148, 0.05);
+      border-radius: 8px;
+      color: var(--text-color);
+      font-size: 0.95rem;
+    }
+
+    .clock-icon {
+      width: 18px;
+      height: 18px;
+      color: var(--accent-color);
+    }
+
+    /* Aktionsbuttons im Textblock */
+    .kontakt-aktionen {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 2rem;
+      text-align: center;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+      border: 1px solid rgba(148, 148, 148, 0.15);
+    }
+
+    .kontakt-aktionen h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.6rem;
+      color: var(--text-color);
+      margin-bottom: 0.75rem;
+    }
+
+    .kontakt-aktionen p {
+      color: #9da2a8;
+      margin-bottom: 1.5rem;
+      font-size: 1rem;
+    }
+
+    .aktions-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* Dark Mode Anpassungen */
+    .dark-mode .email-card {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
+      border-color: rgba(255, 255, 255, 0.05);
+    }
+
+    .dark-mode .tipp-liste li {
+      border-color: rgba(255, 255, 255, 0.05);
+    }
+
+    .dark-mode .antwortzeit {
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    /* Animation für Hover Effects */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .kontakt-info, .text-block, .kontakt-aktionen {
+      animation: fadeInUp 0.6s ease-out;
+    }
+
+    .text-block:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .kontakt-aktionen {
+      animation-delay: 0.4s;
+    }
+  </style>
 </head>
 
 <body>
@@ -55,16 +353,85 @@
 <div class="lichtkante"></div>
 
 <!-- ================= KONTAKTINHALT ================= -->
-<script>
-    // Entferne no-js Klasse wenn JS aktiv ist
-    document.documentElement.classList.remove('no-js');
-    document.documentElement.classList.add('js');
-</script>
-
-<!-- WICHTIG: Korrekte Reihenfolge der Skripte -->
-<script src="assets/js/dark-mode.js"></script>
-<script src="assets/js/global.js"></script>
-<script src="assets/js/menu.js"></script>
+<main class="inhalt">
+  <section class="kontakt-container">
+    <div class="kontakt-header">
+      <h1>Kontakt</h1>
+      <p class="untertitel">Nehmen Sie Kontakt auf für Anfragen, Lesungen und Zusammenarbeit</p>
+    </div>
+    
+    <div class="kontakt-layout">
+      <!-- Linke Spalte: Kontaktinformation -->
+      <div class="kontakt-info">
+        <div class="kontakt-einleitung">
+          <h2><svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V8l8 5 8-5v10zm-8-7L4 6h16l-8 5z"/></svg> Direkter Kontakt</h2>
+          <div class="email-card">
+            <p class="label">Primäre Kontaktadresse:</p>
+            <a href="mailto:m.silberhain@mail.de" class="email-button">
+              <span>m.silberhain@mail.de</span>
+              <svg class="arrow" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
+              </svg>
+            </a>
+            <p class="hinweis">Klicken Sie zum Öffnen Ihres E-Mail-Programms</p>
+          </div>
+          
+          <div class="kontakt-details">
+            <h3><svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg> Für eine schnellere Bearbeitung</h3>
+            <ul class="tipp-liste">
+              <li><strong>• Betreff:</strong> Klare Beschreibung Ihres Anliegens</li>
+              <li><strong>• Name:</strong> Ihr vollständiger Name</li>
+              <li><strong>• Anliegen:</strong> Ausführliche Beschreibung</li>
+              <li><strong>• Bezug:</strong> Welches Werk/Thema betrifft es?</li>
+              <li><strong>• Kontakt:</strong> Wie sind Sie erreichbar?</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Rechte Spalte: Text und Info -->
+      <div class="kontakt-text">
+        <div class="text-block">
+          <h3><svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M21 6h-2v9H6v2c0 .55.45 1 1 1h11l4 4V7c0-.55-.45-1-1-1zm-4 6V3c0-.55-.45-1-1-1H3c-.55 0-1 .45-1 1v14l4-4h10c.55 0 1-.45 1-1z"/></svg> Ein offener Raum für Austausch</h3>
+          <p><span class="highlight">Schön, dass Sie den Weg hierher gefunden haben.</span> Wenn Sie Fragen zu meinen Büchern haben, Anmerkungen teilen möchten oder sich für meine Arbeit interessieren, freue ich mich über Ihre Nachricht.</p>
+          
+          <p>Diese Seite ist bewusst als offener Raum gedacht. Rückmeldungen von Leserinnen und Lesern sind für mich ein wichtiger Teil des Austauschs. Ob es um inhaltliche Fragen, Gedanken zu bestimmten Themen oder konstruktive Hinweise geht – jede ernsthafte Nachricht wird gelesen und wertgeschätzt.</p>
+        </div>
+        
+        <div class="text-block">
+          <h3><svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg> Kooperationen & Projekte</h3>
+          <p>Auch für Anfragen zu Kooperationen, Lesungen, Interviews oder anderen Projekten können Sie mich gerne kontaktieren. Bitte beschreiben Sie Ihr Anliegen möglichst konkret, damit ich Ihnen gezielt antworten kann.</p>
+          
+          <p>Ich bitte um Verständnis, dass Antworten manchmal etwas Zeit in Anspruch nehmen können. Gründliche Kommunikation ist mir wichtiger als schnelle, oberflächliche Reaktionen.</p>
+          
+          <div class="antwortzeit">
+            <svg class="clock-icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
+            </svg>
+            <span>Antwortzeit: 5-7 Werktage</span>
+          </div>
+        </div>
+        
+        <!-- Aktionsbuttons -->
+        <div class="kontakt-aktionen">
+          <h3>Weitere Möglichkeiten</h3>
+          <p>Wenn Sie sich vorab über meine Arbeit informieren möchten:</p>
+          <div class="aktions-buttons">
+            <a href="werke.html" class="silber-button">
+              <span>Meine Werke entdecken</span>
+              <svg class="button-arrow" viewBox="0 0 24 24">
+                <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
+              </svg>
+            </a>
+            <a href="termine.html" class="silber-button secondary">
+              <span>Kommende Termine</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
 
 <!-- ================= SOCIAL MEDIA ================= -->
 <section class="social-section">
@@ -152,15 +519,9 @@
     <p>© <span id="currentYear"></span> Matthias Silberhain</p>
 </footer>
 
-<script>
-    // Entferne no-js Klasse wenn JS aktiv ist
-    document.documentElement.classList.remove('no-js');
-    document.documentElement.classList.add('js');
-</script>
-
-<!-- WICHTIG: Korrekte Reihenfolge der Skripte -->
-<script src="assets/js/dark-mode.js"></script>
+<!-- ================= JAVASCRIPT ================= -->
 <script src="assets/js/global.js"></script>
+<script src="assets/js/dark-mode.js"></script>
 <script src="assets/js/menu.js"></script>
 
 </body>
