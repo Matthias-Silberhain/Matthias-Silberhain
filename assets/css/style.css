@@ -82,29 +82,28 @@ body {
    PRELOADER SILBERNER STRICH
    ========================================================================== */
 .preloader-line {
-  position: absolute;
-  bottom: 100px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0;
-  height: 2px;
-  background: linear-gradient(90deg,
-    transparent,
-    #c0c0c0,
-    transparent
-  );
-  opacity: 0;
-  border-radius: 2px;
-  box-shadow: 
-    0 0 10px rgba(192, 192, 192, 0.5),
-    0 0 20px rgba(192, 192, 192, 0.3);
+    position: absolute;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+        transparent,
+        #c0c0c0,
+        transparent
+    );
+    opacity: 0;
+    border-radius: 2px;
+    box-shadow: 
+        0 0 10px rgba(192, 192, 192, 0.5),
+        0 0 20px rgba(192, 192, 192, 0.3);
 }
 
-/* Animation für den silbernen Strich */
 .preloader-line.active {
-  animation: 
-    lineExpand 2.5s cubic-bezier(0.4, 0, 0.2, 1) forwards,
-    lineGlow 2.5s ease-in-out;
+    animation: 
+        lineExpand 2.5s cubic-bezier(0.4, 0, 0.2, 1) forwards,
+        lineGlow 2.5s ease-in-out;
 }
 
 /* ==========================================================================
