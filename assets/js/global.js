@@ -1,10 +1,10 @@
 /**
  * GLOBAL FUNKTIONEN - Matthias Silberhain Website
- * Version 3.1 - Vollständig korrigierte Preloader-Logik mit sichtbarem Inhalt
+ * Version 3.2 - Ultra-schneller Preloader mit parallelen Animationen
  */
 
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('🌐 Global.js geladen - Starte Initialisierung');
+    console.log('🚀 Global.js geladen - Starte optimierte Initialisierung');
     
     // ================= VARIABLEN =================
     const preloader = document.getElementById('preloader');
@@ -13,13 +13,19 @@ document.addEventListener('DOMContentLoaded', function() {
     const body = document.body;
     
     // ================= INITIALE VORBEREITUNG =================
-    // Verstecke NUR die Inhaltselemente die animiert werden sollen
-    // NICHT den Header oder Menü-Elemente!
-    console.log('Bereite Seite vor...');
+    console.log('📱 Gerät erkannt:', isMobile() ? 'Mobile' : 'Desktop');
+    
+    // Verstecke nur die Inhaltselemente für die Animation
+    const contentElements = document.querySelectorAll('.inhalt, .social-section, .footer');
+    contentElements.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    });
     
     // ================= PRELOADER LOGIK =================
     if (preloader) {
-        console.log('Preloader gefunden - Starte Animation');
+        console.log('⚡ Starte ultra-schnellen Preloader');
         
         // Stelle sicher dass Preloader sichtbar ist
         preloader.style.display = 'flex';
@@ -27,20 +33,42 @@ document.addEventListener('DOMContentLoaded', function() {
         preloader.style.visibility = 'visible';
         preloader.classList.remove('loaded');
         
-        // Verstecke nur bestimmte Inhaltselemente für die Animation
-        const contentElements = document.querySelectorAll('.inhalt, .social-section, .footer');
-        contentElements.forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        });
-        
-        // Typewriter starten
-        if (typeTextElement) {
-            console.log('Starte Typewriter-Effekt...');
+        // Starte Typewriter und Line GLEICHZEITIG
+        setTimeout(() => {
+            // Starte beide Animationen parallel
+            const typewriterPromise = startTypewriter();
+            const linePromise = startSilverLine();
+            
+            // Warte bis BEIDE Animationen fertig sind
+            Promise.all([typewriterPromise, linePromise])
+                .then(() => {
+                    console.log('✅ Beide Animationen fertig - Zeige Seite');
+                    hidePreloader();
+                })
+                .catch(error => {
+                    console.warn('⚠️ Animationen fehlgeschlagen:', error);
+                    // Fallback: Trotzdem Seite zeigen
+                    setTimeout(hidePreloader, 1500);
+                });
+        }, 300); // Kurze Startverzögerung
+    } else {
+        console.log('Kein Preloader - Mache Inhalt sofort sichtbar');
+        makeContentVisible();
+    }
+    
+    // ================= TYPEWRITER FUNKTION (mit Promise) =================
+    function startTypewriter() {
+        return new Promise((resolve) => {
+            if (!typeTextElement) {
+                console.log('Kein Typewriter-Element - überspringe');
+                resolve();
+                return;
+            }
+            
+            console.log('⌨️ Starte Typewriter...');
             const text = "MATTHIAS SILBERHAIN";
             let index = 0;
-            const typingSpeed = 80; // ms pro Buchstabe
+            const typingSpeed = isMobile() ? 60 : 70; // Schneller auf Mobile
             
             // Lösche vorhandenen Text
             typeTextElement.textContent = '';
@@ -49,120 +77,106 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (index < text.length) {
                     typeTextElement.textContent += text.charAt(index);
                     index++;
+                    
+                    // Starte silberne Line, wenn Typewriter halb fertig ist
+                    if (index === Math.floor(text.length / 2)) {
+                        console.log('🔸 Typewriter halb fertig - starte Line');
+                        startSilverLine(); // Starte Line früher!
+                    }
+                    
                     setTimeout(typeWriter, typingSpeed);
                 } else {
-                    console.log('Typewriter fertig - Starte silberne Line');
-                    // Verzögerung vor Line-Animation
-                    setTimeout(startSilverLine, 500);
+                    console.log('✅ Typewriter fertig');
+                    resolve();
                 }
             }
             
-            // Starte Typewriter nach kurzer Verzögerung
-            setTimeout(() => {
-                typeWriter();
-            }, 300);
-        } else {
-            console.log('Kein Typewriter-Element - Starte direkt Line');
-            setTimeout(startSilverLine, 1000);
-        }
-    } else {
-        console.log('Kein Preloader - Mache Inhalt sofort sichtbar');
-        makeContentVisible();
+            // Sofort starten
+            typeWriter();
+        });
     }
     
-    // ================= SILBERNE LINE FUNKTION =================
+    // ================= SILBERNE LINE FUNKTION (mit Promise) =================
     function startSilverLine() {
-        console.log('Starte silberne Line Animation...');
-        
-        if (preloaderLine) {
-            console.log('Preloader Line gefunden, aktiviere Animation');
+        return new Promise((resolve) => {
+            if (!preloaderLine) {
+                console.warn('⚠️ Keine Preloader Line - überspringe');
+                resolve();
+                return;
+            }
+            
+            // Prüfe ob Line bereits aktiv ist (falls schon durch Typewriter gestartet)
+            if (preloaderLine.classList.contains('active')) {
+                console.log('🔸 Line bereits aktiv - warte auf Fertigstellung');
+                // Warte auf die Animation
+                setTimeout(resolve, 2000);
+                return;
+            }
+            
+            console.log('⚡ Starte silberne Line...');
             preloaderLine.classList.add('active');
             
-            // Nach der Line-Animation Preloader ausblenden
+            // Line-Animation dauert 2 Sekunden
             setTimeout(() => {
-                console.log('Line Animation fertig - Blende Preloader aus');
-                hidePreloader();
-            }, 2500); // Dauer der Line-Animation
-        } else {
-            console.warn('Preloader Line nicht gefunden - Überspringe');
-            setTimeout(hidePreloader, 2000);
-        }
+                console.log('✅ Line Animation fertig');
+                resolve();
+            }, 2000);
+        });
     }
     
     // ================= PRELOADER AUSBLENDEN =================
     function hidePreloader() {
-        console.log('Verstecke Preloader...');
+        console.log('🎬 Blende Preloader aus...');
         
-        // 1. Preloader ausblenden
+        // Sofort: Preloader ausblenden
         preloader.classList.add('loaded');
         body.classList.add('loaded');
         
-        // 2. Nach Fade-Animation Preloader komplett verstecken
+        // Sehr kurze Verzögerung, dann komplett verstecken
         setTimeout(() => {
             preloader.style.display = 'none';
-            console.log('Preloader komplett versteckt');
+            console.log('✅ Preloader versteckt');
             
-            // 3. Inhalt sichtbar machen
+            // Inhalt SOFORT sichtbar machen
             makeContentVisible();
-        }, 600);
+        }, 300); // Sehr kurz für flüssigen Übergang
     }
     
-    // ================= INHALT SICHTBAR MACHEN - KORRIGIERT =================
+    // ================= INHALT SICHTBAR MACHEN - OPTIMIERT =================
     function makeContentVisible() {
-        console.log('🚀 Mache Inhalt sichtbar...');
+        console.log('🌟 Mache Inhalt sichtbar...');
         
-        // 1. Wichtig: Setze loaded-Klasse auf body für CSS-Transitions
-        document.body.classList.add('loaded');
-        
-        // 2. Zeige alle Inhaltselemente mit Verzögerungen für schönes Fade-In
-        const elements = [
-            { selector: '.inhalt', delay: 200 },
-            { selector: '.social-section', delay: 400 },
-            { selector: '.footer', delay: 600 }
-        ];
-        
-        elements.forEach(item => {
-            setTimeout(() => {
-                const element = document.querySelector(item.selector);
-                if (element) {
-                    element.style.opacity = '1';
-                    element.style.transform = 'translateY(0)';
-                    element.style.transition = `opacity 0.6s ease, transform 0.6s ease`;
-                    console.log(`✅ ${item.selector} sichtbar gemacht`);
-                }
-            }, item.delay);
+        // Alle Inhaltselemente SOFORT sichtbar machen
+        contentElements.forEach(el => {
+            el.style.opacity = '1';
+            el.style.transform = 'translateY(0)';
         });
         
-        // 3. Debug-Ausgabe
-        setTimeout(() => {
-            const hiddenElements = document.querySelectorAll('.inhalt[style*="opacity: 0"], .social-section[style*="opacity: 0"], .footer[style*="opacity: 0"]');
-            if (hiddenElements.length > 0) {
-                console.warn(`⚠️ Noch ${hiddenElements.length} Elemente versteckt`);
-                
-                // Notfall: Force sichtbar machen
-                hiddenElements.forEach(el => {
-                    el.style.opacity = '1';
-                    el.style.transform = 'translateY(0)';
-                });
-            } else {
-                console.log('🎉 Alle Inhaltselemente sind sichtbar!');
-            }
-        }, 1000);
+        // Entferne Scroll-Sperre
+        body.style.overflow = 'auto';
+        body.style.position = 'static';
+        
+        console.log('✅ Inhalt sichtbar gemacht');
     }
     
-    // ================= SICHERHEITS-TIMEOUT =================
+    // ================= MOBILE DETECTION =================
+    function isMobile() {
+        return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    }
+    
+    // ================= SICHERHEITS-TIMEOUT (SEHR KURZ) =================
     setTimeout(() => {
         if (preloader && !preloader.classList.contains('loaded')) {
-            console.warn('Sicherheits-Timeout: Erzwinge Preloader-Ausblendung');
+            console.warn('⏰ Sicherheits-Timeout: Erzwinge Seitenanzeige');
             if (preloader) {
                 preloader.classList.add('loaded');
                 setTimeout(() => {
                     preloader.style.display = 'none';
                     makeContentVisible();
-                }, 600);
+                }, 300);
             }
         }
-    }, 8000);
+    }, 4000); // Nur 4 Sekunden Timeout für schnelle Seite
     
     // ================= AKTUELLES JAHR IM FOOTER =================
     const currentYearElement = document.getElementById('currentYear');
@@ -171,12 +185,16 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // ================= SCROLL EVENT FÜR MENÜ-HINTERGRUND =================
+    let scrollTimeout;
     window.addEventListener('scroll', function() {
-        if (window.pageYOffset > 50) {
-            document.body.classList.add('scrolled');
-        } else {
-            document.body.classList.remove('scrolled');
-        }
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+            if (window.pageYOffset > 50) {
+                document.body.classList.add('scrolled');
+            } else {
+                document.body.classList.remove('scrolled');
+            }
+        }, 10);
     });
     
     // ================= SMOOTH SCROLLING =================
@@ -203,7 +221,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                     
                     window.scrollTo({
-                        top: targetElement.offsetTop - 100,
+                        top: targetElement.offsetTop - 80,
                         behavior: 'smooth'
                     });
                 }
@@ -230,61 +248,17 @@ document.addEventListener('DOMContentLoaded', function() {
     highlightActiveNavLink();
     window.addEventListener('hashchange', highlightActiveNavLink);
     
-    // ================= LAZY LOADING =================
-    if ('IntersectionObserver' in window) {
-        const imageObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const img = entry.target;
-                    if (img.dataset.src) {
-                        img.src = img.dataset.src;
-                        img.removeAttribute('data-src');
-                    }
-                    imageObserver.unobserve(img);
-                }
-            });
-        });
-        
-        document.querySelectorAll('img[data-src]').forEach(img => {
-            imageObserver.observe(img);
-        });
-    }
-    
-    // ================= WINDOW RESIZE HANDLER =================
-    let resizeTimeout;
-    window.addEventListener('resize', function() {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(function() {
-            if (window.innerWidth > 768) {
-                const burger = document.getElementById('burgerButton');
-                const nav = document.getElementById('mainNav');
-                const overlay = document.querySelector('.menu-overlay');
-                
-                if (burger && nav && burger.classList.contains('aktiv')) {
-                    burger.classList.remove('aktiv');
-                    nav.classList.remove('aktiv');
-                    if (overlay) overlay.classList.remove('active');
-                    document.body.classList.remove('menu-open');
-                }
-            }
-        }, 250);
-    });
-    
     console.log('✅ Global.js erfolgreich initialisiert');
 });
 
-// ================= GLOBAL FUNKTIONEN =================
-function debugPage() {
-    console.log('=== DEBUG INFORMATION ===');
-    console.log('Preloader:', document.getElementById('preloader') ? 'Gefunden' : 'Nicht gefunden');
-    console.log('Inhalt:', document.querySelector('.inhalt') ? 'Gefunden' : 'Nicht gefunden');
-    console.log('Body Klassen:', document.body.className);
-    console.log('Preloader Klassen:', document.getElementById('preloader')?.className || 'N/A');
-    
-    // Zeige alle Elemente die noch versteckt sind
-    const hiddenElements = document.querySelectorAll('[style*="opacity: 0"], [style*="transform: translateY(20px)"]');
-    console.log('Versteckte Elemente:', hiddenElements.length);
-    hiddenElements.forEach(el => console.log(' - ', el.className || el.tagName));
+// ================= GLOBALE HELFER FUNKTIONEN =================
+function debugForceShowContent() {
+    console.log('🔧 DEBUG: Erzwinge Inhaltsanzeige');
+    document.body.classList.add('loaded');
+    document.querySelectorAll('.inhalt, .social-section, .footer').forEach(el => {
+        el.style.opacity = '1';
+        el.style.transform = 'translateY(0)';
+    });
+    const preloader = document.getElementById('preloader');
+    if (preloader) preloader.style.display = 'none';
 }
-
-// Für manuelles Debugging in der Konsole: debugPage() aufrufen
