@@ -1,8 +1,20 @@
 /**
  * GLOBAL FUNKTIONEN - Matthias Silberhain Website
  * Zentrale Funktionen für alle Seiten
- * Version 2.4 - Korrigierter Preloader mit silberner Line
+ * Version 3.0 - Komplett überarbeitet mit korrigiertem Preloader
  */
+
+// Mobile Device Detection
+const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+
+// Optimierung für mobile Geräte
+if (isMobile) {
+    document.documentElement.classList.add('mobile-device');
+}
+if (isIOS) {
+    document.documentElement.classList.add('ios-device');
+}
 
 document.addEventListener('DOMContentLoaded', function() {
     console.log('🌐 Global.js geladen - Matthias Silberhain');
@@ -13,6 +25,23 @@ document.addEventListener('DOMContentLoaded', function() {
     const preloaderLine = document.getElementById('preloaderLine');
     const body = document.body;
     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    
+    // ================= INITIALER ZUSTAND =================
+    // Stelle sicher dass der Inhalt initial versteckt ist
+    const contentElements = document.querySelectorAll('.inhalt, .social-section, .footer');
+    contentElements.forEach(el => {
+        if (el) {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+        }
+    });
+    
+    // Logo auch verstecken
+    const logo = document.querySelector('.logo');
+    if (logo) {
+        logo.style.opacity = '0';
+        logo.style.transform = 'translateY(20px)';
+    }
     
     // ================= PRELOADER ANIMATION =================
     if (preloader) {
@@ -82,70 +111,85 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // 1. Preloader ausblenden
             preloader.classList.add('loaded');
-            
-            // 2. Body klasse für CSS Transitions
             body.classList.add('loaded');
             
-            // 3. Nach Fade-Out Preloader komplett entfernen
+            // 2. Nach Fade-Out Preloader komplett entfernen
             setTimeout(() => {
                 preloader.style.display = 'none';
                 console.log('Preloader komplett versteckt');
                 
-                // 4. Inhalt sichtbar machen
+                // 3. Inhalt sichtbar machen
                 makeContentVisible();
             }, 600);
         }
-        
-        // INHALT SICHTBAR MACHEN
-        function makeContentVisible() {
-            console.log('Mache Inhalt sichtbar...');
-            
-            // Header und Hauptinhalt sichtbar machen
-            const header = document.querySelector('.header');
-            const mainContent = document.querySelector('.inhalt');
-            const socialSection = document.querySelector('.social-section');
-            const footer = document.querySelector('.footer');
-            
-            if (header) {
-                header.style.opacity = '1';
-                header.style.transform = 'translateY(0)';
-                header.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            }
-            
-            if (mainContent) {
-                mainContent.style.opacity = '1';
-                mainContent.style.transform = 'translateY(0)';
-                mainContent.style.transition = 'opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s';
-            }
-            
-            if (socialSection) {
-                socialSection.style.opacity = '1';
-                socialSection.style.transform = 'translateY(0)';
-                socialSection.style.transition = 'opacity 0.6s ease 0.4s, transform 0.6s ease 0.4s';
-            }
-            
-            if (footer) {
-                footer.style.opacity = '1';
-                footer.style.transform = 'translateY(0)';
-                footer.style.transition = 'opacity 0.6s ease 0.6s, transform 0.6s ease 0.6s';
-            }
-            
-            console.log('Inhalt sichtbar gemacht');
-        }
-        
-        // SICHERHEITS-TIMEOUT (max. 8 Sekunden)
-        setTimeout(() => {
-            if (preloader && !preloader.classList.contains('loaded')) {
-                console.warn('Sicherheits-Timeout: Erzwinge Preloader-Ausblendung');
-                hidePreloader();
-            }
-        }, 8000);
-        
     } else {
         console.log('Kein Preloader gefunden, mache Inhalt sofort sichtbar');
         body.classList.add('loaded');
         makeContentVisible();
     }
+    
+    // INHALT SICHTBAR MACHEN FUNKTION
+    function makeContentVisible() {
+        console.log('Mache Inhalt sichtbar...');
+        
+        // Logo sichtbar machen
+        const logo = document.querySelector('.logo');
+        if (logo) {
+            setTimeout(() => {
+                logo.style.opacity = '1';
+                logo.style.transform = 'translateY(0)';
+                logo.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            }, 200);
+        }
+        
+        // Hauptinhalt sichtbar machen
+        const mainContent = document.querySelector('.inhalt');
+        if (mainContent) {
+            setTimeout(() => {
+                mainContent.style.opacity = '1';
+                mainContent.style.transform = 'translateY(0)';
+                mainContent.style.transition = 'opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s';
+            }, 400);
+        }
+        
+        // Social Section sichtbar machen
+        const socialSection = document.querySelector('.social-section');
+        if (socialSection) {
+            setTimeout(() => {
+                socialSection.style.opacity = '1';
+                socialSection.style.transform = 'translateY(0)';
+                socialSection.style.transition = 'opacity 0.6s ease 0.4s, transform 0.6s ease 0.4s';
+            }, 600);
+        }
+        
+        // Footer sichtbar machen
+        const footer = document.querySelector('.footer');
+        if (footer) {
+            setTimeout(() => {
+                footer.style.opacity = '1';
+                footer.style.transform = 'translateY(0)';
+                footer.style.transition = 'opacity 0.6s ease 0.6s, transform 0.6s ease 0.6s';
+            }, 800);
+        }
+        
+        console.log('Inhalt sichtbar gemacht');
+    }
+    
+    // SICHERHEITS-TIMEOUT (max. 8 Sekunden)
+    setTimeout(() => {
+        const preloader = document.getElementById('preloader');
+        if (preloader && !preloader.classList.contains('loaded')) {
+            console.warn('Sicherheits-Timeout: Erzwinge Preloader-Ausblendung');
+            if (preloader) {
+                preloader.classList.add('loaded');
+                body.classList.add('loaded');
+                setTimeout(() => {
+                    preloader.style.display = 'none';
+                    makeContentVisible();
+                }, 600);
+            }
+        }
+    }, 8000);
     
     // ================= AKTUELLES JAHR IM FOOTER =================
     const currentYearElement = document.getElementById('currentYear');
@@ -213,43 +257,50 @@ document.addEventListener('DOMContentLoaded', function() {
     highlightActiveNavLink();
     window.addEventListener('hashchange', highlightActiveNavLink);
     
-    console.log(`✅ Global.js initialisiert für: ${currentPage}`);
-});
-
-// ================= INITIAL CSS FÜR INHALT =================
-// Fügt initiale CSS für Fade-In Effekt hinzu
-document.addEventListener('readystatechange', function() {
-    if (document.readyState === 'loading') {
-        // Verstecke Inhalt während Preloader läuft
-        const style = document.createElement('style');
-        style.textContent = `
-            .header,
-            .inhalt,
-            .social-section,
-            .footer {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            
-            body.loaded .header,
-            body.loaded .inhalt,
-            body.loaded .social-section,
-            body.loaded .footer {
-                opacity: 1;
-                transform: translateY(0);
-            }
-            
-            /* Preloader Position Fix */
-            #preloader {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: #000000;
-                z-index: 9999;
-            }
-        `;
-        document.head.appendChild(style);
+    // ================= LAZY LOADING =================
+    if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    if (img.dataset.src) {
+                        img.src = img.dataset.src;
+                        img.removeAttribute('data-src');
+                    }
+                    imageObserver.unobserve(img);
+                }
+            });
+        });
+        
+        document.querySelectorAll('img[data-src]').forEach(img => {
+            imageObserver.observe(img);
+        });
     }
+    
+    // ================= WINDOW RESIZE HANDLER =================
+    let resizeTimeout;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(function() {
+            if (window.innerWidth > 768) {
+                const burger = document.getElementById('burgerButton');
+                const nav = document.getElementById('mainNav');
+                const overlay = document.querySelector('.menu-overlay');
+                
+                if (burger && nav && burger.classList.contains('aktiv')) {
+                    burger.classList.remove('aktiv');
+                    nav.classList.remove('aktiv');
+                    if (overlay) overlay.classList.remove('active');
+                    document.body.classList.remove('menu-open');
+                }
+            }
+        }, 250);
+    });
+    
+    // ================= ERROR HANDLING =================
+    window.addEventListener('error', function(e) {
+        console.error('JavaScript Fehler:', e.message, 'in', e.filename, 'Zeile:', e.lineno);
+    });
+    
+    console.log(`✅ Global.js initialisiert für: ${currentPage}`);
 });
