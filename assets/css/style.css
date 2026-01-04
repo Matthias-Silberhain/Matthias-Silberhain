@@ -2122,3 +2122,26 @@ body.dark-mode .social-lichtkante::after {
   );
   animation: lichtbalkenPuls 4s infinite ease-in-out;
 }
+/* ==========================================================================
+   Änderung Header und Footer 
+   ========================================================================== */
+.lichtkante,
+.footer-lichtkante,
+.social-lichtkante,
+.footer::before,
+.lichtkante::after,
+.footer-lichtkante::after,
+.social-lichtkante::after {
+    animation: none !important;
+    animation-duration: 0s !important;
+    animation-iteration-count: 1 !important;
+}
+
+/* Hover-Animationen deaktivieren */
+.lichtkante:hover,
+.footer-lichtkante:hover,
+.social-lichtkante:hover {
+    animation: none !important;
+    transform: none !important;
+    filter: none !important;
+}
