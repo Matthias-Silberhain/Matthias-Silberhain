@@ -239,6 +239,39 @@
       background: rgba(200, 200, 200, 0.5);
     }
     
+    /* ================= KOSTENLOSES BUCH STYLES ================= */
+    .kostenloses-buch {
+      margin: 80px 0;
+      padding: 50px 30px;
+      background: rgba(15, 15, 15, 0.7);
+      border: 1px solid rgba(200, 205, 215, 0.15);
+      border-radius: 10px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .kostenloses-buch::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, rgba(200, 205, 215, 0) 0%, rgba(200, 205, 215, 0.8) 50%, rgba(200, 205, 215, 0) 100%);
+    }
+    
+    .kostenloses-buch a:hover {
+      background: rgba(200, 205, 215, 0.2);
+      border-color: rgba(200, 205, 215, 0.6);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    }
+    
+    .kostenloses-buch a:active {
+      transform: translateY(-1px);
+    }
+    
     /* ================= AKTUELLES WERK - KORRIGIERT & ZENTRIERT ================= */
     .aktuelles-werk {
       text-align: center;
@@ -1027,6 +1060,15 @@
         padding: 30px 15px;
         margin: 60px 0 40px 0;
       }
+      
+      .kostenloses-buch {
+        padding: 30px 20px;
+        margin: 40px 0;
+      }
+      
+      .kostenloses-buch h2 {
+        font-size: 1.8rem;
+      }
     }
     
     @media screen and (max-width: 480px) {
@@ -1156,6 +1198,19 @@
               </div>
             </a>
           </div>
+          
+          <!-- Slide 4: Die gekaufte Freiheit -->
+          <div class="karussell-slide">
+            <a href="#kostenloses-buch" class="karussell-link">
+              <img src="assets/images/diegekauftefreiheit.png" 
+                   alt="Die gekaufte Freiheit" 
+                   class="karussell-image">
+              <div class="karussell-overlay">
+                <h3 class="karussell-buchtitel">Die gekaufte Freiheit</h3>
+                <p class="karussell-beschreibung">Wie wir Kontrolle mit Zustimmung verwechseln</p>
+              </div>
+            </a>
+          </div>
         </div>
         
         <button class="karussell-button next" aria-label="Nächstes Buch">›</button>
@@ -1165,6 +1220,144 @@
           <span class="karussell-indicator active" data-slide="0"></span>
           <span class="karussell-indicator" data-slide="1"></span>
           <span class="karussell-indicator" data-slide="2"></span>
+          <span class="karussell-indicator" data-slide="3"></span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- ================= KOSTENLOSES BUCH ================= -->
+    <div class="kostenloses-buch" id="kostenloses-buch">
+      <h2 style="font-family: 'Cinzel', serif; color: #e4e6ea; font-size: 2.2rem; margin-bottom: 10px; letter-spacing: 0.06em; text-shadow: 0 0 15px rgba(200, 200, 200, 0.2);">
+        KOSTENLOSES BUCH
+      </h2>
+      
+      <p style="color: #9da2a8; font-size: 1.1rem; margin-bottom: 40px; font-style: italic;">
+        Eine nüchterne Analyse moderner Machtmechanismen
+      </p>
+      
+      <div style="display: flex; flex-wrap: wrap; gap: 40px; align-items: center; justify-content: center; margin-bottom: 40px;">
+        
+        <div style="flex: 0 0 280px; max-width: 280px;">
+          <div style="padding: 15px; background: rgba(20, 20, 20, 0.9); border: 1px solid rgba(200, 205, 215, 0.2); border-radius: 6px; box-shadow: 0 10px 35px rgba(0, 0, 0, 0.5);">
+            <img src="assets/images/diegekauftefreiheit.png" 
+                 alt="Die gekaufte Freiheit - Wie wir Kontrolle mit Zustimmung verwechseln" 
+                 style="width: 100%; height: auto; display: block; border-radius: 4px; border: 1px solid rgba(200, 205, 215, 0.1);">
+          </div>
+        </div>
+        
+        <div style="flex: 1; min-width: 300px; text-align: left; max-width: 600px;">
+          <h3 style="font-family: 'Cinzel', serif; color: #e4e6ea; font-size: 1.8rem; margin-bottom: 10px; letter-spacing: 0.05em;">
+            DIE GEKAUFTE FREIHEIT
+          </h3>
+          <p style="color: #b0b5bc; font-size: 1.3rem; font-style: italic; margin-bottom: 25px;">
+            Wie wir Kontrolle mit Zustimmung verwechseln
+          </p>
+          
+          <div style="color: #b0b5bc; font-size: 1.1rem; line-height: 1.7;">
+            <p style="margin-bottom: 20px;">
+              <strong>Die gekaufte Freiheit, Wie wir Kontrolle mit Zustimmung verwechseln, ist kein Meinungsbuch und kein politisches Pamphlet, sondern eine nüchterne Analyse moderner Machtmechanismen.</strong> Das Buch zeigt, wie Freiheit im 21. Jahrhundert nicht durch offenen Zwang verloren geht, sondern durch Bequemlichkeit, Angst, psychologische Steuerung und digitale Systeme, denen wir freiwillig zustimmen.
+            </p>
+            
+            <p style="margin-bottom: 20px;">
+              Im Zentrum steht die Frage, <strong>warum Menschen sich als frei wahrnehmen, obwohl ihre Entscheidungen zunehmend vorgeformt werden</strong> durch Medien, Narrative, Algorithmen, ökonomische Abhängigkeiten und soziale Kontrolle. Der Text legt offen, wie Wahrnehmung manipuliert, Wahrheit relativiert und Emotionen gezielt eingesetzt werden, um Zustimmung zu erzeugen, ohne dass Zwang notwendig ist.
+            </p>
+            
+            <div style="background: rgba(200, 205, 215, 0.05); border: 1px solid rgba(200, 205, 215, 0.1); border-radius: 8px; padding: 25px; margin: 25px 0;">
+              <h4 style="font-family: 'Cinzel', serif; color: #e4e6ea; font-size: 1.1rem; margin-bottom: 15px; letter-spacing: 0.05em; text-transform: uppercase;">
+                Kernanalyse des Werkes
+              </h4>
+              <ul style="list-style: none; padding: 0; margin: 0;">
+                <li style="margin-bottom: 12px; color: #b0b5bc; padding-left: 25px; position: relative;">
+                  <span style="position: absolute; left: 0; color: rgba(200, 205, 215, 0.6);">→</span>
+                  <strong>Verbindung von Gesellschaftsanalyse, Psychologie und Medientheorie</strong> zu einem geschlossenen Bild moderner Kontrolle
+                </li>
+                <li style="margin-bottom: 12px; color: #b0b5bc; padding-left: 25px; position: relative;">
+                  <span style="position: absolute; left: 0; color: rgba(200, 205, 215, 0.6);">→</span>
+                  Beschreibung, <strong>warum Macht heute so stabil ist</strong>: weil sie internalisiert wurde
+                </li>
+                <li style="margin-bottom: 12px; color: #b0b5bc; padding-left: 25px; position: relative;">
+                  <span style="position: absolute; left: 0; color: rgba(200, 205, 215, 0.6);">→</span>
+                  <strong>Anpassung wird belohnt</strong>, Abweichung moralisch sanktioniert, Selbstzensur zur Normalität
+                </li>
+                <li style="margin-bottom: 12px; color: #b0b5bc; padding-left: 25px; position: relative;">
+                  <span style="position: absolute; left: 0; color: rgba(200, 205, 215, 0.6);">→</span>
+                  <strong>Keine einfachen Lösungen, keine Feindbilder, keine Ideologie</strong> – stattdessen kritische Selbstreflexion
+                </li>
+                <li style="color: #b0b5bc; padding-left: 25px; position: relative;">
+                  <span style="position: absolute; left: 0; color: rgba(200, 205, 215, 0.6);">→</span>
+                  Freiheit als <strong>aktive Haltung und innerer Widerstand</strong> gegen unsichtbare Steuerung
+                </li>
+              </ul>
+            </div>
+            
+            <p style="margin-bottom: 20px;">
+              Das Buch verbindet gesellschaftliche Analyse, Psychologie und Medientheorie zu einem geschlossenen Bild moderner Kontrolle. Es beschreibt nicht nur, wie Macht heute funktioniert, sondern warum sie so stabil ist: <strong>weil sie internalisiert wurde</strong>. Anpassung wird belohnt, Abweichung moralisch sanktioniert, Selbstzensur zur Normalität.
+            </p>
+            
+            <div style="background: rgba(200, 205, 215, 0.03); border-left: 4px solid rgba(200, 205, 215, 0.4); padding: 25px; margin: 30px 0;">
+              <p style="font-size: 1.1rem; font-style: italic; color: #d6d9de; margin: 0; line-height: 1.6;">
+                „Die gekaufte Freiheit" richtet sich an Leserinnen und Leser, die bereit sind, unbequeme Zusammenhänge auszuhalten. Es bietet keine einfachen Lösungen, keine Feindbilder und keine Ideologie. Stattdessen fordert es kritische Selbstreflexion, bewusste Wahrnehmung und geistige Eigenständigkeit. Freiheit erscheint hier nicht als Zustand, sondern als aktive Haltung, als innerer Widerstand gegen unsichtbare Steuerung.
+              </p>
+            </div>
+            
+            <p style="font-style: italic; color: #d6d9de; margin: 25px 0; padding: 20px; background: rgba(10, 10, 10, 0.6); border-radius: 6px; border: 1px solid rgba(200, 205, 215, 0.1);">
+              <strong>Dieses Buch ist ein Spiegel, kein Trost.</strong> Es will nicht beruhigen, sondern klären.
+            </p>
+            
+            <div style="background: rgba(200, 205, 215, 0.05); padding: 20px; border-radius: 8px; margin: 30px 0; border: 1px solid rgba(200, 205, 215, 0.1);">
+              <h4 style="font-family: 'Cinzel', serif; color: #e4e6ea; font-size: 1.1rem; margin-bottom: 15px; letter-spacing: 0.05em;">
+                Für wen ist dieses Buch?
+              </h4>
+              <p style="color: #b0b5bc; margin: 0; line-height: 1.6;">
+                Für Leser, die bereit sind, komplexe Zusammenhänge zu durchdenken. Für jene, die hinter die Oberfläche von Freiheitsversprechen blicken wollen. Für alle, die verstehen möchten, wie Kontrolle in modernen Gesellschaften funktioniert – nicht als Verschwörungstheorie, sondern als strukturelle Realität.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div style="text-align: center; margin-top: 30px;">
+        <a href="Leseprobe/diegekauftefreiheit.pdf" 
+           download="Die_gekaufte_Freiheit_Matthias_Silberhain.pdf"
+           style="display: inline-block; padding: 18px 50px; background: rgba(200, 205, 215, 0.1); border: 1px solid rgba(200, 205, 215, 0.3); color: #e4e6ea; border-radius: 4px; font-family: 'Cinzel', serif; letter-spacing: 0.08em; font-size: 1.1rem; cursor: pointer; text-decoration: none; transition: all 0.3s ease; position: relative;">
+          
+          <svg width="20" height="20" viewBox="0 0 24 24" style="vertical-align: middle; margin-right: 12px;">
+            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" fill="currentColor"/>
+          </svg>
+          
+          KOSTENLOSES BUCH HERUNTERLADEN (PDF)
+        </a>
+        
+        <p style="color: #9da2a8; font-size: 0.9rem; margin-top: 15px;">
+          PDF-Datei · Direkter Download ohne Registrierung · Wissenschaftliche Analyse
+        </p>
+      </div>
+      
+      <div style="margin-top: 40px; padding-top: 30px; border-top: 1px solid rgba(200, 205, 215, 0.1);">
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px;">
+          <div style="text-align: center; padding: 15px; min-width: 150px;">
+            <div style="font-size: 2.5rem; color: rgba(200, 205, 215, 0.8); margin-bottom: 10px;">🔍</div>
+            <div style="color: #e4e6ea; font-weight: 500; margin-bottom: 5px;">Nüchterne Analyse</div>
+            <div style="color: #9da2a8; font-size: 0.9rem;">Kein Pamphlet, sondern wissenschaftliche Betrachtung</div>
+          </div>
+          
+          <div style="text-align: center; padding: 15px; min-width: 150px;">
+            <div style="font-size: 2.5rem; color: rgba(200, 205, 215, 0.8); margin-bottom: 10px;">🧠</div>
+            <div style="color: #e4e6ea; font-weight: 500; margin-bottom: 5px;">Psychologische Tiefe</div>
+            <div style="color: #9da2a8; font-size: 0.9rem;">Analyse von Selbsttäuschung und Internaliserung</div>
+          </div>
+          
+          <div style="text-align: center; padding: 15px; min-width: 150px;">
+            <div style="font-size: 2.5rem; color: rgba(200, 205, 215, 0.8); margin-bottom: 10px;">⚡</div>
+            <div style="color: #e4e6ea; font-weight: 500; margin-bottom: 5px;">Aktuelle Relevanz</div>
+            <div style="color: #9da2a8; font-size: 0.9rem;">Digitale Systeme und moderne Kontrollmechanismen</div>
+          </div>
+          
+          <div style="text-align: center; padding: 15px; min-width: 150px;">
+            <div style="font-size: 2.5rem; color: rgba(200, 205, 215, 0.8); margin-bottom: 10px;">🔓</div>
+            <div style="color: #e4e6ea; font-weight: 500; margin-bottom: 5px;">100% Kostenlos</div>
+            <div style="color: #9da2a8; font-size: 0.9rem;">Wissenschaft als Gemeingut - keine Kommerzialisierung</div>
+          </div>
         </div>
       </div>
     </div>
@@ -1398,6 +1591,11 @@
             <img src="assets/images/blutundkrone.png" alt="Blut und Krone" class="buchauswahl-cover">
             <div class="buchauswahl-name">Blut und Krone</div>
           </div>
+          
+          <div class="buchauswahl-item" data-buch="diegekauftefreiheit">
+            <img src="assets/images/diegekauftefreiheit.png" alt="Die gekaufte Freiheit" class="buchauswahl-cover">
+            <div class="buchauswahl-name">Die gekaufte Freiheit</div>
+          </div>
         </div>
       </div>
       
@@ -1445,6 +1643,15 @@
           </div>
           <div class="comment-tag" data-kommentar="Fesselnde Lektüre">
             Fesselnde Lektüre
+          </div>
+          <div class="comment-tag" data-kommentar="Aktuell und relevant">
+            Aktuell und relevant
+          </div>
+          <div class="comment-tag" data-kommentar="Zum Nachdenken anregend">
+            Zum Nachdenken anregend
+          </div>
+          <div class="comment-tag" data-kommentar="Kostenlos und wertvoll">
+            Kostenlos und wertvoll
           </div>
         </div>
       </div>
@@ -1531,6 +1738,28 @@
             </div>
             <div class="gesamtbewertung-kommentar">
               "Sehr informativ - 5x"
+            </div>
+          </div>
+        </div>
+        
+        <!-- Die gekaufte Freiheit -->
+        <div class="gesamtbewertung-item" id="gesamtBewertung4">
+          <img src="assets/images/diegekauftefreiheit.png" alt="Die gekaufte Freiheit" class="gesamtbewertung-cover">
+          <div class="gesamtbewertung-name">Die gekaufte Freiheit</div>
+          <div class="gesamtbewertung-stars">★★★★☆</div>
+          <div class="gesamtbewertung-rating">4.5</div>
+          <div class="gesamtbewertung-count">(15 Bewertungen)</div>
+          
+          <div class="gesamtbewertung-kommentare">
+            <div class="gesamtbewertung-kommentare-title">Häufige Kommentare:</div>
+            <div class="gesamtbewertung-kommentar">
+              "Aktuell und relevant - 11x"
+            </div>
+            <div class="gesamtbewertung-kommentar">
+              "Zum Nachdenken anregend - 9x"
+            </div>
+            <div class="gesamtbewertung-kommentar">
+              "Kostenlos und wertvoll - 8x"
             </div>
           </div>
         </div>
@@ -1787,6 +2016,21 @@ let allReviews = {
       "Ein interessanter Blick auf die oft übersehenen dynastischen Konflikte.",
       "Die Verbindung von persönlichen Schicksalen und politischer Geschichte gelingt hervorragend."
     ]
+  },
+  diegekauftefreiheit: {
+    ratings: [5, 4, 5, 4, 5, 5, 4, 5, 4, 5, 4, 5, 5, 4, 5],
+    comments: {
+      "Aktuell und relevant": 12,
+      "Zum Nachdenken anregend": 11,
+      "Kostenlos und wertvoll": 10,
+      "Psychologisch tiefgründig": 8,
+      "Wissenschaftlich fundiert": 7,
+      "Ausgezeichnet recherchiert": 6
+    },
+    customComments: [
+      "Ein wichtiges Buch zu einem entscheidenden Thema unserer Zeit.",
+      "Besonders beeindruckend ist die Verbindung von historischer Analyse und Gegenwartsbezug."
+    ]
   }
 };
 
@@ -1963,7 +2207,7 @@ function updateGesamtbewertungen() {
   }
   
   // Für jedes Buch die Bewertung berechnen und anzeigen
-  const buchIds = ['derlangewegindiefinsternis', 'machtunduntergang', 'blutundkrone'];
+  const buchIds = ['derlangewegindiefinsternis', 'machtunduntergang', 'blutundkrone', 'diegekauftefreiheit'];
   
   buchIds.forEach((buchId, index) => {
     const buchData = allReviews[buchId];
@@ -2019,7 +2263,8 @@ function getBuchName(buchId) {
   const namen = {
     derlangewegindiefinsternis: "Der lange Weg in die Finsternis",
     machtunduntergang: "Macht und Untergang",
-    blutundkrone: "Blut und Krone"
+    blutundkrone: "Blut und Krone",
+    diegekauftefreiheit: "Die gekaufte Freiheit"
   };
   return namen[buchId] || buchId;
 }
